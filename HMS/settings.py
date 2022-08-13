@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'MyAdmin'
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'HMS.wsgi.application'
+AUTH_USER_MODEL = "MyAdmin.Account"
 
 
 # Database
@@ -75,8 +77,11 @@ WSGI_APPLICATION = 'HMS.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'HMS',
+        'USER':'postgres',
+        'PASSWORD':'11111',
+        'HOST':'localhost',
     }
 }
 
