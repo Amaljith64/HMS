@@ -10,4 +10,5 @@ urlpatterns = [
 
     # path('signup',views.usersignup),
     path('otp/<int:id>/',views.otpcode,name='otp'),
+    path('test',views.siginwithotp,name="test"),
 ]

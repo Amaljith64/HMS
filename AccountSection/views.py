@@ -80,6 +80,27 @@ def signin(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
+        if password=="":
+            mobile      = '9388816916'
+            phone=Account.objects.get(username=request.POST.get('username'))
+            phone_number=phone.phone_number
+            if mobile == phone_number:
+                account_sid     = settings.ACCOUNT_SID
+                auth_token      = settings.AUTH_TOKEN
+
+                client      = Client(account_sid, auth_token)
+                global otp
+                otp         = str(random.randint(1000, 9999))
+                message     = client.messages.create(
+                    to      ='+919388816916',
+                    from_    ='+16413296602',
+                    body    ='Your OTP code is'+ otp)
+                messages.success(request, 'OTP has been sent to 9388816916')
+                print(otp)
+                print('OTP SENT SUCCESSFULLY')
+                return redirect(f'otp/{phone.id}/')
+            else:
+                messages.success(request, 'mobile is not registered')
         user = authenticate(username=username, password=password)
 
 
@@ -94,6 +115,18 @@ def signin(request):
             print('NOT ABLE TO SIGNIN')
             return HttpResponse("loggedin failed")
     return render(request, 'AccountSection/user-login.html')
+
+def siginwithotp(request):
+    if request.method=="POST":
+        username = request.POST.get('username')
+        phone=Account.objects.get(username=request.POST.get('username'))
+
+        print(phone.phone_number)
+    return render(request,'test.html')
+
+
+
+
 
 def home(request):
     return render(request,'AccountSection/homepage.html')
