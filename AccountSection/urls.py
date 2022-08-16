@@ -6,6 +6,8 @@ urlpatterns = [
     path('',views.register,name='register'),
     path('signin',views.signin,name='signin'),
     path('home',views.home,name='home'),
+    path('logout',views.logout,name='logout'),
+
     # path('signup',views.usersignup),
-    path('otp/',views.otpcode,name='otp'),
+    path('otp/<int:id>/',views.otpcode,name='otp'),
 ]

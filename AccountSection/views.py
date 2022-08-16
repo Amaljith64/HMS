@@ -49,7 +49,8 @@ def register(request):
             messages.success(request, 'OTP has been sent to 9388816916')
             print(otp)
             print('OTP SENT SUCCESSFULLY')
-            return redirect(otpcode)
+            return redirect(f'otp/{user.id}/')
+             
         else:
             messages.info(request, 'Invalid Mobile number')
             return redirect(register)
@@ -57,14 +58,14 @@ def register(request):
     return render(request, "AccountSection/user-register.html")
 
 
-def otpcode(request):
+def otpcode(request,id):
     if request.method == 'POST':
-        user      = Account.objects.get(phone_number=9388816916)
+        user      = Account.objects.get(id=id)
         otpvalue  = request.POST.get('otp')
         if otpvalue == otp:
             print('VALUE IS EQUAL')
             auth.login(request, user)
-            return HttpResponse("loggedin success")
+            return redirect(home)
         else:
             messages.error(request, 'Invalid OTP')
             print('ERROR ERROR')
@@ -96,3 +97,7 @@ def signin(request):
 
 def home(request):
     return render(request,'AccountSection/homepage.html')
+
+def logout(request):
+    auth.logout(request)
+    return redirect(signin)
