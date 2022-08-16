@@ -1,0 +1,131 @@
+{% extends 'AdminPanel/base.html' %}
+{% load static %}
+<!--**********************************
+        Main wrapper start
+    ***********************************-->
+
+{% block body %}
+<div id="main-wrapper">
+
+	<!--**********************************
+            Content body start
+        ***********************************-->
+	<div class="content-body">
+		<div class="container-fluid">
+			<div class="row page-titles">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+					<li class="breadcrumb-item"><a href="javascript:void(0)">Components</a></li>
+				</ol>
+			</div>
+			<!-- row -->
+			<div class="row">
+				<div class="col-xl-12 col-xxl-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Add Room</h4>
+						</div>
+						<div class="card-body">
+							<div id="smartwizard" class="form-wizard order-create">
+								<ul class="nav nav-wizard">
+									<li><a class="nav-link" href="#wizard_Service">
+											<span>1</span>
+										</a></li>
+									<li><a class="nav-link" href="#wizard_Time">
+											<span>2</span>
+										</a></li>
+									<li><a class="nav-link" href="#wizard_Details">
+											<span>3</span>
+										</a></li>
+
+								</ul>
+								<div class="tab-content">
+									<form action="" method="POST" enctype="multipart/form-data">
+										{% csrf_token %}
+										<div id="wizard_Service" class="tab-pane" role="tabpanel">
+											<div class="row">
+
+												<!-- <div class="col-lg-6 mb-2">
+													<div class="mb-3">
+														<label class="form-label">Select Location</label>
+														<select name='loc' class="default-select  form-control wide">
+															{% for i in location %}
+															<option value="{{ i.id }}">{{ i.location }}</option>
+															{% endfor %}
+														</select>
+													</div>
+												</div> -->
+												<div class="mb-3">
+													<label class="form-label">Select Room Type</label>
+													<select name="type" class="default-select  form-control wide">
+														{% for i in type %}
+														<option value="{{ i.id }}">{{ i.type }}</option>
+														{% endfor %}
+													</select>
+												</div>
+
+											</div>
+										</div>
+										<div id="wizard_Time" class="tab-pane" role="tabpanel">
+											<div class="row">
+												<div class="col-lg-6 mb-2">
+													<div class="mb-3">
+														<label class="text-label form-label">Hotel Name</label>
+														<input type="text" name="hotel_name" class="form-control"
+															placeholder="Cellophane Square" required>
+													</div>
+												</div>
+												<div class="col-lg-6 mb-2">
+													<div class="mb-3">
+														<label class="text-label form-label">Description</label>
+														<input type="text" name="description" class="form-control"
+															 placeholder="example@example.com.com" required>
+													</div>
+												</div>
+												<div class="col-lg-6 mb-2">
+													<div class="mb-3">
+														<label class="text-label form-label">Price</label>
+														<input type="text" name="price" class="form-control"
+															placeholder="example@example.com.com" required>
+													</div>
+												</div>
+
+											</div>
+										</div>
+										<div id="wizard_Details" class="tab-pane" role="tabpanel">
+											<div class="input-group mb-3">
+												<div class="form-file">
+													<input name="photoo" type="file" class="form-file-input form-control">
+												</div>
+												<span class="input-group-text">Upload</span>
+											</div>
+											<div class="col-12">
+												<button type="submit" class="btn btn-primary mb-2">Submit</button>
+											</div>
+
+
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--**********************************
+            Content body end
+        ***********************************-->
+
+</div>
+
+
+{% endblock %}
+
+
+
+<!--**********************************
+        Main wrapper end
+    ***********************************-->
