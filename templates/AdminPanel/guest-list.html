@@ -115,9 +115,11 @@
 											</td>
 											<td>
 												<div>
+												<a class="delete" href="https://www.google.com/">go here</a>
+
 													{% if i.is_active %}
 													<!-- <span class="text-danger">Refund</span></td> -->
-													<a class="btn btn-sm btn-danger"
+													<a class="deletee" class="btn btn-sm btn-danger"
 														href="{% url 'blockuser' i.id %}">Block</a>
 													{% else %}
 													<a class="btn btn-sm btn-success"
@@ -125,16 +127,7 @@
 													{% endif %}
 													<!-- <span class="fs-14">Room No. 0024</span> -->
 												</div>
-												<div class="card">
-													<div class="card-body">
-														<h4 class="card-title">Sweet Confirm</h4>
-														<div class="card-content">
-															<div class="sweetalert mt-5">
-																<button class="btn btn-warning btn sweet-confirm">Sweet Confirm</button>
-															</div>
-														</div>
-													</div>
-												</div>
+												
 											</td>
 											
 

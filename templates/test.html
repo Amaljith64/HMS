@@ -1,69 +1,41 @@
-{% extends 'AdminPanel/base.html' %}
-{% load static %}
+<html>
+<header>
+    <!--Sweet Alert Codes-->
+    <!--JQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!--Sweet Alert CDN-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</header>
+<body>
 
-<!--**********************************
-        Main wrapper start
-    ***********************************-->
-<div id="main-wrapper">
-	{% block body %}
+<a class="delete" href="https://www.google.com/">go here</a>
 
-        <!--**********************************
-            Content body start
-        ***********************************-->
-        <div class="content-body">
-            <div class="container-fluid">
-				<div class="row page-titles">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">Components</a></li>
-						<li class="breadcrumb-item"><a href="javascript:void(0)">Sweet Alert</a></li>
-					</ol>
-                </div>
-                <div class="row">
-                    <div class="col-xl-3 col-xxl-4 col-lg-4 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Sweet Confirm Or Cancel</h4>
-                                <div class="card-content">
-                                    <div class="sweetalert mt-5">
-                                        <button class="btn btn-warning btn sweet-success-cancel">Sweet Confirm Or
-                                            Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /# card -->
-                    </div>
-                    
-                    <!-- /# column -->
-                    
-                    <!-- /# column -->
-                    <div class="col-xl-3 col-xxl-4 col-lg-4 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Sweet Confirm</h4>
-                                <div class="card-content">
-                                    <div class="sweetalert mt-5">
-                                        <button class="btn btn-warning btn sweet-confirm">Sweet Confirm</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /# card -->
-                    </div>
-                    <!-- /# column -->
-                    
-                    <!-- /# column -->
-                    
-                    <!-- /# column -->
-                    
-                </div>
-            </div>
-        </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
-    </div>
-	{% endblock %}
+<script>
+    $('.delete').on('click',function (e) {
+        e.preventDefault();
+        var self = $(this);
+        console.log(self.data('title'));
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+              location.href = self.attr('href');
+            }
+        })
 
+    })
 
-<!--***
+</script>
+</body>
+</html>

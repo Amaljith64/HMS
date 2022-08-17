@@ -1,18 +1,18 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from MyAdmin.models import *
 from .models import *
-import random
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import auth
 from AccountSection.helpers import*
 from django.http import HttpResponse
 
 # Create your views here.
 
+
 def register(request):
     if request.method == 'POST':
-        mobile      = '9388816916'
+
         username = request.POST["username"]
         email = request.POST["email"]
         phone_number = request.POST["phone_number"]
@@ -28,85 +28,90 @@ def register(request):
             elif email == "":
                 messages.error(request, "email field is empty")
                 return redirect(register)
-        if mobile == phone_number:
+
             user = Account.objects.create_user(
-                    username=username,
-                    password=password1,
-                    email=email,
-                    phone_number=phone_number,
+                username=username,
+                password=password1,
+                email=email,
+                phone_number=phone_number,
             )
             user.save()
-            account_sid     = settings.ACCOUNT_SID
-            auth_token      = settings.AUTH_TOKEN
 
-            client      = Client(account_sid, auth_token)
-            global otp
-            otp         = str(random.randint(1000, 9999))
-            message     = client.messages.create(
-                to      ='+919388816916',
-                from_    ='+16413296602',
-                body    ='Your OTP code is'+ otp)
-            messages.success(request, 'OTP has been sent to 9388816916')
-            print(otp)
-            print('OTP SENT SUCCESSFULLY')
+# ----------------------OTP REGISTERATION-------------------------
+
+            account_sid = settings.ACCOUNT_SID
+            auth_token = settings.AUTH_TOKEN
+            client = Client(account_sid, auth_token)
+
+            verification = client.verify \
+                .v2 \
+                .services(settings.SERVICE_ID) \
+                .verifications \
+                .create(to=f'{settings.COUNTRY_CODE}{phone_number}', channel='sms')
+
+            print(verification.status)
             return redirect(f'otp/{user.id}/')
-             
-        else:
-            messages.info(request, 'You have a Trail account ')
-            return redirect(register)
 
     return render(request, "AccountSection/user-register.html")
 
 
-def otpcode(request,id):
-    if request.method == 'POST':
-        user      = Account.objects.get(id=id)
-        otpvalue  = request.POST.get('otp')
-        if otpvalue == otp:
-            print('VALUE IS EQUAL')
-            auth.login(request, user)
-            return redirect(home)
-        else:
-            messages.error(request, 'Invalid OTP')
-            print('ERROR ERROR')
-            return redirect(otp)
+'''-------------------OTP VERIFICATION--------------------'''
 
-    return render(request,'AccountSection/otp.html')
+
+def otpcode(request, id):
+    if request.method == 'POST':
+        user = Account.objects.get(id=id)
+        phone_number = user.phone_number
+        otpvalue = request.POST.get('otp')
+        account_sid = settings.ACCOUNT_SID
+        auth_token = settings.AUTH_TOKEN
+        client = Client(account_sid, auth_token)
+
+        verification_check = client.verify \
+            .v2 \
+            .services(settings.SERVICE_ID) \
+            .verification_checks \
+            .create(to=f'{settings.COUNTRY_CODE}{phone_number}', code=otpvalue)
+
+        print(verification_check.status)
+        login(request, user)
+        return redirect(home)
+    return render(request, 'AccountSection/otp.html')
 
 
 def signin(request):
 
-
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
-        if password=="":
-            mobile      = '9388816916'
-            phone=Account.objects.get(username=request.POST.get('username'))
-            phone_number=phone.phone_number
-            if mobile == phone_number:
-                account_sid     = settings.ACCOUNT_SID
-                auth_token      = settings.AUTH_TOKEN
+        if password == "":
+            if Account.objects.filter(username=username):
 
-                client      = Client(account_sid, auth_token)
-                global otp
-                otp         = str(random.randint(1000, 9999))
-                message     = client.messages.create(
-                    to      ='+919388816916',
-                    from_    ='+16413296602',
-                    body    ='Your OTP code is'+ otp)
-                messages.success(request, 'OTP has been sent to 9388816916')
-                print(otp)
-                print('OTP SENT SUCCESSFULLY')
+                phone = Account.objects.get(
+                    username=request.POST.get('username'))
+                phone_number = phone.phone_number
+
+# ----------------------OTP SIGNIN-------------------------
+
+                account_sid = settings.ACCOUNT_SID
+                auth_token = settings.AUTH_TOKEN
+                client = Client(account_sid, auth_token)
+
+                verification = client.verify \
+                    .v2 \
+                    .services(settings.SERVICE_ID) \
+                    .verifications \
+                    .create(to=f'{settings.COUNTRY_CODE}{phone_number}', channel='sms')
+                print(verification.status)
                 return redirect(f'otp/{phone.id}/')
             else:
-                messages.success(request, 'mobile is not registered')
-        user = authenticate(username=username, password=password)
+                messages.error(request, "You are not Registered Please Register")
 
+        user = authenticate(username=username, password=password)
 
         if user is not None:
             login(request, user)
-        
+
             messages.success(request, 'You have succesfully logged in', )
             return redirect(home)
 
@@ -116,12 +121,15 @@ def signin(request):
             return HttpResponse("loggedin failed")
     return render(request, 'AccountSection/user-login.html')
 
+
 def test(request):
-    
-    return render(request,'test.html')
+
+    return render(request, 'test.html')
+
 
 def home(request):
-    return render(request,'AccountSection/homepage.html')
+    return render(request, 'AccountSection/homepage.html')
+
 
 def logout(request):
     auth.logout(request)
