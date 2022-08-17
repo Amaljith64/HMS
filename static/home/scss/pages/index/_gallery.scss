@@ -1,0 +1,131 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// gallery section
+
+.gallery {
+    padding-bottom: 0;
+
+    &_header {
+        text-align: center;
+        margin-bottom: 30px;
+
+        &-title {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
+
+    &_grid {
+        grid-gap: 30px;
+
+        &-item {
+            &_img {
+                transition: all .4s ease-in;
+                height: 100%;
+                z-index: -1;
+                position: relative;
+            }
+
+            [data-role="gallery-link"] {
+                border-radius: 8px;
+                position: relative;
+                overflow: hidden;
+                display: block;
+                height: 100%;
+                -webkit-backface-visibility: hidden;
+                -moz-backface-visibility: hidden;
+                -webkit-transform: translate3d(0, 0, 0);
+                -moz-transform: translate3d(0, 0, 0);
+
+                &:hover, &:focus {
+                    .overlay {
+                        opacity: 1;
+                    }
+
+                    .gallery_grid-item_img {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+
+            .overlay {
+                position: absolute;
+                bottom: 0;
+                top: 0;
+                left: 0;
+                right: 0;
+                padding: 40px;
+                background: rgba($accent, .5);
+                transition: opacity .3s ease-in-out;
+                opacity: 0;
+
+                &_focus {
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .gallery {
+        &_header {
+            text-align: left;
+
+            &-title {
+                margin-bottom: 0;
+            }
+
+            .btn {
+                width: fit-content;
+            }
+        }
+
+        &_grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .gallery {
+        padding-bottom: 90px;
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .gallery {
+        padding-bottom: 120px;
+
+        &_grid {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 245px);
+
+            &-item {
+                &--left {
+                    grid-area: 1 / 1 / 3 / 2;
+                }
+
+                &--right {
+                    grid-area: 1 / 3 / 3 / 4;
+                }
+            }
+        }
+    }
+}
+

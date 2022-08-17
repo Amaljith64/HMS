@@ -1,0 +1,123 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// FAQ page content
+
+.faq {
+    &_nav {
+        background: #fff;
+        box-shadow: $shadow;
+        border-radius: 8px;
+        padding: 30px;
+        margin-bottom: 30px;
+
+        &-header {
+            margin: 0 0 20px 15px;
+        }
+
+        &-list {
+            &_item {
+                padding: 10px 15px;
+                width: 100%;
+                display: block;
+                text-align: left;
+                border-radius: 8px;
+
+                &[aria-selected="true"] {
+                    background: $accentLight;
+                }
+
+                &:hover:not(&[aria-selected="true"]) {
+                    color: $accent;
+                }
+            }
+        }
+    }
+
+    &_tabs {
+        .accordion_component-item {
+            width: 100%;
+
+            .item-wrapper {
+                padding: 30px;
+            }
+
+        }
+    }
+
+    &-contacts {
+        .media {
+            border-radius: 8px;
+        }
+    }
+}
+
+.contacts {
+    margin-bottom: 40px;
+
+    &_header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+}
+
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .contacts {
+        &_header {
+            text-align: left;
+        }
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .faq {
+        &-contacts {
+            .contacts {
+                margin-bottom: 60px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .faq {
+        &_nav {
+            margin-bottom: 0;
+            flex-grow: 1;
+            margin-right: 50px;
+        }
+
+        &-contacts {
+            .contacts {
+                margin-bottom: 0;
+            }
+
+            .media {
+                margin-left: 60px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .faq {
+        &-contacts {
+
+            .media {
+                margin-left: 90px;
+            }
+        }
+    }
+}

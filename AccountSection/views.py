@@ -52,7 +52,7 @@ def register(request):
             return redirect(f'otp/{user.id}/')
              
         else:
-            messages.info(request, 'Invalid Mobile number')
+            messages.info(request, 'You have a Trail account ')
             return redirect(register)
 
     return render(request, "AccountSection/user-register.html")
@@ -76,7 +76,7 @@ def otpcode(request,id):
 
 def signin(request):
 
-   
+
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -116,17 +116,9 @@ def signin(request):
             return HttpResponse("loggedin failed")
     return render(request, 'AccountSection/user-login.html')
 
-def siginwithotp(request):
-    if request.method=="POST":
-        username = request.POST.get('username')
-        phone=Account.objects.get(username=request.POST.get('username'))
-
-        print(phone.phone_number)
+def test(request):
+    
     return render(request,'test.html')
-
-
-
-
 
 def home(request):
     return render(request,'AccountSection/homepage.html')

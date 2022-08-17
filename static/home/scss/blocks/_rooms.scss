@@ -1,0 +1,157 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// rooms section component
+
+.rooms {
+    &_header {
+        text-align: center;
+        margin-bottom: 30px;
+
+        &-title {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
+
+    &_list {
+        &-item {
+            margin-bottom: 30px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            .item-wrapper {
+                background: #fff;
+                box-shadow: $shadow;
+                border-radius: 8px;
+
+                .media {
+                    border-radius: 8px 8px 0 0;
+                    height: 225px;
+
+                    img {
+                        height: 100%;
+                    }
+
+                    &_label {
+                        bottom: 30px;
+                        top: unset;
+                    }
+                }
+
+                .main {
+                    padding: 20px;
+
+                    &_title {
+                        display: inline-block;
+                        margin-bottom: 15px;
+                    }
+
+                    &_amenities {
+                        margin-bottom: 20px;
+
+                        &-item {
+                            margin-right: 20px;
+
+                            &:last-of-type {
+                                margin-top: 0;
+                            }
+
+                            .icon {
+                                margin-right: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .rooms {
+        &_header {
+            &-title {
+                margin-bottom: 0;
+            }
+        }
+
+        &_list {
+            &-item {
+                .item-wrapper {
+                    .main {
+                        padding: 30px;
+                    }
+
+                    .media {
+                        height: 350px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .rooms {
+        &_list {
+            margin: 0 -15px;
+
+            &-item {
+                padding: 0 15px;
+
+                .item-wrapper {
+                    height: 100%;
+
+                    .media {
+                        height: 225px;
+                    }
+
+                    .main {
+                        &_title {
+                            max-width: 350px;
+                        }
+
+                        &_amenities {
+                            flex-grow: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .rooms {
+        &_list {
+
+            &-item {
+                margin-bottom: 0;
+
+                .item-wrapper {
+
+                    .media {
+                        height: 280px;
+                    }
+                }
+            }
+        }
+    }
+}

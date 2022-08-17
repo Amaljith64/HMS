@@ -1,0 +1,172 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// about section
+
+.about {
+    &_main {
+        text-align: center;
+        margin-bottom: 40px;
+
+        &-header {
+            margin-bottom: 15px;
+        }
+
+        &-text {
+            margin-bottom: 30px;
+        }
+
+        &-list {
+            max-width: 200px;
+            margin: 0 auto 30px;
+
+            &_item {
+                margin-bottom: 20px;
+                @include textSm;
+
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+
+                .icon {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+
+        &-action {
+            .wrapper, &_item {
+                width: 100%;
+            }
+
+            &_item {
+                &.theme-element--accent {
+                    margin-top: 30px;
+                }
+
+                &.link--arrow {
+                    justify-content: center;
+                }
+            }
+        }
+    }
+
+    &_media {
+        position: relative;
+        overflow: hidden;
+        height: 220px;
+
+        img {
+            height: 100%;
+            transition: all .5s ease-in-out;
+        }
+
+        &:hover {
+            img {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .about {
+        &_main {
+            text-align: left;
+
+            &-list {
+                max-width: 540px;
+                margin: 0 -25px 40px;
+
+                &_item {
+                    width: 50%;
+                    padding: 0 25px;
+
+                    &[data-order="3"] {
+                        margin-bottom: 0;
+                    }
+
+                    .icon {
+                        margin-bottom: 0;
+                        margin-right: 10px;
+                    }
+
+                    .text {
+                        max-width: 160px;
+                    }
+                }
+            }
+
+            &-action {
+                .wrapper, &_item {
+                    width: fit-content;
+                }
+
+                &_item {
+
+                    &.theme-element--accent {
+                        margin-top: 0;
+                        margin-right: 30px;
+                    }
+
+                    &.link--arrow {
+                        justify-content: flex-start;
+                    }
+                }
+            }
+        }
+
+        &_media {
+            height: 350px;
+        }
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .about {
+        &_main {
+            max-width: 600px;
+        }
+
+        &_media {
+            height: 450px;
+        }
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .about {
+        &_main {
+            max-width: 500px;
+            margin-right: 100px;
+            margin-bottom: 0;
+        }
+
+        &_media {
+            height: 580px;
+            width: 50vw;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .container--about {
+            margin-right: 0;
+            margin-left: calc(50vw - 570px);
+            max-width: unset;
+            padding: 0;
+        }
+    }
+}

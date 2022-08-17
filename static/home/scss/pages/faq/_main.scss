@@ -1,0 +1,178 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// FAQ page content
+
+.accordion {
+    &_component {
+        &-item {
+            .item-wrapper {
+                padding: 20px;
+            }
+
+            .accordion-collapse {
+                flex-grow: 1;
+            }
+        }
+    }
+}
+
+.faq-contacts {
+    text-align: center;
+    padding-bottom: 0;
+
+    .contacts {
+        background: $backgroundHighlight;
+        padding: 60px 20px 60px;
+        border-radius: 8px;
+
+        &_header {
+            margin-bottom: 30px;
+        }
+    }
+
+    .map {
+        height: 400px;
+        margin: 40px -12px 0;
+
+        #map {
+            height: 100%;
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .accordion {
+        &_component {
+            &-item {
+                .item-wrapper {
+                    padding: 30px;
+                }
+            }
+        }
+    }
+    .faq-contacts {
+        text-align: left;
+
+        .contacts {
+            padding: 30px;
+
+            &_header {
+                &-text {
+                    max-width: 500px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .accordion {
+        &_component {
+            margin: 0 -15px;
+
+            &-item {
+                padding: 0 15px;
+
+                &[data-order="5"] {
+                    margin-bottom: 0;
+                }
+
+                &_header {
+                    .icon {
+                        margin-left: 30px;
+                    }
+                }
+            }
+        }
+    }
+
+    .faq-contacts .contacts {
+        padding: 60px;
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .accordion {
+        &_component {
+            &-item {
+                &[data-order="4"] {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .faq-contacts {
+        padding-bottom: 120px;
+
+        .container--contacts {
+            margin-right: 0;
+            margin-left: calc(50vw - 570px);
+            max-width: unset;
+            padding: 0;
+        }
+
+        .contacts {
+            width: 630px;
+        }
+
+        .map {
+            margin: 0 0 0 60px;
+            width: 50vw;
+            height: 692px;
+            flex-grow: 1;
+        }
+    }
+}
+
+@media screen and (min-width: 1399.98px) {
+
+    .faq-contacts {
+
+        .container--contacts {
+            margin-left: calc(50vw - 600px);
+            margin-right: 0;
+            padding: 0;
+            max-width: unset;
+        }
+
+        .contacts {
+            width: 510px;
+            margin: 0 0 0 24px;
+            padding: 0;
+            background: unset;
+            position: relative;
+            &:before {
+                content: '';
+                position: absolute;
+                padding: 60px;
+                border-radius: 8px;
+                width: 100%;
+                height: 100%;
+                background: $backgroundHighlight;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: -1;
+            }
+        }
+
+        .map {
+            margin: 0 0 0 150px;
+            width: 50vw;
+            height: 692px;
+        }
+    }
+}

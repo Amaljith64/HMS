@@ -1,0 +1,250 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// recommendation section
+
+.recommendation {
+    background: $backgroundHighlight;
+
+    .main {
+        margin-bottom: 40px;
+
+        &_subtitle {
+            margin-bottom: 30px;
+            color: $accent;
+            padding-left: 20px;
+            position: relative;
+
+            &:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 2px;
+                background: $accent;
+                height: 40px;
+            }
+        }
+
+        &_amenities {
+            margin: 15px 0;
+
+            &-item {
+                @include textSm;
+                margin-right: 20px;
+
+                &:last-of-type {
+                    margin-right: 0;
+                }
+
+                .icon {
+                    font-size: 18px;
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        &_list {
+            margin-top: 20px;
+
+            &-item {
+                margin-bottom: 10px;
+
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+
+                .icon {
+                    width: 25px;
+                    height: 25px;
+                    margin-right: 15px;
+
+                    svg {
+                        width: 25px;
+                        height: 25px;
+                    }
+                }
+            }
+        }
+
+        .btn {
+            margin-top: 30px;
+            width: 100%;
+        }
+    }
+
+    .media {
+        border-radius: 8px;
+
+        &_review {
+            background: #fff;
+            box-shadow: $shadow;
+            border-radius: 8px;
+            padding: 30px;
+            display: none;
+
+            .avatar {
+                display: block;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                overflow: hidden;
+                margin-right: 15px;
+            }
+
+            &-text {
+                margin-bottom: 15px;
+            }
+
+            &-footer {
+                .stars {
+                    margin-bottom: 5px;
+
+                    .icon {
+                        margin-right: 10px;
+                        font-size: 24px;
+                        color: $accentBright;
+
+                        &:last-of-type {
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.rooms {
+    .btn {
+        display: none;
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .recommendation {
+
+        .main {
+
+            .btn {
+                width: fit-content;
+            }
+        }
+
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .recommendation {
+        .main {
+            width: 500px;
+        }
+
+        .media {
+            width: 570px;
+            margin: 0 auto;
+            position: relative;
+            overflow: visible;
+            border-radius: unset;
+
+            img {
+                position: relative;
+                z-index: 2;
+                border-radius: 8px;
+            }
+
+            &_review {
+                display: block;
+                position: absolute;
+                z-index: 5;
+                width: 353px;
+
+                &--bottom {
+                    bottom: 60px;
+                    right: 50%;
+                }
+
+                &--top {
+                    top: 70px;
+                    left: 50%;
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .recommendation {
+        .main {
+            margin: 70px 60px 0 0;
+        }
+
+        .media {
+
+            &_review {
+
+                &--bottom {
+                    left: -175px;
+                }
+
+                &--top {
+                    right: -20px;
+                    left: unset;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1399.98px) {
+    .recommendation {
+
+        .media {
+
+            &_review {
+
+                &--bottom {
+                    left: -175px;
+                }
+
+                &--top {
+                    right: -120px;
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (min-width: 1599.98px) {
+    .recommendation {
+
+        .media {
+
+            &_review {
+
+                &--bottom {
+                    left: -175px;
+                }
+
+                &--top {
+                    right: -175px;
+                }
+            }
+        }
+
+    }
+}

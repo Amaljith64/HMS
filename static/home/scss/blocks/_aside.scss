@@ -1,0 +1,172 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// news aside component
+
+.widgets {
+    background: #fff;
+    box-shadow: $shadow;
+    padding: 20px;
+    margin-top: 60px;
+    border-radius: 8px;
+
+    &_item {
+        margin-bottom: 50px;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        &-header {
+            margin-bottom: 15px;
+        }
+
+        .form {
+            .field {
+                width: calc(100% - 80px);
+                border-right: none;
+                border-top-right-radius: unset;
+                border-bottom-right-radius: unset;
+            }
+
+            .btn {
+                width: 80px;
+                border-top-right-radius: 8px;
+                border-bottom-right-radius: 8px;
+                font-size: 24px;
+            }
+        }
+
+        .list {
+            &-item {
+                img {
+                    transition: all .4s ease;
+                }
+
+                &:hover, &:focus {
+                    img {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+
+        &--subscribe {
+            .theme-element--accent {
+                .icon-arrow_right {
+                    position: relative;
+                    right: 0;
+                    transition: right .3s ease-in-out;
+                }
+
+                &:hover {
+                    .icon-arrow_right {
+                        right: -5px;
+                    }
+                }
+            }
+        }
+
+        &--categories {
+            .list {
+                margin-bottom: -20px;
+                &-item {
+                    height: 48px;
+                    padding: 20px;
+                    border-radius: 8px;
+
+                    &.current {
+                        background: $accentLight;
+                    }
+                }
+            }
+        }
+
+        &--recommended {
+            .list {
+                &-item {
+                    margin-bottom: 15px;
+
+                    &:last-of-type {
+                        margin-bottom: 0;
+                    }
+
+                    .media {
+                        border-radius: 8px;
+                        overflow: hidden;
+                        width: 90px;
+                        height: 90px;
+                        margin-right: 20px;
+                    }
+
+                    .main {
+                        width: calc(100% - 110px);
+
+                        &_date {
+                            margin-top: 5px;
+                            @include textSm;
+                        }
+                    }
+                }
+            }
+        }
+
+        &--tags {
+            .list {
+                margin-bottom: -15px;
+
+                &-item {
+                    margin-right: 10px;
+                    margin-bottom: 15px;
+
+                    &:last-of-type {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        &--instagram {
+            .list {
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 10px;
+
+                &-item {
+                    overflow: hidden;
+                    border-radius: 8px;
+                }
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .widgets {
+        padding: 30px;
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .widgets {
+        width: 50%;
+        margin-top: 90px;
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .widgets {
+        width: 350px;
+        margin-top: 0;
+    }
+}

@@ -1,0 +1,88 @@
+{% extends 'AdminPanel/base.html' %}
+{% load static %}
+<!--**********************************
+        Main wrapper start
+    ***********************************-->
+
+{% block body %}
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row page-titles">
+            
+            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
+                data-bs-target="#exampleModalCenter">Add New Subcategory</button>
+
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Sub Category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="post">
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                <label class="form-label">Select Category</label>
+                                <select name='maincategory' class="default-select  form-control wide">
+                                    {% for i in categ %}
+                                    <option value="{{ i.id }}">{{ i.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <div class="mb-3">
+                                    <input type="text" name="title" class="form-control input-rounded" placeholder="Enter title">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <div class="mb-3">
+                                    <input type="text" name="description" class="form-control input-rounded" placeholder="Enter description">
+                                </div>
+                            </div>
+
+
+                        
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for i in scateg %}
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header border-0 pb-0">
+                        <h5 class="card-title">{{i.title}}</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5>Main category is:  {{i.category_id}}</h5>
+                        
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{i.description}}
+                        </p>
+                    </div>
+                    <div class="card-footer border-0 pt-0">
+                        <p class="card-text d-inline">Edit</p>
+                        <a href="javascript:void(0);" class="card-link float-end">Delete</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

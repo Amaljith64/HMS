@@ -1,0 +1,83 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// rooms section
+
+.rooms {
+    &_list {
+        &-item {
+            .card {
+                border-radius: 8px;
+                padding: 20px;
+
+                .title {
+                    color: #fff;
+                    margin-bottom: 15px;
+                }
+
+                .content {
+                    margin-top: 20px;
+                    padding-left: 13px;
+                    border-left: 2px solid #fff;
+
+                    .text {
+                        margin-bottom: 20px;
+                        @include textSm;
+
+                        b {
+                            font-weight: 700;
+                        }
+
+                        &:last-of-type {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+
+                .btn {
+                    margin-top: 30px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .rooms {
+        &_list {
+            &-item {
+                .card {
+                    padding: 30px;
+
+                    .btn {
+                        width: fit-content;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .rooms {
+        &_list {
+            &-item {
+                .card {
+                    padding: 50px;
+                }
+            }
+        }
+    }
+}

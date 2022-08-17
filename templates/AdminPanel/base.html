@@ -21,8 +21,12 @@
 	<!-- FAVICONS ICON -->
 	<link rel="shortcut icon" type="image/png" href="images/favicon.png" />
 	<link rel="stylesheet" href="{% static 'admin/vendor/chartist/css/chartist.min.css' %}">
+	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>  
+
+	<link href="{% static 'admin/vendor/sweetalert2/dist/sweetalert2.min.css' %}" rel="stylesheet">
 	<link href="{% static 'admin/vendor/jquery-nice-select/css/nice-select.css' %}" rel="stylesheet">
 	<link href="{% static 'admin/vendor/jquery-smartwizard/dist/css/smart_wizard.min.css' %}" rel="stylesheet">
+
 	<link href="{% static 'admin/vendor/datatables/css/jquery.dataTables.min.css' %}" rel="stylesheet">
 
 
@@ -56,7 +60,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
+            <a href="{% url 'index' %}" class="brand-logo">
 				<svg class="logo-abbr" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g clip-path="url(#clip0)">
 					<rect class="rect-primary-rect" width="80" height="80" rx="16" fill="#1362FC"/>
@@ -760,8 +764,13 @@
                                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
                                     <img src="{% static 'admin/images/profile/pic1.jpg' %}" alt="">
 									<div class="header-info ms-3">
-										<span>John Doe</span>
+										{% if user.is_authenticated %}
+										<span>{{user.username}}</span>
 										<small>Superadmin</small>
+										{% else %}
+										<span>login</span>
+										<small>Superadmin</small>
+										{% endif %}
 									</div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
@@ -798,83 +807,45 @@
 							<span class="nav-text">Dashboard</span>
 						</a>
                         <ul aria-expanded="false">
-							<li><a href="index.html">Dashboard Light</a></li>
-							<li><a href="index-2.html">Dashboard Dark</a></li>
-							<li><a href="">Guest</a></li>
-							<li><a href="guest-detail.html">Guest Detail</a></li>
-							<li><a href="concierge.html">Concierge</a></li>
-							<li><a href="{% url 'viewroom' %}">Room</a></li>
-							<li><a href="{% url 'addroom' %}">Add Room</a></li>
-							<li><a href="reviews.html">Reviews</a></li>	
+		
+							
+							
+							
+							<li><a href="{% url 'index' %}">Dashboard</a></li>	
 						</ul>
 
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 						<i class="flaticon-050-info"></i>
-							<span class="nav-text">Apps</span>
+							<span class="nav-text">Rooms</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="./app-profile.html">Profile</a></li>
-							<li><a href="./post-details.html">Post Details</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="./email-compose.html">Compose</a></li>
-                                    <li><a href="./email-inbox.html">Inbox</a></li>
-                                    <li><a href="./email-read.html">Read</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./app-calender.html">Calendar</a></li>
-							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shop</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="./ecom-product-grid.html">Product Grid</a></li>
-									<li><a href="./ecom-product-list.html">Product List</a></li>
-									<li><a href="./ecom-product-detail.html">Product Details</a></li>
-									<li><a href="./ecom-product-order.html">Order</a></li>
-									<li><a href="./ecom-checkout.html">Checkout</a></li>
-									<li><a href="./ecom-invoice.html">Invoice</a></li>
-									<li><a href="./ecom-customers.html">Customers</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="{% url 'viewroom' %}">Room</a></li>
+							<li><a href="{% url 'addroom' %}">Add Room</a></li>
+                            
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-041-graph"></i>
-							<span class="nav-text">Charts</span>
+							<span class="nav-text">Users</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="./chart-flot.html">Flot</a></li>
-                            <li><a href="./chart-morris.html">Morris</a></li>
-                            <li><a href="./chart-chartjs.html">Chartjs</a></li>
-                            <li><a href="./chart-chartist.html">Chartist</a></li>
-                            <li><a href="./chart-sparkline.html">Sparkline</a></li>
-                            <li><a href="./chart-peity.html">Peity</a></li>
+                            <li><a href="{% url 'guest' %}">Guest</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-086-star"></i>
-							<span class="nav-text">Bootstrap</span>
+							<span class="nav-text">Category</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="./ui-accordion.html">Accordion</a></li>
-                            <li><a href="./ui-alert.html">Alert</a></li>
-                            <li><a href="./ui-badge.html">Badge</a></li>
-                            <li><a href="./ui-button.html">Button</a></li>
-                            <li><a href="./ui-modal.html">Modal</a></li>
-                            <li><a href="./ui-button-group.html">Button Group</a></li>
-                            <li><a href="./ui-list-group.html">List Group</a></li>
-                            <li><a href="./ui-card.html">Cards</a></li>
-                            <li><a href="./ui-carousel.html">Carousel</a></li>
-                            <li><a href="./ui-dropdown.html">Dropdown</a></li>
-                            <li><a href="./ui-popover.html">Popover</a></li>
-                            <li><a href="./ui-progressbar.html">Progressbar</a></li>
-                            <li><a href="./ui-tab.html">Tab</a></li>
-                            <li><a href="./ui-typography.html">Typography</a></li>
-                            <li><a href="./ui-pagination.html">Pagination</a></li>
-                            <li><a href="./ui-grid.html">Grid</a></li>
+                            <li><a href="{% url 'category' %}">Category</a></li>
+                            <li><a href="{% url 'subcategory' %}">Sub Category</a></li>
+                            
 
                         </ul>
                     </li>
-                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    
+                    <!-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-045-heart"></i>
 							<span class="nav-text">Plugins</span>
 						</a>
@@ -933,7 +904,7 @@
                             <li><a href="./page-lock-screen.html">Lock Screen</a></li>
                             <li><a href="./empty-page.html">Empty Page</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
 				<div class="copyright">
 					<p><strong>Innap Hotel Admin</strong> © 2021 All Rights Reserved</p>
@@ -967,12 +938,14 @@
     <!-- Required vendors -->
 	
     <script src="{% static 'admin/vendor/global/global.min.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>  
+	<script src="{% static 'admin/vendor/sweetalert2/dist/sweetalert2.min.js' %}"></script>
+	<script src="{% static 'admin/js/plugins-init/sweetalert.init.js' %}"></script>
 	<script src="{% static 'admin/vendor/chart.js/Chart.bundle.min.js' %}"></script>
 	<script src="{% static 'admin/vendor/jquery-nice-select/js/jquery.nice-select.min.js' %}"></script>
 	
 	<!-- Chart piety plugin files -->
     <script src="{% static 'admin/vendor/peity/jquery.peity.min.js' %}"></script>
-	
 	<!-- Apex Chart -->
 	<script src="{% static 'admin/vendor/apexchart/apexchart.js' %}"></script>
 	
@@ -989,7 +962,14 @@
 	<script src="{% static 'admin/vendor/datatables/js/jquery.dataTables.min.js' %}"></script>
 	<script src="{% static 'admin/js/plugins-init/datatables.init.js' %}"></script>
 		
-    
+    <!-- <script>
+		jQuery(document).ready(function(){
+			setTimeout(function(){
+				dezSettingsOptions.version = 'dark';
+				new dezSettings(dezSettingsOptions);
+			},1500)
+		});
+	</script> -->
 	<script>
 		$(function () {
 			$('#datetimepicker').datetimepicker({

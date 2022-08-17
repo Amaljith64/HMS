@@ -1,0 +1,169 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// footer section
+
+.about {
+    &_footer {
+        background: $backgroundHighlight;
+
+        &-block {
+            margin-bottom: 40px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            .form {
+                max-width: 310px;
+
+                .field {
+                    width: calc(100% - 80px);
+                    border-right: none;
+                    border-top-right-radius: unset;
+                    border-bottom-right-radius: unset;
+                }
+
+                .btn {
+                    width: 80px;
+                    border-top-right-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                    font-size: 24px;
+
+                    .icon-arrow_right {
+                        position: relative;
+                        right: 0;
+                        transition: right .3s ease-in-out;
+                    }
+
+                    &:hover {
+                        .icon-arrow_right {
+                            right: -5px;
+                        }
+                    }
+                }
+            }
+
+            &_header {
+                margin-bottom: 15px;
+            }
+
+            &_text {
+                margin-bottom: 30px;
+            }
+
+            &--booking {
+                position: relative;
+                .content {
+                    padding-left: 15px;
+                }
+
+                .border {
+                    border-left: 2px solid $accent;
+                    height: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+
+            }
+
+            &--subscribe {
+                .about_footer-block_text {
+                    max-width: 370px;
+                }
+            }
+
+            .media {
+                border-radius: 50%;
+                width: 170px;
+                height: 170px;
+                margin-bottom: 15px;
+            }
+
+            .main {
+                &_quote {
+                    display: inline-block;
+                    margin-bottom: 10px;
+                }
+
+                &_author {
+                    .name {
+                        @include textSm;
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 767.98px) {
+    .about {
+        &_footer {
+
+            &-block {
+                margin-bottom: 0;
+
+                &--quote {
+                    margin-bottom: 40px;
+                }
+
+
+                &--booking, &--subscribe {
+                    width: calc(50% - 30px);
+                }
+
+                .media {
+                    margin-bottom: 0;
+                    margin-right: 30px;
+                }
+
+                .main {
+                    width: calc(100% - 200px);
+
+                    &_author {
+                        .name {
+                            margin-bottom: 0;
+                            margin-right: 60px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .about {
+        &_footer {
+
+            &-block {
+
+                &--booking {
+                    .about_footer-block_text {
+                        max-width: 470px;
+                    }
+                    .content {
+                        padding-left: 30px;
+                    }
+                }
+
+                .main {
+                    max-width: 720px;
+                }
+            }
+        }
+    }
+}

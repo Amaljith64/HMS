@@ -1,0 +1,251 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// contacts main content
+
+.contacts {
+    &_main {
+        padding-bottom: 0;
+    }
+
+    &_info {
+        background: #fff;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: $shadow;
+
+        &-header {
+            &_title {
+                margin-bottom: 15px;
+            }
+
+            &_text {
+                max-width: 430px;
+            }
+
+            margin-bottom: 30px;
+        }
+
+        &-main {
+            &_block {
+                margin-bottom: 20px;
+
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+
+                .icon {
+                    display: block;
+                    font-size: 24px;
+                    margin-bottom: 15px;
+
+                    &-call {
+                        svg {
+                            width: 24px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &-footer {
+            margin-top: 40px;
+
+            &_header {
+                margin-bottom: 20px;
+            }
+
+            &_content {
+                border-left: 2px solid $accent;
+                padding-left: 20px;
+
+                .text {
+                    margin-bottom: 20px;
+                    @include textSm;
+
+                    &:last-of-type {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &_map {
+        height: 400px;
+        margin: 40px -12px 0;
+
+        #map {
+            height: 100%;
+        }
+    }
+
+    &_secondary {
+        background: $backgroundHighlight;
+        text-align: center;
+
+        &-rating {
+            margin-bottom: 60px;
+
+            .rating {
+                margin-top: 40px;
+                padding: 0;
+
+                .container {
+                    padding: 0;
+                }
+            }
+        }
+
+        &-form {
+            background: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: $shadow;
+
+            .contacts {
+                &_header {
+                    &-text {
+                        margin-bottom: 30px;
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .contacts {
+        &_info {
+            text-align: left;
+            padding: 60px;
+
+            &-main {
+                &_block {
+
+                    .icon {
+                        margin-bottom: 0;
+                        margin-right: 20px;
+                        position: relative;
+                        top: 5px;
+                    }
+                }
+            }
+
+            &-footer {
+                &_content {
+                    .text {
+                        max-width: 400px;
+                    }
+                }
+            }
+        }
+
+        &_secondary {
+            text-align: left;
+
+            &-rating {
+                .rating {
+                    &_list {
+                        &-item {
+                            text-align: left;
+
+                            &[data-order="2"] {
+                                margin-bottom: 0 !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .contacts {
+        &_secondary {
+            padding-top: 60px;
+
+            &-form {
+                padding: 60px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .contacts {
+        &_secondary {
+            &-rating {
+                .rating {
+                    &_list {
+                        justify-content: space-between;
+
+                        &-item {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .container--contacts {
+        margin-right: 0;
+        margin-left: calc(50vw - 570px);
+        max-width: unset;
+        padding: 0;
+    }
+
+    .contacts {
+        &_main {
+            padding-bottom: 120px;
+        }
+
+        &_info {
+            max-width: 585px;
+        }
+
+        &_map {
+            margin: 0 0 0 60px;
+            width: 50vw;
+            height: 692px;
+        }
+
+        &_secondary {
+            padding-top: 120px;
+
+            &-rating, &-form {
+                width: calc(50% - 30px);
+            }
+
+            &-rating {
+                margin-bottom: 0;
+
+                .rating {
+                    &_list {
+                        &-item {
+                            &[data-order="1"] {
+                                margin-bottom: 40px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

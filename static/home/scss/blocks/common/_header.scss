@@ -1,0 +1,279 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// header component
+
+.header {
+    height: 80px;
+    background-color: #fff;
+    z-index: 100000;
+    will-change: transform;
+    transition: all .4s ease-in-out;
+
+    &.sticky {
+        position: fixed;
+        width: 100%;
+        height: 60px;
+        top: 0;
+        left: 0;
+        box-shadow: $shadow;
+    }
+
+
+    &--pinned {
+        transform: translateY(0%);
+    }
+
+    &--unpinned {
+        transform: translateY(-100%);
+    }
+
+    .brand {
+        &_name {
+            color: $accent;
+        }
+    }
+
+    &_offcanvas {
+        padding: 20px 12px;
+        height: 100vh;
+        overflow-y: scroll;
+        width: 100%;
+
+        &-header {
+            margin-bottom: 30px;
+
+            .close {
+                font-size: 30px;
+            }
+        }
+    }
+
+    &_trigger {
+        font-size: 30px;
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $accent;
+    }
+
+    &_nav {
+        &-list {
+            display: flex;
+            flex-direction: column;
+            font-family: $accentFont;
+
+            .nav-item {
+                font-size: 20px;
+                transition: color .3s ease-in-out;
+
+                &.current, &:focus, &:hover {
+                    color: $accent;
+                }
+            }
+
+            .nav-link {
+                line-height: 1;
+            }
+
+            &_item {
+                margin-bottom: 20px;
+                font-size: 20px;
+                font-weight: 600;
+                color: $headerColor;
+
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+
+                .icon {
+                    position: relative;
+                    top: 2px;
+                    margin-left: 5px;
+                    font-size: 22px;
+                }
+
+                .dropdown-list {
+                    margin-top: 20px;
+                    margin-left: 10px;
+                    font-weight: 600;
+
+                    .list-item {
+                        margin-bottom: 20px;
+
+                        .nav-item {
+                            font-size: 18px;
+                        }
+
+                        &:last-of-type {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    .socials {
+        color: $accent;
+        margin-top: 40px;
+
+        .list-item {
+            .link {
+                font-size: 30px;
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 991.98px) {
+    .header {
+        height: 108px;
+
+        &.sticky {
+            height: 80px;
+        }
+
+        &_offcanvas {
+            padding: 0;
+            height: unset;
+            overflow-y: unset;
+
+            .socials, &-header, .close {
+                display: none !important;
+            }
+        }
+
+        &_nav {
+            order: 2;
+
+            .nav-item, .nav-link {
+                font-size: 16px;
+                margin-right: 70px;
+                position: relative;
+
+                &:after {
+                    position: absolute;
+                    content: '';
+                    height: 2px;
+                    width: 0;
+                    background: $accent;
+                    left: 0;
+                    bottom: -8px;
+                    transition: width .3s ease-in-out;
+                }
+
+                &:hover, &:focus, &.current {
+                    text-shadow: 0 0 0 $accent;
+
+                    &:after {
+                        width: 100%;
+                    }
+                }
+            }
+
+
+            &-list {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+
+                &_item {
+                    font-weight: 500;
+                    margin: 0;
+
+                    .nav-link {
+                        margin-bottom: 0;
+
+                        .icon {
+                            display: none;
+                        }
+
+                        &--contacts {
+                            padding: 10px 25px;
+                            background: $accentLight;
+                            color: $accent;
+                            border-radius: 8px;
+                            font-weight: 700;
+                            margin-right: 0;
+
+                            &:hover, &:focus, &:active {
+                                text-shadow: none;
+                            }
+
+                            &:after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                opacity: 0;
+                max-height: unset;
+                text-align: left;
+                visibility: hidden;
+                padding-top: 10px;
+                transition: opacity .3s ease;
+
+                .dropdown-list {
+                    background: #fff;
+                    box-shadow: $shadow;
+                    border-radius: 8px;
+                    padding: 20px;
+                    margin: 0;
+
+                    .list-item[data-main="true"] {
+                        display: none;
+                    }
+
+                    .nav-item {
+                        font-size: 16px;
+                        margin-bottom: 30px;
+                        transition: color .3s ease;
+
+                        &:hover, &:focus, &.current {
+                            text-shadow: none;
+
+                            &:after {
+                                display: none;
+                            }
+                        }
+
+                        &:last-of-type {
+                            margin-bottom: 0;
+                        }
+
+                        &:hover, &.active {
+
+                            &:before {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+
+                &.active {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+    }
+}

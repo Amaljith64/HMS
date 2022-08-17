@@ -1,0 +1,154 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// FAQ section
+
+.about {
+    &_faq {
+        &-header {
+            margin-bottom: 30px;
+
+            &_title {
+                margin-bottom: 15px;
+            }
+        }
+
+        &-main {
+            grid-gap: 30px;
+
+            .accordion_component-item {
+                margin-bottom: 0;
+            }
+
+            &_card {
+                padding: 20px;
+                border-radius: 8px;
+
+                .title {
+                    color: #fff;
+                    margin-bottom: 15px;
+                }
+
+                .text {
+                    margin-bottom: 20px;
+                    @include textSm;
+                }
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .about {
+        &_faq {
+
+            &-main {
+
+                &_card {
+                    padding: 30px;
+
+                    .btn {
+                        width: fit-content;
+                    }
+
+                    .text {
+                        max-width: 400px;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .about {
+        &_faq {
+
+            &-header {
+                max-width: 500px;
+            }
+
+            &-main {
+                grid-template-columns: repeat(2, 1fr);
+                .accordion_component-item {
+                    padding: 0;
+                }
+
+                &_card {
+
+                    .text {
+                        margin: 0 0 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .about {
+        &_faq {
+
+            &-header {
+                max-width: 100%;
+
+                &_title {
+                    max-width: 500px;
+                    margin-bottom: 0;
+                }
+
+                &_text {
+                    text-align: right;
+                    max-width: 290px;
+                }
+            }
+
+            &-main {
+
+                .accordion_component-item_header {
+                    max-width: 400px;
+                }
+
+                &_card {
+
+                    .title {
+                        margin-bottom: 20px;
+                    }
+
+
+                    .text {
+                        max-width: unset;
+                        margin: 0 0 25px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .about {
+        &_faq {
+
+            &-main {
+                grid-template-columns: repeat(3, 1fr);
+
+                &_card {
+                    grid-area: 1 / 3 / 2 / 4;
+                }
+            }
+        }
+    }
+}

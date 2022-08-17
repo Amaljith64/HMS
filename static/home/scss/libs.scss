@@ -1,0 +1,35 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// AOS styles
+@import "aos/dist/aos";
+
+// swiper core styles
+@import "swiper/swiper.min";
+
+// swiper fade effect
+@import "swiper/modules/effect-fade/effect-fade";
+
+// baguettebox styles
+@import "baguettebox.js/dist/baguetteBox.min";
+
+// bootstrap grid
+@import "bootstrap/dist/css/bootstrap-grid";
+
+// sweetalert styles
+@import "libs/sweetalert";
+
+// star-rating.js styles
+@import "libs/star-rating";
+
+// pickmeup (datepicker) styles
+@import "libs/pickmeup";

@@ -1,0 +1,123 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// rules section
+
+.about {
+    &_rules {
+        background: $backgroundHighlight;
+
+        &-main {
+            margin-bottom: 40px;
+
+            &_header {
+                margin-bottom: 30px;
+            }
+
+            &_list {
+                .list-item {
+                    margin-bottom: 20px;
+
+                    &:last-of-type {
+                        margin-bottom: 0;
+                    }
+
+                    .icon {
+                        font-size: 14px;
+                        margin-right: 10px;
+                    }
+
+                    &.important {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+        .contacts {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: $shadow;
+            padding: 30px 15px;
+
+            &_header {
+                text-align: center;
+
+                &-text {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .about {
+        &_rules {
+            .contacts {
+                padding: 30px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .about {
+        &_rules {
+
+            &-main {
+                max-width: 600px;
+                margin-bottom: 60px;
+            }
+
+            .contacts {
+                padding: 60px;
+
+                &_header {
+                    text-align: left;
+
+                    &-title {
+                        margin-bottom: 40px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .about {
+        &_rules {
+            &-main {
+                max-width: 800px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .about {
+        &_rules {
+            &-main {
+                max-width: unset;
+                margin-bottom: 0;
+
+                &_list {
+                    max-width: 460px;
+                }
+            }
+        }
+    }
+}

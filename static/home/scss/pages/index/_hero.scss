@@ -1,0 +1,395 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// hero section
+
+.hero {
+    background: $backgroundHighlight;
+
+    &_main {
+        &-title {
+            margin-bottom: 20px;
+        }
+
+        &-content {
+            margin-bottom: 30px;
+
+            .line {
+                border-left: 3px solid $accent;
+                margin-right: 17px;
+            }
+        }
+
+        .booking {
+            background: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: $shadow;
+
+            &_group {
+                &-label, &-field {
+                    cursor: pointer;
+                }
+
+                &:last-of-type {
+                    .booking_group-wrapper {
+                        margin-bottom: 0;
+                    }
+                }
+
+                &-wrapper {
+                    margin-bottom: 15px;
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    width: 100%;
+
+                    .icon-user {
+                        top: 9px;
+                    }
+
+                    .icon-chevron_down {
+                        color: #0C2A37;
+                    }
+                }
+
+                &-dropdown {
+                    width: 100%;
+                    background: #fff;
+
+                    &_wrapper {
+                        .field {
+                            padding: 0;
+                            border: 0;
+                            max-width: 40px;
+                            text-align: center;
+                            font-weight: 600;
+                        }
+
+                        .qty-changer {
+                            height: 40px;
+                            width: 40px;
+                            border-radius: 4px;
+                            border: 1.5px solid $textSecondary;
+                            color: $textSecondary;
+                            font-size: 24px;
+                            line-height: 1;
+                            font-weight: 500;
+                            transition: all .3s ease-in-out;
+
+                            &[data-disabled="true"] {
+                                pointer-events: none;
+                            }
+
+                            &.qty_minus {
+                                position: relative;
+
+                                &:after {
+                                    content: '';
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    height: 1.5px;
+                                    width: 12px;
+                                    background: $textSecondary;
+                                    transition: all .3s ease-in-out;
+                                }
+                            }
+
+                            &:hover, &:not([data-disabled="true"]) {
+                                border-color: $accent;
+                                color: $accent;
+
+                                &:after {
+                                    background: $accent;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &-field {
+                    border-bottom: 1px solid $accentLight;
+                    padding: 10px 0 14px 30px;
+                    width: 100%;
+                }
+            }
+
+            &_btn {
+                margin-top: 30px;
+                width: 100%;
+            }
+        }
+    }
+
+    &_media {
+        display: none;
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .hero {
+
+        &_main {
+            .booking {
+                padding: 60px;
+
+                .item-wrapper {
+                    margin: 0 -15px;
+                }
+
+                &_group {
+                    width: 50%;
+                    padding: 0 15px;
+
+                    &-wrapper {
+                        position: relative;
+                    }
+
+                    &-dropdown {
+                        position: absolute;
+                        top: 100%;
+                        width: 250px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        border-radius: 8px;
+                        box-shadow: $shadow;
+
+                        .content {
+                            padding: 20px;
+                        }
+                    }
+                }
+
+                &_btn {
+                    margin: 20px 15px 0;
+                    width: calc(50% - 30px);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .hero {
+        background: transparent;
+
+        &_main {
+            position: relative;
+
+            &-title {
+                margin-bottom: 30px;
+            }
+
+            &-content {
+                margin-bottom: 40px;
+                width: 520px;
+            }
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: -90px;
+                left: -12px;
+                width: 1000px;
+                height: 500px;
+                background: $backgroundHighlight;
+                z-index: -1;
+            }
+
+            &-title, &-content {
+                max-width: 570px;
+            }
+
+            .booking {
+                .item-wrapper {
+                    margin: 0 -30px;
+                }
+
+                &_group {
+                    padding: 0 30px;
+
+                    &-dropdown {
+                        width: 100%;
+                    }
+                }
+
+                &_btn {
+                    margin: 20px 30px 0;
+                    width: calc(50% - 60px);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .hero {
+        padding: 40px 0 120px;
+
+        .container--hero {
+            padding-right: 0;
+        }
+
+        &_main {
+            width: 570px;
+
+            &-content {
+                width: 480px;
+            }
+
+            &:before {
+                top: 50%;
+                width: 1157px;
+                height: 574px;
+                transform: translateY(-50%);
+            }
+
+            .booking {
+                padding: 0;
+                min-width: 968px;
+
+                .item-wrapper {
+                    margin: 0;
+                    height: 90px;
+                    justify-content: right;
+                }
+
+                &_group {
+                    padding: 0 30px;
+
+                    &:first-of-type {
+                        padding-left: 60px;
+                        border-right: 2px solid $accentLight;
+                    }
+
+                    &:last-of-type {
+                        padding-right: 0;
+                        width: calc(50% + 60px);
+                        border-left: 2px solid  $accentLight;
+                    }
+
+                    &-wrapper {
+                        margin-bottom: 0;
+                    }
+
+                    &-field {
+                        border-bottom: none;
+                        padding-bottom: 0;
+                    }
+
+                    &-dropdown {
+                        width: 250px;
+                        top: calc(100% + 15px);
+                    }
+                }
+
+                &_btn {
+                    padding: 0;
+                    margin: 0;
+                    height: 90px;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    min-width: 170px;
+                    max-width: 170px;
+
+                    &:hover, &:focus {
+                        transform: none;
+                        background: $backgroundHighlight;
+                        color: $accent;
+                    }
+                }
+            }
+        }
+
+        &_media {
+            display: block;
+            width: calc(100% - 680px);
+            height: 734px;
+            position: relative;
+            z-index: -1;
+
+            img {
+                height: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .hero {
+        .container--hero {
+            max-width: unset;
+            margin-right: 0;
+            margin-left: calc(50vw - 570px);
+            padding: 0;
+        }
+
+        &_main {
+            &:before {
+                left: -30px;
+                border-radius: 8px;
+            }
+
+            .booking {
+                min-width: 850px;
+
+                .item-wrapper {
+                    justify-content: flex-start;
+                }
+
+                &_group {
+                    width: 200px;
+
+                    &:first-of-type {
+                        width: 230px;
+                    }
+
+                    &:last-of-type {
+                        width: 260px;
+
+                        .booking_group-wrapper {
+                            width: unset;
+                        }
+                    }
+
+                    &-wrapper {
+                        width: 140px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1399.98px) {
+    .hero {
+        &_main {
+            &:before {
+                left: -100px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1599.98px) {
+    .hero {
+        &_main {
+            &:before {
+                left: -190px;
+            }
+        }
+    }
+}

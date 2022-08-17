@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'MyAdmin',
     'AccountSection',
-    'AdminPanel'
+    'AdminPanel',
+    'UserHome'
 ]
 
 MIDDLEWARE = [

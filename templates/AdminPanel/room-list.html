@@ -79,11 +79,11 @@
 											</td>
 											<td>
 												<div class="guest-bx">
-													<img class="me-3" src="{{ i.img.url }}" alt="">
+													<img class="me-3" src="{{i.img.url}}" alt="">
 													<div>
 														<span class="text-primary">{{i.id}}</span>
 														<h4 class="mb-0 mt-1"><a class="text-black"
-																href="">{{i.name}}</a></h4>
+																href="{% url 'editroom' i.id  %}">{{i.name}}</a></h4>
 													</div>
 												</div>
 											</td>
@@ -130,8 +130,8 @@
 														</svg>
 													</a>
 													<div class="dropdown-menu">
-														<a class="dropdown-item" href="">Edit</a>
-														<a class="dropdown-item" href="">Delete</a>
+														<a class="dropdown-item" href="{% url 'editroom' i.id  %}">Edit</a>
+														<a class="dropdown-item" href="{% url 'deleteroom' i.id  %}">Delete</a>
 													</div>
 												</div>
 											</td>
@@ -162,3 +162,9 @@
 
 </div>
 {% endblock %}
+
+
+
+<!--**********************************
+        Main wrapper end
+    ***********************************-->

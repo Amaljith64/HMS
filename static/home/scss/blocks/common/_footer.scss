@@ -1,0 +1,181 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// footer component
+
+.footer {
+    &_main {
+        padding: 60px 0;
+
+        &-block {
+            margin-bottom: 30px;
+
+            .icon {
+                color: #fff;
+            }
+
+            .brand {
+                margin-bottom: 15px;
+            }
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            &_header {
+                color: #fff;
+                margin-bottom: 15px;
+            }
+
+            &_nav {
+                .list-item {
+                    margin-right: 20px;
+
+                    &:last-of-type {
+                        margin-right: 0;
+                    }
+                }
+            }
+
+            &_contacts {
+                .list-item {
+                    margin-bottom: 20px;
+
+                    &:last-of-type {
+                        margin-bottom: 0;
+                    }
+
+                    .icon {
+                        font-size: 24px;
+                        margin: 5px 20px 0 0;
+
+                        &-call {
+                            width: 24px;
+
+                            svg {
+                                width: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .socials {
+                margin-top: 30px;
+            }
+        }
+    }
+
+    &_copyright {
+        @include textSm;
+        padding: 30px 0;
+        text-align: center;
+        background: $backgroundHighlight;
+        color: $textColor;
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .footer {
+        &_main {
+            margin: 0 -15px;
+
+            &-block {
+                padding: 0 15px;
+
+                &--about {
+                    order: 1;
+                }
+
+                &--contacts {
+                    order: 2;
+                    margin-top: 10px;
+                }
+
+                &--follow {
+                    order: 4;
+                }
+
+                &--nav {
+                    order: 3;
+                }
+
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .footer {
+        &_main {
+            padding: 80px 0;
+
+            &-block {
+                &_header {
+                    margin-bottom: 30px;
+                }
+
+                &_nav {
+                    .list-item {
+                        margin-bottom: 10px;
+
+                        &:last-of-type {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        &_copyright {
+            .linebreak {
+                display: inline;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .footer {
+        &_main {
+            margin: 0;
+
+            &-block {
+                padding: 0;
+                margin-bottom: 0;
+
+                &_header {
+                    margin-top: 8px;
+                }
+
+                &--about {
+                    max-width: 280px;
+                }
+
+                &--nav {
+                    order: 2;
+                }
+
+                &--contacts {
+                    margin-top: 0;
+                    order: 3;
+                }
+
+                &--follow {
+                    max-width: 180px;
+                }
+            }
+        }
+    }
+}

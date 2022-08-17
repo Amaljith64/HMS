@@ -1,0 +1,209 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// rooms page content
+
+.rooms {
+    &_list {
+        &-item {
+            margin-bottom: 30px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            .item-wrapper {
+                background: #fff;
+                box-shadow: $shadow;
+                overflow: hidden;
+                border-radius: 8px;
+
+                .main {
+                    padding: 20px;
+
+                    &_description {
+                        margin: 15px 0;
+                    }
+
+                    &_amenities {
+                        margin-bottom: 20px;
+
+                        &-item {
+                            @include textSm;
+                            margin-right: 20px;
+
+                            &:last-of-type {
+                                margin-right: 0;
+                            }
+
+                            .icon {
+                                margin-right: 5px;
+                            }
+                        }
+                    }
+
+                    &_pricing {
+                        &-item {
+                            margin-bottom: 15px;
+
+                            &:last-of-type {
+                                margin-bottom: 0;
+                                @include textSm;
+                                .h4 {
+                                    color: $textColor;
+                                }
+                            }
+                        }
+
+                        .btn {
+                            margin-top: 30px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .rooms {
+        &_list {
+            &-item {
+                .item-wrapper {
+                    .main {
+                        &_pricing {
+                            .btn {
+                                width: fit-content;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .rooms {
+        &_list {
+            &-item {
+
+                .item-wrapper {
+
+                    .media {
+                        width: 200px;
+                        img {
+                            height: 100%;
+                        }
+                    }
+
+                    .main {
+                        width: calc(100% - 200px);
+                        &_info {
+                            width: 280px;
+                            margin-right: 20px;
+                        }
+
+                        &_amenities {
+                            margin-top: -5px;
+                            margin-bottom: 0;
+                        }
+
+                        &_description {
+                            margin: 20px 0;
+                        }
+
+                        &_pricing {
+                            flex-grow: 1;
+                            text-align: right;
+                            &-item {
+                                margin-bottom: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .rooms {
+        &_list {
+            &-item {
+
+                .item-wrapper {
+
+                    height: 240px;
+
+                    .media {
+                        width: 280px;
+                    }
+
+                    .main {
+                        width: calc(100% - 280px);
+                        padding: 30px;
+                        &_info {
+                            width: 320px;
+                            margin-right: 0;
+                        }
+
+                        &_amenities {
+                            margin-top: 0;
+                            display: flex;
+                        }
+
+                        &_description {
+                            flex-grow: 1;
+                            margin: 20px 0 30px;
+                        }
+
+                        &_pricing {
+                            width: 215px;
+                            flex-grow: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .rooms {
+        &_list {
+            &-item {
+
+                .item-wrapper {
+
+                    .media {
+                        width: 370px;
+                    }
+
+                    .main {
+                        width: calc(100% - 370px);
+                        &_info {
+                            width: 400px;
+                        }
+
+
+                        &_pricing {
+                            width: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

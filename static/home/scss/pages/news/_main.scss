@@ -1,0 +1,203 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// news main content
+
+.news {
+    &-section {
+        margin-bottom: -90px;
+    }
+
+    &_list {
+        &-item {
+            margin-bottom: 30px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            .item-wrapper {
+                .media {
+                    border-radius: 8px 8px 0 0;
+                    min-height: 250px;
+
+                    img {
+                        min-height: 250px;
+                        transition: all .5s ease;
+                    }
+
+                    &_label {
+                        top: 30px !important;
+                    }
+                }
+
+                .main {
+                    padding: 20px;
+                    background: #fff;
+                    box-shadow: $shadow;
+                    border-radius: 0 0 8px 8px;
+
+                    &_title {
+                        margin-bottom: 15px;
+                        display: inline-block;
+                    }
+
+                    &_preview {
+                        margin-bottom: 20px;
+                    }
+
+                    &_metadata {
+                        &-item {
+                            @include textSm;
+                            margin-right: 20px;
+
+                            &:last-of-type {
+                                margin-right: 0;
+                            }
+
+                            .icon {
+                                margin-right: 5px;
+                                font-size: 16px;
+
+                                &-eye, &-comment {
+                                    font-size: 14px;
+                                }
+
+                                &-calendar {
+                                    margin-right: 7px;
+                                }
+                            }
+
+                            .text {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+
+                &:hover {
+                    .media img {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .news {
+        &_list {
+            &-item {
+                .item-wrapper {
+                    .main {
+                        padding: 30px;
+                        width: calc(100% - 200px);
+                        border-radius: 0 8px 8px 0;
+                    }
+
+                    .media {
+                        width: 200px;
+                        border-radius: 8px 0 0 8px;
+
+                        img {
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .news {
+        &_list {
+            &-item {
+                .item-wrapper {
+                    .main {
+                        width: calc(100% - 300px);
+
+                        &_metadata {
+                            .text {
+                                display: inline;
+                                margin-left: 5px;
+                            }
+                        }
+                    }
+
+                    .media {
+                        width: 300px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .news {
+        width: calc(100% - 400px);
+
+        &-section {
+            margin-bottom: 0;
+        }
+
+        &_list {
+            &-item {
+                .item-wrapper {
+                    .main, .media {
+                        width: 100%;
+                    }
+
+                    .media {
+                        height: 350px;
+                        border-radius: 8px 8px 0 0;
+                    }
+
+                    .main {
+                        border-radius: 0 0 8px 8px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .news {
+        &_list {
+            &-item {
+                .item-wrapper {
+                    max-height: 250px;
+
+                    .main {
+                        width: calc(100% - 300px);
+                        border-radius: 0 8px 8px 0;
+                    }
+
+                    .media {
+                        width: 300px;
+                        border-radius: 8px 0 0 8px !important;
+                        max-height: 250px;
+
+                        img {
+                            max-height: 250px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

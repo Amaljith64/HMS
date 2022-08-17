@@ -1,0 +1,131 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// comments section
+
+.post {
+    &_main {
+        &-comments {
+            margin-top: 60px;
+
+            &_header {
+                margin-bottom: 20px;
+            }
+
+            &_list {
+                .list-item {
+                    background: #fff;
+                    box-shadow: $shadow;
+                    margin-bottom: 20px;
+                    padding: 20px;
+                    border-radius: 8px;
+                    border-left: 2px solid $accentLight;
+                    position: relative;
+
+                    &:last-of-type {
+                        margin-bottom: 0;
+                    }
+
+                    &[data-reply="true"] {
+                        margin-left: 40px;
+                    }
+
+                    .replyTrigger {
+                        color: $accent;
+                        font-size: 24px;
+                        position: absolute;
+                        top: 20px;
+                        right: 20px;
+                    }
+
+                    .media {
+                        border-radius: 8px;
+                        width: 60px;
+                        height: 60px;
+                        margin-bottom: 10px;
+                    }
+
+                    .main {
+                        &_info {
+                            margin-bottom: 15px;
+
+                            .name {
+                                margin-bottom: 7px;
+                            }
+
+                            .date {
+                                @include textSm;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .post {
+        &_main {
+            &-comments {
+                &_list {
+                    .list-item {
+                        .media {
+                            margin-bottom: 0;
+                            margin-right: 30px;
+                        }
+
+                        .main {
+                            width: calc(100% - 90px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .post {
+        &_main {
+            &-comments {
+                &_list {
+                    .list-item {
+                        margin-bottom: 30px;
+                        padding: 40px;
+
+                        &[data-reply="true"] {
+                            margin-left: 60px;
+                        }
+
+                        .replyTrigger {
+                            top: 40px;
+                            right: 40px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .post {
+        &_main {
+            &-comments {
+                margin-top: 80px;
+            }
+        }
+    }
+}

@@ -1,0 +1,149 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// benefits section
+
+.about {
+    &_benefits {
+        padding-bottom: 0;
+
+        &-header {
+            margin-bottom: 30px;
+
+            &_title {
+                margin-bottom: 15px;
+            }
+        }
+
+        &-list {
+            background: #fff;
+            box-shadow: $shadow;
+            border-radius: 8px;
+            padding: 50px 30px;
+
+            &_item {
+                margin-bottom: 40px;
+
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+
+                .number {
+                    margin-bottom: 15px;
+                    color: $accent;
+
+                    &-label {
+                        @include textSm;
+                    }
+                }
+            }
+        }
+
+        &-video {
+            margin-top: 40px;
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+            height: 500px;
+
+            &:hover {
+                img {
+                    transform: scale(1.1);
+                }
+            }
+
+            img {
+                height: 500px;
+                position: relative;
+                transition: all .5s ease;
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 767.98px) {
+    .about {
+        &_benefits {
+            padding-bottom: 90px;
+
+            &-header {
+
+                &_title {
+                    margin-bottom: 0;
+                }
+
+                &_text {
+                    text-align: right;
+                    max-width: 300px;
+                }
+            }
+
+            &-list {
+                padding: 40px;
+
+                &_item {
+                    margin-bottom: 0;
+                    border-right: 2px solid $accentLight;
+                    padding: 0 30px;
+
+                    &:last-of-type {
+                        border-right: none;
+                    }
+
+                }
+            }
+
+            &-video {
+                margin-top: 50px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    .about {
+        &_benefits {
+            padding-bottom: 120px;
+
+            &-header {
+
+                &_text {
+                    max-width: 500px;
+                }
+
+                &_title {
+                    max-width: 400px;
+                }
+            }
+
+            &-list {
+                padding: 50px 60px;
+
+                &_item {
+                    padding: 0 70px;
+
+                    &:first-of-type {
+                        padding-left: 0;
+                    }
+
+                    &:last-of-type {
+                        padding-right: 0;
+                    }
+
+                }
+            }
+
+        }
+    }
+}

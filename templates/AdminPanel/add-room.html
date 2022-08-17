@@ -44,27 +44,37 @@
 										{% csrf_token %}
 										<div id="wizard_Service" class="tab-pane" role="tabpanel">
 											<div class="row">
-
-												<!-- <div class="col-lg-6 mb-2">
+												<div class="col-lg-6 mb-2">
 													<div class="mb-3">
-														<label class="form-label">Select Location</label>
-														<select name='loc' class="default-select  form-control wide">
-															{% for i in location %}
-															<option value="{{ i.id }}">{{ i.location }}</option>
+														<label class="form-label">Select Category</label>
+														<select name="categ" class="default-select  form-control wide">
+															{% for i in categ %}
+															<option value="{{ i.id }}">{{ i.title }}</option>
 															{% endfor %}
 														</select>
 													</div>
-												</div> -->
-												<div class="mb-3">
-													<label class="form-label">Select Room Type</label>
-													<select name="type" class="default-select  form-control wide">
-														{% for i in type %}
-														<option value="{{ i.id }}">{{ i.type }}</option>
-														{% endfor %}
-													</select>
-												</div>
-
+													<div class="mb-3">
+														<label class="form-label">Choose Sub Category</label>
+														<select name="scateg" class="default-select  form-control wide">
+															{% for i in scateg %}
+															<option value="{{ i.id }}">{{ i.title }}</option>
+															{% endfor %}
+														</select>
+													</div>
+												</div>								
 											</div>
+											<br>
+											<br>
+											<br>
+											<br>
+											<br>
+											<br>
+											<br>
+											<br>
+											<br>
+											<br>
+											<br>
+											<br>
 										</div>
 										<div id="wizard_Time" class="tab-pane" role="tabpanel">
 											<div class="row">

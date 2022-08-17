@@ -1,0 +1,145 @@
+{% extends 'AdminPanel/base.html' %}
+{% load static %}
+
+
+
+
+
+
+<!--**********************************
+        Main wrapper start
+    ***********************************-->
+
+{% block body %}
+<div id="main-wrapper">
+
+	<!--**********************************
+            Content body start
+        ***********************************-->
+	<div class="content-body">
+		<div class="container-fluid">
+			<div class="row page-titles">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active"><a href="javascript:void(0)">Form</a></li>
+					<li class="breadcrumb-item"><a href="javascript:void(0)">Validation</a></li>
+				</ol>
+			</div>
+			<!-- row -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Edit Room Details</h4>
+						</div>
+						<div class="card-body">
+							<div class="form-validation">
+								<form  action="" method="post" enctype="multipart/form-data">
+									{% csrf_token %}
+									<div class="row">
+										<div class="col-xl-6">
+											
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="validationCustom05">Room Type
+												
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<select name="type" class="default-select wide form-control"
+														id="validationCustom05">
+														
+														<option  data-display="{{room.Roomtype}}"></option>
+														{% for i in type %}
+														<option  value="{{ i.id }}">{{ i.type }}</option>
+														{% endfor %}
+													
+													</select>
+				
+												</div>
+											</div>
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="validationCustom05">Room Type
+												
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<select name='loc' class="default-select wide form-control"
+														id="validationCustom05">
+														
+														<option  data-display="{{room.Location}}">{{room.Location}}</option>
+														{% for i in location %}
+															<option value="{{ i.id }}">{{ i.location }}</option>
+														{% endfor %}
+													
+													</select>
+				
+												</div>
+											</div>
+											
+										</div>
+										<div class="col-xl-6">
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="validationCustom05">Name
+												
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<input name="hotel_name" type="text" class="form-control" id="validationCustom06"
+														value="{{room.name}}">
+													<div class="invalid-feedback">
+														Please enter a Currency.
+													</div>
+												</div>
+											</div>
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="validationCustom06">Description
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<input name="description" type="text" class="form-control" id="validationCustom06"
+														value="{{room.Desc}}">
+													<div class="invalid-feedback">
+														Please enter a Currency.
+													</div>
+												</div>
+											</div>
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="validationCustom07">Price
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<input name="price" type="text" class="form-control" id="validationCustom07"
+														value="{{room.price}}">
+													<div class="invalid-feedback">
+														Please enter a url.
+													</div>
+												</div>
+											</div>
+											
+											<div class="mb-3 row">
+												<div class="col-lg-8 ms-auto">
+													<button type="submit" class="btn btn-primary">Submit</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<!--**********************************
+            Content body end
+        ***********************************-->
+</div>
+
+{% endblock %}
+
+
+
+<!--**********************************
+        Main wrapper end
+    ***********************************-->

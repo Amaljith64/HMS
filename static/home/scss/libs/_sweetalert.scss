@@ -1,0 +1,68 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// sweet alert 2 base
+
+.swal2-container {
+    display: grid;
+    position: fixed;
+    z-index: 100000;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    grid-template-areas:
+        "top-start top top-end"
+        "center-start center center-end"
+        "bottom-start bottom-center bottom-end";
+    grid-template-rows: minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);
+    height: 100%;
+    overflow-x: hidden;
+    padding: 1.25rem;
+}
+
+.swal2-popup {
+    display: none;
+    position: relative;
+    box-sizing: border-box;
+    grid-template-columns: minmax(0, 100%);
+    max-width: 100%;
+}
+
+.swal2-container.swal2-center > .swal2-popup {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
+}
+
+.swal2-close {
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    justify-self: end;
+}
+
+.swal2-popup.swal2-toast {
+    grid-column: 1/4!important;
+    grid-row: 1/4!important;
+    grid-template-columns: 1fr 99fr 1fr;
+    overflow-y: hidden;
+    pointer-events: all;
+}
+
+.swal2-container.swal2-top-end>.swal2-popup, .swal2-container.swal2-top-right>.swal2-popup {
+    align-self: start;
+    justify-self: end;
+}

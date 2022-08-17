@@ -1,0 +1,175 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// latest news component
+
+.latest {
+    .block {
+        height: 443px;
+        display: none;
+    }
+
+    &_header {
+        text-align: center;
+        margin-bottom: 30px;
+
+        &-title {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
+
+    &_list {
+        &-item {
+            margin-bottom: 30px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            .item-wrapper {
+                box-shadow: $shadow;
+                border-radius: 8px;
+
+                .media {
+                    border-radius: 8px 8px 0 0;
+                    height: 225px;
+
+                    img {
+                        height: 100%;
+                    }
+
+                    &_label {
+                        top: 30px;
+                    }
+                }
+
+                .main {
+                    padding: 20px;
+                    background: #fff;
+                    border-radius: 0 0 8px 8px;
+
+                    &_title {
+                        margin-bottom: 15px;
+                        display: inline-block;
+                    }
+
+                    &_preview {
+                        margin-bottom: 20px;
+                    }
+
+                    &_metadata {
+                        &-item {
+                            @include textSm;
+                            margin-right: 20px;
+
+                            &:last-of-type {
+                                margin-right: 0;
+                            }
+
+                            .icon {
+                                margin-right: 5px;
+                                font-size: 16px;
+
+                                &-eye, &-comment {
+                                    font-size: 14px;
+                                }
+
+                                &-calendar {
+                                    margin-right: 7px;
+                                }
+                            }
+
+                            .text {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// media queries
+
+@media screen and (min-width: 575.98px) {
+    .latest {
+        &_header {
+            &-title {
+                margin-bottom: 0;
+            }
+
+            .btn {
+                width: fit-content;
+            }
+        }
+
+        &_list {
+            &-item {
+                .item-wrapper {
+                    .main {
+                        padding: 30px;
+
+                        &_metadata {
+                            .text {
+                                display: inline;
+                                margin-left: 5px;
+                            }
+                        }
+                    }
+
+                    .media {
+                        height: 350px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 767.98px) {
+    .latest {
+        .block {
+            display: block;
+        }
+        &_list {
+            margin: 0 -15px;
+
+            &-item {
+                padding: 0 15px;
+
+                .item-wrapper {
+                    height: 100%;
+
+                    .media {
+                        height: 245px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .latest {
+        &_list {
+
+            &-item {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

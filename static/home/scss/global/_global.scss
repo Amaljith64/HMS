@@ -1,0 +1,521 @@
+/**
+ * Hosteller
+ * Hosteller Template created for hostels, students hotels, guest houses, small hotel, resort, room reservation, travel and more
+ * Exclusively on https://1.envato.market/hosteller-html
+ *
+ * @encoding        UTF-8
+ * @version         1.0.3
+ * @copyright       (C) 2018 - 2022 Merkulove ( https://merkulov.design/ ). All rights reserved.
+ * @license         Envato License https://1.envato.market/KYbje
+ * @contributors    Lamber Lilit (winter.rituel@gmail.com)
+ * @support         help@merkulov.design
+ **/
+// global styles
+
+html {
+    &.fixed {
+        overflow: hidden;
+    }
+}
+
+body {
+    font-family: $bodyFont;
+    color: $textColor;
+    line-height: 1.45;
+    font-size: 18px;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: $accentFont;
+    color: $headerColor;
+}
+
+h1, h2, h3, h4, h5,
+.h1, .h2, .h3, .h4, .h5 {
+    font-weight: 800;
+}
+
+h1, .h1 {
+    font-size: 35px;
+    line-height: 1.1;
+}
+
+h2, .h2 {
+    font-size: 30px;
+    line-height: 1.1;
+}
+
+h3, .h3 {
+    font-size: 25px;
+    line-height: 1.1;
+}
+
+h4, .h4 {
+    font-size: 20px;
+    line-height: 1.1;
+}
+
+h5, .h5 {
+    font-size: 16px;
+    line-height: 1.25;
+}
+
+h6, .h6 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.1;
+}
+
+a {
+    &.h1, &.h2, &.h3, &.h4, &.h5, &.h6 {
+        &:hover, &:focus {
+            color: $accent;
+        }
+    }
+}
+
+.theme-element {
+    background: $accentLight;
+    color: $accent;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $accentFont;
+
+    &.btn {
+        height: 48px;
+        font-weight: 800;
+        font-size: 16px;
+        line-height: 1;
+        display: inline-flex;
+        padding: 0 20px;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    &--accent {
+        color: #fff;
+        background: $accent;
+
+        .icon {
+            color: #fff;
+        }
+    }
+
+    &--light {
+        color: $accent;
+    }
+}
+
+.brand {
+    &_logo {
+        padding: 10px;
+        margin-right: 10px;
+        border-radius: 4px;
+    }
+
+    &_name {
+        font-family: $accentFont;
+        font-weight: 800;
+        font-size: 30px;
+    }
+}
+
+.socials {
+    .list-item {
+        margin-right: 30px;
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+
+        .link {
+            display: inline-block;
+            font-size: 24px;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+
+.section {
+    padding: 60px 0;
+
+    &--nopb {
+        padding: 60px 0 0;
+    }
+}
+
+.linebreak {
+    display: block;
+}
+
+.accent {
+    background: $accent;
+    color: #fff;
+}
+
+.icon {
+    color: $accent;
+}
+
+.video-play {
+    color: #fff;
+    font-size: 30px;
+    height: 95px;
+    width: 95px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .icon {
+        color: #fff;
+    }
+}
+
+.link {
+    &--arrow {
+        color: $accent;
+        font-weight: 700;
+        font-family: $accentFont;
+        font-size: 16px;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+
+        .icon {
+            margin-left: 10px;
+            transition: margin-left .3s ease-in-out;
+        }
+
+        &:hover, &:focus {
+            .icon {
+                margin-left: 15px;
+            }
+        }
+    }
+}
+
+.underlined {
+    display: inline-block;
+    position: relative;
+    transition: text-shadow .3s ease-in-out;
+    padding-bottom: 0;
+
+    &:after {
+        content: '';
+        transition: width .3s ease-in-out;
+        height: 2px;
+        width: 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    &--white {
+        &:after {
+            background: #fff;
+        }
+
+        &:hover, &:focus,
+        &.active, &.current {
+            text-shadow: 0 0 0 #fff;
+        }
+    }
+
+    &--accent {
+        &:after {
+            background: $accent;
+        }
+
+        &:hover, &:focus,
+        &.active, &.current {
+            text-shadow: 0 0 0 $accent;
+        }
+    }
+
+
+    &:hover, &:focus,
+    &.active, &.current {
+        &:after {
+            width: 100%;
+        }
+    }
+}
+
+.field {
+    transition: all .3s ease-in-out;
+
+    &:not(&.booking_group-field) {
+        background: #fff;
+        border-radius: 8px;
+        border: 1px solid $textSecondary;
+        height: 56px;
+        padding: 0 20px;
+        &:focus {
+            border-color: $accent;
+        }
+    }
+
+    &-wrapper {
+        .icon {
+            color: $textSecondary;
+        }
+    }
+
+    &[data-type="date"] {
+        cursor: pointer;
+    }
+
+    &.error {
+        border-color: red !important;
+    }
+
+    &::placeholder {
+        transition: opacity .3s ease-in-out;
+        @include textSm;
+        color: $textSecondary;
+    }
+
+    &:focus {
+        &::placeholder {
+            opacity: 0;
+        }
+    }
+
+    &::placeholder, .icon {
+        color: $textSecondary;
+    }
+}
+
+.booking {
+    &_group {
+        &-wrapper {
+            position: relative;
+
+            .icon {
+                display: block;
+                position: absolute;
+                top: 12px;
+
+                &.icon-calendar {
+                    left: 0;
+                }
+
+                &.icon-chevron_down {
+                    right: 0;
+                }
+            }
+        }
+
+        &-field, &-field::placeholder {
+            font-size: 16px;
+            line-height: 1;
+            color: $textColor;
+        }
+    }
+}
+
+.media {
+    position: relative;
+    overflow: hidden;
+
+    img {
+        position: relative;
+        z-index: 1;
+    }
+
+    &_label {
+        position: absolute;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        background: #fff;
+        z-index: 10;
+        padding: 0 15px;
+        font-size: 16px;
+        font-weight: 700;
+        font-family: $accentFont;
+        color: $accent;
+        top: 0;
+        right: 0;
+        border-radius: 8px 0 0 8px;
+
+        &--left {
+            right: unset;
+            left: 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        &--pricing {
+            font-weight: 400;
+            font-family: $bodyFont;
+            color: $textColor;
+
+            .price {
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+// bootstrap components
+
+.container {
+    max-width: 1170px;
+}
+
+.collapse {
+    &:not(.show) {
+        display: none;
+    }
+}
+
+.collapsing {
+    height: 0;
+    overflow: hidden;
+    transition: height .3s ease-in-out;
+}
+
+.offcanvas {
+    position: fixed;
+    bottom: 0;
+    z-index: 20000;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    visibility: hidden;
+    background-color: #fff;
+    background-clip: padding-box;
+
+    &-end {
+        top: 0;
+        right: 0;
+        transform: translateX(100%);
+    }
+
+    &.show {
+        transform: none;
+    }
+}
+
+.fade {
+    transition: opacity .15s linear;
+
+    &:not(.show) {
+        opacity: 0;
+    }
+}
+
+.tab-content > .tab-pane {
+    display: none;
+}
+
+.tab-content > .active {
+    display: block;
+}
+
+
+// media queries
+
+@media screen and (min-width: 767.98px) {
+    h1, .h1 {
+        font-size: 40px;
+        line-height: 1;
+    }
+    h2, .h2 {
+        font-size: 35px;
+        line-height: 1;
+    }
+    h3, .h3 {
+        font-size: 32px;
+    }
+    h4, .h4 {
+        font-size: 22px;
+        line-height: 1.2;
+    }
+    h6, .h6 {
+        line-height: 1.25;
+    }
+    .section {
+        padding: 90px 0;
+
+        &--blockbg {
+            position: relative;
+
+            .block {
+                background: $backgroundHighlight;
+                height: 395px;
+                width: 70%;
+                position: absolute;
+                z-index: -1;
+                top: 0;
+            }
+        }
+
+        &--nopb {
+            padding: 90px 0 0;
+        }
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+    h1, .h1 {
+        font-size: 52px;
+    }
+    h2, .h2 {
+        font-size: 40px;
+    }
+    .section {
+        padding: 120px 0;
+
+        &--blockbg {
+            .block {
+                height: 425px;
+            }
+        }
+
+        &--nopb {
+            padding: 120px 0 0;
+        }
+    }
+}
+
+@media screen and (min-width: 1199.98px) {
+    .section {
+        &--blockbg {
+            .block {
+                height: 476px;
+                width: calc(50vw + 360px / 2 + 10px);
+                left: 0;
+            }
+        }
+    }
+}
+
+// hide google maps footer
+
+a[href^="http://maps.google.com/maps"] {
+    display: none !important
+}
+
+a[href^="https://maps.google.com/maps"] {
+    display: none !important
+}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display: none;
+}
+
+.gmnoprint div {
+    background: none !important;
+}
