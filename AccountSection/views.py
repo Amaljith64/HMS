@@ -74,8 +74,13 @@ def otpcode(request, id):
             .create(to=f'{settings.COUNTRY_CODE}{phone_number}', code=otpvalue)
 
         print(verification_check.status)
-        login(request, user)
-        return redirect(home)
+        if verification_check.status=='approved':
+            login(request, user)
+            return redirect(home)
+        else:
+            messages.error(request, "Wrong otp")
+            
+
     return render(request, 'AccountSection/otp.html')
 
 

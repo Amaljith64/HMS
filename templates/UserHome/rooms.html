@@ -7,66 +7,66 @@
 
 {% endblock %}
 
-    {% block body %} 
-        <!-- rooms page content start -->
-        <main class="rooms section">
-            <div class="container">
-                <ul class="rooms_list">
-                    {% for i in rooms %}
-                    <li class="rooms_list-item" data-order="1" data-aos="fade-up">
-                        <div class="item-wrapper d-md-flex">
-                            <div class="media">
-                                <picture>
-                                    <source data-srcset="{{i.img.url}}" srcset="{{i.img.url}}" />
-                                    <img class="lazy" data-src="{{i.img.url}}" src="{{i.img.url}}" alt="media" />
-                                </picture>
+{% block body %}
+<!-- rooms page content start -->
+<main class="rooms section">
+    <div class="container">
+        <ul class="rooms_list">
+            {% for i in rooms %}
+            <li class="rooms_list-item" data-order="1" data-aos="fade-up">
+                <div class="item-wrapper d-md-flex">
+                    <div class="media">
+                        <picture>
+                            <source data-srcset="{{i.img.url}}" srcset="{{i.img.url}}" />
+                            <img class="lazy" data-src="{{i.img.url}}" src="{{i.img.url}}" alt="media" />
+                        </picture>
+                    </div>
+                    <div class="main d-md-flex justify-content-between">
+                        <div class="main_info d-md-flex flex-column justify-content-between">
+                            <a class="main_title h4" href="{% url 'roomdetails' i.id  %}">{{i.name}}</a>
+                            <p class="main_description">{{i.Desc}}</p>
+                            <div class="main_amenities">
+                                <span class="main_amenities-item d-inline-flex align-items-center">
+                                    <i class="icon-user icon"></i>
+                                    2 Sleeps
+                                </span>
+                                <span class="main_amenities-item d-inline-flex align-items-center">
+                                    <i class="icon-bunk_bed icon"></i>
+                                    1 bunk bed
+                                </span>
                             </div>
-                            <div class="main d-md-flex justify-content-between">
-                                <div class="main_info d-md-flex flex-column justify-content-between">
-                                    <a class="main_title h4" href="{% url 'roomdetails' i.id  %}">{{i.name}}</a>
-                                    <p class="main_description">{{i.Desc}}</p>
-                                    <div class="main_amenities">
-                                        <span class="main_amenities-item d-inline-flex align-items-center">
-                                            <i class="icon-user icon"></i>
-                                            2 Sleeps
-                                        </span>
-                                        <span class="main_amenities-item d-inline-flex align-items-center">
-                                            <i class="icon-bunk_bed icon"></i>
-                                            1 bunk bed
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="main_pricing d-flex flex-column align-items-md-end justify-content-md-between">
-                                    <div class="wrapper d-flex flex-column">
-                                        <span class="main_pricing-item">
-                                            <span class="h2">${{i.price}}</span>
-                                            / 1 night
-                                        </span>
-                                        <!-- <span class="main_pricing-item">
+                        </div>
+                        <div class="main_pricing d-flex flex-column align-items-md-end justify-content-md-between">
+                            <div class="wrapper d-flex flex-column">
+                                <span class="main_pricing-item">
+                                    <span class="h2">${{i.price}}</span>
+                                    / 1 night
+                                </span>
+                                <!-- <span class="main_pricing-item">
                                             <span class="h4">$100</span>
                                             / 7 nights
                                         </span> -->
-                                    </div>
-                                    <a class="theme-element theme-element--accent btn" href="#">Book now</a>
-                                </div>
                             </div>
+                            <a class="theme-element theme-element--accent btn" href="#">Book now</a>
                         </div>
-                    </li>
-                    {% endfor %}
-                    
-                </ul>
-                <ul class="pagination d-flex align-items-center">
-                    <li class="pagination-page">
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+
+        </ul>
+        <ul class="pagination d-flex align-items-center">
+            <li class="pagination-page">
                         <a class="pagination-page_link d-flex align-items-center justify-content-center" href="#" data-current="true">1</a>
-                    </li>
-                    <li class="pagination-page">
-                        <a class="pagination-page_link d-flex align-items-center justify-content-center" href="#">2</a>
-                    </li>
-                    <li class="pagination-page">
-                        <a class="pagination-page_link d-flex align-items-center justify-content-center" href="#">3</a>
-                    </li>
-                </ul>
-            </div>
-        </main>
-        <!-- rooms page content end -->
-        {% endblock %}
+            </li>
+            <li class="pagination-page">
+                <a class="pagination-page_link d-flex align-items-center justify-content-center" href="#">2</a>
+            </li>
+            <li class="pagination-page">
+                <a class="pagination-page_link d-flex align-items-center justify-content-center" href="#">3</a>
+            </li>
+        </ul>
+    </div>
+</main>
+<!-- rooms page content end -->
+{% endblock %}

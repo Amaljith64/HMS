@@ -4,22 +4,22 @@
 
 <head>
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="keywords" content="" />
-	<meta name="author" content="" />
-	<meta name="robots" content="" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Innap : Hotel Admin Template" />
-	<meta property="og:title" content="Innap : Hotel Admin Template" />
-	<meta property="og:description" content="Innap : Hotel Admin Template" />
-	<meta property="og:image" content="https://innap.dexignzone.com/xhtml/social-image.png" />
-	<meta name="format-detection" content="telephone=no">
-	
-	<!-- PAGE TITLE HERE -->
-	<title>Innap : Hotel Admin Template</title>
-	
-	<!-- FAVICONS ICON -->
-	<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Innap : Hotel Admin Template" />
+    <meta property="og:title" content="Innap : Hotel Admin Template" />
+    <meta property="og:description" content="Innap : Hotel Admin Template" />
+    <meta property="og:image" content="https://innap.dexignzone.com/xhtml/social-image.png" />
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- PAGE TITLE HERE -->
+    <title>Innap : Hotel Admin Template</title>
+
+    <!-- FAVICONS ICON -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" />
     <link href="{% static 'admin/css/style.css' %}" rel="stylesheet">
 
 </head>
@@ -31,11 +31,11 @@
                 <div class="col-md-6">
                     <div class="authincation-content">
                         <div class="row no-gutters">
-                            <div class="col-xl-12"> 
+                            <div class="col-xl-12">
                                 <div class="auth-form">
-									<div class="text-center mb-3">
-										<a href="index.html"><img src="images/logo-full.png" alt=""></a>
-									</div>
+                                    <div class="text-center mb-3">
+                                        <a href="index.html"><img src="images/logo-full.png" alt=""></a>
+                                    </div>
                                     <h4 class="text-center mb-4">Enter OTP</h4>
                                     <form action="" method="post">
                                         {% csrf_token %}
@@ -44,8 +44,27 @@
                                             <input id="otp" type="text" name="otp" class="form-control">
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" value="login" class="btn btn-primary btn-block">SUBMIT</button>
+                                            <button type="submit" value="login"
+                                                class="btn btn-primary btn-block">SUBMIT</button>
                                         </div>
+                                        {% if messages %}
+                                        <div class="text-center">
+                                            <div class="col-12 mt-3">
+
+                                                {% for message in messages %}
+                                                {% if message.tags == 'error' %}
+                                                <div class="alert alert-danger ">{{message}}</div>
+                                                {% else%}
+                                                <div class="alert alert-{{message.tags}}">{{message}}</div>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                        
+                                        
+
                                     </form>
                                 </div>
                             </div>
@@ -61,8 +80,14 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
+    <script>window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+        });
+    }, 1500);</script>
     <script src="{% static 'admin/vendor/global/global.min.js' %}"></script>
     <script src="{% static 'admin/js/custom.min.js' %}"></script>
     <script src="{% static 'admin/js/deznav-init.js' %}"></script>
 </body>
+
 </html>

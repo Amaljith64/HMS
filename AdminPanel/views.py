@@ -21,7 +21,7 @@ def addrooms(request):
 
 
 
-        name=request.POST.get('hotel_name')      
+        name=request.POST.get('hotel_name')
        
         price=request.POST.get('price')
         Desc=request.POST['description']
