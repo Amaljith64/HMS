@@ -1,0 +1,397 @@
+/*=============================================================
+Template Name: Hotel Himara - Hotel HTML Template
+Author:        Eagle-Themes
+Author URI:    http://eagle-themes.com
+Version:       1.1.0
+===============================================================
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) {
+  ...
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+  ...
+}
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+  ...
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+/* Large devices (desktops, less than 1200px) */
+
+@media (max-width: 1199.98px) {
+  /* BOOKING FORMS */
+  .booking-form-toggle {
+    display: none;
+  }
+  .horizontal-booking-form .inner .btn-book {
+    padding: 10px 10px;
+    font-size: 14px;
+  }
+  .horizontal-booking-form .inner .advanced-form-link {
+    font-size: 11px;
+  }
+  /* SECTIONS */
+  .section-title h4 {
+    font-size: 50px;
+  }
+  section .countup-box {
+    margin-bottom: 0;
+  }
+  .countup-box .number {
+    font-size: 28px;
+  }
+  .countup-box .text {
+    font-size: 16px;
+  }
+  .contact .contact-item h6 {
+    font-size: 11px;
+  }
+  /* ROOMS */
+  .room-list-item .room-price .btn.btn-sm {
+    padding: 7px 2px;
+    font-size: 12px;
+  }
+
+
+}
+
+/* Medium devices (tablets, less than 992px) */
+
+@media (max-width: 991.98px) {
+  /* HEADER */
+  header {
+    height: 55px;
+  }
+  header .brand {
+    padding: 15px 0;
+  }
+  header .brand .logo img {
+    max-width: 100px;
+  }
+  .mobile-header .toggle-menu-button {
+    margin-top: 20px;
+  }
+  .btn {
+    padding: 10px 10px;
+    font-size: 13px;
+    width: 100%;
+  }
+  .btn.btn-lg {
+    padding: 10px 18px;
+    font-size: 18px;
+  }
+  /* SLIDER */
+  .horizontal-booking-form {
+    position: relative;
+    bottom: 0;
+    top: 15px;
+  }
+  .horizontal-booking-form.booking-full-width {
+    top: 0;
+  }
+  .horizontal-booking-form.booking-full-width .form-control {
+    margin-bottom: 10px;
+  }
+  .horizontal-booking-form .inner .form-group {
+    margin-right: 0;
+  }
+  /* SECTIONS */
+  section {
+    padding: 80px 0;
+  }
+  main {
+    padding: 80px 0;
+    overflow-x: hidden;
+  }
+  .section-title {
+    padding-bottom: 30px;
+  }
+  .section-title h4 {
+    font-size: 40px;
+  }
+  .section-title p {
+    font-size: 13px;
+  }
+  section.wave-white:before, section.wave-white:after, section.wave-blue:before, section.wave-blue:after {
+    display: none;
+  }
+  section .room-grid-item, section .news-grid-item, section .newsv2-item, section .staff-item, section .offer-item, section .event-item, section .shop-item {
+    margin-bottom: 30px;
+  }
+  .rooms.rooms-over-slider {
+    margin-top: 80px;
+  }
+  section.testimonials .testimonials-owl .owl-dots, section .section-title .view-all, section .info-branding .providers span, section .owl-carousel .owl-nav {
+    display: none;
+  }
+  section.restaurant .restaurant-menu-item .info {
+    padding: 15px;
+    font-size: 14px;
+  }
+  section.newsv2 .newsv2-item .news-info {
+    padding: 15px;
+    border: 1px solid #efefef;
+    border-top: 0;
+  }
+  section.services .owl-thumbs {
+    margin-top: 15px;
+  }
+  section.contact .contact-item {
+    margin-top: 20px;
+    padding: 10px 2px;
+  }
+  section.contact-v2 .contact-details li:last-child {
+    margin-bottom: 50px;
+  }
+  section.contact .toggle-streetview {
+    bottom: 10px;
+    top: auto;
+    right: auto;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  section.restaurant .restaurant-menu-item .title, section.restaurant .restaurant-menu-item .title span.price {
+    font-size: 12px;
+  }
+  section.restaurant .restaurant-menu-item .info p {
+    display: none;
+  }
+
+  section.info .info-branding {
+    margin-top: 50px;
+  }
+  section.restaurant-menu-item .title span.price span.amount {
+    right: 0;
+  }
+  .testimonials .testimonials-owl {
+    padding-left: 0;
+  }
+  .info-branding .providers {
+    margin-bottom: 30px;
+  }
+  .info-branding h4 {
+    font-size: 16px;
+  }
+
+  .countup-box {
+    margin-bottom: 30px !important;
+  }
+
+  .countup-box .number {
+    font-size: 28px;
+  }
+  .countup-box .text {
+    font-size: 16px;
+  }
+  .services-v2 .main-image {
+    margin-bottom: 50px;
+  }
+  .news-grid-item .news-info, .newsv2-item .news-info {
+    padding: 15px;
+  }
+  .news-grid-item .news-info h4 a, .newsv2-item .news-info h4 a {
+    font-size: 16px;
+  }
+  .main-wrapper {
+    padding-left: 0;
+  }
+  /* SLIDERS */
+  .tp-bullets {
+    display: none;
+  }
+  /* PAGES */
+  .page-title h1 {
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+  .page-title .breadcrumb {
+    padding: 0 0;
+  }
+  .page-title .breadcrumb li,
+  .page-title .breadcrumb li:last-child {
+    padding: 0 0;
+  }
+  .room-details-price {
+    font-size: 16px;
+    margin-top: 0;
+  }
+  .page-title .inner {
+    padding: 20px 0;
+  }
+  .page-title .breadcrumb li, .page-title .breadcrumb a {
+    font-size: 10px;
+  }
+  .room-reviews .rating-details .review-summary {
+    margin-bottom: 20px;
+  }
+  .gallery-filters .filter {
+    font-size: 18px;
+    padding: 7px 5px;
+  }
+  .gallery-filters:before {
+    width: 5px;
+    height: 20px;
+    top: 4px;
+  }
+  .gallery-filters .filter:first-child {
+    margin-left: 10px;
+  }
+  .contact-page .google-map {
+    margin-top: 0;
+    max-width: 100%;
+  }
+  .count-box {
+    padding: 10px;
+    min-width: 70px;
+    margin-right: 10px;
+  }
+  .count-box .count-number {
+    font-size: 20px;
+  }
+  .count-box .count-text {
+    font-size: 13px;
+  }
+  .coming-soon .subscribe-form button i {
+    right: -2px;
+  }
+  .error404-fullscreen-page .inner .title {
+    font-size: 28px;
+  }
+  /* SIDEBAR */
+  .sidebar {
+    margin-top: 50px;
+    padding-left: 0;
+  }
+  /* ROOMS */
+  .room-list-item .room-info {
+    padding: 30px 30px;
+  }
+  .room-list-item .room-price {
+    border-left: none;
+    padding: 30px;
+  }
+  .room-list-item figure a:before {
+    display: none;
+  }
+  .room .vertical-booking-form-over-slider {
+    margin-top: 0;
+  }
+  .similar-rooms .room-grid-item {
+    margin-bottom: 30px;
+  }
+  /* FORMS */
+  label {
+    font-size: 13px;
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+
+@media (max-width: 767.98px) {
+  /* HEADER */
+  .topbar .top-right-menu .top-menu .language-menu .languages {
+    min-width: 105px;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 60px 0;
+  }
+  .section-title h4,
+  .section-title.sm h4 {
+    font-size: 30px;
+  }
+
+  section .places-item {
+    margin-bottom: 30px;
+
+  }
+
+  /* FOOTER */
+  footer .footer-widgets .footer-widget {
+    margin-bottom: 30px;
+  }
+  footer .footer-widgets .footer-widget .inner .tripadvisor-banner {
+    text-align: left;
+  }
+  footer .subfooter .copyrights, footer .subfooter .social-media {
+    float: none;
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  /* ROOMS */
+  .room-block-item .room-info {
+    padding: 30px;
+  }
+  .room-block-item figure a:before {
+    display: none;
+  }
+
+  /* BLOG */
+  .blog-posts .post.post-classic .post-details {
+    padding: 0 0;
+  }
+
+  .blog-post .entry .post-title a {
+    font-size: 22px;
+  }
+
+  .blog-posts .post .post-details .post-meta,
+  .blog-posts .post .post-details .post-meta a,
+  .blog-post .entry .post-meta,
+  .blog-post .entry .post-meta a {
+    font-size: 11px;
+  }
+
+  .blog-posts .post .post-details {
+    margin-top: 30px;
+  }
+  .meta-post .tags,
+  .meta-post .share {
+    display: block;
+    float: none;
+    margin-bottom: 30px;
+  }
+
+  /* PAGES */
+  .places-item figcaption {
+    padding-left: 15px;
+    padding-bottom: 10px;
+  }
+
+  .restaurant-menu-item {
+    border-right: none;
+  }
+
+  .shop-details .shop-item-details {
+    padding-top: 30px;
+  }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575.98px) {
+  /* SECTIONS */
+  section.restaurant .restaurant-menu-item {
+    margin-bottom: 15px;
+  }
+}

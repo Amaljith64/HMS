@@ -1,0 +1,223 @@
+{% extends 'UserHome/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="page-title gradient-overlay op6" style="background: url"({% static 'home/images/breadcrumb.jpg' %})"; background-repeat: no-repeat;
+  background-size: cover;">
+  <div class="container">
+    <div class="inner">
+      <h1>Blog</h1>
+      <ol class="breadcrumb">
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li>Blog</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<!-- ========== MAIN ========== -->
+<main>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- SIDEBAR -->
+      <div class="col-lg-3 col-12">
+        <div class="sidebar">
+          <aside class="widget noborder">
+            <div class="search">
+              <form class="widget-search">
+                <input type="search" name="search" value="{{search}}" placeholder="Search">
+                <button class="btn-search" id="searchsubmit" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </form>
+            </div>
+          </aside>
+          <aside class="widget">
+            <h4 class="widget-title">CATEGORIES</h4>
+            <ul class="categories">
+              <li>
+                <a href="#">Travel<span class="posts-num">51</span></a>
+              </li>
+              <li>
+                <a href="#">Rooms<span class="posts-num">24</span></a>
+              </li>
+              <li>
+                <a href="#">Holidays
+                  <span class="posts-num">9</span></a>
+              </li>
+              <li>
+                <a href="#">Travel<span class="posts-num">12</span></a>
+              </li>
+              <li>
+                <a href="#">Events<span class="posts-num">28</span></a>
+              </li>
+            </ul>
+          </aside>
+          <!-- WIDGET -->
+
+          <aside class="widget">
+            <h4 class="widget-title">Tags</h4>
+            <div class="tagcloud">
+              <a href="#">
+                <span class="tag">Party</span></a>
+              <a href="#">
+                <span class="tag">Travel</span></a>
+              <a href="#">
+                <span class="tag">Wedding</span></a>
+              <a href="#">
+                <span class="tag">Food</span></a>
+              <a href="#">
+                <span class="tag">Music</span></a>
+              <a href="#">
+                <span class="tag">City</span></a>
+              <a href="#">
+                <span class="tag">Image</span></a>
+              <a href="#">
+                <span class="tag">Hotel</span></a>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <!-- POSTS -->
+      <div class="col-lg-9 col-12">
+        <div class="blog-posts">
+          <!-- POST -->
+          {% for i in rooms %}
+          <div class="room-list-item">
+            <div class="row">
+              <div class="col-lg-4">
+                <figure class="gradient-overlay-hover link-icon">
+                  <a href="room.html"><img src="{{i.img.url}}" class="img-fluid" alt="Image"></a>
+                </figure>
+              </div>
+              <div class="col-lg-5">
+                <div class="room-info">
+                  <h3 class="room-title">
+                    <a href="room.html">{{i.name}}</a>
+                  </h3>
+                  <span class="room-rates">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <a href="room.html#room-reviews">5.00 Based on 3 Ratings</a>
+                  </span>
+                  <p>{{i.Desc}}</p>
+                  <div class="room-services">
+                    <i class="fa fa-coffee" data-toggle="popover" data-placement="top" data-trigger="hover"
+                      data-content="Breakfast Included" data-original-title="Breakfast"></i>
+                    <i class="fa fa-wifi" data-toggle="popover" data-placement="top" data-trigger="hover"
+                      data-content="Free WiFi" data-original-title="WiFi"></i>
+                    <i class="fa fa-television" data-toggle="popover" data-placement="top" data-trigger="hover"
+                      data-content="Plasma TV with cable channels" data-original-title="TV"></i>
+                    <span>Beds: 1 King</span>
+                    <span>Max Guests: 2</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="room-price">
+                  <span class="price">₹{{i.price}} / night</span>
+                  <a href="{% url 'roomdetails' i.id  %}" class="btn btn-sm">VIEW DETAILS</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <!-- {% for i in rooms %}
+          <article class="post">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="post-thumbnail">
+                  <figure class="gradient-overlay-hover link-icon">
+                    <a href="blog-post.html">
+                      <img src="{{i.img.url}}" class="img-fluid" alt="Image">
+                    </a>
+                  </figure>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="post-details">
+                  <h2 class="post-title">
+                    <a href="blog-post.html">10 Tips for Holiday Travel</a>
+                  </h2>
+                  <div class="post-meta">
+                    <span class="author">
+                      <a href="#"><img src="{% static 'home/images/users/admin.jpg' %}" width="16" alt="Image">JANE Doe</a>
+                    </span>
+                    <span class="date">
+                      <a href="#">
+                        <i class="fa fa-clock-o"></i>August 13, 2017</a>
+                    </span>
+                    <span class="comments">
+                      <a href="#">
+                        <i class="fa fa-commenting-o"></i>1 Comment</a>
+                    </span>
+                    <span class="category">
+                      <i class="fa fa-folder-open-o"></i>IN
+                      <a href="#">News</a>,
+                      <a href="#">Events</a>
+                    </span>
+                  </div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet reiciendis ducimus deserunt
+                    non dolorum, distinctio repellendus eaque, officiis dicta! Sit numquam qui tenetur tempore officia
+                    minus, a dignissimos ...</p>
+                </div>
+              </div>
+            </div>
+          </article>
+          {% endfor %} -->
+          <!-- POST -->
+
+        </div>
+        <!-- ========== PAGINATION ========== -->
+        <nav class="pagination">
+          <ul>
+            <li class="prev-pagination">
+              <a href="#">
+                &nbsp;<i class="fa fa-angle-left"></i>
+                Previous &nbsp;</a>
+            </li>
+            <li class="active">
+              <a href="#">1</a>
+            </li>
+            <li>
+              <a href="#">2</a>
+            </li>
+            <li>
+              <a href="#">3</a>
+            </li>
+            <li>
+              <a href="#">4</a>
+            </li>
+            <li>
+              <a href="#">5</a>
+            </li>
+            <li>...</li>
+            <li>
+              <a href="#">18</a>
+            </li>
+            <li>
+              <a href="#">19</a>
+            </li>
+            <li>
+              <a href="#">20</a>
+            </li>
+            <li class="next_pagination">
+              <a href="#">
+                &nbsp; Next
+                <i class="fa fa-angle-right"></i>
+                &nbsp;
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+{% endblock %}

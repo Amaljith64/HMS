@@ -1,5 +1,7 @@
 from django.db import models
 
+from MyAdmin.models import Account
+
 # Create your models here.
 
 
@@ -22,8 +24,6 @@ class SubCategories(models.Model):
     def __str__(self):
         return self.title
 
-
-
 class Rooms(models.Model):
     id=models.AutoField(primary_key=True)
     name=models.CharField(max_length=100)
@@ -32,9 +32,19 @@ class Rooms(models.Model):
     Desc=models.TextField()
     price=models.FloatField(null=True)
     img=models.ImageField(upload_to="media/",default=True)
+    room_count = models.IntegerField(default=10)
 
     def __str__(self):
         return self.name
+
+
+class HotelBooking(models.Model):
+    hotel= models.ForeignKey(Rooms  , related_name="hotel_bookings" , on_delete=models.CASCADE)
+    user = models.ForeignKey(Account, related_name="user_bookings" , on_delete=models.CASCADE)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    booking_type= models.CharField(max_length=100,choices=(('Pre Paid' , 'Pre Paid') , ('Post Paid' , 'Post Paid')))
+
 
 
 

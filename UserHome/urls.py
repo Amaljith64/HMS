@@ -5,5 +5,6 @@ from UserHome import views
 urlpatterns = [
    
     path('',views.room,name='userroomview'),
-    path('room/<int:id>',views.viewroom,name='roomdetails')
+    path('check_booking/' , views.check_booking),
+    path('room/<int:id>',views.hotel_detail ,name='roomdetails')
 ]

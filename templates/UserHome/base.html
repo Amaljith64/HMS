@@ -1,337 +1,587 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Home | Hosteller</title>
-        <script id="www-widgetapi-script" src="https://s.ytimg.com/yts/jsbin/www-widgetapi-vflS50iB-/www-widgetapi.js" async=""></script>
-        <!-- <script src="https://www.youtube.com/player_api"></script> -->
-        <link rel="stylesheet preload" as="style" href="{% static 'home/css/preload.min.css' %}" />
-        <link rel="stylesheet preload" as="style" href="{% static 'home/css/icomoon.css' %}" />
-        <link rel="stylesheet preload" as="style" href="{% static 'home/css/libs.min.css' %}" />
-
-        <link rel="stylesheet" href="{% static 'home/css/index.min.css' %}" />
-        {% block style %}
-        {% endblock %}
-
-    </head>
-    <body>
-        <header class="header d-flex align-items-center" data-page="home">
-            <div class="container position-relative d-flex justify-content-between align-items-center">
-                <a class="brand d-flex align-items-center" href="index.html">
-                    <span class="brand_logo theme-element">
-                        <svg id="brandHeader" width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M7.03198 3.80281V7.07652L3.86083 9.75137L0.689673 12.4263L0.667474 6.56503C0.655304 3.34138 0.663875 0.654206 0.686587 0.593579C0.71907 0.506918 1.4043 0.488223 3.87994 0.506219L7.03198 0.529106V3.80281ZM21.645 4.36419V5.88433L17.0383 9.76316C14.5046 11.8966 11.2263 14.6552 9.75318 15.8934L7.07484 18.145V20.3225V22.5H3.85988H0.64502L0.667303 18.768L0.689673 15.036L2.56785 13.4609C3.60088 12.5946 6.85989 9.85244 9.81009 7.36726L15.1741 2.84867L18.4096 2.8464L21.645 2.84413V4.36419ZM21.645 15.5549V22.5H18.431H15.217V18.2638V14.0274L15.4805 13.7882C15.8061 13.4924 21.5939 8.61606 21.6236 8.61248C21.6353 8.61099 21.645 11.7351 21.645 15.5549Z"
-                                fill="currentColor"
-                            />
-                        </svg>
-                    </span>
-                    <span class="brand_name">Hosteller</span>
-                </a>
-                <div class="header_offcanvas offcanvas offcanvas-end" id="menuOffcanvas">
-                    <div class="header_offcanvas-header d-flex justify-content-between align-content-center">
-                        <a class="brand d-flex align-items-center" href="index.html">
-                            <span class="brand_logo theme-element">
-                                <svg
-                                    id="brandOffset"
-                                    width="22"
-                                    height="23"
-                                    viewBox="0 0 22 23"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        clip-rule="evenodd"
-                                        d="M7.03198 3.80281V7.07652L3.86083 9.75137L0.689673 12.4263L0.667474 6.56503C0.655304 3.34138 0.663875 0.654206 0.686587 0.593579C0.71907 0.506918 1.4043 0.488223 3.87994 0.506219L7.03198 0.529106V3.80281ZM21.645 4.36419V5.88433L17.0383 9.76316C14.5046 11.8966 11.2263 14.6552 9.75318 15.8934L7.07484 18.145V20.3225V22.5H3.85988H0.64502L0.667303 18.768L0.689673 15.036L2.56785 13.4609C3.60088 12.5946 6.85989 9.85244 9.81009 7.36726L15.1741 2.84867L18.4096 2.8464L21.645 2.84413V4.36419ZM21.645 15.5549V22.5H18.431H15.217V18.2638V14.0274L15.4805 13.7882C15.8061 13.4924 21.5939 8.61606 21.6236 8.61248C21.6353 8.61099 21.645 11.7351 21.645 15.5549Z"
-                                        fill="currentColor"
-                                    />
-                                </svg>
-                            </span>
-                            <span class="brand_name">Hosteller</span>
-                        </a>
-                        <button class="close" type="button" data-bs-dismiss="offcanvas">
-                            <i class="icon-close--entypo"></i>
-                        </button>
-                    </div>
-                    <nav class="header_nav">
-                        <ul class="header_nav-list">
-                            <li class="header_nav-list_item">
-                                <a class="nav-item" href="index.html" data-page="home">Home</a>
-                            </li>
-                            <li class="header_nav-list_item">
-                                <a class="nav-item" href="about.html" data-page="about">About</a>
-                            </li>
-                            <li class="header_nav-list_item dropdown">
-                                <a
-                                    class="nav-link dropdown-toggle d-inline-flex align-items-center"
-                                    href="{% url 'userroomview' %}"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#roomMenu"
-                                    aria-expanded="false"
-                                    aria-controls="roomMenu"
-                                    data-page="rooms"
-                                >
-                                    Rooms
-                                    <i class="icon-chevron_down--entypo icon"></i>
-                                </a>
-                                <div class="dropdown-menu collapse" id="roomMenu">
-                                    <ul class="dropdown-list">
-                                        <li class="list-item" data-main="true">
-                                            <a class="dropdown-item nav-item" data-page="rooms" href="rooms.html">Rooms</a>
-                                        </li>
-                                        <li class="list-item">
-                                            <a class="dropdown-item nav-item" data-page="room" href="room.html">Single room</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="header_nav-list_item dropdown">
-                                <a
-                                    class="nav-link dropdown-toggle d-inline-flex align-items-center"
-                                    href="news.html"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#newsMenu"
-                                    aria-expanded="false"
-                                    aria-controls="newsMenu"
-                                    data-page="news"
-                                >
-                                    News
-                                    <i class="icon-chevron_down--entypo icon"></i>
-                                </a>
-                                <div class="dropdown-menu collapse" id="newsMenu">
-                                    <ul class="dropdown-list">
-                                        <li class="list-item" data-main="true">
-                                            <a class="dropdown-item nav-item" data-page="news" href="news.html">News</a>
-                                        </li>
-                                        <li class="list-item">
-                                            <a class="dropdown-item nav-item" data-page="post" href="post.html">Single post</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="header_nav-list_item dropdown">
-                                {% if user.is_superuser %}
-                                <a
-                                    class="nav-link dropdown-toggle d-inline-flex align-items-center"
-                                    href="#"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#pagesMenu"
-                                    aria-expanded="false"
-                                    aria-controls="pagesMenu"
-                                >
-                                    Admin Panel
-                                    <i class="icon-chevron_down--entypo icon"></i>
-                                </a>
-                                <div class="dropdown-menu collapse" id="pagesMenu">
-                                    <ul class="dropdown-list">
-                                        <li class="list-item">
-                                            <a class="dropdown-item nav-item" data-page="gallery" href="hoteladmin/">Admin Pnel</a>
-                                        </li>
-                                        
-                                    </ul>
-                                </div>
-                                {% endif %}
-                            </li>
-                            <li class="header_nav-list_item dropdown">
-                                {% if user.is_authenticated %}
-                                <a
-                                    class="nav-link nav-link--contacts dropdown-toggle d-inline-flex align-items-center"
-                                    href="#"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#contactsMenu"
-                                    aria-expanded="false"
-                                    aria-controls="contactsMenu"
-                                >
-                                
-                                    {{user.username}}
-                                    <i class="icon-chevron_down--entypo icon"></i>
-                                </a>
-                                <div class="dropdown-menu collapse" id="contactsMenu">
-                                    <ul class="dropdown-list">
-                                        <li class="list-item">
-                                            <a class="dropdown-item nav-item" data-page="contacts01" href="{% url 'logout' %}">Logout</a>
-                                        </li>
-                                        <!-- <li class="list-item">
-                                            <a class="dropdown-item nav-item" data-page="contacts02" href="contacts2.html">Contacts V2</a>
-                                        </li> -->
-                                    </ul>
-                                </div>
-                                {% else %}
-                                <a
-                                    class="nav-link nav-link--contacts dropdown-toggle d-inline-flex align-items-center"
-                                    href="#"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#contactsMenu"
-                                    aria-expanded="false"
-                                    aria-controls="contactsMenu"
-                                >
-                                
-                                    Login
-                                    <i class="icon-chevron_down--entypo icon"></i>
-                                </a>
-                                <div class="dropdown-menu collapse" id="contactsMenu">
-                                    <ul class="dropdown-list">
-                                        <li class="list-item">
-                                            <a class="dropdown-item nav-item" data-page="contacts01" href="{% url 'signin' %}">Login</a>
-                                        </li>
-                                        <li class="list-item">
-                                            <a class="dropdown-item nav-item" data-page="contacts02" href="{% url 'register' %}">Register</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                {% endif %}
-                            </li>
-                        </ul>
-                    </nav>
-                    <ul class="socials d-flex align-items-center">
-                        <li class="list-item">
-                            <a class="link" href="">
-                                <i class="icon-facebook"></i>
-                            </a>
-                        </li>
-                        <li class="list-item">
-                            <a class="link" href="">
-                                <i class="icon-instagram"></i>
-                            </a>
-                        </li>
-                        <li class="list-item">
-                            <a class="link" href="">
-                                <i class="icon-twitter"></i>
-                            </a>
-                        </li>
-                        <li class="list-item">
-                            <a class="link" href="">
-                                <i class="icon-whatsapp"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <button class="header_trigger d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuOffcanvas">
-                    <i class="icon-stream"></i>
-                </button>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <!-- ========== SEO ========== -->
+    <title>Hotel Himara - Hotel HTML Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta content="" name="author">
+    <!-- ========== FAVICON ========== -->
+    <link rel="apple-touch-icon-precomposed" href="{% static 'home/images/favicon-apple.png' %}"/>
+    <link rel="icon" href="{% static 'home/images/favicon.png' %}">
+    <!-- ========== STYLESHEETS ========== -->
+    <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/jquery.mmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'home/revolution/css/layers.css' %}">
+    <link rel="stylesheet" href="{% static 'home/revolution/css/settings.css' %}">
+    <link rel="stylesheet" href="{% static 'home/revolution/css/navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/daterangepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/responsive.css' %}">
+    <!-- ========== ICON FONTS ========== -->
+    <link href="{% static 'home/fonts/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'home/fonts/flaticon.css' %}" rel="stylesheet">
+    <!-- ========== GOOGLE FONTS ========== -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600,700%7CRoboto:100,300,400,400i,500,700" rel="stylesheet">
+  </head>
+  <body>
+    <!-- ========== MOBILE MENU ========== -->
+    <nav id="mobile-menu"></nav>
+    <!-- ========== WRAPPER ========== -->
+    <div class="wrapper">
+      <!-- ========== TOP MENU ========== -->
+      
+      <!-- ========== HEADER ========== -->
+      <header class="horizontal-header sticky-header" data-menutoggle="991">
+        <div class="container">
+          <!-- BRAND -->
+          <div class="brand">
+            <div class="logo">
+              <a href="index.html">
+                <img src="{% static 'home/images/logo.svg' %}" alt="Hotel Himara">
+              </a>
             </div>
-        </header>
+          </div>
+          <!-- MOBILE MENU BUTTON -->
+          <div id="toggle-menu-button" class="toggle-menu-button">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+          </div>
+          <!-- MAIN MENU -->
+          <nav id="main-menu" class="main-menu">
+            <ul class="menu">
+              <li class="menu-item dropdown">
+                <a href="#">HOME</a>
+                <ul class="submenu">
+                  <li class="menu-item">
+                    <a href="index.html">Home Version 1</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="index2.html">Home Version 2</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="index3.html">Home Version 3</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="index4.html">Home Version 4</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="index5.html">Home Version 5</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="index6.html">Home Version 6</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="index7.html">Home Version 7</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="index8.html">Home Version 8</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item dropdown">
+                <a href="#">ROOMS</a>
+                <ul class="submenu">
+                  <li class="menu-item dropdown">
+                    <a href="#">Rooms</a>
+                    <ul class="submenu">
+                      <li class="menu-item">
+                        <a href="rooms-list.html">List View</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="rooms-grid.html">Grid View</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="rooms-block.html">Block View</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-item dropdown">
+                    <a href="#">Room Details</a>
+                    <ul class="submenu">
+                      <li class="menu-item dropdown">
+                        <a href="#">Style 1</a>
+                        <ul class="submenu">
+                          <li class="menu-item">
+                            <a href="room.html">Right Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="room-left-sidebar.html">Left Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="room-full-width.html">Full Width</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="menu-item dropdown">
+                        <a href="#">Style 2</a>
+                        <ul class="submenu">
+                          <li class="menu-item">
+                            <a href="room-style2.html">Right Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="room-style2-left-sidebar.html">Left Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="room-style2-full-width.html">Full Width</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item dropdown active">
+                <a href="#">BLOG</a>
+                <ul class="submenu">
+                  <li class="menu-item dropdown">
+                    <a href="#">Blog Archive</a>
+                    <ul class="submenu">
+                      <li class="menu-item dropdown">
+                        <a href="#">List View</a>
+                        <ul class="submenu">
+                          <li class="menu-item">
+                            <a href="blog.html">Right Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="blog-left-sidebar.html">Left Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="blog-full-width.html">Full Width</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="menu-item dropdown">
+                        <a href="#">Classic View</a>
+                        <ul class="submenu">
+                          <li class="menu-item">
+                            <a href="blog-classic.html">Right Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="blog-classic-left-sidebar.html">Left Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="blog-classic-full-width.html">Full Width</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="menu-item dropdown">
+                        <a href="#">Grid View</a>
+                        <ul class="submenu">
+                          <li class="menu-item">
+                            <a href="blog-grid.html">Right Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="blog-grid-left-sidebar.html">Left Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="blog-grid-full-width.html">Full Width</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-item dropdown">
+                    <a href="#">Blog Post</a>
+                    <ul class="submenu">
+                      <li class="menu-item dropdown">
+                        <a href="#">Style 1</a>
+                        <ul class="submenu">
+                          <li class="menu-item">
+                            <a href="blog-post.html">Right Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="blog-post-left-sidebar.html">Left Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="blog-post-full-width.html">Full Width</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="menu-item dropdown">
+                        <a href="#">Style 2</a>
+                        <ul class="submenu">
+                          <li class="menu-item">
+                            <a href="blog-post-style2.html">Right Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="blog-post-style2-left-sidebar.html">Left Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="blog-post-style2-full-width.html">Full Width</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item dropdown">
+                <a href="#">PAGES</a>
+                <ul class="submenu">
+                  <li class="menu-item dropdown">
+                    <a href="#">Gallery</a>
+                    <ul class="submenu">
+                      <li class="menu-item">
+                        <a href="gallery.html">Gallery 4 Columns</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="gallery-3columns.html">Gallery 3 Columns</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="gallery-2columns.html">Gallery 2 Columns</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="gallery-without-filters.html">Gallery Without Filters</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="gallery-slider.html">Gallery Slider</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-item dropdown">
+                    <a href="#">More Pages</a>
+                    <ul class="submenu">
+                      <li class="menu-item">
+                        <a href="places.html">Places</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="place-details.html">Place Details</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="events.html">Events</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="event-details.html">Event Details</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="offers.html">Offers</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="offer.html">Offer Details</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="staff.html">Our Staff</a>
+                      </li>
+                      <li class="menu-item dropdown">
+                        <a href="#">Loading Page</a>
+                        <ul class="submenu">
+                          <li class="menu-item">
+                            <a href="loading.html">Loading Page 1</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="loading-style2.html">Loading Page 2</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="loading-style3.html">Loading Page 3</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="menu-item dropdown">
+                        <a href="#">Coming Soon</a>
+                        <ul class="submenu">
+                          <li class="menu-item">
+                            <a href="coming-soon.html">Coming Soon Image</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="coming-soon-video.html">Coming Soon Video</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="menu-item">
+                        <a href="page.html">Right Sidebar Page</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="page-left-sidebar.html">Left Sidebar Page</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="page-full-width.html">Full Width Page</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="404.html">404 Style 1</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="404-style2.html">404 Style 2</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="testimonials.html">Testimonials</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-item dropdown">
+                    <a href="#">Contact</a>
+                    <ul class="submenu">
+                      <li class="menu-item">
+                        <a href="contact.html">Contact Style 1</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="contact-style2.html">Contact Style 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-item dropdown">
+                    <a href="#">Shop</a>
+                    <ul class="submenu">
+                      <li class="menu-item dropdown">
+                        <a href="#">Shop</a>
+                        <ul class="submenu">
+                          <li class="menu-item">
+                            <a href="shop.html">Right Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="shop-left-sidebar.html">Left Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="shop-full-width.html">Full Width</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="menu-item dropdown">
+                        <a href="#">Shop Details</a>
+                        <ul class="submenu">
+                          <li class="menu-item">
+                            <a href="shop-details.html">Right Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="shop-details-left-sidebar.html">Left Sidebar</a>
+                          </li>
+                          <li class="menu-item">
+                            <a href="shop-details-full-width.html">Full Width</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-item">
+                    <a href="restaurant.html">Our Restaurant</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="spa.html">Our Spa</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="about-us.html">About Us</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="location.html">Our Location</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item dropdown">
+                <a href="#">ELEMENTS</a>
+                <ul class="submenu">
+                  <li class="menu-item">
+                    <a href="style-guide.html">Style Guide</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="buttons.html">Buttons</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="icons.html">Icons</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item">
+                <a href="contact.html">CONTACT US</a>
+              </li>
+              <li class="menu-item menu-btn">
+                <a href="booking-form.html" class="btn">
+                  <i class="fa fa-calendar"></i>
+                  BOOK ONLINE</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+ 
 {% block body %} 
 {% endblock %}
 
 
-<footer class="footer accent">
-    <div class="container">
-        <div class="footer_main d-sm-flex flex-wrap flex-lg-nowrap justify-content-between">
-            <div class="footer_main-block footer_main-block--about col-sm-7 col-lg-auto d-flex flex-column">
-                <a class="brand d-flex align-items-center" href="index.html">
-                    <span class="brand_logo theme-element">
-                        <svg
-                            id="brandFooter"
-                            width="22"
-                            height="23"
-                            viewBox="0 0 22 23"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M7.03198 3.80281V7.07652L3.86083 9.75137L0.689673 12.4263L0.667474 6.56503C0.655304 3.34138 0.663875 0.654206 0.686587 0.593579C0.71907 0.506918 1.4043 0.488223 3.87994 0.506219L7.03198 0.529106V3.80281ZM21.645 4.36419V5.88433L17.0383 9.76316C14.5046 11.8966 11.2263 14.6552 9.75318 15.8934L7.07484 18.145V20.3225V22.5H3.85988H0.64502L0.667303 18.768L0.689673 15.036L2.56785 13.4609C3.60088 12.5946 6.85989 9.85244 9.81009 7.36726L15.1741 2.84867L18.4096 2.8464L21.645 2.84413V4.36419ZM21.645 15.5549V22.5H18.431H15.217V18.2638V14.0274L15.4805 13.7882C15.8061 13.4924 21.5939 8.61606 21.6236 8.61248C21.6353 8.61099 21.645 11.7351 21.645 15.5549Z"
-                                fill="currentColor"
-                            />
-                        </svg>
-                    </span>
-                    <span class="brand_name">Hosteller</span>
+<footer>
+    <div class="footer-widgets">
+      <div class="container">
+        <div class="row">
+          <!-- WIDGET -->
+          <div class="col-md-3">
+            <div class="footer-widget">
+              <img src="{% static 'home/images/logo.svg' %}" class="footer-logo" alt="Hotel Himara">
+              <div class="inner">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, velit placeat assumenda incidunt dolorem aliquam!</p>
+                <a href="https://www.tripadvisor.com/" target="_blank">
+                  <div class="tripadvisor-banner">
+                    <span class="review">Recommended</span>
+                    <img src="{% static 'home/images/icons/tripadvisor.png' %}" alt="Image">
+                  </div>
                 </a>
-                <p class="footer_main-block_text">
-                    Ut tellus elementum sagittis vitae et leo duis ut. Sit amet consectetur adipiscing elit duis. Ultrices gravida
-                    dictum fusce ut placer orci nulla pellentesque
-                </p>
+              </div>
             </div>
-            <div class="footer_main-block footer_main-block--nav col-sm-6 col-lg-auto">
-                <h4 class="footer_main-block_header">Quick links</h4>
-                <ul class="footer_main-block_nav d-flex flex-lg-column">
-                    <li class="list-item">
-                        <a class="link underlined underlined--white nav-item" data-page="home" href="index.html">Home</a>
-                    </li>
-                    <li class="list-item">
-                        <a class="link underlined underlined--white nav-item" data-page="about" href="about.html">About</a>
-                    </li>
-                    <li class="list-item">
-                        <a class="link underlined underlined--white nav-item" data-page="rooms" href="rooms.html">Rooms</a>
-                    </li>
-                    <li class="list-item">
-                        <a class="link underlined underlined--white nav-item" data-page="news" href="news.html">News</a>
-                    </li>
+          </div>
+          <!-- WIDGET -->
+          <div class="col-md-3">
+            <div class="footer-widget">
+              <h3>LATEST NEWS</h3>
+              <div class="inner">
+                <ul class="latest-posts">
+                  <li>
+                    <a href="blog-post.html">10 Tips for holiday travel</a>
+                  </li>
+                  <li>
+                    <a href="blog-post.html">Are you ready to enjoy your holidays</a>
+                  </li>
+                  <li>
+                    <a href="blog-post.html">Honeymoon at Hotel Himara</a>
+                  </li>
+                  <li>
+                    <a href="blog-post.html">Travel gift ideas for every type of traveler</a>
+                  </li>
+                  <li>
+                    <a href="blog-post.html">Breakfast with coffee and orange juice</a>
+                  </li>
                 </ul>
+              </div>
             </div>
-            <div class="footer_main-block footer_main-block--contacts col-sm-5 col-lg-auto">
-                <h4 class="footer_main-block_header">Contact Us</h4>
-                <ul class="footer_main-block_contacts">
-                    <li class="list-item d-flex">
-                        <i class="icon-location icon"></i>
-                        <p class="wrapper">
-                            <span class="linebreak"> 54826 Fadel Circles </span>
-                            <span class="linebreak"> Darrylstad, AZ 90995 </span>
-                        </p>
-                    </li>
-                    <li class="list-item d-flex">
-                        <span class="icon-call icon">
-                            <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M26.9609 19.75L21 17.1797C20.7812 17.125 20.5625 17.0703 20.3438 17.0703C19.7969 17.0703 19.3047 17.2891 19.0312 17.6719L16.625 20.625C12.7969 18.7656 9.73438 15.7031 7.875 11.875L10.8281 9.46875C11.2109 9.19531 11.4297 8.70312 11.4297 8.15625C11.4297 7.9375 11.375 7.71875 11.3203 7.5L8.75 1.53906C8.47656 0.9375 7.875 0.5 7.21875 0.5C7.05469 0.5 6.94531 0.554688 6.83594 0.554688L1.3125 1.86719C0.546875 2.03125 0 2.6875 0 3.50781C0 17.3438 11.2109 28.5 24.9922 28.5C25.8125 28.5 26.4688 27.9531 26.6875 27.1875L27.9453 21.6641C27.9453 21.5547 27.9453 21.4453 27.9453 21.2812C27.9453 20.625 27.5625 20.0234 26.9609 19.75ZM24.9375 26.75C12.1406 26.75 1.75 16.3594 1.75 3.5625L7.16406 2.30469L9.67969 8.15625L5.6875 11.4375C8.36719 17.0703 11.4297 20.1328 17.1172 22.8125L20.3438 18.8203L26.1953 21.3359L24.9375 26.75Z"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                        </span>
-                        <p class="wrapper d-flex flex-column">
-                            <a class="link" href="tel:+1234567890">(329) 580-7077</a>
-                            <a class="link" href="tel:+1234567890">(650) 382-5020</a>
-                        </p>
-                    </li>
+          </div>
+          <!-- WIDGET -->
+          <div class="col-md-3">
+            <div class="footer-widget">
+              <h3>USEFUL LINKS</h3>
+              <div class="inner">
+                <ul class="useful-links">
+                  <li>
+                    <a href="about-us.html">About Us</a>
+                  </li>
+                  <li>
+                    <a href="contact.html">Contact Us</a>
+                  </li>
+                  <li>
+                    <a href="shop.html">Shop</a>
+                  </li>
+                  <li>
+                    <a href="gallery.html">Himara Gallery</a>
+                  </li>
+                  <li>
+                    <a href="location.html">Our Location</a>
+                  </li>
                 </ul>
+              </div>
             </div>
-            <div class="footer_main-block footer_main-block--follow col-sm-5 col-lg-auto d-flex flex-column">
-                <h4 class="footer_main-block_header">Follow Us</h4>
-                <p class="footer_main-block_text">Venenatis urna cursus eget nunc scelerisque</p>
-                <ul class="socials d-flex align-items-center">
-                    <li class="list-item">
-                        <a class="link" href="">
-                            <i class="icon-facebook"></i>
-                        </a>
-                    </li>
-                    <li class="list-item">
-                        <a class="link" href="">
-                            <i class="icon-instagram"></i>
-                        </a>
-                    </li>
-                    <li class="list-item">
-                        <a class="link" href="">
-                            <i class="icon-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="list-item">
-                        <a class="link" href="">
-                            <i class="icon-whatsapp"></i>
-                        </a>
-                    </li>
+          </div>
+          <!-- WIDGET -->
+          <div class="col-md-3">
+            <div class="footer-widget">
+              <h3>Contact Info</h3>
+              <div class="inner">
+                <ul class="contact-details">
+                  <li>
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    Lorem ipsum dolor, 25, Himara</li>
+                  <li>
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    Phone: +1 888 123 4567
+                  </li>
+                  <li>
+                    <i class="fa fa-fax"></i>
+                    Fax: +1 888 123 4567</li>
+                  <li>
+                    <i class="fa fa-globe"></i>
+                    Web: www.hotelhimara.com</li>
+                  <li>
+                    <i class="fa fa-envelope"></i>
+                    Email:
+                    <a href="mailto:info@site.com">contact@hotelhimara.com</a>
+                  </li>
                 </ul>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="footer_copyright">
-        <div class="container">
-            <p class="footer_copyright-text">
-                <span class="linebreak">Merkulove &copy; Hosteller Template</span>
-                <span class="linebreak">All rights reserved Copyrights 2021</span>
-            </p>
+    <!-- SUBFOOTER -->
+    <div class="subfooter">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="copyrights">&copy; 2018 Hotel Himara. Designed by
+              <a href="https://eagle-themes.com/" target="_blank">Eagle-Themes</a>.</div>
+          </div>
+          <div class="col-md-6">
+            <div class="social-media">
+              <a class="facebook" data-original-title="Facebook" data-toggle="tooltip" href="#">
+                <i class="fa fa-facebook"></i>
+              </a>
+              <a class="twitter" data-original-title="Twitter" data-toggle="tooltip" href="#">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a class="googleplus" data-original-title="Google Plus" data-toggle="tooltip" href="#">
+                <i class="fa fa-google-plus"></i>
+              </a>
+              <a class="pinterest" data-original-title="Pinterest" data-toggle="tooltip" href="#">
+                <i class="fa fa-pinterest"></i>
+              </a>
+              <a class="linkedin" data-original-title="Linkedin" data-toggle="tooltip" href="#">
+                <i class="fa fa-linkedin"></i>
+              </a>
+              <a class="youtube" data-original-title="Youtube" data-toggle="tooltip" href="#">
+                <i class="fa fa-youtube"></i>
+              </a>
+              <a class="instagram" data-original-title="Instagram" data-toggle="tooltip" href="#">
+                <i class="fa fa-instagram"></i>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</footer>
-<script src="{% static 'home/js/common.min.js' %}"></script>
-<script src="{% static 'home/js/index.min.js' %}"></script>
-<script src="{% static 'home/js/gallery.min.js' %}"></script>
+  </footer>
+</div>
+<div class="notification"></div>
+<!-- ========== BACK TO TOP ========== -->
+<div class="back-to-top">
+  <i class="fa fa-angle-up" aria-hidden="true"></i>
+</div>
+<!-- ========== JAVASCRIPT ========== -->
+<script src="{% static 'home/js/jquery.min.js' %}"></script>
+<script src="http://maps.google.com/maps/api/js?key=YOUR_API_KEY"></script>
+<script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'home/js/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'home/js/jquery.mmenu.js' %}"></script>
+<script src="{% static 'home/js/jquery.inview.min.js' %}"></script>
+<script src="{% static 'home/js/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'home/js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'home/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'home/js/owl.carousel.thumbs.min.js' %}"></script>
+<script src="{% static 'home/js/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'home/js/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'home/js/masonry.pkgd.min.js' %}"></script>
+<script src="{% static 'home/js/wow.min.js' %}"></script>
+<script src="{% static 'home/js/countup.min.js' %}"></script>
+<script src="{% static 'home/js/moment.min.js' %}"></script>
+<script src="{% static 'home/js/daterangepicker.js' %}"></script>
+<script src="{% static 'home/js/parallax.min.js' %}"></script>
+<script src="{% static 'home/js/smoothscroll.min.js' %}"></script>
+<script src="{% static 'home/js/instafeed.min.js' %}"></script>
+<script src="{% static 'home/js/main.js' %}"></script>
+<!-- ========== REVOLUTION SLIDER ========== -->
+<script src="{% static 'home/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+<script src="{% static 'home/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+<script src="{% static 'home/revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
+<script src="{% static 'home/revolution/js/extensions/revolution.extension.carousel.min.js' %}"></script>
+<script src="{% static 'home/revolution/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
+<script src="{% static 'home/revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+<script src="{% static 'home/revolution/js/extensions/revolution.extension.migration.min.js' %}"></script>
+<script src="{% static 'home/revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+<script src="{% static 'home/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+<script src="{% static 'home/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+<script src="{% static 'home/revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
 </body>
 </html>
