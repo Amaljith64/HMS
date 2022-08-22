@@ -1,402 +1,14 @@
-<!doctype html>
-<html lang="en">
+{% extends 'UserHome/base.html' %}
+{% load static %}
 
-<head>
-  <meta charset="utf-8">
-  <meta content="IE=edge" http-equiv="X-UA-Compatible">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-  <!-- ========== SEO ========== -->
-  <title>Hotel Himara - Hotel HTML Template</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-  <meta content="" name="author">
-  <!-- ========== FAVICON ========== -->
-  <link rel="apple-touch-icon-precomposed" href="images/favicon-apple.png" />
-  <link rel="icon" href="images/favicon.png">
-  <!-- ========== STYLESHEETS ========== -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/bootstrap-select.min.css">
-  <link rel="stylesheet" href="css/jquery.mmenu.css">
-  <link rel="stylesheet" href="revolution/css/layers.css">
-  <link rel="stylesheet" href="revolution/css/settings.css">
-  <link rel="stylesheet" href="revolution/css/navigation.css">
-  <link rel="stylesheet" href="css/animate.min.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/daterangepicker.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <!-- ========== ICON FONTS ========== -->
-  <link href="fonts/font-awesome.min.css" rel="stylesheet">
-  <link href="fonts/flaticon.css" rel="stylesheet">
-  <!-- ========== GOOGLE FONTS ========== -->
-  <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600,700%7CRoboto:100,300,400,400i,500,700"
-    rel="stylesheet">
-</head>
-
-<body>
-  <!-- ========== PRELOADER ========== -->
-  <div class="loader loader3">
-    <div class="loader-inner">
-      <div class="spin">
-        <span></span>
-        <img src="images/logo.svg" alt="Hotel Himara">
-      </div>
-    </div>
-  </div>
-  <!-- ========== MOBILE MENU ========== -->
-  <nav id="mobile-menu"></nav>
-  <!-- ========== WRAPPER ========== -->
-  <div class="wrapper">
-    <!-- ========== HEADER ========== -->
-    <header class="horizontal-header sticky-header" data-menutoggle="991">
-      <div class="container">
-        <!-- BRAND -->
-        <div class="brand">
-          <div class="logo">
-            <a href="index.html">
-              <img src="images/logo.svg" alt="Hotel Himara">
-            </a>
-          </div>
-        </div>
-        <!-- MOBILE MENU BUTTON -->
-        <div id="toggle-menu-button" class="toggle-menu-button">
-          <span class="line"></span>
-          <span class="line"></span>
-          <span class="line"></span>
-        </div>
-        <!-- MAIN MENU -->
-        <nav id="main-menu" class="main-menu">
-          <ul class="menu">
-            <li class="menu-item dropdown active">
-              <a href="#">HOME</a>
-              <!-- <ul class="submenu">
-                  <li class="menu-item">
-                    <a href="index.html">Home Version 1</a>
-                  </li>
-                  
-                </ul> -->
-            </li>
-            <li class="menu-item dropdown">
-              <a href="#">ROOMS</a>
-              <ul class="submenu">
-                <li class="menu-item dropdown">
-                  <a href="#">Rooms</a>
-                  <ul class="submenu">
-                    <li class="menu-item">
-                      <a href="rooms-list.html">List View</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="rooms-grid.html">Grid View</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="rooms-block.html">Block View</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="menu-item dropdown">
-                  <a href="#">Room Details</a>
-                  <ul class="submenu">
-                    <li class="menu-item dropdown">
-                      <a href="#">Style 1</a>
-                      <ul class="submenu">
-                        <li class="menu-item">
-                          <a href="room.html">Right Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="room-left-sidebar.html">Left Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="room-full-width.html">Full Width</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="menu-item dropdown">
-                      <a href="#">Style 2</a>
-                      <ul class="submenu">
-                        <li class="menu-item">
-                          <a href="room-style2.html">Right Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="room-style2-left-sidebar.html">Left Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="room-style2-full-width.html">Full Width</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li class="menu-item dropdown">
-              <a href="#">BLOG</a>
-              <ul class="submenu">
-                <li class="menu-item dropdown">
-                  <a href="#">Blog Archive</a>
-                  <ul class="submenu">
-                    <li class="menu-item dropdown">
-                      <a href="#">List View</a>
-                      <ul class="submenu">
-                        <li class="menu-item">
-                          <a href="blog.html">Right Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="blog-left-sidebar.html">Left Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="blog-full-width.html">Full Width</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="menu-item dropdown">
-                      <a href="#">Classic View</a>
-                      <ul class="submenu">
-                        <li class="menu-item">
-                          <a href="blog-classic.html">Right Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="blog-classic-left-sidebar.html">Left Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="blog-classic-full-width.html">Full Width</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="menu-item dropdown">
-                      <a href="#">Grid View</a>
-                      <ul class="submenu">
-                        <li class="menu-item">
-                          <a href="blog-grid.html">Right Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="blog-grid-left-sidebar.html">Left Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="blog-grid-full-width.html">Full Width</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li class="menu-item dropdown">
-                  <a href="#">Blog Post</a>
-                  <ul class="submenu">
-                    <li class="menu-item dropdown">
-                      <a href="#">Style 1</a>
-                      <ul class="submenu">
-                        <li class="menu-item">
-                          <a href="blog-post.html">Right Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="blog-post-left-sidebar.html">Left Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="blog-post-full-width.html">Full Width</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="menu-item dropdown">
-                      <a href="#">Style 2</a>
-                      <ul class="submenu">
-                        <li class="menu-item">
-                          <a href="blog-post-style2.html">Right Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="blog-post-style2-left-sidebar.html">Left Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="blog-post-style2-full-width.html">Full Width</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li class="menu-item dropdown">
-              <a href="#">PAGES</a>
-              <ul class="submenu">
-                <li class="menu-item dropdown">
-                  <a href="#">Gallery</a>
-                  <ul class="submenu">
-                    <li class="menu-item">
-                      <a href="gallery.html">Gallery 4 Columns</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="gallery-3columns.html">Gallery 3 Columns</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="gallery-2columns.html">Gallery 2 Columns</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="gallery-without-filters.html">Gallery Without Filters</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="gallery-slider.html">Gallery Slider</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="menu-item dropdown">
-                  <a href="#">More Pages</a>
-                  <ul class="submenu">
-                    <li class="menu-item">
-                      <a href="places.html">Places</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="place-details.html">Place Details</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="events.html">Events</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="event-details.html">Event Details</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="offers.html">Offers</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="offer.html">Offer Details</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="staff.html">Our Staff</a>
-                    </li>
-                    <li class="menu-item dropdown">
-                      <a href="#">Loading Page</a>
-                      <ul class="submenu">
-                        <li class="menu-item">
-                          <a href="loading.html">Loading Page 1</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="loading-style2.html">Loading Page 2</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="loading-style3.html">Loading Page 3</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="menu-item dropdown">
-                      <a href="#">Coming Soon</a>
-                      <ul class="submenu">
-                        <li class="menu-item">
-                          <a href="coming-soon.html">Coming Soon Image</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="coming-soon-video.html">Coming Soon Video</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="menu-item">
-                      <a href="page.html">Right Sidebar Page</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="page-left-sidebar.html">Left Sidebar Page</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="page-full-width.html">Full Width Page</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="404.html">404 Style 1</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="404-style2.html">404 Style 2</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="testimonials.html">Testimonials</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="menu-item dropdown">
-                  <a href="#">Contact</a>
-                  <ul class="submenu">
-                    <li class="menu-item">
-                      <a href="contact.html">Contact Style 1</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="contact-style2.html">Contact Style 2</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="menu-item dropdown">
-                  <a href="#">Shop</a>
-                  <ul class="submenu">
-                    <li class="menu-item dropdown">
-                      <a href="#">Shop</a>
-                      <ul class="submenu">
-                        <li class="menu-item">
-                          <a href="shop.html">Right Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="shop-left-sidebar.html">Left Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="shop-full-width.html">Full Width</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="menu-item dropdown">
-                      <a href="#">Shop Details</a>
-                      <ul class="submenu">
-                        <li class="menu-item">
-                          <a href="shop-details.html">Right Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="shop-details-left-sidebar.html">Left Sidebar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="shop-details-full-width.html">Full Width</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li class="menu-item">
-                  <a href="restaurant.html">Our Restaurant</a>
-                </li>
-                <li class="menu-item">
-                  <a href="spa.html">Our Spa</a>
-                </li>
-                <li class="menu-item">
-                  <a href="about-us.html">About Us</a>
-                </li>
-                <li class="menu-item">
-                  <a href="location.html">Our Location</a>
-                </li>
-              </ul>
-            </li>
-            <li class="menu-item dropdown">
-              <a href="#">ELEMENTS</a>
-              <ul class="submenu">
-                <li class="menu-item">
-                  <a href="style-guide.html">Style Guide</a>
-                </li>
-                <li class="menu-item">
-                  <a href="buttons.html">Buttons</a>
-                </li>
-                <li class="menu-item">
-                  <a href="icons.html">Icons</a>
-                </li>
-              </ul>
-            </li>
-            <li class="menu-item">
-              <a href="contact.html">CONTACT US</a>
-            </li>
-            <li class="menu-item menu-btn">
-              <a href="booking-form.html" class="btn">
-                <i class="fa fa-calendar"></i>
-                BOOK ONLINE</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+{% block body %}
     <!-- ========== ABOUT ========== -->
     <section class="about gray wave-blue">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
             <div class="section-title">
-              <h4 class="text-uppercase">Hotel Himara. since 1992</h4>
+              <h4 class="text-uppercase">Home to Home. since 2022</h4>
               <p class="section-subtitle">High quality accommodation services</p>
             </div>
             <div class="info-branding">
@@ -407,33 +19,7 @@
                 facilis libero dicta soluta officiis, sint sit voluptatem, vero doloribus nesciunt suscipit dolores
                 veritatis minus quam atque non autem quasi
                 consequatur quae sequi ex, ipsa facere qui ut recusandae. Quod earum cupiditate quaerat assumenda.</p>
-              <div class="providers">
-                <span>Recommended on:</span>
-                <!-- ITEM -->
-                <div class="item">
-                  <a href="#">
-                    <img src="images/providers/provider-1.png" alt="Image">
-                  </a>
-                </div>
-                <!-- ITEM -->
-                <div class="item">
-                  <a href="#">
-                    <img src="images/providers/provider-2.png" alt="Image">
-                  </a>
-                </div>
-                <!-- ITEM -->
-                <div class="item">
-                  <a href="#">
-                    <img src="images/providers/provider-3.png" alt="Image">
-                  </a>
-                </div>
-                <!-- ITEM -->
-                <div class="item">
-                  <a href="#">
-                    <img src="images/providers/provider-4.png" alt="Image">
-                  </a>
-                </div>
-              </div>
+              
             </div>
           </div>
           <div class="col-lg-4">
@@ -447,20 +33,20 @@
                     <input class="form-control" name="booking-email" type="email" placeholder="Your Email Address">
                   </div>
                   <!-- ROOM TYPE -->
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <select name="booking-roomtype" class="form-control" title="Select Room Type"
                       data-header="Room Type">
                       <option value="Single">Single Room</option>
                       <option value="Double">Double Room</option>
                       <option value="Deluxe">Deluxe Room</option>
                     </select>
-                  </div>
+                  </div> -->
                   <!-- DATE -->
                   <div class="form-group">
                     <input type="text" class="datepicker form-control" name="booking-date" readonly="readonly">
                   </div>
                   <!-- GUESTS -->
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <div class="panel-dropdown">
                       <div class="form-control guestspicker">Guests
                         <span class="gueststotal"></span>
@@ -494,13 +80,11 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <!-- BOOKING BUTTON -->
                   <button type="submit" class="btn btn-dark btn-book">BOOK A ROOM</button>
                   <div class="advanced-form-link">
-                    <a href="booking-form.html">
-                      Advanced Booking Form
-                    </a>
+                    
                   </div>
                 </form>
               </div>
@@ -515,15 +99,17 @@
         <div class="section-title">
           <h4>OUR ROOMS</h4>
           <p class="section-subtitle">Our favorite rooms</p>
-          <a href="rooms-list.html" class="view-all">View all rooms</a>
+          <a href="{% url 'userroomview'  %}" class="view-all">View all rooms</a>
         </div>
         <div class="row">
           <!-- ITEM -->
+          {% for i in rooms %}
+          {% if forloop.counter <= 3 %}  
           <div class="col-md-4">
             <div class="room-grid-item animated fadeInUp wow" data-wow-offset="30" data-wow-delay=".2s">
               <figure class="gradient-overlay-hover link-icon">
-                <a href="room.html">
-                  <img src="images/rooms/single/single1.jpg" class="img-fluid" alt="Image">
+                <a href="{% url 'roomdetails' i.id  %}">
+                  <img src="{{i.img.url}}" class="img-fluid" alt="Image">
                 </a>
                 <div class="room-services">
                   <i class="fa fa-coffee" aria-hidden="true" data-toggle="popover" data-placement="right"
@@ -533,68 +119,20 @@
                   <i class="fa fa-television" data-toggle="popover" data-placement="right" data-trigger="hover"
                     data-content="Plasma TV with cable channels" data-original-title="TV"></i>
                 </div>
-                <div class="room-price">€89 / night</div>
+                <div class="room-price">₹{{i.price}} / night</div>
               </figure>
               <div class="room-info">
                 <h2 class="room-title">
-                  <a href="room.html">Single Room</a>
+                  <a href="{% url 'roomdetails' i.id  %}">{{i.name}}</a>
                 </h2>
-                <p>Enjoy our single room</p>
+                <p>{{i.Desc}}</p>
               </div>
             </div>
           </div>
+          {% endif %}
+          {% endfor %}
           <!-- ITEM -->
-          <div class="col-md-4">
-            <div class="room-grid-item animated fadeInUp wow" data-wow-offset="30" data-wow-delay=".4s">
-              <figure class="gradient-overlay-hover link-icon">
-                <a href="room.html">
-                  <img src="images/rooms/double/double.jpg" class="img-fluid" alt="Image">
-                </a>
-                <div class="room-services">
-                  <i class="fa fa-coffee" aria-hidden="true" data-toggle="popover" data-placement="right"
-                    data-trigger="hover" data-content="Breakfast Included" data-original-title="Breakfast"></i>
-                  <i class="fa fa-wifi" aria-hidden="true" data-toggle="popover" data-placement="right"
-                    data-trigger="hover" data-content="Free WiFi" data-original-title="WiFi"></i>
-                  <i class="fa fa-television" data-toggle="popover" data-placement="right" data-trigger="hover"
-                    data-content="Plasma TV with cable channels" data-original-title="TV"></i>
-                </div>
-                <div class="room-price">€129 / night</div>
-              </figure>
-              <div class="room-info">
-                <h2 class="room-title">
-                  <a href="room.html">Double Room</a>
-                </h2>
-                <p>Enjoy our double room</p>
-              </div>
-            </div>
-          </div>
-          <!-- ITEM -->
-          <div class="col-md-4">
-            <div class="room-grid-item animated fadeInUp wow" data-wow-offset="30" data-wow-delay=".6s">
-              <figure class="gradient-overlay-hover link-icon">
-                <a href="room.html">
-                  <img src="images/rooms/deluxe/deluxe.jpg" class="img-fluid" alt="Image">
-                </a>
-                <div class="room-services">
-                  <i class="fa fa-coffee" aria-hidden="true" data-toggle="popover" data-placement="right"
-                    data-trigger="hover" data-content="Breakfast Included" data-original-title="Breakfast"></i>
-                  <i class="fa fa-bath" data-toggle="popover" data-placement="right" data-trigger="hover"
-                    data-content="2 Bathrooms" data-original-title="Bathroom"></i>
-                  <i class="fa fa-wifi" aria-hidden="true" data-toggle="popover" data-placement="right"
-                    data-trigger="hover" data-content="Free WiFi" data-original-title="WiFi"></i>
-                  <i class="fa fa-television" data-toggle="popover" data-placement="right" data-trigger="hover"
-                    data-content="Plasma TV with cable channels" data-original-title="TV"></i>
-                </div>
-                <div class="room-price">€189 / night</div>
-              </figure>
-              <div class="room-info">
-                <h2 class="room-title">
-                  <a href="room.html">Deluxe Room</a>
-                </h2>
-                <p>Enjoy our delux room</p>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>
@@ -602,7 +140,7 @@
     <section class="services">
       <div class="container">
         <div class="section-title">
-          <h4>HIMARA. SERVICES</h4>
+          <h4>H2H. SERVICES</h4>
           <p class="section-subtitle">Check out our awesome services</p>
         </div>
         <div class="row">
@@ -610,25 +148,25 @@
             <div data-slider-id="services" class="services-owl owl-carousel animated fadeInUp wow" data-wow-offset="30"
               data-wow-delay=".2s">
               <figure class="gradient-overlay">
-                <img src="images/services/restaurant.jpg" class="img-fluid" alt="Image">
+                <img src="{% static 'home/images/services/restaurant.jpg' %}" class="img-fluid" alt="Image">
                 <figcaption>
                   <h4>Restaurant</h4>
                 </figcaption>
               </figure>
               <figure class="gradient-overlay">
-                <img src="images/services/spa.jpg" class="img-fluid" alt="Image">
+                <img src="{% static 'home/images/services/spa.jpg' %}" class="img-fluid" alt="Image">
                 <figcaption>
                   <h4>Spa</h4>
                 </figcaption>
               </figure>
               <figure class="gradient-overlay">
-                <img src="images/services/conference.jpg" class="img-fluid" alt="Image">
+                <img src="{% static 'home/images/services/conference.jpg' %}" class="img-fluid" alt="Image">
                 <figcaption>
                   <h4>Conference Room</h4>
                 </figcaption>
               </figure>
               <figure class="gradient-overlay">
-                <img src="images/services/swimming.jpg" class="img-fluid" alt="Image">
+                <img src="{% static 'home/images/services/swimming.jpg' %}" class="img-fluid" alt="Image">
                 <figcaption>
                   <h4>Swimming Pool</h4>
                 </figcaption>
@@ -695,8 +233,8 @@
           <!-- ITEM -->
           <div class="gallery-item animated fadeInUp wow" data-wow-offset="30" data-wow-delay=".2s">
             <figure class="gradient-overlay image-icon">
-              <a href="images/gallery/gallery1.jpg">
-                <img src="images/gallery/gallery1.jpg" alt="Image">
+              <a href="{% static 'home/images/gallery/gallery1.jpg' %}">
+                <img src="{% static 'home/images/gallery/gallery1.jpg' %}" alt="Image">
               </a>
               <figcaption>Swimming Pool</figcaption>
             </figure>
@@ -704,8 +242,8 @@
           <!-- ITEM -->
           <div class="gallery-item animated fadeInUp wow" data-wow-offset="30" data-wow-delay=".4s">
             <figure class="gradient-overlay image-icon">
-              <a href="images/gallery/gallery2.jpg">
-                <img src="images/gallery/gallery2.jpg" alt="Image">
+              <a href="{% static 'home/images/gallery/gallery2.jpg' %}">
+                <img src="{% static 'home/images/gallery/gallery2.jpg' %}" alt="Image">
               </a>
               <figcaption>Room View</figcaption>
             </figure>
@@ -713,8 +251,8 @@
           <!-- ITEM -->
           <div class="gallery-item animated fadeInUp wow" data-wow-offset="30" data-wow-delay=".6s">
             <figure class="gradient-overlay image-icon">
-              <a href="images/gallery/gallery3.jpg">
-                <img src="images/gallery/gallery3.jpg" alt="Image">
+              <a href="{% static 'home/images/gallery/gallery3.jpg' %}">
+                <img src="{% static 'home/images/gallery/gallery3.jpg' %}" alt="Image">
               </a>
               <figcaption>Cocktail</figcaption>
             </figure>
@@ -722,8 +260,8 @@
           <!-- ITEM -->
           <div class="gallery-item animated fadeInUp wow" data-wow-offset="30" data-wow-delay=".4s">
             <figure class="gradient-overlay image-icon">
-              <a href="images/gallery/gallery4.jpg">
-                <img src="images/gallery/gallery4.jpg" alt="Image">
+              <a href="{% static 'home/images/gallery/gallery4.jpg' %}">
+                <img src="{% static 'home/images/gallery/gallery4.jpg' %}" alt="Image">
               </a>
               <figcaption>Breakfast</figcaption>
             </figure>
@@ -731,8 +269,8 @@
           <!-- ITEM -->
           <div class="gallery-item animated fadeInUp wow" data-wow-offset="30" data-wow-delay=".2s">
             <figure class="gradient-overlay image-icon">
-              <a href="images/gallery/gallery5.jpg">
-                <img src="images/gallery/gallery5.jpg" alt="Image">
+              <a href="{% static 'home/images/gallery/gallery5.jpg' %}">
+                <img src="{% static 'home/images/gallery/gallery5.jpg' %}" alt="Image">
               </a>
               <figcaption>Playground</figcaption>
             </figure>
@@ -740,8 +278,8 @@
           <!-- ITEM -->
           <div class="gallery-item">
             <figure class="gradient-overlay image-icon">
-              <a href="images/gallery/gallery6.jpg">
-                <img src="images/gallery/gallery6.jpg" alt="Image">
+              <a href="{% static 'home/images/gallery/gallery6.jpg' %}">
+                <img src="{% static 'home/images/gallery/gallery6.jpg' %}" alt="Image">
               </a>
               <figcaption>Restaurant</figcaption>
             </figure>
@@ -749,8 +287,8 @@
           <!-- ITEM -->
           <div class="gallery-item">
             <figure class="gradient-overlay image-icon">
-              <a href="images/gallery/gallery7.jpg">
-                <img src="images/gallery/gallery7.jpg" alt="Image">
+              <a href="{% static 'home/images/gallery/gallery7.jpg' %}">
+                <img src="{% static 'home/images/gallery/gallery7.jpg' %}" alt="Image">
               </a>
               <figcaption>Wedding Ceremony</figcaption>
             </figure>
@@ -758,8 +296,8 @@
           <!-- ITEM -->
           <div class="gallery-item">
             <figure class="gradient-overlay image-icon">
-              <a href="images/gallery/gallery8.jpg">
-                <img src="images/gallery/gallery8.jpg" alt="Image">
+              <a href="{% static 'home/images/gallery/gallery8.jpg' %}">
+                <img src="{% static 'home/images/gallery/gallery8.jpg' %}" alt="Image">
               </a>
               <figcaption>Beach</figcaption>
             </figure>
@@ -767,8 +305,8 @@
           <!-- ITEM -->
           <div class="gallery-item">
             <figure class="gradient-overlay image-icon">
-              <a href="images/gallery/gallery9.jpg">
-                <img src="images/gallery/gallery9.jpg" alt="Image">
+              <a href="{% static 'home/images/gallery/gallery9.jpg' %}">
+                <img src="{% static 'home/images/gallery/gallery9.jpg' %}" alt="Image">
               </a>
               <figcaption>Honeymoon Room</figcaption>
             </figure>
@@ -776,8 +314,8 @@
           <!-- ITEM -->
           <div class="gallery-item">
             <figure class="gradient-overlay image-icon">
-              <a href="images/gallery/gallery10.jpg">
-                <img src="images/gallery/gallery10.jpg" alt="Image">
+              <a href="{% static 'home/images/gallery/gallery10.jpg' %}">
+                <img src="{% static 'home/images/gallery/gallery10.jpg' %}" alt="Image">
               </a>
               <figcaption>Sea</figcaption>
             </figure>
@@ -790,109 +328,9 @@
     <!-- ========== OFFERS ========== -->
     
     <!-- ========== SHOP ========== -->
-    <section class="shop">
-      <div class="container">
-        <div class="section-title">
-          <h4>OUR PRODUCTS</h4>
-          <p class="section-subtitle">Something to remember Himara</p>
-          <a href="shop.html" class="view-all">View all products</a>
-        </div>
-        <div class="shop-owl owl-carousel">
-          <!-- ITEM -->
-          <div class="shop-item animated fadeInUp wow" data-wow-offset="30" data-wow-delay=".4s">
-            <figure class="color-overlay-hover">
-              <a href="shop-details.html">
-                <img src="images/shop/raki.jpg" class="img-fluid" alt="Image">
-              </a>
-              <button class="btn add-to-cart">Add to Cart</button>
-            </figure>
-            <div class="product-details">
-              <h4 class="product-title">
-                <a href="shop-details.html">Raki</a>
-              </h4>
-              <div class="product-price">€19.00</div>
-            </div>
-          </div>
-          <!-- ITEM -->
-          <div class="shop-item animated fadeInUp wow" data-wow-offset="30" data-wow-delay=".2s">
-            <figure class="color-overlay-hover">
-              <a href="shop-details.html">
-                <img src="images/shop/juice.jpg" class="img-fluid" alt="Image">
-              </a>
-              <button class="btn add-to-cart">Add to Cart</button>
-            </figure>
-            <div class="product-details">
-              <h4 class="product-title">
-                <a href="shop-details.html">Juice</a>
-              </h4>
-              <div class="product-price">€11.00</div>
-            </div>
-          </div>
-          <!-- ITEM -->
-          <div class="shop-item animated fadeInUp wow" data-wow-offset="30" data-wow-delay=".2s">
-            <figure class="color-overlay-hover">
-              <a href="shop-details.html">
-                <img src="images/shop/honey.jpg" class="img-fluid" alt="Image">
-              </a>
-              <button class="btn add-to-cart">Add to Cart</button>
-            </figure>
-            <div class="product-details">
-              <h4 class="product-title">
-                <a href="shop-details.html">Honey</a>
-              </h4>
-              <div class="product-price">€13.90</div>
-            </div>
-          </div>
-          <!-- ITEM -->
-          <div class="shop-item animated fadeInUp wow" data-wow-offset="30" data-wow-delay=".4s">
-            <figure class="color-overlay-hover">
-              <a href="shop-details.html">
-                <img src="images/shop/wine.jpg" class="img-fluid" alt="Image">
-              </a>
-              <button class="btn add-to-cart">Add to Cart</button>
-            </figure>
-            <div class="product-details">
-              <h4 class="product-title">
-                <a href="shop-details.html">Wine</a>
-              </h4>
-              <div class="product-price">€29.90</div>
-            </div>
-          </div>
-          <!-- ITEM -->
-          <div class="shop-item">
-            <figure class="color-overlay-hover">
-              <a href="shop-details.html">
-                <img src="images/shop/plate.jpg" class="img-fluid" alt="Image">
-              </a>
-              <button class="btn add-to-cart">Add to Cart</button>
-            </figure>
-            <div class="product-details">
-              <h4 class="product-title">
-                <a href="shop-details.html">Plate</a>
-              </h4>
-              <div class="product-price">€9.00</div>
-            </div>
-          </div>
-          <!-- ITEM -->
-          <div class="shop-item">
-            <figure class="color-overlay-hover">
-              <a href="shop-details.html">
-                <img src="images/shop/mug.jpg" class="img-fluid" alt="Image">
-              </a>
-              <button class="btn add-to-cart">Add to Cart</button>
-            </figure>
-            <div class="product-details">
-              <h4 class="product-title">
-                <a href="shop-details.html">Mug</a>
-              </h4>
-              <div class="product-price">€4.00</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    
     <!-- ========== SPA ========== -->
-    <section class="spa image-bg parallax gradient-overlay op5" data-src="images/spa.jpg" data-parallax="scroll"
+    <section class="spa image-bg parallax gradient-overlay op5" data-src="{% static 'home/images/spa.jpg' %}" data-parallax="scroll"
       data-speed="0.3" data-mirror-selector=".wrapper" data-z-index="0">
       <div class="container">
         <div class="section-title">
@@ -955,191 +393,4 @@
     <!-- ========== INSTAGRAM ========== -->
    
     <!-- ========== FOOTER ========== -->
-    <footer>
-      <div class="footer-widgets">
-        <div class="container">
-          <div class="row">
-            <!-- WIDGET -->
-            <div class="col-md-3">
-              <div class="footer-widget">
-                <img src="images/logo.svg" class="footer-logo" alt="Hotel Himara">
-                <div class="inner">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, velit placeat assumenda incidunt
-                    dolorem aliquam!</p>
-                  <a href="https://www.tripadvisor.com/" target="_blank">
-                    <div class="tripadvisor-banner">
-                      <span class="review">Recommended</span>
-                      <img src="images/icons/tripadvisor.png" alt="Image">
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- WIDGET -->
-            <div class="col-md-3">
-              <div class="footer-widget">
-                <h3>LATEST NEWS</h3>
-                <div class="inner">
-                  <ul class="latest-posts">
-                    <li>
-                      <a href="blog-post.html">10 Tips for holiday travel</a>
-                    </li>
-                    <li>
-                      <a href="blog-post.html">Are you ready to enjoy your holidays</a>
-                    </li>
-                    <li>
-                      <a href="blog-post.html">Honeymoon at Hotel Himara</a>
-                    </li>
-                    <li>
-                      <a href="blog-post.html">Travel gift ideas for every type of traveler</a>
-                    </li>
-                    <li>
-                      <a href="blog-post.html">Breakfast with coffee and orange juice</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- WIDGET -->
-            <div class="col-md-3">
-              <div class="footer-widget">
-                <h3>USEFUL LINKS</h3>
-                <div class="inner">
-                  <ul class="useful-links">
-                    <li>
-                      <a href="about-us.html">About Us</a>
-                    </li>
-                    <li>
-                      <a href="contact.html">Contact Us</a>
-                    </li>
-                    <li>
-                      <a href="shop.html">Shop</a>
-                    </li>
-                    <li>
-                      <a href="gallery.html">Himara Gallery</a>
-                    </li>
-                    <li>
-                      <a href="location.html">Our Location</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- WIDGET -->
-            <div class="col-md-3">
-              <div class="footer-widget">
-                <h3>Contact Info</h3>
-                <div class="inner">
-                  <ul class="contact-details">
-                    <li>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      Lorem ipsum dolor, 25, Himara
-                    </li>
-                    <li>
-                      <i class="fa fa-phone" aria-hidden="true"></i>
-                      Phone: +1 888 123 4567
-                    </li>
-                    <li>
-                      <i class="fa fa-fax"></i>
-                      Fax: +1 888 123 4567
-                    </li>
-                    <li>
-                      <i class="fa fa-globe"></i>
-                      Web: www.hotelhimara.com
-                    </li>
-                    <li>
-                      <i class="fa fa-envelope"></i>
-                      Email:
-                      <a href="mailto:info@site.com">contact@hotelhimara.com</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- SUBFOOTER -->
-      <div class="subfooter">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="copyrights">&copy; 2018 Hotel Himara. Designed by
-                <a href="https://eagle-themes.com/" target="_blank">Eagle-Themes</a>.
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="social-media">
-                <a class="facebook" data-original-title="Facebook" data-toggle="tooltip" href="#">
-                  <i class="fa fa-facebook"></i>
-                </a>
-                <a class="twitter" data-original-title="Twitter" data-toggle="tooltip" href="#">
-                  <i class="fa fa-twitter"></i>
-                </a>
-                <a class="googleplus" data-original-title="Google Plus" data-toggle="tooltip" href="#">
-                  <i class="fa fa-google-plus"></i>
-                </a>
-                <a class="pinterest" data-original-title="Pinterest" data-toggle="tooltip" href="#">
-                  <i class="fa fa-pinterest"></i>
-                </a>
-                <a class="linkedin" data-original-title="Linkedin" data-toggle="tooltip" href="#">
-                  <i class="fa fa-linkedin"></i>
-                </a>
-                <a class="youtube" data-original-title="Youtube" data-toggle="tooltip" href="#">
-                  <i class="fa fa-youtube"></i>
-                </a>
-                <a class="instagram" data-original-title="Instagram" data-toggle="tooltip" href="#">
-                  <i class="fa fa-instagram"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
-  <!-- ========== CONTACT NOTIFICATION ========== -->
-  <div id="booking-notification" class="notification fixed"></div>
-  <!-- ========== CONTACT NOTIFICATION ========== -->
-  <div id="contact-notification" class="notification fixed"></div>
-  <!-- ========== BACK TO TOP ========== -->
-  <div class="back-to-top">
-    <i class="fa fa-angle-up" aria-hidden="true"></i>
-  </div>
-  <!-- ========== JAVASCRIPT ========== -->
-  <script src="js/jquery.min.js"></script>
-  <script src="http://maps.google.com/maps/api/js?key=YOUR_API_KEY"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/bootstrap-select.min.js"></script>
-  <script src="js/jquery.mmenu.js"></script>
-  <script src="js/jquery.inview.min.js"></script>
-  <script src="js/jquery.countdown.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/owl.carousel.thumbs.min.js"></script>
-  <script src="js/isotope.pkgd.min.js"></script>
-  <script src="js/imagesloaded.pkgd.min.js"></script>
-  <script src="js/masonry.pkgd.min.js"></script>
-  <script src="js/wow.min.js"></script>
-  <script src="js/countup.min.js"></script>
-  <script src="js/moment.min.js"></script>
-  <script src="js/daterangepicker.js"></script>
-  <script src="js/parallax.min.js"></script>
-  <script src="js/smoothscroll.min.js"></script>
-  <script src="js/instafeed.min.js"></script>
-  <script src="js/main.js"></script>
-  <!-- ========== REVOLUTION SLIDER ========== -->
-  <script src="revolution/js/jquery.themepunch.tools.min.js"></script>
-  <script src="revolution/js/jquery.themepunch.revolution.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.actions.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.carousel.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.migration.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.video.min.js"></script>
-</body>
-
-</html>
+    {% endblock %}

@@ -1,6 +1,7 @@
 from django.db import models
 
 from MyAdmin.models import Account
+from Payments.models import *
 
 # Create your models here.
 
@@ -38,12 +39,18 @@ class Rooms(models.Model):
         return self.name
 
 
-class HotelBooking(models.Model):
-    hotel= models.ForeignKey(Rooms  , related_name="hotel_bookings" , on_delete=models.CASCADE)
-    user = models.ForeignKey(Account, related_name="user_bookings" , on_delete=models.CASCADE)
+
+class HotelBookings(models.Model):
+    hotel= models.ForeignKey(Rooms  , related_name="hotel_bookings" , on_delete=models.CASCADE,null=True)
+    user = models.ForeignKey(Account, related_name="user_bookings" , on_delete=models.CASCADE,null=True)
     start_date = models.DateField()
     end_date = models.DateField()
-    booking_type= models.CharField(max_length=100,choices=(('Pre Paid' , 'Pre Paid') , ('Post Paid' , 'Post Paid')))
+    date =models.DateField(auto_now_add=True)
+    status = models.CharField(max_length=100,default="pending",null=True)
+    payment_method = models.CharField(max_length=100, null=True)
+
+
+
 
 
 

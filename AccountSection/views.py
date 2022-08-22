@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from AdminPanel.models import Rooms
 from MyAdmin.models import *
 from .models import *
 from django.contrib.auth import authenticate, login, logout
@@ -12,7 +13,6 @@ from django.http import HttpResponse
 
 def register(request):
     if request.method == 'POST':
-
         username = request.POST["username"]
         email = request.POST["email"]
         phone_number = request.POST["phone_number"]
@@ -37,7 +37,7 @@ def register(request):
             )
             user.save()
 
-# ----------------------OTP REGISTERATION-------------------------
+# ----------------------OTP REGISTERATION-------------------------#
 
             account_sid = settings.ACCOUNT_SID
             auth_token = settings.AUTH_TOKEN
@@ -96,7 +96,7 @@ def signin(request):
                     username=request.POST.get('username'))
                 phone_number = phone.phone_number
 
-# ----------------------OTP SIGNIN-------------------------
+# ----------------------OTP SIGNIN-------------------------#
 
                 account_sid = settings.ACCOUNT_SID
                 auth_token = settings.AUTH_TOKEN
@@ -133,7 +133,8 @@ def test(request):
 
 
 def home(request):
-    return render(request, 'AccountSection/homepage.html')
+    rooms=Rooms.objects.all()
+    return render(request, 'UserHome/index.html',{'rooms':rooms})
 
 
 def logout(request):

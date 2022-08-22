@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'MyAdmin',
     'AccountSection',
     'AdminPanel',
-    'UserHome'
+    'UserHome',
+    'Payments'
 ]
 
 MIDDLEWARE = [

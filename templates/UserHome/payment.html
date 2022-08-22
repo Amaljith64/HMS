@@ -1,0 +1,126 @@
+{% extends 'UserHome/base.html' %}
+{% load static %}
+
+{% block body %}
+<!-- ========== PAGE TITLE ========== -->
+<div class="page-title gradient-overlay op5" style="background: url(images/breadcrumb.jpg); background-repeat: no-repeat;
+    background-size: cover;">
+    <div class="container">
+        <div class="inner">
+            <h1>SINGLE ROOM</h1>
+            <div class="room-details-price">
+                €89 / NIGHT
+            </div>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="index.html">Rooms</a>
+                </li>
+                <li>Single Room</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== MAIN ========== -->
+<main class="room">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-12">
+                <!-- ROOM SLIDER -->
+
+                <div class="sidebar">
+                    <!-- WIDGET -->
+                    <aside class="widget noborder">
+                        <div class="vertical-booking-form">
+                            <div id="booking-notification" class="notification"></div>
+                            <h3 class="form-title">YOUR DETAILS</h3>
+                            <div class="inner">
+                                <form method="POST" action="">
+                                    {% csrf_token %}
+                                    <!-- EMAIL -->
+                                    <div class="form-group">
+                                        <label for="">NAME</label>
+                                        <input class="form-control" name="name" placeholder="Your Name"
+                                            value="{{booking.user}}">
+                                    </div>
+                                    <!-- ROOM TYPE -->
+                                    <div class="form-group">
+                                        <label for="">EMAIL</label>
+                                        <input class="form-control" name="email" 
+                                            placeholder="Your Email Address" value="{{booking.user.email}}">
+                                    </div>
+                                    <!-- DATE -->
+                                    <div class="form-group">
+                                        <label for="">PHONE</label>
+                                        <input class="form-control" name="phone" 
+                                            placeholder="Your Phone No" value="{{booking.user.phone_number}}">
+                                    </div>
+
+                                    <!-- BOOKING BUTTON -->
+                                    <!-- <button type="submit" class="btn btn-dark btn-fw mt20 mb20">PAY NOW</button> -->
+
+                            </div>
+                        </div>
+                    </aside>
+
+                </div>
+                <div class="sidebar">
+                    <!-- WIDGET -->
+                    <aside class="widget noborder">
+                        <div class="vertical-booking-form">
+                            <div id="booking-notification" class="notification"></div>
+                            <h3 class="form-title">CHOOSE PAYMENT</h3>
+                            <div class="inner">
+
+                                <!-- EMAIL -->
+
+                                <!-- BOOKING BUTTON -->
+                                <input type="radio" name="q" value="" id="PAY AT HOTEL"><label for="">PAY AT HOTEL</label><br>
+                                <input type="radio" name="q" id="" value="RAZORPAY"><label for="">RAZORPAY</label><br>
+                                <input type="radio" name="q" id="" value="PAYPAL"><label for="">PAYPAL</label>
+
+                                <button type="submit" class="btn btn-gray btn-fw mt20 mb20">PAY NOW </button>
+                                </form>
+                            </div>
+                        </div>
+                    </aside>
+
+                </div>
+
+
+
+
+                <!-- ROOM REVIEWS -->
+
+
+            </div>
+            <!-- SIDEBAR -->
+            <div class="col-lg-5 col-12">
+
+                <div class="sidebar">
+                    <!-- WIDGET -->
+                    <aside class="widget noborder">
+                        <div class="vertical-booking-form">
+                            <div id="booking-notification" class="notification"></div>
+                            <h3 class="form-title">BOOK YOUR ROOM</h3>
+                            <div class="inner">
+                                <div class="col-lg-4">
+                                    <figure class="gradient-overlay-hover link-icon">
+                                        <a href="room.html"><img src="{{booking.hotel.img.url}}" class="img-fluid"
+                                                alt="Image"></a>
+                                    </figure>
+                                </div>
+                                <div>{{booking.hotel.price}}</div>
+                            </div>
+                        </div>
+                    </aside>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

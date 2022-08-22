@@ -13,6 +13,12 @@ def index(request):
     return render(request, 'AdminPanel/index.html')
 
 
+
+
+#------------------------------------ROOM------------------------------#
+
+
+
 def addrooms(request):
     scateg=SubCategories.objects.all
     categ=Categories.objects.all
@@ -78,6 +84,15 @@ def deleteroom(request,id):
     return redirect(rooms)
 
 
+
+#------------------------------------ROOM ENDS------------------------------#
+
+
+
+
+#------------------------------------CATEGORY------------------------------#
+
+
 def category(request):
     if request.method =='POST':
         title=request.POST['title']
@@ -102,6 +117,19 @@ def subcategory(request):
     return render(request,'AdminPanel/subcategory.html',{'scateg':scateg,'categ':categ})
 
 
+
+
+#------------------------------------CATEGORY ENDS------------------------------#
+
+
+
+
+
+#------------------------------------USER------------------------------#
+
+
+
+
 def guest(request):
     if request.method=='POST':
         load=request.POST['search']
@@ -123,4 +151,22 @@ def blockuser(request,id):
     else:
         user.is_active = True
         user.save()
-        return redirect(guest)  
+        return redirect(guest) 
+
+
+#------------------------------------USER ENDS------------------------------#
+
+
+#------------------------------------BOOKINGS------------------------------#
+
+
+def bookings(request):
+    bookings=HotelBookings.objects.all()
+    return render(request,'AdminPanel/Bookings.html',{'bookings':bookings})
+
+
+
+
+
+#------------------------------------BOOKINGS ENDS------------------------------#
+ 

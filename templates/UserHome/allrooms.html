@@ -34,7 +34,7 @@
             </div>
           </aside>
           <aside class="widget">
-            <h4 class="widget-title">CATEGORIES</h4>
+            <h4 class="widget-title">LOCATIONS</h4>
             <ul class="categories">
               <li>
                 <a href="#">Travel<span class="posts-num">51</span></a>
@@ -120,7 +120,9 @@
               <div class="col-lg-3">
                 <div class="room-price">
                   <span class="price">₹{{i.price}} / night</span>
-                  <a href="{% url 'roomdetails' i.id  %}" class="btn btn-sm">VIEW DETAILS</a>
+                  <a href="{% url 'roomdetails' i.id  %}" class="btn btn-sm ">VIEW DETAILS</a>
+                  <br>
+                  <a href="{% url 'addwishlist' i.id  %}" class="btn btn-sm btn-gray"><i class="fa fa-fw" aria-hidden="true" title="Copy to use heart"></i>WISHLIST</a>
                 </div>
               </div>
             </div>

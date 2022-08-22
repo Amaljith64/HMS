@@ -13,4 +13,5 @@ urlpatterns = [
     path('delete/<int:id>',views.deleteroom,name='deleteroom'),
     path('category',views.category,name='category'),
     path('subcategory',views.subcategory,name='subcategory'),
+    path('bookings',views.bookings,name='bookings'),
 ]

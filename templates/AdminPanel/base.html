@@ -16,7 +16,7 @@
 	<meta name="format-detection" content="telephone=no">
 	
 	<!-- PAGE TITLE HERE -->
-	<title>Innap : Hotel Admin Template</title>
+	<title>H2H Admin Panel</title>
 	
 	<!-- FAVICONS ICON -->
 	<link rel="shortcut icon" type="image/png" href="images/favicon.png" />
@@ -832,7 +832,7 @@
                         <ul aria-expanded="false">
                             <li><a href="{% url 'guest' %}">Guest</a></li>
                         </ul>
-                    </li>
+                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-086-star"></i>
 							<span class="nav-text">Category</span>
@@ -845,21 +845,16 @@
                         </ul>
                     </li>
                     
-                    <!-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-045-heart"></i>
-							<span class="nav-text">Plugins</span>
+							<span class="nav-text">Bookings</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="./uc-select2.html">Select 2</a></li>
-                            <li><a href="./uc-nestable.html">Nestedable</a></li>
-                            <li><a href="./uc-noui-slider.html">Noui Slider</a></li>
-                            <li><a href="./uc-sweetalert.html">Sweet Alert</a></li>
-                            <li><a href="./uc-toastr.html">Toastr</a></li>
-                            <li><a href="./map-jqvmap.html">Jqv Map</a></li>
-							<li><a href="./uc-lightgallery.html">Light Gallery</a></li>
+                            <li><a href="{% url 'bookings' %}">View All Bookings</a></li>
+                            
                         </ul>
-                    </li>
-                    <li><a href="widget-basic.html" class="ai-icon" aria-expanded="false">
+                    </li> 
+                    <!--<li><a href="widget-basic.html" class="ai-icon" aria-expanded="false">
 							<i class="flaticon-013-checkmark"></i>
 							<span class="nav-text">Widget</span>
 						</a>

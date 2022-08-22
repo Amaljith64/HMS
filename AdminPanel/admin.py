@@ -8,4 +8,4 @@ from AdminPanel.models import *
 admin.site.register(Categories)
 admin.site.register(SubCategories)
 admin.site.register(Rooms)
-admin.site.register(HotelBooking)
+admin.site.register(HotelBookings)
