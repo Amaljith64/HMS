@@ -58,6 +58,7 @@ def check_booking(start_date, end_date, id, room_count):
 
 def hotel_detail(request, id):
     room = Rooms.objects.get(id=id)
+    images=MultiImage.objects.filter(imageof=id)
     if request.method == 'POST':
         checkin = request.POST.get('checkin')
         checkout = request.POST.get('checkout')
@@ -73,7 +74,7 @@ def hotel_detail(request, id):
         messages.success(request, 'Your booking has been saved')
         
         return redirect(paymentfun,id=value.id)
-    return render(request, 'UserHome/viewroom.html', {'room': room})
+    return render(request, 'UserHome/viewroom.html', {'room': room,'images':images})
 
 
 

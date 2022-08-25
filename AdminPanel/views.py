@@ -32,6 +32,7 @@ def addrooms(request):
         price=request.POST.get('price')
         Desc=request.POST['description']
         image=request.FILES['photoo']
+        multiimages = request.FILES.getlist('images')
         categ=Categories.objects.get(id=request.POST['categ'])
         scateg=SubCategories.objects.get(id=request.POST['scateg'])
         
@@ -39,6 +40,12 @@ def addrooms(request):
 
         addroom=Rooms.objects.create(img=image,categ=categ,subcateg=scateg,name=name,Desc=Desc,price=price)
         addroom.save()
+
+        for multiimage in multiimages:
+            photo = MultiImage(imageof=addroom)
+            
+            photo.image=multiimage
+            photo.save()
 
         return redirect(rooms)
      

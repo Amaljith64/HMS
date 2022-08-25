@@ -72,76 +72,9 @@
                         </form>
                         
                         </div>
-                        <!-- <form class="booking" action="#" method="post" autocomplete="off" data-type="booking">
-                          <div class="booking_group d-flex flex-column">
-                              <label class="booking_group-label h5" for="checkIn">Check-in</label>
-                              <div class="booking_group-wrapper">
-                                  <i class="icon-calendar icon"></i>
-                                  <input
-                                      class="booking_group-field field required"
-                                      data-type="date"
-                                      data-start="true"
-                                      type="date"
-                                      id="checkIn"
-                                      name="contactsDate"
-                                      placeholder="Add arrival date"
-                                      readonly
-                                  />
-                                  <i class="icon-chevron_down icon"></i>
-                              </div>
-                          </div>
-                          <div class="booking_group d-flex flex-column">
-                              <label class="booking_group-label h5" for="checkOut">Check-out</label>
-                              <div class="booking_group-wrapper">
-                                  <i class="icon-calendar icon"></i>
-                                  <input
-                                      class="booking_group-field field required"
-                                      data-type="date"
-                                      data-end="true"
-                                      type="text"
-                                      id="checkOut"
-                                      name="contactsDate"
-                                      placeholder="Add departure date"
-                                      readonly
-                                  />
-                                  <i class="icon-chevron_down icon"></i>
-                              </div>
-                          </div>
-                          <button class="booking_btn btn theme-element theme-element--accent" type="submit">Book now</button>
-                      </form> -->
+                        
                         <!-- GUESTS -->
-                        <!-- <div class="form-group">
-                          <div class="panel-dropdown">
-                            <div class="form-control guestspicker">Guests
-                              <span class="gueststotal"></span></div>
-                            <div class="panel-dropdown-content">
-                              <div class="guests-buttons">
-                                <label>Adults
-                                  <a href="#" title="" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="18+ years" data-original-title="Adults">
-                                    <i class="fa fa-info-circle"></i>
-                                  </a>
-                                </label>
-                                <div class="guests-button">
-                                  <div class="minus"></div>
-                                  <input type="text" name="booking-adults" class="booking-guests" value="0">
-                                  <div class="plus"></div>
-                                </div>
-                              </div>
-                              <div class="guests-buttons">
-                                <label>Cildren
-                                  <a href="#" title="" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Under 18 years" data-original-title="Children">
-                                    <i class="fa fa-info-circle"></i>
-                                  </a>
-                                </label>
-                                <div class="guests-button">
-                                  <div class="minus"></div>
-                                  <input type="text" name="booking-children" class="booking-guests" value="0">
-                                  <div class="plus"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div> -->
+                        
                         <!-- BOOKING BUTTON -->
                         
                       
@@ -181,73 +114,25 @@
                     </figure>
                   </div>
                   <!-- ITEM -->
+                  {% for i in images %}
                   <div class="item">
                     <figure class="gradient-overlay-hover image-icon">
                       <a href="images/rooms/single/single2.jpg">
-                        <img class="img-fluid" src="{{room.img.url}}" alt="Image">
+                        <img class="img-fluid" src="{{i.image.url}}" alt="Image">
                       </a>
                     </figure>
                   </div>
-                  <!-- <div class="item">
-                    <figure class="gradient-overlay-hover image-icon">
-                      <a href="images/rooms/single/single3.jpg">
-                        <img class="img-fluid" src="images/rooms/single/single3.jpg" alt="Image">
-                      </a>
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure class="gradient-overlay-hover image-icon">
-                      <a href="images/rooms/single/single4.jpg">
-                        <img class="img-fluid" src="images/rooms/single/single4.jpg" alt="Image">
-                      </a>
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure class="gradient-overlay-hover image-icon">
-                      <a href="images/rooms/single/single5.jpg">
-                        <img class="img-fluid" src="images/rooms/single/single5.jpg" alt="Image">
-                      </a>
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure class="gradient-overlay-hover image-icon">
-                      <a href="images/rooms/single/single6.jpg">
-                        <img class="img-fluid" src="images/rooms/single/single6.jpg" alt="Image">
-                      </a>
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure class="gradient-overlay-hover image-icon">
-                      <a href="images/rooms/single/single7.jpg">
-                        <img class="img-fluid" src="images/rooms/single/single7.jpg" alt="Image">
-                      </a>
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure class="gradient-overlay-hover image-icon">
-                      <a href="images/rooms/single/single8.jpg">
-                        <img class="img-fluid" src="images/rooms/single/single8.jpg" alt="Image">
-                      </a>
-                    </figure>
-                  </div> -->
+                  {% endfor %}
+                  
                 </div>
                 <div id="room-thumbs" class="room-thumbs owl-carousel">
                   <!-- ITEM -->
-                  <div class="item"><img class="img-fluid" src="images/rooms/single/single1.jpg" alt="Image"></div>
-                  <!-- ITEM -->
-                  <div class="item"><img class="img-fluid" src="images/rooms/single/single2.jpg" alt="Image"></div>
-                  <!-- ITEM -->
-                  <div class="item"><img class="img-fluid" src="images/rooms/single/single3.jpg" alt="Image"></div>
-                  <!-- ITEM -->
-                  <div class="item"><img class="img-fluid" src="images/rooms/single/single4.jpg" alt="Image"></div>
-                  <!-- ITEM -->
-                  <div class="item"><img class="img-fluid" src="images/rooms/single/single5.jpg" alt="Image"></div>
-                  <!-- ITEM -->
-                  <div class="item"><img class="img-fluid" src="images/rooms/single/single6.jpg" alt="Image"></div>
-                  <!-- ITEM -->
-                  <div class="item"><img class="img-fluid" src="images/rooms/single/single7.jpg" alt="Image"></div>
-                  <!-- ITEM -->
-                  <div class="item"><img class="img-fluid" src="images/rooms/single/single8.jpg" alt="Image"></div>
+                  <div class="item"><img class="img-fluid" src="{{room.img.url}}" alt="Image"></div>
+                  {% for i in images %}
+                  <div class="item"><img class="img-fluid" src="{{i.image.url}}" alt="Image"></div>
+                  {% endfor %}
+                 
+                  
                 </div>
               </div>
               <p>{{room.Desc}}</p>

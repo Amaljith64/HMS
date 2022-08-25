@@ -38,6 +38,11 @@ class Rooms(models.Model):
     def __str__(self):
         return self.name
 
+class MultiImage(models.Model):
+    imageof=models.ForeignKey( Rooms,on_delete=models.CASCADE,related_name='multiimages')
+    image = models.FileField(upload_to="multiimage/")
+
+
 
 
 class HotelBookings(models.Model):
