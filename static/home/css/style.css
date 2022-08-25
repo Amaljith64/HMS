@@ -1961,7 +1961,7 @@ header.mm-slideout {
 
 header.transparent-header {
   position: absolute;
-  top: 70px;
+  top: 10px;
   background: transparent;
 }
 
@@ -5835,12 +5835,7 @@ blockquote:after {
   left: -45px;
 }
 
-.comments-list li {
-  /margin-bottom: 15px;
-  display: block;
-  position: relative;
-  list-style: none;
-}
+
 
 .comments-list li:after {
   content: '';

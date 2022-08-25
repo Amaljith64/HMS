@@ -84,6 +84,14 @@ def Bookings(request):
     return render(request,'USerHome/bookings.html',{'booking':booking})
 
 
+def CancelBooking(request,id):
+    user=request.user
+    booking=HotelBookings.objects.get(id=id)
+       
+    booking.status="Cancelled"
+    booking.save()
+
+    return redirect(Bookings)
 
 
 #----------------------BOOKING AND MANAGEMENT ENDS-------------------#
@@ -113,6 +121,10 @@ def wishlist(request):
     return render(request,'UserHome/wishlist.html',{'list':list})
 
 
+def remove_from_wishlist(request,id):
+    to_remove=Wishlist.objects.get(id=id)
+    to_remove.delete()
+    return redirect (wishlist)
 
 #----------------------WISHLIST AND MANAGEMENT ENDS-------------------#
 

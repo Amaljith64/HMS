@@ -3,7 +3,7 @@
 
 {% block body %}
     <!-- ========== ABOUT ========== -->
-    <section class="about gray wave-blue">
+    <section class="image-bg parallax gradient-overlay op4 " data-src="{% static 'home/images/slider12.jpg' %}" data-parallax="scroll" data-speed="0.3" data-mirror-selector=".wrapper" data-z-index="0">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
@@ -24,7 +24,7 @@
           </div>
           <div class="col-lg-4">
             <!-- ========== BOOKING FORM ========== -->
-            <div class="vertical-booking-form slider-booking-form">
+            <div class="vertical-booking-form slider-booking-form mt-5">
               <h3 class="form-title">BOOK YOUR ROOM</h3>
               <div class="inner">
                 <form id="booking-form">
@@ -33,54 +33,13 @@
                     <input class="form-control" name="booking-email" type="email" placeholder="Your Email Address">
                   </div>
                   <!-- ROOM TYPE -->
-                  <!-- <div class="form-group">
-                    <select name="booking-roomtype" class="form-control" title="Select Room Type"
-                      data-header="Room Type">
-                      <option value="Single">Single Room</option>
-                      <option value="Double">Double Room</option>
-                      <option value="Deluxe">Deluxe Room</option>
-                    </select>
-                  </div> -->
+                  
                   <!-- DATE -->
                   <div class="form-group">
                     <input type="text" class="datepicker form-control" name="booking-date" readonly="readonly">
                   </div>
                   <!-- GUESTS -->
-                  <!-- <div class="form-group">
-                    <div class="panel-dropdown">
-                      <div class="form-control guestspicker">Guests
-                        <span class="gueststotal"></span>
-                      </div>
-                      <div class="panel-dropdown-content">
-                        <div class="guests-buttons">
-                          <label>Adults
-                            <a href="#" title="" data-toggle="popover" data-placement="top" data-trigger="hover"
-                              data-content="18+ years" data-original-title="Adults">
-                              <i class="fa fa-info-circle"></i>
-                            </a>
-                          </label>
-                          <div class="guests-button">
-                            <div class="minus"></div>
-                            <input type="text" name="booking-adults" class="booking-guests" value="0">
-                            <div class="plus"></div>
-                          </div>
-                        </div>
-                        <div class="guests-buttons">
-                          <label>Cildren
-                            <a href="#" title="" data-toggle="popover" data-placement="top" data-trigger="hover"
-                              data-content="Under 18 years" data-original-title="Children">
-                              <i class="fa fa-info-circle"></i>
-                            </a>
-                          </label>
-                          <div class="guests-button">
-                            <div class="minus"></div>
-                            <input type="text" name="booking-children" class="booking-guests" value="0">
-                            <div class="plus"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
+                  
                   <!-- BOOKING BUTTON -->
                   <button type="submit" class="btn btn-dark btn-book">BOOK A ROOM</button>
                   <div class="advanced-form-link">

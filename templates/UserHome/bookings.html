@@ -7,10 +7,13 @@
     background-size: cover;">
         <div class="container">
           <div class="inner">
-            <h1>ROOMS</h1>
+            <br>
+            <br>
+            <br>
+            <h1>Bookings</h1>
             <ol class="breadcrumb">
               <li>
-                <a href="index.html">Home</a>
+                <a href="{% url 'home' %}">Home</a>
               </li>
               <li>Rooms</li>
             </ol>
@@ -59,7 +62,8 @@
               <div class="col-lg-3">
                 <div class="room-price">
                   <span class="price">₹{{i.hotel.price}}</span>
-                  <a href="room.html" class="btn btn-sm">Cancel Booking</a>
+                  <a href="{% url 'CancelBooking' i.id %}" class="btn btn-sm">Cancel Booking</a>
+                  <p>{{i.status}}</p>
                 </div>
               </div>
             </div>

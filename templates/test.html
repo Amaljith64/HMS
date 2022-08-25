@@ -1,41 +1,43 @@
-<html>
-<header>
-    <!--Sweet Alert Codes-->
-    <!--JQuery CDN-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <!--Sweet Alert CDN-->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</header>
-<body>
+{% if payment %}
 
-<a class="delete" href="https://www.google.com/">go here</a>
-
+<div class="cart-btn mt-100">
+    <!-- <button id="rzp-button1"><a  class="btn amado-btn w-100">Pay with Razorpay</a></button> -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-    $('.delete').on('click',function (e) {
-        e.preventDefault();
-        var self = $(this);
-        console.log(self.data('title'));
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
-              location.href = self.attr('href');
-            }
-        })
-
-    })
-
+var options = {
+"key": "rzp_test_EHJnISgTdTzYsc", // Enter the Key ID generated from the Dashboard
+"amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+"currency": "INR",
+"name": "Coffee Corp",
+"description": "Test Transaction",
+"image": "https://example.com/your_logo",
+"order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 2
+"callback_url": "success",
+"prefill": {
+"name": "Gaurav Kumar",
+"email": "gaurav.kumar@example.com",
+"contact": "9999999999"
+},
+"notes": {
+"address": "Razorpay Corporate Office"
+},
+"theme": {
+"color": "#3399cc"
+}
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+alert(response.error.code);
+alert(response.error.description);
+alert(response.error.source);
+alert(response.error.step);
+alert(response.error.reason);
+alert(response.error.metadata.order_id);
+alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+rzp1.open();
+e.preventDefault();
+}
 </script>
-</body>
-</html>
+{% endif %}

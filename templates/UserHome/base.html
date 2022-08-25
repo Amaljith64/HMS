@@ -43,7 +43,7 @@
     <!-- ========== TOP MENU ========== -->
 
     <!-- ========== HEADER ========== -->
-    <header class="horizontal-header sticky-header" data-menutoggle="991">
+    <header class="horizontal-header sticky-header transparent-header loaded-header mm-slideout header-fixed-top" data-menutoggle="991">
       <div class="container">
         <!-- BRAND -->
         <div class="brand">
@@ -75,7 +75,7 @@
               <a href="#">Bookings</a>
               <ul class="submenu">
                 <li class="menu-item">
-                  <a href="{% url 'bookings' %}">All Bookings</a>
+                  <a href="{% url 'userbookings' %}">All Bookings</a>
                 </li>
                 <li class="menu-item">
                   <a href="{% url 'wishlist' %}">Wishlist</a>
@@ -108,7 +108,7 @@
               </a>
               <ul class="submenu">
                 <li class="menu-item">
-                  <a href="style-guide.html">Logout</a>
+                  <a href="{% url 'logout' %}">Logout</a>
                 </li>
                 <li class="menu-item">
                   <a href="buttons.html">Profile</a>

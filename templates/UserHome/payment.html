@@ -7,6 +7,9 @@
     background-size: cover;">
     <div class="container">
         <div class="inner">
+            <br>
+            <br>
+            <br>
             <h1>SINGLE ROOM</h1>
             <div class="room-details-price">
                 €89 / NIGHT
@@ -48,14 +51,14 @@
                                     <!-- ROOM TYPE -->
                                     <div class="form-group">
                                         <label for="">EMAIL</label>
-                                        <input class="form-control" name="email" 
-                                            placeholder="Your Email Address" value="{{booking.user.email}}">
+                                        <input class="form-control" name="email" placeholder="Your Email Address"
+                                            value="{{booking.user.email}}">
                                     </div>
                                     <!-- DATE -->
                                     <div class="form-group">
                                         <label for="">PHONE</label>
-                                        <input class="form-control" name="phone" 
-                                            placeholder="Your Phone No" value="{{booking.user.phone_number}}">
+                                        <input class="form-control" name="phone" placeholder="Your Phone No"
+                                            value="{{booking.user.phone_number}}">
                                     </div>
 
                                     <!-- BOOKING BUTTON -->
@@ -77,9 +80,9 @@
                                 <!-- EMAIL -->
 
                                 <!-- BOOKING BUTTON -->
-                                <input type="radio" name="q" value="" id="PAY AT HOTEL"><label for="">PAY AT HOTEL</label><br>
-                                <input type="radio" name="q" id="" value="RAZORPAY"><label for="">RAZORPAY</label><br>
-                                <input type="radio" name="q" id="" value="PAYPAL"><label for="">PAYPAL</label>
+                                <input type="radio" name="q" value="PAY AT HOTEL"><label for="">PAY AT HOTEL</label><br>
+                                <input type="radio" name="q" id="rzp-button1" value="RAZORPAY"><label for="">RAZORPAY</label><br>
+                                <input type="radio" name="q" value="PAYPAL"><label for="">PAYPAL</label>
 
                                 <button type="submit" class="btn btn-gray btn-fw mt20 mb20">PAY NOW </button>
                                 </form>
@@ -123,4 +126,42 @@
         </div>
     </div>
 </main>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+"key": "rzp_test_EHJnISgTdTzYsc", // Enter the Key ID generated from the Dashboard
+"amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+"currency": "INR",
+"name": "Coffee Corp",
+"description": "Test Transaction",
+"image": "https://example.com/your_logo",
+"order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 2
+"callback_url": "success",
+"prefill": {
+"name": "Gaurav Kumar",
+"email": "gaurav.kumar@example.com",
+"contact": "9999999999"
+},
+"notes": {
+"address": "Razorpay Corporate Office"
+},
+"theme": {
+"color": "#3399cc"
+}
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+alert(response.error.code);
+alert(response.error.description);
+alert(response.error.source);
+alert(response.error.step);
+alert(response.error.reason);
+alert(response.error.metadata.order_id);
+alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+rzp1.open();
+e.preventDefault();
+}
+</script>
 {% endblock %}

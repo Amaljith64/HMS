@@ -130,24 +130,32 @@
 														</svg>
 													</a>
 													<div class="dropdown-menu">
-														<a class="dropdown-item" href="{% url 'editroom' i.id  %}">Edit</a>
-														<a class="dropdown-item" href="{% url 'deleteroom' i.id  %}">Delete</a>
+														<a class="dropdown-item"
+															href="{% url 'editroom' i.id  %}">Edit</a>
+														<form method="POST" action="{% url 'deleteroom' i.id  %}">
+															{% csrf_token %}
+															<input name="_method" type="hidden" value="DELETE">
+															<button type="submit"
+																class="btn btn-xs btn-danger btn-flat show_confirm"
+																data-toggle="tooltip" title='Delete'>Delete</button>
+														</form>
+														<!-- <a class="dropdown-item" href="{% url 'deleteroom' i.id  %}">Delete</a> -->
 													</div>
 												</div>
 											</td>
 										</tr>
 										{% endfor %}
-
-
-
-
-
-
-
-
-
 									</tbody>
 								</table>
+								{% for p in pg.paginator.page_range %}
+
+
+								<a href="?page={{p}}" class="btn btn-light btn-sm {% if pg.number == p %} active {% endif %}">{{p}}</a>
+		
+		
+		
+		
+								{% endfor %}
 							</div>
 						</div>
 					</div>

@@ -2,16 +2,19 @@
 {% load static %}
 
 {% block body %}
-<div class="page-title gradient-overlay op6" style="background: url"({% static 'home/images/breadcrumb.jpg' %})"; background-repeat: no-repeat;
-  background-size: cover;">
+
+<div class="page-title gradient-overlay op6">
   <div class="container">
     <div class="inner">
-      <h1>Blog</h1>
+      <br>
+      <br>
+      <br>
+      <h1>All Rooms</h1>
       <ol class="breadcrumb">
         <li>
-          <a href="index.html">Home</a>
+          <a href="{% url 'home' %}">Home</a>
         </li>
-        <li>Blog</li>
+        <li>All Rooms</li>
       </ol>
     </div>
   </div>

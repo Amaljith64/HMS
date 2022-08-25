@@ -7,16 +7,19 @@
     background-size: cover;">
         <div class="container">
           <div class="inner">
+            <br>
+            <br>
+            <br>
             <h1>{{room.name}}</h1>
             <div class="room-details-price">
               ₹{{room.price}}/ NIGHT
             </div>
             <ol class="breadcrumb">
               <li>
-                <a href="index.html">Home</a>
+                <a href="{% url 'home' %}">Home</a>
               </li>
               <li>
-                <a href="index.html">Rooms</a>
+                <a href="{% url 'userroomview' %}">Rooms</a>
               </li>
               <li>{{room.name}}</li>
             </ol>

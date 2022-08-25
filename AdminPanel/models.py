@@ -43,8 +43,8 @@ class Rooms(models.Model):
 class HotelBookings(models.Model):
     hotel= models.ForeignKey(Rooms  , related_name="hotel_bookings" , on_delete=models.CASCADE,null=True)
     user = models.ForeignKey(Account, related_name="user_bookings" , on_delete=models.CASCADE,null=True)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
     date =models.DateField(auto_now_add=True)
     status = models.CharField(max_length=100,default="pending",null=True)
     payment_method = models.CharField(max_length=100, null=True)
