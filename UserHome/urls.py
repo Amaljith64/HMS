@@ -12,5 +12,6 @@ urlpatterns = [
     path('wishlist',views.wishlist,name='wishlist'),
     path('userbookings',views.Bookings,name='userbookings'),
     path('cancelbooking/<int:id>',views.CancelBooking,name='CancelBooking'),
+    path('profile',views.user_profile,name='profile'),
 
 ]

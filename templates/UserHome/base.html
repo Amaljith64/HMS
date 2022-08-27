@@ -48,7 +48,7 @@
         <!-- BRAND -->
         <div class="brand">
           <div class="logo">
-            <a href="index.html">
+            <a href="{% url 'home' %}">
               <!-- <h3>HOME 2 HOME</h3> -->
               <img src="{% static 'home/images/logo.svg' %}" alt="Hotel Himara">
             </a>
@@ -94,13 +94,13 @@
               <a href="{% url 'index' %}">Admin Panel</a>
               {% else %}
             <li class="menu-item dropdown">
-              <a href="contact.html">CONTACT US</a>
+              <a href="">CONTACT US</a>
 
               {% endif %}
 
             </li>
             <li class="menu-item menu-btn dropdown">
-              <a href="booking-form.html" class="btn">
+              <a href="" class="btn">
                 {% if user.is_authenticated %}
                 <i class="fa fa-user"></i>
                 {{user.username}}
@@ -111,7 +111,7 @@
                   <a href="{% url 'logout' %}">Logout</a>
                 </li>
                 <li class="menu-item">
-                  <a href="buttons.html">Profile</a>
+                  <a href="{% url 'profile' %}">Profile</a>
                 </li>
 
               </ul>
@@ -290,6 +290,8 @@
     <i class="fa fa-angle-up" aria-hidden="true"></i>
   </div>
   <!-- ========== JAVASCRIPT ========== -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="{% static 'home/js/jquery.min.js' %}"></script>
   <script src="http://maps.google.com/maps/api/js?key=YOUR_API_KEY"></script>
   <script src="{% static 'home/js/bootstrap.min.js' %}"></script>

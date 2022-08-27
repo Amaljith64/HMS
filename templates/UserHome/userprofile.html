@@ -1,0 +1,160 @@
+{% extends 'UserHome/base.html' %}
+{% load static %}
+
+{% block body %}
+<!-- ========== PAGE TITLE ========== -->
+<div class="page-title gradient-overlay op5" style="background: url(images/breadcrumb.jpg); background-repeat: no-repeat;
+    background-size: cover;">
+    <div class="container">
+        <div class="inner">
+            <br>
+            <br>
+            <br>
+            <h1>SINGLE ROOM</h1>
+            <div class="room-details-price">
+                €89 / NIGHT
+            </div>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="index.html">Rooms</a>
+                </li>
+                <li>Single Room</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- ========== MAIN ========== -->
+<main class="room">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-12">
+                <!-- ROOM SLIDER -->
+
+                <div class="sidebar">
+                    <!-- WIDGET -->
+                    <aside class="widget noborder">
+                        <div class="vertical-booking-form">
+                            <div id="booking-notification" class="notification"></div>
+                            <h3 class="form-title">YOUR DETAILS</h3>
+
+                            <div class="inner">
+                                <!-- EMAIL -->
+                                <div id="drop-pw" class="form-group" style="text-align: end;">
+                                    <button type="button" class="btn tp-btn btn-secondary btn-sm" onclick="drop()"><i
+                                            class="fa fa-fw" aria-hidden="true"
+                                            title="Copy to use pencil"></i></button>
+                                </div>
+                                <div id="drop-otp" class="form-group" style="text-align: end;">
+
+                                    <button type="button" class="btn tp-btn btn-secondary btn-sm " onclick="drop2()"><i
+                                            class="fa fa-fw" aria-hidden="true"
+                                            title="Copy to use pencil"></i></button>
+                                </div>
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group" style="display: flex;">
+                                        <label>Name :</label>
+                                        <p>{{user.username}}</p>
+
+
+                                    </div>
+                                    <div id="name-drop" style="display: none ;" class="form-group">
+                                        <input class="form-control" name="name" placeholder="Enter Your Username">
+                                    </div>
+
+                                    <!-- ROOM TYPE -->
+                                    <div class="form-group" style="display: flex;">
+                                        <label>Email :</label>
+                                        <p>{{user.email}}</p>
+                                    </div>
+                                    <div id="email-drop" style="display: none ;" class="form-group">
+
+                                        <input class="form-control" name="email" placeholder="Enter Your Email">
+                                    </div>
+                                    <!-- DATE -->
+                                    <div class="form-group" style="display: flex;">
+                                        <label>Phone Number :</label>
+                                        <p>{{user.phone_number}}</p>
+                                    </div>
+                                    <div id="phone-drop" style="display: none ;" class="form-group">
+
+                                        <input class="form-control" name="phone" placeholder="Enter Your Phone">
+                                    </div>
+
+                                    <!-- BOOKING BUTTON -->
+                                    <button id="submit-drop" style="display: none ;" type="submit"
+                                        class="btn btn-dark btn-fw mt20 mb20">Update</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </aside>
+
+                </div>
+
+
+
+
+
+
+                <!-- ROOM REVIEWS -->
+
+
+            </div>
+            <!-- SIDEBAR -->
+            <div class="col-lg-5 col-12">
+
+                <div class="sidebar">
+                    <!-- WIDGET -->
+                    <aside class="widget noborder">
+                        <div class="vertical-booking-form">
+                            <div id="booking-notification" class="notification"></div>
+                            <h3 class="form-title">PASSWORD</h3>
+                            <div class="inner">
+
+                                <!-- EMAIL -->
+                                <div class="form-group">
+                                    <label for="">Your Password</label>
+                                    <input class="form-control" name="name" value="{{booking.user}}">
+                                </div>
+                                <!-- ROOM TYPE -->
+
+
+                                <!-- BOOKING BUTTON -->
+                                <!-- <button type="submit" class="btn btn-dark btn-fw mt20 mb20">PAY NOW</button> -->
+
+                            </div>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+    function drop() {
+        document.getElementById('drop-otp').style = 'display: block !important'
+        document.getElementById('name-drop').style = 'display: block'
+        document.getElementById('email-drop').style = 'display: block'
+        document.getElementById('phone-drop').style = 'display: block'
+        document.getElementById('submit-drop').style = 'display: block'
+        document.getElementById('drop-pw').style = 'display: none'
+    }
+
+    function drop2() {
+        document.getElementById('drop-otp').style = 'display: none'
+        document.getElementById('drop-pw').style = 'display: block'
+        document.getElementById('name-drop').style = 'display: none'
+        document.getElementById('email-drop').style = 'display: none'
+        document.getElementById('phone-drop').style = 'display: none'
+        document.getElementById('submit-drop').style = 'display: none'
+    }
+
+
+</script>
+
+{% endblock %}

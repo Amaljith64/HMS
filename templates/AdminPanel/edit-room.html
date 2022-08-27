@@ -49,7 +49,7 @@
 														
 														<option  data-display="{{room.Roomtype}}"></option>
 														{% for i in type %}
-														<option  value="{{ i.id }}">{{ i.type }}</option>
+														<option  value="{{ i.id }}">{{ i.title }}</option>
 														{% endfor %}
 													
 													</select>
@@ -66,11 +66,25 @@
 														id="validationCustom05">
 														
 														<option  data-display="{{room.Location}}">{{room.Location}}</option>
-														{% for i in location %}
-															<option value="{{ i.id }}">{{ i.location }}</option>
+														{% for i in type %}
+															<option value="{{ i.id }}">{{ i.title }}</option>
 														{% endfor %}
 													
 													</select>
+				
+												</div>
+											</div>
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="validationCustom05">Room Type
+												
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													{% if room.img %}
+                                    				<img src="{{ room.img.url }}" alt="image here" class="prod-size"  style="width: 90%;">
+                                					{% endif %}
+													<label for="" class="form-label">Image</label>
+                                					<input type="file" name="image" class="form-control">
 				
 												</div>
 											</div>

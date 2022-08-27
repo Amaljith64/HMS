@@ -1,3 +1,4 @@
+from turtle import update
 from django.shortcuts import render, redirect
 from AdminPanel.models import *
 from django.http import HttpResponseRedirect, JsonResponse
@@ -128,4 +129,28 @@ def remove_from_wishlist(request,id):
     return redirect (wishlist)
 
 #----------------------WISHLIST AND MANAGEMENT ENDS-------------------#
+
+
+
+
+#----------------------USER PROFILE-------------------#
+
+def user_profile(request):
+    myuser=request.user
+    if request.method=='POST':
+        username=request.POST['name']
+        email=request.POST['email']
+        phone=request.POST['phone']
+
+        myuser.username=username
+        myuser.email=email
+        myuser.phone_number=phone
+
+        myuser.save()
+        return redirect(user_profile)
+        
+        
+    return render(request,'UserHome/userprofile.html',{'user':myuser})
+    
+
 

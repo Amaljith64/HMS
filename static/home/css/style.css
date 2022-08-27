@@ -199,7 +199,7 @@ p {
 }
 
 a {
-  color: #858484;
+  color: #595a5b;
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
@@ -1147,7 +1147,7 @@ a:hover, a:focus, a:active {
 }
 
 label {
-  color: #b5bec4;
+  color: #595a5b;
   font-weight: 500;
   font-size: 14px;
   text-transform: uppercase;
@@ -4385,7 +4385,7 @@ footer .subfooter .social-media a i {
   font-size: 28px;
   font-family: 'Oswald', sans-serif;
   font-weight: 600;
-  color: #d7d8d9  ;
+  color: #494e52  ;
 }
 
 .vertical-booking-form .inner {

@@ -33,6 +33,30 @@
 	<link href="{% static 'admin/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
 	<!-- Style css -->
     <link href="{% static 'admin/css/style.css' %}" rel="stylesheet">
+
+	<style>
+		.image_container {
+	height: 120px;
+	width: 200px;
+	border-radius: 6px;
+	overflow: hidden;
+ 	margin: 10px;
+}
+.image_container img {
+	height: 100%;
+	width: auto;
+	object-fit: cover;
+}
+.image_container span {
+	top: -6px;
+	right: 8px;
+	color: red;
+	font-size: 28px;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+	</style>
 	
 </head>
 <body>
