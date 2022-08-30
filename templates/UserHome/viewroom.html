@@ -4,7 +4,7 @@
 {% block body %}
       <!-- ========== PAGE TITLE ========== -->
       <div class="page-title gradient-overlay op5" style="background: url(images/breadcrumb.jpg); background-repeat: no-repeat;
-    background-size: cover;">
+        background-size: cover;">
         <div class="container">
           <div class="inner">
             <br>
@@ -104,20 +104,22 @@
             <div class="col-lg-9 col-12">
               <!-- ROOM SLIDER -->
               <div class="room-slider">
-                <div id="room-main-image" class="owl-carousel image-gallery">
+                <div id="room-main-image" class="owl-carousel image-gallery" >
                   <!-- ITEM -->
-                  <div class="item">
-                    <figure class="gradient-overlay-hover image-icon">
+                  <div class="item" id="img-container" >
+                    <figure class="gradient-overlay-hover image-icon" >
                       <a href="images/rooms/single/single1.jpg">
-                        <img class="img-fluid" src="{{room.img.url}}" alt="Image">
+                        <div id="lens"></div>
+                        <img id=featured class="img-fluid" src="{{room.img.url}}" alt="Image">
                       </a>
                     </figure>
                   </div>
                   <!-- ITEM -->
                   {% for i in images %}
-                  <div class="item">
+                  <div class="item" id="img-container">
                     <figure class="gradient-overlay-hover image-icon">
                       <a href="images/rooms/single/single2.jpg">
+                        <div id="lens"></div>
                         <img class="img-fluid" src="{{i.image.url}}" alt="Image">
                       </a>
                     </figure>

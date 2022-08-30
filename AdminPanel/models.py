@@ -1,7 +1,7 @@
 from django.db import models
 
 from MyAdmin.models import Account
-from Payments.models import *
+
 
 # Create your models here.
 

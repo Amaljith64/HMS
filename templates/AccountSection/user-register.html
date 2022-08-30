@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-1"><strong>Phone Number</strong></label>
-                                            <input id="phone_number" type="text" name="phone_number" class="form-control" placeholder="phone number">
+                                            <input id="phone_number" type="text" name="phone_number" class="form-control" placeholder="phone-number">
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-1"><strong>Password</strong></label>
@@ -63,15 +63,24 @@
                                             <button type="submit" class="btn btn-primary btn-block">Sign me up</button>
                                         </div>
                                     </form>
+                                    {% if messages %}
+                                        <div class="text-center">
+                                            <div class="col-12 mt-3">
+
+                                                {% for message in messages %}
+                                                {% if message.tags == 'error' %}
+                                                <div class="alert alert-danger ">{{message}}</div>
+                                                {% else%}
+                                                <div class="alert alert-{{message.tags}}">{{message}}</div>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+                                        {% endif %}
                                     <div class="new-account mt-3">
                                         <p>Already have an account? <a class="text-primary" href="{% url 'signin' %}">Sign in</a></p>
-                                        <form action="" method="POST">
-                                            {% csrf_token %}
-                                            {{visitor}}
-                                            <input class="btn login_btn" type="submit" value="Register Account">
-
-
-                                        </form>
+                                        
                                         
                                     </div>
                                 </div>

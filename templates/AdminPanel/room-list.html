@@ -147,20 +147,34 @@
 										{% endfor %}
 									</tbody>
 								</table>
-								{% for p in pg.paginator.page_range %}
-
-
-								<a href="?page={{p}}" class="btn btn-light btn-sm {% if pg.number == p %} active {% endif %}">{{p}}</a>
-		
-		
-		
-		
-								{% endfor %}
+								
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<nav  class="d-flex justify-content-center">
+				<ul class="pagination pagination-circle">
+					{% if rooms.has_previous %} 
+					<li class="page-item page-indicator">
+						<a class="page-link" href="viewroom?page={{rooms.previous_page_number}}">
+							<i class="la la-angle-left"></i></a>
+					</li>
+					{% endif %}
+					{% for n in totalPagelist %}
+					<li class="page-item ">
+						<a class="page-link" href="viewroom?page={{n}}">{{n}}</a>
+					</li>
+					{% endfor %}
+					
+					{% if rooms.has_next %} 
+					<li class="page-item page-indicator">
+						<a class="page-link" href="viewroom?page={{rooms.next_page_number}}">
+							<i class="la la-angle-right"></i></a>
+					</li>
+					{% endif %}
+				</ul>
+			</nav>
 		</div>
 	</div>
 	<!--**********************************

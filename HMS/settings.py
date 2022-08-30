@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'AccountSection',
     'AdminPanel',
     'UserHome',
-    'Payments'
+    'Payments',
 ]
 
 MIDDLEWARE = [
@@ -144,7 +144,7 @@ RAZOR_KEY_SECRET='FPEocjz0VBuibVylwibhSwpX'
 
 
 ACCOUNT_SID ='AC732ed94be97467f2c739768f179a0654'
-AUTH_TOKEN ='ed2cb7c277abd4ee1a9a9e38c971a3d4'
+AUTH_TOKEN ='044d20a61db015189da1e130db335095'
 SERVICE_ID='VA94dda779fbb91f317e51c9185d4f3fb8'
 COUNTRY_CODE='+91'
 TWILIO_PHONE_NUMBER='+16413296602'

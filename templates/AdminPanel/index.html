@@ -26,7 +26,60 @@
 	<div class="content-body">
 		<!-- row -->
 		<div class="container-fluid">
-			<div class="row">
+			<div class="row justify-content-center mt-5" >
+				<div class="col-md-7  p-5 borderforgraph" >
+				  <div>
+					<h2 class="text-center"><u> Orders Per Month</u></h2>
+				  </div>
+			
+				  <div >
+					<canvas id="myChart"></canvas>
+				  </div>
+				</div>
+				<hr class="mt-5" />
+			  </div>
+			  <div class="row justify-content-center mt-5">
+				<div class="col-md-5 p-5 borderforgraph">
+				  <div>
+					<h2 class="text-center my-4"><u> Orders Per Year</u></h2>
+				  </div>
+			
+				  <div>
+					<canvas id="myChart1"></canvas>
+				  </div>
+				</div>
+				<hr class="mt-5" />
+			  </div>
+			  <div class="row justify-content-center mt-5">
+				<div class="col-md-7 p-5 borderforgraph">
+				  <div>
+					<h2 class="text-center my-4"><u> Orders Placed Today</u></h2>
+				  </div>
+			
+				  <div>
+					<canvas id="myChart2"></canvas>
+				  </div>
+				</div>
+				<hr class="mt-5" />
+			  </div>
+			  <div class="row justify-content-center mt-5">
+				<div class="col-md-5 p-5 borderforgraph">
+				  <div>
+					<h2 class="text-center my-4"><u> Payment Methods Usage Report</u></h2>
+				  </div>
+			
+				  <div>
+					<canvas id="myChart3"></canvas>
+				  </div>
+				</div>
+			
+				<hr class="mt-5" />
+			  </div>
+			
+			
+
+			<!-- <div class="row">
+				
 				<div class="col-xl-3 col-sm-6">
 					<div class="card gradient-1 card-bx">
 						<div class="card-body d-flex align-items-center">
@@ -96,15 +149,87 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row">
+			</div> -->
+			<!-- <div class="row">
 				<div class="col-xl-3 col-xxl-4">
 					<div class="row">
 						<div class="col-xl-12 col-sm-6">
 							<div class="card text-center">
 								<div class="card-body">
 									<div id="radialChart" class="radialChart"></div>
-									<h2>785</h2>
+									<h2>200</h2>
+									<span class="fs-16 text-black">Available Room Today</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-12 col-sm-6">
+							<div class="card">
+								<div class="card-header border-0 pb-0">
+									<h4 class="mb-0">Booked Room Today</h4>
+								</div>
+								<div class="card-body">
+									<div class="progress mb-4" style="height:13px;">
+										<div class="progress-bar gradient-5 progress-animated"
+											style="width: 55%; height:13px;" role="progressbar">
+											<span class="sr-only">45% Complete</span>
+										</div>
+									</div>
+									<div class="progress mb-4" style="height:13px;">
+										<div class="progress-bar gradient-6 progress-animated"
+											style="width: 70%; height:13px;" role="progressbar">
+											<span class="sr-only">45% Complete</span>
+										</div>
+									</div>
+									<div class="progress default-progress" style="height:13px;">
+										<div class="progress-bar gradient-7 progress-animated"
+											style="width: 50%; height:13px;" role="progressbar">
+											<span class="sr-only">45% Complete</span>
+										</div>
+									</div>
+									<div
+										class="d-flex mt-4 progress-bar-legend align-items-center justify-content-between">
+										<div class="d-flex">
+											<span class="marker gradient-5"></span>
+											<div>
+												<p class="status">Pending</p>
+												<span class="result">234</span>
+											</div>
+										</div>
+										<div class="d-flex">
+											<span class="marker gradient-6"></span>
+											<div>
+												<p class="status">Done</p>
+												<span class="result">65</span>
+											</div>
+										</div>
+										<div class="d-flex">
+											<span class="marker gradient-7"></span>
+											<div>
+												<p class="status">Finish</p>
+												<span class="result">763</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div><div class="col-md-12">
+							{{Order}}
+							{{MonthNumber}}
+							{{TotalOrders}}
+							{{YearNumber}}
+							{{totaltyearorders}}
+						
+							<div>
+								<canvas id="myChart"></canvas>
+							</div>           
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-12 col-sm-6">
+							<div class="card text-center">
+								<div class="card-body">
+									<div id="radialChart" class="radialChart"></div>
+									<h2>200</h2>
 									<span class="fs-16 text-black">Available Room Today</span>
 								</div>
 							</div>
@@ -163,6 +288,17 @@
 					</div>
 				</div>
 				<div class="col-xl-9 col-xxl-8">
+					<div class="col-md-12">
+						{{Order}}
+						{{MonthNumber}}
+						{{TotalOrders}}
+						{{YearNumber}}
+						{{totaltyearorders}}
+					
+						<div>
+							<canvas id="myChart"></canvas>
+						</div>           
+					</div>
 					<div class="card">
 						<div class="card-header border-0 d-sm-flex d-block">
 							<div class="me-auto mb-sm-0 mb-3">
@@ -474,7 +610,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<!--**********************************
@@ -484,6 +620,124 @@
 
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript">
+	const labels = {{ MonthNumber | safe }};
+  
+	const data = {
+	  labels: labels,
+	  datasets: [{
+		label: 'Orders Per Month',
+		backgroundColor: 'rgb(255, 0, 0)',
+		borderColor: 'rgb(0, 0, 0)',
+		borderWidth: 2,
+		data: {{ TotalOrders }},
+		}]
+	  };
+  
+	const config = {
+	  type: 'line',
+	  data: data,
+	  options: {}
+	};
+  
+	const myChart = new Chart(
+	  document.getElementById('myChart'),
+	  config
+	);
+  
+	// year  chart
+	const labels1 = {{ YearNumber | safe }};
+  
+	const data1 = {
+	  labels: labels1,
+	  datasets: [{
+		label: 'Orders Per year',
+		backgroundColor: [
+		  'rgba(255, 205, 86)',
+		  'rgba(153, 102, 255, 0.5)',
+		  'rgba(54, 162, 235, 0.5)',
+		  'rgba(201, 203, 207, 0.5)',
+		  'rgba(75, 192, 192, 0.5)',
+		'rgba(54, 162, 235, 0.5)',
+		],
+		borderColor: 'rgb(0, 0, 0)',
+		borderWidth: 2,
+		data: {{ totaltyearorders }},
+		}]
+	  };
+  
+	const config1 = {
+	  type: 'pie',
+	  data: data1,
+	  options: {}
+	};
+  
+	const myChart1 = new Chart(
+	  document.getElementById('myChart1'),
+	  config1
+	);
+	//perday
+	const labels2 = {{ DayNumber | safe }};
+  
+	const data2 = {
+	  labels: labels2,
+	  datasets: [{
+		label: 'Orders Placed Today)',
+		backgroundColor: 'rgba(75, 192, 192, 0.5)',
+		borderColor: 'rgb(255, 99, 132)',
+		barPercentage: .2,
+		barThickness: 45,
+		data: {{ totaldayorder }},
+		}]
+	  };
+  
+	const config2 = {
+	  type: 'bar',
+	  data: data2,
+	  options: {}
+	};
+  
+	const myChart2 = new Chart(
+	  document.getElementById('myChart2'),
+	  config2
+	);
+	//payment
+	const labels3 = ['Pay At Hotel', 'Paypal', 'Razorpay'];
+  
+	const data3 = {
+	  labels: labels3,
+	  datasets: [{
+		label: 'Payment Methods Usage %',
+		backgroundColor: [
+  
+		  'rgb(255, 205, 86)',
+  
+		  'rgb(255, 99, 132)',
+		  'rgb(54, 162, 235)',
+  
+		],
+		borderColor: 'rgb(0, 0, 0)',
+		data: [{{ cod }}, {{ paypal }}, {{ raz }}]
+		}]
+	  };
+  
+	const config3 = {
+	  type: 'doughnut',
+	  data: data3,
+	  options: {}
+	};
+  
+	const myChart3 = new Chart(
+	  document.getElementById('myChart3'),
+	  config3
+	);
+  </script>
+
+
+
+
+
 
 
 {% endblock %}

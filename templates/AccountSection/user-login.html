@@ -52,14 +52,29 @@
                                         <!-- <button type="button" onclick="drop()" >Login with Password</button> -->
                                         <div id="password-drop" style="display: none ;" class="mb-3">
                                             <label class="mb-1"><strong>Password</strong></label>
-                                            <input type="password" name="password" id="password" class="form-control" >
+                                            <input type="password" name="password" id="password" class="form-control" placeholder="enter your password">
                                         </div>
                                         <div class="row d-flex justify-content-between mt-4 mb-2">
                                         
-                                            <div class="mb-3">
+                                            <!-- <div class="mb-3">
                                                 <a href="page-forgot-password.html">Forgot Password?</a>
+                                            </div> -->
+                                        </div>
+                                        {% if messages %}
+                                        <div class="text-center">
+                                            <div class="col-12 mt-3">
+
+                                                {% for message in messages %}
+                                                {% if message.tags == 'error' %}
+                                                <div class="alert alert-danger ">{{message}}</div>
+                                                {% else%}
+                                                <div class="alert alert-{{message.tags}}">{{message}}</div>
+                                                {% endif %}
+                                                {% endfor %}
+
                                             </div>
                                         </div>
+                                        {% endif %}
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-block">Sign Me In</button>
                                         </div>

@@ -9,7 +9,7 @@
 	
 	var radialChart = function(){
 		var options = {
-		  series: [70],
+		  series: [20],
 		  chart: {
 		  height: 150,
 		  type: 'radialBar',

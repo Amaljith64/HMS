@@ -68,9 +68,7 @@ def hotel_detail(request, id):
             messages.warning(
                 request, 'Hotel is already booked in these dates ')
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-        value=HotelBookings.objects.create(hotel=hotel, user=request.user,
-                                     start_date=checkin, end_date=checkout,
-                                     status='Pending')
+        value=HotelBookings.objects.create(hotel=hotel, user=request.user,start_date=checkin, end_date=checkout,status='Pending')
         print(value.id)
         messages.success(request, 'Your booking has been saved')
         

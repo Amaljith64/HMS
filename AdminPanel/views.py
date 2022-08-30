@@ -1,16 +1,22 @@
 from django.shortcuts import render, redirect
-
+from django.contrib import messages
 from . models import *
 from AccountSection.models import *
+from django.core.paginator import Paginator
+from django.db.models.functions import *
+from django.db.models import *
+import calendar
+from datetime import date
+import datetime
 
 # Create your views here.
 
 
-def index(request):
+# def index(request):
 
    
 
-    return render(request, 'AdminPanel/index.html')
+#     return render(request, 'AdminPanel/index.html')
 
 
 
@@ -54,8 +60,18 @@ def addrooms(request):
 def rooms(request):
 
     rooms=Rooms.objects.all()
+    paginator=Paginator(rooms,per_page=1)
+    page_number=request.GET.get('page')
+    roomsFinal=paginator.get_page(page_number)
+    totalpage=roomsFinal.paginator.num_pages
+    context={
+        'rooms':roomsFinal,
+        'lastpage':totalpage,
+        'totalPagelist':[ n+1 for n  in range(totalpage)]
 
-    return render(request,'AdminPanel/room-list.html',{'rooms':rooms})
+    }
+
+    return render(request,'AdminPanel/room-list.html',context)
 
 
 def editroom(request,id):
@@ -105,6 +121,10 @@ def category(request):
         title=request.POST['title']
         description=request.POST['description']
         cat=Categories(title=title,description=description)
+        if Categories.objects.filter(title__icontains=title).exists():
+                messages.error(request, "This Category already Exists")
+                print('This category exits')
+                return redirect(category)
         cat.save()
         return redirect(category)
     categ=Categories.objects.all()
@@ -117,6 +137,10 @@ def subcategory(request):
         # maincatid=request.POST['maincategory']
         title=request.POST['title']
         description=request.POST['description']
+        if SubCategories.objects.filter(title__icontains=title).exists():
+                messages.error(request, "This SubCategory already Exists")
+                print('This subcategory exits')
+                return redirect(subcategory)
         cat=SubCategories(category_id=maincatid,title=title,description=description)
         cat.save()
         return redirect(subcategory)
@@ -177,3 +201,73 @@ def bookings(request):
 
 #------------------------------------BOOKINGS ENDS------------------------------#
  
+
+def chartbooking(request):
+    bookingdata=[]
+    booking=HotelBookings.objects.all()
+
+
+    for i in booking:
+        bookingdata.append({i.choice_text:i.votes})
+
+
+
+
+
+
+def index(request):
+
+    orders=HotelBookings.objects.annotate(month=ExtractMonth('date')).values('month').annotate(count=Count('id')).values('month','count')
+    yearorders=HotelBookings.objects.annotate(year=ExtractYear('date')).values('year').annotate(count=Count('id')).values('year','count')
+    Dayorders=HotelBookings.objects.annotate(day=ExtractDay('date')).filter(date=date.today()).values('day').annotate(count=Count('id')).values('day','count')
+
+    print(Dayorders)
+    DayNumber=[]
+    YearNumber=[]
+    monthNumber=[]
+    totalOrders=[]
+    totaltyearorders=[]
+    totaldayorder=[]
+    for d in orders:
+        monthNumber.append(calendar.month_name[d['month']])
+        totalOrders.append(d['count'])
+
+    for d in yearorders:
+        YearNumber.append([d['year']])
+        totaltyearorders.append(d['count'])
+    
+    for d in Dayorders:
+        DayNumber.append([d['day']])
+        totaldayorder.append(d['count'])
+
+    # ---------------------------------- payment --------------------------------- #
+    
+
+    payathotel = HotelBookings.objects.filter(payment_method = 'Pay At Hotel').aggregate(Count('id')).get('id__count')
+       
+    raz = HotelBookings.objects.filter(payment_method = 'razorpay').aggregate(Count('id')).get('id__count')
+
+    pay = HotelBookings.objects.filter(payment_method = 'Paypal').aggregate(Count('id')).get('id__count')
+
+
+    
+
+    
+    context={
+        'Order':orders,
+        'MonthNumber':monthNumber,
+        'TotalOrders':totalOrders,
+        'YearNumber':YearNumber,
+        'totaltyearorders':totaltyearorders,
+        'DayNumber':DayNumber,
+        'totaldayorder':totaldayorder,
+        'paypal':pay,
+        'raz':raz,
+        'cod':payathotel
+
+    }
+
+    return render(request,'AdminPanel/index.html',context)
+
+
+  
