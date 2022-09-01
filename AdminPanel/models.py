@@ -31,7 +31,7 @@ class Rooms(models.Model):
     categ=models.ForeignKey(Categories,on_delete=models.CASCADE,null=True)      
     subcateg=models.ForeignKey(SubCategories,on_delete=models.CASCADE,null=True)      
     Desc=models.TextField()
-    price=models.FloatField(null=True)
+    price=models.IntegerField(null=True)
     img=models.ImageField(upload_to="media/",default=True)
     room_count = models.IntegerField(default=10)
 

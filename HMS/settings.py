@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'AdminPanel',
     'UserHome',
     'Payments',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -135,6 +136,13 @@ MEDIA_URL='/media/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+PAYPAL_RECEIVER_EMAIL = 'business2001@gmail.com'
+
+PAYPAL_TEST = True
+
 
 
 # original

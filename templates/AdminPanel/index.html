@@ -20,65 +20,38 @@
 
 
 
-	<!--**********************************
-            Content body start
-        ***********************************-->
-	<div class="content-body">
-		<!-- row -->
+<!-- ----------------------------------------------------------------------- -->
+<!--                                  graph                                  -->
+<!-- ----------------------------------------------------------------------- -->
+	 <div class="content-body">
 		<div class="container-fluid">
-			<div class="row justify-content-center mt-5" >
-				<div class="col-md-7  p-5 borderforgraph" >
-				  <div>
-					<h2 class="text-center"><u> Orders Per Month</u></h2>
-				  </div>
-			
-				  <div >
-					<canvas id="myChart"></canvas>
-				  </div>
-				</div>
+			<!--<div class="row justify-content-center mt-5">
+				
 				<hr class="mt-5" />
-			  </div>
-			  <div class="row justify-content-center mt-5">
+			</div>
+			<div class="row justify-content-center mt-5">
 				<div class="col-md-5 p-5 borderforgraph">
-				  <div>
-					<h2 class="text-center my-4"><u> Orders Per Year</u></h2>
-				  </div>
-			
-				  <div>
-					<canvas id="myChart1"></canvas>
-				  </div>
+					
 				</div>
 				<hr class="mt-5" />
-			  </div>
-			  <div class="row justify-content-center mt-5">
+			</div>
+			<div class="row justify-content-center mt-5">
 				<div class="col-md-7 p-5 borderforgraph">
-				  <div>
-					<h2 class="text-center my-4"><u> Orders Placed Today</u></h2>
-				  </div>
-			
-				  <div>
-					<canvas id="myChart2"></canvas>
-				  </div>
+					
 				</div>
 				<hr class="mt-5" />
-			  </div>
-			  <div class="row justify-content-center mt-5">
-				<div class="col-md-5 p-5 borderforgraph">
-				  <div>
-					<h2 class="text-center my-4"><u> Payment Methods Usage Report</u></h2>
-				  </div>
-			
-				  <div>
-					<canvas id="myChart3"></canvas>
-				  </div>
-				</div>
-			
-				<hr class="mt-5" />
-			  </div>
-			
-			
+			</div>
+			<div class="row justify-content-center mt-5">
+				
 
-			<!-- <div class="row">
+				<hr class="mt-5" />
+			</div> -->
+
+<!-- ----------------------------------------------------------------------- -->
+<!--                                  graph                                  -->
+<!-- ----------------------------------------------------------------------- -->
+
+			<div class="row">
 				
 				<div class="col-xl-3 col-sm-6">
 					<div class="card gradient-1 card-bx">
@@ -149,11 +122,11 @@
 						</div>
 					</div>
 				</div>
-			</div> -->
-			<!-- <div class="row">
+			</div> 	
+		<div class="row">
 				<div class="col-xl-3 col-xxl-4">
 					<div class="row">
-						<div class="col-xl-12 col-sm-6">
+						<!-- <div class="col-xl-12 col-sm-6">
 							<div class="card text-center">
 								<div class="card-body">
 									<div id="radialChart" class="radialChart"></div>
@@ -161,9 +134,9 @@
 									<span class="fs-16 text-black">Available Room Today</span>
 								</div>
 							</div>
-						</div>
-						<div class="col-xl-12 col-sm-6">
-							<div class="card">
+						</div> -->
+						<!-- <div class="col-xl-12 col-sm-6"> -->
+							<!-- <div class="card">
 								<div class="card-header border-0 pb-0">
 									<h4 class="mb-0">Booked Room Today</h4>
 								</div>
@@ -211,30 +184,35 @@
 										</div>
 									</div>
 								</div>
-							</div>
-						</div><div class="col-md-12">
-							{{Order}}
-							{{MonthNumber}}
-							{{TotalOrders}}
-							{{YearNumber}}
-							{{totaltyearorders}}
-						
-							<div>
-								<canvas id="myChart"></canvas>
-							</div>           
-						</div>
+							</div> -->
+						<!-- </div> -->
 					</div>
 					<div class="row">
 						<div class="col-xl-12 col-sm-6">
 							<div class="card text-center">
-								<div class="card-body">
-									<div id="radialChart" class="radialChart"></div>
-									<h2>200</h2>
-									<span class="fs-16 text-black">Available Room Today</span>
+								<div>
+									<h2 class="text-center my-4"><u> Orders Per Year</u></h2>
+								</div>
+			
+								<div>
+									<canvas id="myChart1"></canvas>
 								</div>
 							</div>
 						</div>
 						<div class="col-xl-12 col-sm-6">
+							<div class="card text-center">
+								
+									<div>
+										<h2 class="text-center my-4"><u> Payment Methods Usage Report</u></h2>
+									</div>
+				
+									<div>
+										<canvas id="myChart3"></canvas>
+									</div>
+								
+							</div>
+						</div>
+						<!-- <div class="col-xl-12 col-sm-6">
 							<div class="card">
 								<div class="card-header border-0 pb-0">
 									<h4 class="mb-0">Booked Room Today</h4>
@@ -284,66 +262,33 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="col-xl-9 col-xxl-8">
 					<div class="col-md-12">
-						{{Order}}
-						{{MonthNumber}}
-						{{TotalOrders}}
-						{{YearNumber}}
-						{{totaltyearorders}}
+						
 					
 						<div>
 							<canvas id="myChart"></canvas>
 						</div>           
 					</div>
-					<div class="card">
-						<div class="card-header border-0 d-sm-flex d-block">
-							<div class="me-auto mb-sm-0 mb-3">
-								<h4 class="card-title mb-2">Reservation Statistic</h4>
-								<span>Lorem ipsum dolor sit amet</span>
-							</div>
-							<div class="d-flex justify-content-between">
-								<div class="d-flex me-5">
-									<h3 class="mb-0 me-2">549</h3>
-									<span>Check In</span>
-								</div>
-								<div class="d-flex me-3">
-									<h3 class="mb-0 me-2">327</h3>
-									<span>Check Out</span>
-								</div>
-								<div class="dropdown">
-									<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown"
-										aria-expanded="false">
-										<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-											xmlns="http://www.w3.org/2000/svg">
-											<path
-												d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
-												stroke="#575757" stroke-width="2" stroke-linecap="round"
-												stroke-linejoin="round"></path>
-											<path
-												d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
-												stroke="#575757" stroke-width="2" stroke-linecap="round"
-												stroke-linejoin="round"></path>
-											<path
-												d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
-												stroke="#575757" stroke-width="2" stroke-linecap="round"
-												stroke-linejoin="round"></path>
-										</svg>
-									</a>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-										<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-									</div>
-								</div>
-							</div>
+					<div class="col-md-12">
+						
+					
+						<div>
+							<h2 class="text-center my-4"><u> Orders Placed Today</u></h2>
 						</div>
-						<div class="card-body">
-							<div id="reservationChart" class="reservationChart"></div>
-						</div>
+	
+						<div>
+							<canvas id="myChart2"></canvas>
+						</div>         
 					</div>
+					
+						
+						
+						
+					
 				</div>
 				<div class="col-xl-6">
 					<div class="card">
@@ -610,12 +555,10 @@
 						</div>
 					</div>
 				</div>
-			</div> -->
+			</div>
 		</div>
 	</div>
-	<!--**********************************
-            Content body end
-        ***********************************-->
+
 
 
 
@@ -623,116 +566,116 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
 	const labels = {{ MonthNumber | safe }};
-  
+
 	const data = {
-	  labels: labels,
-	  datasets: [{
-		label: 'Orders Per Month',
-		backgroundColor: 'rgb(255, 0, 0)',
-		borderColor: 'rgb(0, 0, 0)',
-		borderWidth: 2,
-		data: {{ TotalOrders }},
+		labels: labels,
+		datasets: [{
+			label: 'Orders Per Month',
+			backgroundColor: 'rgb(255, 0, 0)',
+			borderColor: 'rgb(0, 0, 0)',
+			borderWidth: 2,
+			data: {{ TotalOrders }},
 		}]
 	  };
-  
+
 	const config = {
-	  type: 'line',
-	  data: data,
-	  options: {}
+		type: 'line',
+		data: data,
+		options: {}
 	};
-  
+
 	const myChart = new Chart(
-	  document.getElementById('myChart'),
-	  config
+		document.getElementById('myChart'),
+		config
 	);
-  
+
 	// year  chart
 	const labels1 = {{ YearNumber | safe }};
-  
+
 	const data1 = {
-	  labels: labels1,
-	  datasets: [{
-		label: 'Orders Per year',
-		backgroundColor: [
-		  'rgba(255, 205, 86)',
-		  'rgba(153, 102, 255, 0.5)',
-		  'rgba(54, 162, 235, 0.5)',
-		  'rgba(201, 203, 207, 0.5)',
-		  'rgba(75, 192, 192, 0.5)',
-		'rgba(54, 162, 235, 0.5)',
-		],
-		borderColor: 'rgb(0, 0, 0)',
-		borderWidth: 2,
-		data: {{ totaltyearorders }},
+		labels: labels1,
+		datasets: [{
+			label: 'Orders Per year',
+			backgroundColor: [
+				'rgba(255, 205, 86)',
+				'rgba(153, 102, 255, 0.5)',
+				'rgba(54, 162, 235, 0.5)',
+				'rgba(201, 203, 207, 0.5)',
+				'rgba(75, 192, 192, 0.5)',
+				'rgba(54, 162, 235, 0.5)',
+			],
+			borderColor: 'rgb(0, 0, 0)',
+			borderWidth: 2,
+			data: {{ totaltyearorders }},
 		}]
 	  };
-  
+
 	const config1 = {
-	  type: 'pie',
-	  data: data1,
-	  options: {}
+		type: 'pie',
+		data: data1,
+		options: {}
 	};
-  
+
 	const myChart1 = new Chart(
-	  document.getElementById('myChart1'),
-	  config1
+		document.getElementById('myChart1'),
+		config1
 	);
 	//perday
 	const labels2 = {{ DayNumber | safe }};
-  
+
 	const data2 = {
-	  labels: labels2,
-	  datasets: [{
-		label: 'Orders Placed Today)',
-		backgroundColor: 'rgba(75, 192, 192, 0.5)',
-		borderColor: 'rgb(255, 99, 132)',
-		barPercentage: .2,
-		barThickness: 45,
-		data: {{ totaldayorder }},
+		labels: labels2,
+		datasets: [{
+			label: 'Orders Placed Today)',
+			backgroundColor: 'rgba(75, 192, 192, 0.5)',
+			borderColor: 'rgb(255, 99, 132)',
+			barPercentage: .2,
+			barThickness: 45,
+			data: {{ totaldayorder }},
 		}]
 	  };
-  
+
 	const config2 = {
-	  type: 'bar',
-	  data: data2,
-	  options: {}
+		type: 'bar',
+		data: data2,
+		options: {}
 	};
-  
+
 	const myChart2 = new Chart(
-	  document.getElementById('myChart2'),
-	  config2
+		document.getElementById('myChart2'),
+		config2
 	);
 	//payment
 	const labels3 = ['Pay At Hotel', 'Paypal', 'Razorpay'];
-  
+
 	const data3 = {
-	  labels: labels3,
-	  datasets: [{
-		label: 'Payment Methods Usage %',
-		backgroundColor: [
-  
-		  'rgb(255, 205, 86)',
-  
-		  'rgb(255, 99, 132)',
-		  'rgb(54, 162, 235)',
-  
-		],
-		borderColor: 'rgb(0, 0, 0)',
-		data: [{{ cod }}, {{ paypal }}, {{ raz }}]
+		labels: labels3,
+		datasets: [{
+			label: 'Payment Methods Usage %',
+			backgroundColor: [
+
+				'rgb(255, 205, 86)',
+
+				'rgb(255, 99, 132)',
+				'rgb(54, 162, 235)',
+
+			],
+			borderColor: 'rgb(0, 0, 0)',
+			data: [{{ cod }}, {{ paypal }}, {{ raz }}]
 		}]
 	  };
-  
+
 	const config3 = {
-	  type: 'doughnut',
-	  data: data3,
-	  options: {}
+		type: 'doughnut',
+		data: data3,
+		options: {}
 	};
-  
+
 	const myChart3 = new Chart(
-	  document.getElementById('myChart3'),
-	  config3
+		document.getElementById('myChart3'),
+		config3
 	);
-  </script>
+</script>
 
 
 

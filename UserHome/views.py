@@ -71,6 +71,7 @@ def hotel_detail(request, id):
         value=HotelBookings.objects.create(hotel=hotel, user=request.user,start_date=checkin, end_date=checkout,status='Pending')
         print(value.id)
         messages.success(request, 'Your booking has been saved')
+        request.session['order_id'] = value.id
         
         return redirect(paymentfun,id=value.id)
     return render(request, 'UserHome/viewroom.html', {'room': room,'images':images})

@@ -202,13 +202,7 @@ def bookings(request):
 #------------------------------------BOOKINGS ENDS------------------------------#
  
 
-def chartbooking(request):
-    bookingdata=[]
-    booking=HotelBookings.objects.all()
 
-
-    for i in booking:
-        bookingdata.append({i.choice_text:i.votes})
 
 
 

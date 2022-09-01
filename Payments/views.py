@@ -4,13 +4,17 @@ from django.db import models
 from django.shortcuts import render,redirect
 from django.conf import settings
 from AdminPanel.models import *
+from decimal import Decimal
 from .models import PaymentClass
+from django.shortcuts import render, HttpResponse, redirect, \
+    get_object_or_404, reverse
 import razorpay
 from django.views.decorators.csrf import csrf_exempt
 from datetime import date
 import datetime
 import json
 from django.http import HttpResponse, JsonResponse
+from paypal.standard.forms import PayPalPaymentsForm
 
 #Create your views here.
 # client = razorpay.Client(auth=("rzp_test_EHJnISgTdTzYsc", "FPEocjz0VBuibVylwibhSwpX"))
@@ -35,7 +39,7 @@ def paymentfun(request,id):
     print("Ssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
     # pay = PaymentClass(user=user,payment_id=payment_id,payment_method=methodofpayment,total_amount=amount,status=status)
     # pay.save()
-    return render(request, 'UserHome/payment.html', {'payment': payment})
+    return render(request, 'UserHome/payment.html', {'payment': payment,'booking':booking})
     
 
 
@@ -148,15 +152,44 @@ def razorpaysuccess(request):
 
 
 def paypal(request):
+
+
+    order_id = request.session.get('order_id')
+    order = get_object_or_404(HotelBookings, id=order_id)
+    host = request.get_host()
+
+    paypal_dict = {
+        'business': settings.PAYPAL_RECEIVER_EMAIL,
+        'amount': order.hotel.price,
+        'item_name': 'Order {}'.format(order.id),
+        'invoice': str(order.id),
+        'currency_code': 'USD',
+        'notify_url': 'http://{}{}'.format(host,reverse('paypal-ipn')),
+        'return_url': 'http://{}{}'.format(host,reverse('payment_done')),
+        'cancel_return': 'http://{}{}'.format(host,reverse('payment_cancelled')),
+    }
+    form = PayPalPaymentsForm(initial=paypal_dict)
+    return render(request, 'UserHome/paypal.html', {'order': order, 'form': form})
+
+@csrf_exempt
+def payment_done(request):
+    return HttpResponse("success")
+
+
+@csrf_exempt
+def payment_canceled(request):
+    return HttpResponse("failed")
+
+
     # body = json.loads(request.body)
-    payment_id_generated = str(int(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))) 
-    methodofpayment ="Paypal"
-    status ="paid"
-    pay = PaymentClass(user=request.user,payment_id=payment_id_generated,payment_method=methodofpayment,total_amount=amount,status=status)
-    pay.save()
-    booking.payment_method="Paypal"
-    booking.status ="paid"
-    booking.save(update_fields=['payment_method','status'])
+    # payment_id_generated = str(int(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))) 
+    # methodofpayment ="Paypal"
+    # status ="paid"
+    # pay = PaymentClass(user=request.user,payment_id=payment_id_generated,payment_method=methodofpayment,total_amount=amount,status=status)
+    # pay.save()
+    # booking.payment_method="Paypal"
+    # booking.status ="paid"
+    # booking.save(update_fields=['payment_method','status'])
 
     
     return render(request,'UserHome/paypal.html',{"pay":pay})
