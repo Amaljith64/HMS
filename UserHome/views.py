@@ -1,5 +1,5 @@
 from turtle import update
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,HttpResponse
 from AdminPanel.models import *
 from django.http import HttpResponseRedirect, JsonResponse
 # Create your views here.
@@ -11,7 +11,75 @@ from .models import Wishlist
 from django.shortcuts import get_object_or_404
 
 
+
 #----------------------ROOM  AND FILTER----------------------#
+
+
+
+# def rooms(request):
+#     rooms = Rooms.objects.all()
+#     firstDayStr = None
+#     lastDateStr = None
+
+
+#     def chech_availability(fd, ed):
+#         availableRooms = []
+#         for room in rooms:
+#             availList = []
+#             bookingList = HotelBookings.objects.filter(roomNumber=room)
+#             if room.statusStartDate == None:
+#                 for booking in bookingList:
+#                     if booking.startDate > ed.date() or booking.endDate < fd.date():
+#                         availList.append(True)
+#                     else:
+#                         availList.append(False)
+#                 if all(availList):
+#                     availableRooms.append(room)
+#             else:
+#                 if room.statusStartDate > ed.date() or room.statusEndDate < fd.date():
+#                     for booking in bookingList:
+#                         if booking.startDate > ed.date() or booking.endDate < fd.date():
+#                             availList.append(True)
+#                         else:
+#                             availList.append(False)
+#                         if all(availList):
+#                             availableRooms.append(room)
+
+#         return availableRooms
+
+#     if request.method == "POST":
+#         if "dateFilter" in request.POST:
+#             firstDayStr = request.POST.get("fd", "")
+#             lastDateStr = request.POST.get("ld", "")
+#             firstDay = datetime.strptime(firstDayStr, '%Y-%m-%d')
+#             lastDate = datetime.strptime(lastDateStr, '%Y-%m-%d')
+#             rooms = chech_availability(firstDay, lastDate)
+#         if "filter" in request.POST:
+#             if (request.POST.get("number") != ""):
+#                 rooms = rooms.filter(
+#                     number__contains=request.POST.get("number"))
+#             if (request.POST.get("capacity") != ""):
+#                 rooms = rooms.filter(
+#                     capacity__gte=request.POST.get("capacity"))
+#             if (request.POST.get("nob") != ""):
+#                 rooms = rooms.filter(
+#                     numberOfBeds__gte=request.POST.get("nob"))
+#             if (request.POST.get("type") != ""):
+#                 rooms = rooms.filter(
+#                     roomType__contains=request.POST.get("type"))
+#             if (request.POST.get("price") != ""):
+#                 rooms = rooms.filter(
+#                     price__lte=request.POST.get("price"))
+#             context = {
+#                 "role": role,
+#                 "rooms": rooms,
+#                 "number": request.POST.get("number"),
+#                 "capacity": request.POST.get("capacity"),
+#                 "nob": request.POST.get("nob"),
+#                 "price": request.POST.get("price"),
+#                 "type": request.POST.get("type")
+#             }
+#             return render(request, path + "rooms.html", context)
 
 
 
@@ -46,15 +114,57 @@ def room(request):
 #----------------------BOOKING AND MANAGEMENT-------------------#
 
 
+
+
+# ---------------------------------------------------------------------------- #
+#                                   functions                                  #
+# ---------------------------------------------------------------------------- #
+
+
+
 def check_booking(start_date, end_date, id, room_count):
+    print('Reached Checkinggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg')
+    print(start_date)
+    print(end_date)
+    print(room_count)
     qs = HotelBookings.objects.filter(
         start_date__lte=start_date,  # less than or equal
         end_date__gte=end_date,  # greater than or equal
         hotel__id=id
     )
+    print(qs)
     if len(qs) >= room_count:
         return False
     return True
+
+
+
+def check_availability(room, check_in, check_out):
+    avail_list = []
+    booking_list = HotelBookings.objects.filter(room=room)
+    for booking in booking_list:
+        if booking.start_date > check_out or booking.end_date < check_in:
+            avail_list.append(True)
+        else:
+            avail_list.append(False)
+    return all(avail_list)   
+
+
+
+
+def find_total_room_charge(check_in, check_out, price):
+    days = check_out-check_in
+    room_price = Rooms.objects.get(price=price)
+    total = days.days * room_price.price
+    return total
+
+
+
+# ---------------------------------------------------------------------------- #
+#                                 function ends                                #
+# ---------------------------------------------------------------------------- #
+
+
 
 
 def hotel_detail(request, id):

@@ -66,7 +66,7 @@
     <!--*******************
         Preloader start
     ********************-->
-    <div id="preloader">
+    <!-- <div id="preloader">
         <div class="waviy">
 		   <span style="--i:1">L</span>
 		   <span style="--i:2">o</span>
@@ -79,7 +79,7 @@
 		   <span style="--i:9">.</span>
 		   <span style="--i:10">.</span>
 		</div>
-    </div>
+    </div> -->
     <!--*******************
         Preloader end
     ********************-->
@@ -958,6 +958,18 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
+
+
+	<script src="https://unpkg.com/htmx.org@1.1.0"></script>
+    <script>
+      document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+      })
+    </script>
+
+
+
+
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
 	
     <script src="{% static 'admin/vendor/global/global.min.js' %}"></script>

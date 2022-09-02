@@ -60,7 +60,7 @@ def addrooms(request):
 def rooms(request):
 
     rooms=Rooms.objects.all()
-    paginator=Paginator(rooms,per_page=1)
+    paginator=Paginator(rooms,per_page=6)
     page_number=request.GET.get('page')
     roomsFinal=paginator.get_page(page_number)
     totalpage=roomsFinal.paginator.num_pages
@@ -72,6 +72,14 @@ def rooms(request):
     }
 
     return render(request,'AdminPanel/room-list.html',context)
+
+
+def deleteroom(request,id):
+    rooms=Rooms.objects.all()
+    room=Rooms.objects.get(id=id)
+    room.delete()
+    return render(request, 'AdminPanel/xml-room-list.html', {'rooms':rooms})
+
 
 
 def editroom(request,id):
@@ -100,12 +108,6 @@ def editroom(request,id):
         return redirect(rooms)
 
     return render(request,'AdminPanel/edit-room.html',{'room':room,'type':type})
-
-def deleteroom(request,id):
-    room=Rooms.objects.get(id=id)
-    room.delete()
-    return redirect(rooms)
-
 
 
 #------------------------------------ROOM ENDS------------------------------#
