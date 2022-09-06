@@ -7,6 +7,7 @@ from django.db.models.functions import *
 from django.db.models import *
 import calendar
 from datetime import date
+from Payments.models import PaymentClass
 import datetime
 
 # Create your views here.
@@ -213,9 +214,9 @@ def bookings(request):
 
 def index(request):
 
-    orders=HotelBookings.objects.annotate(month=ExtractMonth('date')).values('month').annotate(count=Count('id')).values('month','count')
-    yearorders=HotelBookings.objects.annotate(year=ExtractYear('date')).values('year').annotate(count=Count('id')).values('year','count')
-    Dayorders=HotelBookings.objects.annotate(day=ExtractDay('date')).filter(date=date.today()).values('day').annotate(count=Count('id')).values('day','count')
+    orders=HotelBookings.objects.annotate(month=ExtractMonth('created_at')).values('month').annotate(count=Count('id')).values('month','count')
+    yearorders=HotelBookings.objects.annotate(year=ExtractYear('created_at')).values('year').annotate(count=Count('id')).values('year','count')
+    Dayorders=HotelBookings.objects.annotate(day=ExtractDay('created_at')).filter(created_at=date.today()).values('day').annotate(count=Count('id')).values('day','count')
 
     print(Dayorders)
     DayNumber=[]
@@ -239,11 +240,11 @@ def index(request):
     # ---------------------------------- payment --------------------------------- #
     
 
-    payathotel = HotelBookings.objects.filter(payment_method = 'Pay At Hotel').aggregate(Count('id')).get('id__count')
+    payathotel = PaymentClass.objects.filter(payment_method = 'Pay At Hotel').aggregate(Count('id')).get('id__count')
        
-    raz = HotelBookings.objects.filter(payment_method = 'razorpay').aggregate(Count('id')).get('id__count')
+    raz = PaymentClass.objects.filter(payment_method = 'Razorpay').aggregate(Count('id')).get('id__count')
 
-    pay = HotelBookings.objects.filter(payment_method = 'Paypal').aggregate(Count('id')).get('id__count')
+    pay = PaymentClass.objects.filter(payment_method = 'Paypal').aggregate(Count('id')).get('id__count')
 
 
     
@@ -264,6 +265,23 @@ def index(request):
     }
 
     return render(request,'AdminPanel/index.html',context)
+
+
+
+
+def add_coupons(request):
+    coupons=Coupons.objects.all()
+    if request.method=="POST":
+        coupon=request.POST['code']
+        valid_to=request.POST['validity']
+        discount=request.POST['discount']
+        coupon_code=Coupons.objects.create(coupon_code=coupon,valid_to=valid_to,discount=discount)
+
+    return render(request,'AdminPanel/coupons.html',{'coupons':coupons})
+
+
+
+
 
 
   

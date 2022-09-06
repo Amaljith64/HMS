@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib import messages
 from AdminPanel.views import category
 from django.db.models import Q
+from Payments.models import PaymentClass
 from Payments.views import paymentfun
 from .models import Wishlist
 from django.shortcuts import get_object_or_404
@@ -90,10 +91,21 @@ def room(request):
     search = request.GET.get('search')
     scateg = request.GET.getlist('scateg')
     print(scateg)
-    if sort_by == 'ASC':
-        rooms = rooms.order_by('price')
-    elif sort_by == 'DSC':
-        rooms = rooms.order_by('-price')
+    
+    # if sort_by == 'ASC':
+    #     rooms = rooms.order_by('price')
+    # elif sort_by == 'DSC':
+    #     rooms = rooms.order_by('-price')
+    for x in rooms:
+        
+        
+
+        print(x.subcateg)
+   
+        
+        
+
+        
     if search:
         rooms = rooms.filter(
             Q(name__icontains=search) |
@@ -111,14 +123,14 @@ def room(request):
 
 
 
+
+
+
+
+
 #----------------------BOOKING AND MANAGEMENT-------------------#
 
-
-
-
-# ---------------------------------------------------------------------------- #
 #                                   functions                                  #
-# ---------------------------------------------------------------------------- #
 
 
 
@@ -147,23 +159,18 @@ def check_availability(room, check_in, check_out):
             avail_list.append(True)
         else:
             avail_list.append(False)
-    return all(avail_list)   
+    return all(avail_list)
 
 
 
 
 def find_total_room_charge(check_in, check_out, price):
     days = check_out-check_in
-    room_price = Rooms.objects.get(price=price)
-    total = days.days * room_price.price
+    total = days * price
     return total
 
 
-
-# ---------------------------------------------------------------------------- #
-#                                 function ends                                #
-# ---------------------------------------------------------------------------- #
-
+#----------------------------------function ends---------------------------------#
 
 
 
@@ -177,11 +184,22 @@ def hotel_detail(request, id):
         if not check_booking(checkin, checkout, id, hotel.room_count):
             messages.warning(
                 request, 'Hotel is already booked in these dates ')
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-        value=HotelBookings.objects.create(hotel=hotel, user=request.user,start_date=checkin, end_date=checkout,status='Pending')
+            print("already bookedddddddddddddddddddddd")
+            return redirect (hotel_detail,room.id)
+        value=HotelBookings.objects.create(hotel=hotel, user=request.user,start_date=checkin, end_date=checkout)
         print(value.id)
         messages.success(request, 'Your booking has been saved')
         request.session['order_id'] = value.id
+        frm = checkin.split("-")
+        tod = checkout.split("-")
+        fm = [int(x) for x in frm]
+        todt = [int(x) for x in tod]
+        print(fm[2])
+        print(todt[2])
+        
+        request.session['amount'] = find_total_room_charge(
+                fm[2], todt[2], value.hotel.price)
+
         
         return redirect(paymentfun,id=value.id)
     return render(request, 'UserHome/viewroom.html', {'room': room,'images':images})
@@ -190,7 +208,9 @@ def hotel_detail(request, id):
 
 def Bookings(request):
     user=request.user
-    booking=HotelBookings.objects.filter(user=user)
+    bookingdetails=HotelBookings.objects.filter(user=user)
+
+    booking=PaymentClass.objects.filter(user=user)
 
     return render(request,'USerHome/bookings.html',{'booking':booking})
 
@@ -260,6 +280,9 @@ def user_profile(request):
         
         
     return render(request,'UserHome/userprofile.html',{'user':myuser})
+
+
+
     
 
 

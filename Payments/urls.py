@@ -11,6 +11,7 @@ urlpatterns = [
     path('paymentsuccess',views.paymentsuccess,name='paymentsuccess'),
     path('payment-done/', views.payment_done, name='payment_done'),
     path('payment-cancelled/', views.payment_canceled, name='payment_cancelled'),
+    path('apply_coupon', views.apply_coupon, name='apply_coupon'),
 
     
 ]

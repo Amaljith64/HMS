@@ -99,7 +99,7 @@
                                     {% csrf_token %}                           
                                     <!-- RAZORPAY INTEGRATION HERE -->
                                     <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_4IGtVl9xeiuWPZ"
-                                        data-amount="50000" data-currency="INR" data-order_id="{{payment.id}}" data-buttontext="Pay with Razorpay"
+                                        data-amount="{{totalamount}}" data-currency="INR" data-order_id="{{payment.id}}" data-buttontext="Pay with Razorpay"
                                         data-name="Home to Home" data-description="Book your perfect room."
                                         data-image="https://example.com/your_logo.jpg" data-prefill.name="H2H" data-prefill.email="user@gmail.com"
                                         data-theme.color="#F37254">
@@ -138,8 +138,40 @@
                                                 alt="Image"></a>
                                     </figure>
                                 </div>
-                                <div>{{booking.hotel.price}}</div>
-                    
+                                <div>{{totalamount}}</div>                    
+                            </div>
+                        </div>
+                    </aside>
+                    <aside class="widget noborder">
+                        <div class="vertical-booking-form">
+                            <div id="booking-notification" class="notification"></div>
+                            <div class="inner">
+                                <div class="col-lg-12">
+                                    <form action="{% url 'apply_coupon' %}" method="POST">
+                                        {% csrf_token %}
+                                        <label for="">ENTER COUPON</label>
+                                        <input type="text" name="code" placeholder="Enter Your Coupon Code">
+                                        <input type="submit" value="APPLY">
+                                    </form>
+                                    {% if messages %}
+                                        <div class="text-center">
+                                            <div class="col-12 mt-3">
+
+                                                {% for message in messages %}
+                                                {% if message.tags == 'error' %}
+                                                <div class="alert alert-danger ">{{message}}</div>
+                                                {% else%}
+                                                <div class="alert alert-{{message.tags}}">{{message}}</div>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
+                                    
+                                </div>
+                                                   
                             </div>
                         </div>
                     </aside>

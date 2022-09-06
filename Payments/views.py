@@ -1,4 +1,5 @@
 from http.client import HTTPResponse
+from django.contrib import messages
 from django.http import HttpResponse
 from django.db import models
 from django.shortcuts import render, redirect
@@ -21,23 +22,37 @@ from paypal.standard.forms import PayPalPaymentsForm
 def paymentfun(request, id):
     global booking
     booking = HotelBookings.objects.get(id=id)
+
     global amount
-    roomamount = booking.hotel.price
-    amount = int(roomamount)
+    roomamount = request.session['amount']
+    amount = roomamount
 
     user = request.user
     if request.method == "POST":
         client = razorpay.Client(
             auth=("rzp_test_EHJnISgTdTzYsc", "FPEocjz0VBuibVylwibhSwpX"))
         payment = client.order.create(
-            {'amount': amount, 'currency': 'INR', 'payment_capture': '1'})
+            {'amount': amount*100   , 'currency': 'INR', 'payment_capture': '1'})
         print(payment)
 
-    return render(request, 'UserHome/payment.html', {'booking': booking})
+    return render(request, 'UserHome/payment.html', {'booking': booking,'totalamount':amount})
 
 
 @csrf_exempt
 def success(request):
+    order_id = request.session.get('order_id')
+    roomamount = request.session['amount']
+    amount = roomamount
+    order = get_object_or_404(HotelBookings, id=order_id)
+    payment_id_generated = str(
+        int(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
+    methodofpayment = "Razorpay"
+    status = "Transaction Completed"
+    pay = PaymentClass(user=request.user,booked_room=order, payment_id=payment_id_generated,
+                       payment_method=methodofpayment, total_amount=amount, status=status)
+    pay.save()
+
+
     return render(request, "success.html")
 
 
@@ -63,25 +78,77 @@ def paypal(request):
 
 @csrf_exempt
 def payment_done(request):
-    return HttpResponse("success")
+    roomamount = request.session['amount']
+    amount = roomamount
+    order_id = request.session.get('order_id')
+    order = get_object_or_404(HotelBookings, id=order_id)
+    payment_id_generated = str(
+        int(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
+    methodofpayment = "Paypal"
+    status = "Transaction Completed"
+    pay = PaymentClass(user=request.user,booked_room=order, payment_id=payment_id_generated,
+                       payment_method=methodofpayment, total_amount=amount, status=status)
+    pay.save()
+
+
+    return render (request,'success.html')
 
 
 @csrf_exempt
 def payment_canceled(request):
-    return HttpResponse("failed")
+    roomamount = request.session['amount']
+    amount = roomamount
+
+    order_id = request.session.get('order_id')
+    order = get_object_or_404(HotelBookings, id=order_id)
+    payment_id_generated = str(
+        int(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
+    methodofpayment = "Paypal"
+    status = "Transaction Cancelled"
+    pay = PaymentClass(user=request.user,booked_room=order, payment_id=payment_id_generated,
+                       payment_method=methodofpayment, total_amount=amount, status=status)
+    pay.save()
+
+    return render(request,'failed.html')
 
 
 def paymentsuccess(request):
+    roomamount = request.session['amount']
+    amount = roomamount
+    order_id = request.session.get('order_id')
+    order = get_object_or_404(HotelBookings, id=order_id)
 
     payment_id_generated = str(
         int(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
     methodofpayment = "Pay At Hotel"
-    status = "booked"
-    pay = PaymentClass(user=request.user, payment_id=payment_id_generated,
+    status = "Booked"
+    pay = PaymentClass(user=request.user,booked_room=order, payment_id=payment_id_generated,
                        payment_method=methodofpayment, total_amount=amount, status=status)
     pay.save()
-    booking.payment_method = "Pay At Hotel"
-    booking.status = "booked"
-    booking.save(update_fields=['payment_method', 'status'])
 
     return render(request, 'success.html')
+
+
+
+
+def apply_coupon(request):
+    if request.method=="POST":
+        code=request.POST['code']
+        if Coupons.objects.filter(coupon_code__icontains=code,active=True):
+            obj=Coupons.objects.get(coupon_code=code)
+            discount=int(obj.discount)
+            print(discount)
+            
+            totalamount = amount-(amount*discount/100)
+            request.session['amount']=totalamount
+            obj.active=False
+            obj.save()
+
+        else:
+            messages.error(request, "Invalid Coupon")
+    return redirect(paymentfun,id=booking.id)
+
+        
+
+
+

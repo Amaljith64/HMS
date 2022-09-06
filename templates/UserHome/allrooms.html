@@ -24,7 +24,7 @@
   <div class="container-fluid">
     <div class="row">
       <!-- SIDEBAR -->
-      <div class="col-lg-3 col-12">
+      <div class="col-lg-2 col-12">
         <div class="sidebar">
           <aside class="widget noborder">
             <div class="search">
@@ -83,7 +83,7 @@
         </div>
       </div>
       <!-- POSTS -->
-      <div class="col-lg-9 col-12">
+      <div class="col-lg-10 col-12">
         <div class="blog-posts">
           <!-- POST -->
           {% for i in rooms %}
@@ -91,13 +91,13 @@
             <div class="row">
               <div class="col-lg-4">
                 <figure class="gradient-overlay-hover link-icon">
-                  <a href="room.html"><img src="{{i.img.url}}" class="img-fluid" alt="Image"></a>
+                  <a href="{% url 'roomdetails' i.id  %}"><img src="{{i.img.url}}" class="img-fluid" alt="Image"></a>
                 </figure>
               </div>
               <div class="col-lg-5">
                 <div class="room-info">
                   <h3 class="room-title">
-                    <a href="room.html">{{i.name}}</a>
+                    <a href="{% url 'roomdetails' i.id  %}">{{i.name}}</a>
                   </h3>
                   <span class="room-rates">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -115,8 +115,8 @@
                       data-content="Free WiFi" data-original-title="WiFi"></i>
                     <i class="fa fa-television" data-toggle="popover" data-placement="top" data-trigger="hover"
                       data-content="Plasma TV with cable channels" data-original-title="TV"></i>
-                    <span>Beds: 1 King</span>
-                    <span>Max Guests: 2</span>
+                    <!-- <span>Beds: 1 King</span>
+                    <span>Max Guests: 2</span> -->
                   </div>
                 </div>
               </div>

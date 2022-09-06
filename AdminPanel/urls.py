@@ -14,4 +14,5 @@ urlpatterns = [
     path('category',views.category,name='category'),
     path('subcategory',views.subcategory,name='subcategory'),
     path('bookings',views.bookings,name='bookings'),
+    path('coupons',views.add_coupons,name='coupons'),
 ]
