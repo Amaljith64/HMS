@@ -12,6 +12,7 @@ urlpatterns = [
     path('payment-done/', views.payment_done, name='payment_done'),
     path('payment-cancelled/', views.payment_canceled, name='payment_cancelled'),
     path('apply_coupon', views.apply_coupon, name='apply_coupon'),
+    path('remove_coupon', views.remove_coupon, name='remove_coupon'),
 
     
 ]

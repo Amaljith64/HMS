@@ -78,7 +78,16 @@
                   <i class="fa fa-television" data-toggle="popover" data-placement="right" data-trigger="hover"
                     data-content="Plasma TV with cable channels" data-original-title="TV"></i>
                 </div>
-                <div class="room-price">₹{{i.price}} / night</div>
+                {% if i.discount_price > 0 %}
+                <div class="room-price">
+                  <span><del>  ₹ {{i.price}}</del></span>
+                  <span> ₹ {{i.discount_price}} / night</span>
+                  {% else %}
+                  
+                  <span>  ₹ {{i.price}} / night</span>
+                </div>
+                
+                {% endif %}
               </figure>
               <div class="room-info">
                 <h2 class="room-title">

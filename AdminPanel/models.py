@@ -1,4 +1,5 @@
 from msilib.schema import _Validation_records
+from tkinter import CASCADE
 from unicodedata import category
 from django.db import models
 
@@ -43,15 +44,18 @@ class Rooms(models.Model):
 
 class Category_offer(models.Model):
     category=models.ForeignKey(Categories,on_delete=models.CASCADE)
-    discount=models.IntegerField
+    discount=models.IntegerField()
+    is_active = models.BooleanField(default=True)
 
 class SubCategory_offer(models.Model):
     subcategory=models.ForeignKey(SubCategories,on_delete=models.CASCADE)
-    discount=models.IntegerField
+    discount=models.IntegerField()
+    is_active = models.BooleanField(default=True)
 
 class Room_offer(models.Model):
     room=models.ForeignKey(Rooms,on_delete=models.CASCADE)
-    discount=models.IntegerField
+    discount=models.IntegerField()
+    is_active = models.BooleanField(default=True)
 
 
 
@@ -67,7 +71,9 @@ class HotelBookings(models.Model):
     user = models.ForeignKey(Account, related_name="user_bookings" , on_delete=models.CASCADE,null=True)
     start_date = models.DateField(null=True)
     end_date = models.DateField(null=True)
+    is_booked=models.BooleanField(default=False)
     created_at =models.DateField(auto_now_add=True)
+    status=models.CharField(max_length=50,default="Pending")
 
 
 
@@ -77,6 +83,11 @@ class Coupons(models.Model):
     valid_to=models.DateField(null=True)
     discount=models.IntegerField(null=True)
     active=models.BooleanField(default=True)
+
+
+class Couponstatus(models.Model):
+    user=models.ForeignKey(Account,on_delete=models.CASCADE,null=True)
+    couponsid=models.ForeignKey(Coupons,on_delete=models.CASCADE,null=True)
  
 
 

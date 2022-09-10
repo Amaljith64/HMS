@@ -11,9 +11,17 @@
             <br>
             <br>
             <h1>{{room.name}}</h1>
+
+
+            {% if i.discount_price > 0 %}
             <div class="room-details-price">
-              ₹{{room.price}}/ NIGHT
+              <span><del>  ₹ {{i.price}}</del></span>
+                  <span> ₹ {{i.discount_price}} / night</span>
+                  {% else %}
+                  
+                  <span>  ₹ {{i.price}} / night</span>
             </div>
+            {% endif %}
             <ol class="breadcrumb">
               <li>
                 <a href="{% url 'home' %}">Home</a>

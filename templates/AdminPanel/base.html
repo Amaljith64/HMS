@@ -16,7 +16,9 @@
 	<meta name="format-detection" content="telephone=no">
 	
 	<!-- PAGE TITLE HERE -->
-	<title>H2H Admin Panel</title>
+	<title>{% block title %}
+		
+		{% endblock %}</title>
 	
 	<!-- FAVICONS ICON -->
 	<link rel="shortcut icon" type="image/png" href="images/favicon.png" />
@@ -59,7 +61,10 @@
 	cursor: pointer;
 }
 
-	</style>
+</style>
+{% block styles %}
+{% endblock %}
+	
 	
 </head>
 <body>
@@ -626,7 +631,9 @@
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
 							<div class="dashboard_bar">
-                                Dashboard
+                                {% block pagetitle %}
+													
+								{% endblock  %}
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
@@ -886,19 +893,27 @@
 							<span class="nav-text">Coupons</span>
 						</a>
 					</li>
-                    <!--<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-							<i class="flaticon-072-printer"></i>
-							<span class="nav-text">Forms</span>
+                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+							<i class="flaticon-013-checkmark"></i>
+							<span class="nav-text">Offers</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="./form-element.html">Form Elements</a></li>
-                            <li><a href="./form-wizard.html">Wizard</a></li>
-                            <li><a href="./form-ckeditor.html">CkEditor</a></li>
-                            <li><a href="form-pickers.html">Pickers</a></li>
-                            <li><a href="form-validation.html">Form Validate</a></li>
+                            <li><a href="{% url 'roomoffer' %}">Room Offer</a></li>
+                            <li><a href="{% url 'categoryoffers' %}">Category Offer</a></li>
+                            <li><a href="{% url 'subcategoryoffers' %}">Subcategory Offer</a></li>
+                           
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+							<i class="flaticon-072-printer"></i>
+							<span class="nav-text">Report</span>
+						</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'SalesReport' %}">Booking Report</a></li>
+                            
+                        </ul>
+                    </li>
+                    <!--<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-043-menu"></i>
 							<span class="nav-text">Table</span>
 						</a>
@@ -1049,7 +1064,8 @@
 	
 	</script>
 	
-	
+	{% block CustomScripts %}
+	{% endblock %}	
 
 </body>
 

@@ -40,26 +40,20 @@
             <h4 class="widget-title">LOCATIONS</h4>
             <ul class="categories">
               <li>
-                <a href="#">Travel<span class="posts-num">51</span></a>
+                <a href="{% url 'userroomview' %}">All</a>
               </li>
-              <li>
-                <a href="#">Rooms<span class="posts-num">24</span></a>
+              {% for category in scategory_objs %}
+              <li >
+                  <a href="{% url 'userroomview' %}?category={{category.title}}">
+                      {{category.title}}
+                  </a>
               </li>
-              <li>
-                <a href="#">Holidays
-                  <span class="posts-num">9</span></a>
-              </li>
-              <li>
-                <a href="#">Travel<span class="posts-num">12</span></a>
-              </li>
-              <li>
-                <a href="#">Events<span class="posts-num">28</span></a>
-              </li>
+              {% endfor %}
             </ul>
           </aside>
           <!-- WIDGET -->
 
-          <aside class="widget">
+          <!-- <aside class="widget">
             <h4 class="widget-title">Tags</h4>
             <div class="tagcloud">
               <a href="#">
@@ -79,7 +73,7 @@
               <a href="#">
                 <span class="tag">Hotel</span></a>
             </div>
-          </aside>
+          </aside> -->
         </div>
       </div>
       <!-- POSTS -->
@@ -122,7 +116,17 @@
               </div>
               <div class="col-lg-3">
                 <div class="room-price">
-                  <span class="price">₹{{i.price}} / night</span>
+
+
+
+
+                  {% if i.discount_price > 0 %}
+                  <span class="price">₹{{i.discount_price}} / night</span>
+                  <span class="price"> <del> ₹{{i.price}}</del></span>
+                  {% else %}
+                  <span class="price">  ₹{{i.price}}</span>
+
+                  {% endif %}
                   <a href="{% url 'roomdetails' i.id  %}" class="btn btn-sm ">VIEW DETAILS</a>
                   <br>
                   <a href="{% url 'addwishlist' i.id  %}" class="btn btn-sm btn-gray"><i class="fa fa-fw" aria-hidden="true" title="Copy to use heart"></i>WISHLIST</a>

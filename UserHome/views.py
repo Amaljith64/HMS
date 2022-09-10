@@ -1,4 +1,3 @@
-from turtle import update
 from django.shortcuts import render, redirect,HttpResponse
 from AdminPanel.models import *
 from django.http import HttpResponseRedirect, JsonResponse
@@ -86,21 +85,24 @@ from django.shortcuts import get_object_or_404
 
 def room(request):
     scategory_objs = SubCategories.objects.all()
-    rooms = Rooms.objects.all()
-    sort_by = request.GET.get('sort_by')
+    # rooms = Rooms.objects.all()
+    # sort_by = request.GET.get('sort_by')
     search = request.GET.get('search')
     scateg = request.GET.getlist('scateg')
+    category = request.GET.get('category')
     print(scateg)
     
     # if sort_by == 'ASC':
     #     rooms = rooms.order_by('price')
     # elif sort_by == 'DSC':
     #     rooms = rooms.order_by('-price')
-    for x in rooms:
-        
-        
+   
 
-        print(x.subcateg)
+    if category == None:
+        rooms = Rooms.objects.all()
+    else:
+        rooms = Rooms.objects.filter(
+            subcateg__title=category)
    
         
         
@@ -111,8 +113,8 @@ def room(request):
             Q(name__icontains=search) |
             Q(Desc__icontains=search))
 
-    if len(scateg):
-        rooms = rooms.filter(subcateg__title__in=scateg).distinct()
+    # if len(scateg):
+    #     rooms = rooms.filter(subcateg__title__in=scateg).distinct()
 
     context = {'rooms': rooms, 'scategory_objs': scategory_objs}
 
@@ -196,9 +198,15 @@ def hotel_detail(request, id):
         todt = [int(x) for x in tod]
         print(fm[2])
         print(todt[2])
+        if room.discount_price>0:
+            request.session['amount'] = find_total_room_charge(
+                fm[2], todt[2], value.hotel.discount_price)
+        else:
+            request.session['amount'] = find_total_room_charge(
+                    fm[2], todt[2], value.hotel.price)
+
+        request.session['original amount']=request.session['amount']
         
-        request.session['amount'] = find_total_room_charge(
-                fm[2], todt[2], value.hotel.price)
 
         
         return redirect(paymentfun,id=value.id)

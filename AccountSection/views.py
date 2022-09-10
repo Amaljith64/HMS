@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import auth
 from AccountSection.helpers import*
 from django.http import HttpResponse
+from AdminPanel.models import *
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 
@@ -154,6 +156,45 @@ def test(request):
 
 def home(request):
     rooms=Rooms.objects.all()
+    
+    for x in rooms:
+        list=[]
+        # ------------------------ checking for category offer ----------------------- #
+        try:
+            category_offer=Category_offer.objects.get(category=x.categ,is_active =True)
+            list.append(category_offer.discount)
+            print(list)
+        except ObjectDoesNotExist:
+            print('no categoryOffer')
+            pass
+        # ------------------------ checking for subcategory offer ----------------------- #
+        try:
+            subcategory_offer=SubCategory_offer.objects.get(subcategory=x.subcateg,is_active =True)
+            list.append(subcategory_offer.discount)
+            print(list)
+        except ObjectDoesNotExist:
+            print('no subcategoryOffer')
+            pass
+        # ------------------------ checking for Room offer ----------------------- #
+        try:
+            room_offer=Room_offer.objects.get(room=x.id,is_active =True)
+            list.append(room_offer.discount)
+            print(list)
+        except ObjectDoesNotExist:
+            print('no roomOffer')
+            pass
+        #setting discount price zero,if we remove any ofers by chance
+        #every time we runserver offers will be setted one again        
+        x.discount_price=0
+        #incase if there is no any offers for this product(if list is empty) 
+        if list:
+            minoffer=min(list)
+            print(min(list))
+            x.discount_price=x.price-(x.price*minoffer/100)
+            print(x.discount_price)
+            x.save()
+        else:
+            pass
     return render(request, 'UserHome/index.html',{'rooms':rooms})
 
 

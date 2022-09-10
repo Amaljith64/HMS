@@ -4,15 +4,11 @@
 		id="guestTable-all">
 		<thead>
 			<tr>
-				<th class="bg-none">
-					<div class="form-check style-1">
-						<input class="form-check-input" type="checkbox" value="" id="checkAll">
-					</div>
-				</th>
+				
 				<th>Room Name</th>
-				<th>Bed Type</th>
-				<th>Room Floor</th>
-				<th>Room Facility</th>
+				<th>Location</th>
+				<th>Available</th>
+				<th>Description</th>
 				<th>Status</th>
 				<th class="bg-none"></th>
 			</tr>
@@ -20,11 +16,7 @@
 		<tbody>
 			{% for i in rooms %}
 			<tr>
-				<td>
-					<div class="form-check style-1">
-						<input class="form-check-input" type="checkbox" value="">
-					</div>
-				</td>
+				
 				<td>
 					<div class="guest-bx">
 						<img class="me-3" src="{{i.img.url}}" alt="">
@@ -37,12 +29,12 @@
 				</td>
 				<td>
 					<div>
-						<span class="fs-16">{{i.Location}}</span>
+						<span class="fs-16">{{i.subcateg}}</span>
 					</div>
 				</td>
 				<td>
 					<div>
-						<span class="fs-16">{{i.Roomtype}}</span>
+						<span class="fs-16">{{i.room_count}}</span>
 					</div>
 				</td>
 				<td>

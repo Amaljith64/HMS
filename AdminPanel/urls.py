@@ -15,4 +15,31 @@ urlpatterns = [
     path('subcategory',views.subcategory,name='subcategory'),
     path('bookings',views.bookings,name='bookings'),
     path('coupons',views.add_coupons,name='coupons'),
+
+
+    #------------------------- category offer management ------------------------ #
+    path("categoryoffers",views.CategoryOffer,name="categoryoffers"),
+    path("editcategoryoffers/<int:id>/",views.Edit_CategoryOffer,name="EditCategoryOffer"),
+    path("blockcategoryoffers/<int:id>/",views.Block_CategoryOffer,name="BlockCategoryOffer"),
+    path("unblockcategoryoffers/<int:id>/",views.UnBlock_CategoryOffer,name="UnBlockCategoryOffer"),
+    path("deletecategoryoffers/<int:id>/",views.Delete_CategoryOffer,name="DeleteCategoryOffer"),
+
+#------------------------- subcategory offer management ------------------------ #
+    path("subcategoryoffers",views.SubCategoryOffer,name="subcategoryoffers"),
+    # path("editsubcategoryoffers/<int:id>/",views.Edit_SubCategoryOffer,name="EditSubCategoryOffer"),
+    # path("blocksubcategoryoffers/<int:id>/",views.Block_SubCategoryOffer,name="BlockSubCategoryOffer"),
+    # path("unblocksubcategoryoffers/<int:id>/",views.UnBlock_SubCategoryOffer,name="UnBlockSubCategoryOffer"),
+    # path("deletesubcategoryoffers/<int:id>/",views.Delete_SubCategoryOffer,name="DeleteSubCategoryOffer"),
+
+#------------------------- Product offer management ------------------------ #
+    path("roomoffer",views.RoomOffer,name="roomoffer"),
+    # path("editproductoffers/<int:id>/",views.Edit_ProductOffer,name="EditProductOffer"),
+    # path("blockproductoffers/<int:id>/",views.Block_ProductOffer,name="BlockProductOffer"),
+    # path("unblockproductoffers/<int:id>/",views.UnBlock_ProductOffer,name="UnBlockProductOffer"),
+    # path("deleteproductoffers/<int:id>/",views.Delete_ProductOffer,name="DeleteProductOffer"),
+
+    path('salesreport',views.salesReport,name='SalesReport'),
+    path("monthly_report/<int:date>/",views.monthly_report,name="monthly_report"),
+    path("yearly_report/<int:date>/",views.yearly_report,name="yearly_report"),
+    path("date_range",views.date_range,name="date_range"),
 ]

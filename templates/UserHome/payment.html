@@ -91,7 +91,6 @@
                             <div id="booking-notification" class="notification"></div>
                             <h3 class="form-title">CHOOSE PAYMENT</h3>
                             <div class="inner">
-
                                 <!-- EMAIL -->
                                 <a href="{% url 'paypal' %}" class="btn btn-gray btn-fw mt20 mb20">PAYPAL</a>
                                 <!-- BOOKING BUTTON -->
@@ -106,9 +105,7 @@
                                     </script>
                                     <!-- <input type="submit" value="Pay with Razorpay" class="razorpay-payment-button"> -->
                                 </form>
-
                                 <a href="{% url 'paymentsuccess' %}" class="btn btn-gray btn-fw mt20 mb20">PAY AT HOTEL</a>
-                                
                             </div>
                         </div>
                     </aside>
@@ -138,7 +135,12 @@
                                                 alt="Image"></a>
                                     </figure>
                                 </div>
-                                <div>{{totalamount}}</div>                    
+                                <div>{{totalamount}}</div> 
+                                {% if usedcoupon != None %}
+                                <div>used coupon {{usedcoupon}} <a href="{% url 'remove_coupon' %}"> <button>
+                                    remove
+                                {%  endif %}
+                                </button></a> </div>                   
                             </div>
                         </div>
                     </aside>
@@ -168,6 +170,39 @@
                                             </div>
                                         </div>
                                     {% endif %}
+                                    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            {% for i in coupon %}
+            {{i.coupon_code}}
+            <form action="{% url 'apply_coupon' %}">
+                <input value="Apply"  type="submit">
+            </form>
+
+
+            {% endfor %}
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
                                     
                                 </div>
@@ -175,8 +210,6 @@
                             </div>
                         </div>
                     </aside>
-
-
                 </div>
             </div>
         </div>
