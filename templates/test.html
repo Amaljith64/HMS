@@ -1,43 +1,227 @@
-{% if payment %}
+{% extends 'UserHome/base.html' %}
+{% load static %}
 
-<div class="cart-btn mt-100">
-    <button id="rzp-button1"><a  class="btn amado-btn w-100">Pay with Razorpay</a></button>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+{% block body %}
+<!-- ========== PAGE TITLE ========== -->
+<div class="page-title gradient-overlay op5" style="background: url(images/breadcrumb.jpg); background-repeat: no-repeat;
+        background-size: cover;">
+  <div class="container">
+    <div class="inner">
+      <br>
+      <br>
+      <br>
+      <h1>{{room.name}}</h1>
+
+
+      {% if room.discount_price > 0 %}
+      <div class="room-details-price">
+        <span><del> ₹ {{room.price}}</del></span>
+        <span> ₹ {{room.discount_price}} / night</span>
+      </div>
+      {% else %}
+
+      <span> ₹ {{room.price}} / night</span>
+    </div>
+    {% endif %}
+    <ol class="breadcrumb">
+      <li>
+        <a href="{% url 'home' %}">Home</a>
+      </li>
+      <li>
+        <a href="{% url 'userroomview' %}">Rooms</a>
+      </li>
+      <li>{{room.name}}</li>
+    </ol>
+  </div>
+</div>
+</div>
+<!-- ========== MAIN ========== -->
+<main class="room">
+  <div class="container">
+    <div class="row">
+      <!-- SIDEBAR -->
+      <div class="col-lg-3 col-12">
+        <div class="sidebar" style="  position: sticky; top: 83px;">
+          <!-- WIDGET -->
+          <aside class="widget noborder">
+            <div class="vertical-booking-form">
+              <div id="booking-notification" class="notification"></div>
+              <h3 class="form-title">BOOK YOUR ROOM</h3>
+              <div class="inner">
+
+                <!-- EMAIL -->
+
+                <!-- ROOM TYPE -->
+                <div class="form-group">
+                  <select class="form-control" name="booking-roomtype" title="Select Room Type" data-header="Room Type"
+                    disabled="disabled">
+                    <option value="Single" selected="selected">{{room.name}}</option>
+                    <option value="Double">Double Room</option>
+                    <option value="Deluxe">Deluxe Room</option>
+                  </select>
+                </div>
+                <!-- DATE -->
+                <div>
+                  <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="row form-group">
+                      <div class="col-md-12">
+                        <label for="mintopay">Check in</label>
+                        <p>
+                          <input type="date" name="checkin" id="checkin" class="form-control txtDate"
+                            onchange="onchangee()">
+                        </p>
+                      </div>
+                      <div class="col-md-12">
+                        <label for="maxtopay">Check out</label>
+                        <p>
+                          <input type="date" name="checkout" id="checkout" class="form-control to txtDate ">
+                        </p>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-dark btn-fw mt20 mb20">BOOK A ROOM</button>
+                  </form>
+
+                </div>
+
+                <!-- GUESTS -->
+
+                <!-- BOOKING BUTTON -->
+
+
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+      <div class="col-lg-9 col-12">
+        <!-- ROOM SLIDER -->
+        <div class="room-slider">
+          <div id="room-main-image" class="owl-carousel image-gallery">
+            <!-- ITEM -->
+            <div class="item" id="img-container">
+              <figure class="gradient-overlay-hover image-icon">
+                <a href="images/rooms/single/single1.jpg">
+                  <div id="lens"></div>
+                  <img id=featured class="img-fluid" src="{{room.img.url}}" alt="Image">
+                </a>
+              </figure>
+            </div>
+            <!-- ITEM -->
+            {% for i in images %}
+            <div class="item" id="img-container">
+              <figure class="gradient-overlay-hover image-icon">
+                <a href="images/rooms/single/single2.jpg">
+                  
+                  <img class="img-fluid" src="{{i.image.url}}" alt="Image">
+                </a>
+              </figure>
+            </div>
+            {% endfor %}
+
+          </div>
+          <div id="room-thumbs" class="room-thumbs owl-carousel">
+            <!-- ITEM -->
+            <div class="item"><img class="img-fluid" src="{{room.img.url}}" alt="Image"></div>
+            {% for i in images %}
+            <div class="item"><img class="img-fluid" src="{{i.image.url}}" alt="Image"></div>
+            {% endfor %}
+
+
+          </div>
+        </div>
+        <p>{{room.Desc}}</p>
+        <div class="section-title sm">
+          <h4>ROOM SERVICES</h4>
+          <p class="section-subtitle">Single Room Includes</p>
+        </div>
+        <div class="room-services-list">
+          <div class="row">
+            <div class="col-sm-4">
+              <ul class="list-unstyled">
+                <li>
+                  <i class="fa fa-check"></i>Double Bed
+                </li>
+                <li>
+                  <i class="fa fa-check"></i>80 Sq mt
+                </li>
+                <li>
+                  <i class="fa fa-check"></i>3 Persons
+                </li>
+                <li>
+                  <i class="fa fa-check"></i>Free Internet
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <ul class="list-unstyled">
+                <li>
+                  <i class="fa fa-check"></i>Free Wi-Fi
+                </li>
+                <li>
+                  <i class="fa fa-check"></i>Breakfast Include
+                </li>
+                <li>
+                  <i class="fa fa-check"></i>Private Balcony
+                </li>
+                <li class="no">
+                  <i class="fa fa-times"></i>Free Newspaper
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <ul class="list-unstyled">
+                <li class="no">
+                  <i class="fa fa-times"></i>Flat Screen Tv
+                </li>
+                <li>
+                  <i class="fa fa-check"></i>Full Ac
+                </li>
+                <li class="no">
+                  <i class="fa fa-times"></i>Beach View
+                </li>
+                <li>
+                  <i class="fa fa-check"></i>Room Service
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <p>Horem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+          dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+          suscipit lobortis nisl ut aliquip
+          ex ea
+          <u>commodo consequat.</u>
+          Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu
+          feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
+          delenit...
+        </p>
+        <p>Horem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+          dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+          suscipit lobortis nisl ut aliquip
+          ex ea
+          <u>commodo consequat.</u>
+          Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu
+          feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
+          delenit...
+        </p>
+        <!-- ROOM REVIEWS -->
+
+
+      </div>
+    </div>
+  </div>
+</main>
+
 <script>
-var options = {
-"key": "rzp_test_EHJnISgTdTzYsc", // Enter the Key ID generated from the Dashboard
-"amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-"currency": "INR",
-"name": "Coffee Corp",
-"description": "Test Transaction",
-"image": "https://example.com/your_logo",
-"order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 2
-"callback_url": "success",
-"prefill": {
-"name": "Gaurav Kumar",
-"email": "gaurav.kumar@example.com",
-"contact": "9999999999"
-},
-"notes": {
-"address": "Razorpay Corporate Office"
-},
-"theme": {
-"color": "#3399cc"
-}
-};
-var rzp1 = new Razorpay(options);
-rzp1.on('payment.failed', function (response){
-alert(response.error.code);
-alert(response.error.description);
-alert(response.error.source);
-alert(response.error.step);
-alert(response.error.reason);
-alert(response.error.metadata.order_id);
-alert(response.error.metadata.payment_id);
-});
-document.getElementById('rzp-button1').onclick = function(e){
-rzp1.open();
-e.preventDefault();
-}
+  function onchangee() {
+    $(document).on("change", ".txtDate", function () {
+      debugger
+      var date = $(this).val();
+
+      $('.to').attr('min', date);
+    });
+  }
 </script>
-{% endif %}
+{% endblock %}

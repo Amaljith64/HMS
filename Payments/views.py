@@ -83,7 +83,14 @@ def paypal(request):
 @csrf_exempt
 def payment_done(request):
     roomamount = request.session['amount']
-
+    try:
+        couponid = request.session['couponid']
+        print(couponid, 'cccccccccccoooooooooouuuuuupppppppoonnnnnnnn')
+        coupon_status = Couponstatus.objects.get(id=couponid)
+        coupon_status.status = True
+        coupon_status.save()
+    except:
+        pass
     order_id = request.session.get('order_id')
     order = get_object_or_404(HotelBookings, id=order_id)
     payment_id_generated = str(
@@ -124,11 +131,14 @@ def paymentsuccess(request):
                        payment_method=methodofpayment, total_amount=roomamount, status=status)
     pay.save()
 
-    couponid = request.session['couponid']
-    print(couponid, 'cccccccccccoooooooooouuuuuupppppppoonnnnnnnn')
-    coupon_status = Couponstatus.objects.get(id=couponid)
-    coupon_status.status = True
-    coupon_status.save()
+    try:
+        couponid = request.session['couponid']
+        print(couponid, 'cccccccccccoooooooooouuuuuupppppppoonnnnnnnn')
+        coupon_status = Couponstatus.objects.get(id=couponid)
+        coupon_status.status = True
+        coupon_status.save()
+    except:
+        pass
 
     return render(request, 'success.html')
 

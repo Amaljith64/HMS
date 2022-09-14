@@ -295,6 +295,14 @@ def user_profile(request):
     return render(request,'UserHome/userprofile.html',{'user':myuser})
 
 
+def check_room(request):
+    if request.method=='POST':
+        checkin=request.POST['checkin']
+        checkout=request.POST['checkout']
+
+
+
+
 
     
 
