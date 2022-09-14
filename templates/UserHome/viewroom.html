@@ -13,13 +13,14 @@
             <h1>{{room.name}}</h1>
 
 
-            {% if i.discount_price > 0 %}
+            {% if room.discount_price > 0 %}
             <div class="room-details-price">
-              <span><del>  ₹ {{i.price}}</del></span>
-                  <span> ₹ {{i.discount_price}} / night</span>
+              <span><del>  ₹ {{room.price}}</del></span>
+                  <span> ₹ {{room.discount_price}} / night</span>
+                </div>
                   {% else %}
                   
-                  <span>  ₹ {{i.price}} / night</span>
+                  <span>  ₹ {{room.price}} / night</span>
             </div>
             {% endif %}
             <ol class="breadcrumb">
@@ -40,7 +41,7 @@
           <div class="row">
             <!-- SIDEBAR -->
             <div class="col-lg-3 col-12">
-              <div class="sidebar">
+              <div class="sidebar" style="    position: sticky; top: 83px;">
                 <!-- WIDGET -->
                 <aside class="widget noborder">
                   <div class="vertical-booking-form">

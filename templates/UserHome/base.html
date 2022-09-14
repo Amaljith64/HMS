@@ -27,6 +27,13 @@
   <link rel="stylesheet" href="{% static 'home/css/magnific-popup.css' %}">
   <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
   <link rel="stylesheet" href="{% static 'home/css/responsive.css' %}">
+
+
+<!-- CSS -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+  <!-- Default theme -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+
   <!-- ========== ICON FONTS ========== -->
   <link href="{% static 'home/fonts/font-awesome.min.css' %}" rel="stylesheet">
   <link href="{% static 'home/fonts/flaticon.css' %}" rel="stylesheet">
@@ -35,6 +42,8 @@
     rel="stylesheet">
   <script src="https://unpkg.com/js-image-zoom@0.7.0/js-image-zoom.js" type="application/javascript"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+  
 <style>
   #lens{
 	z-index: 99;
@@ -400,6 +409,21 @@ function imageZoom(imgID){
 }
 
 imageZoom('featured')
+  </script>
+
+  <script>
+    {% for flash in messages %}
+    {% if flash.tags == 'error' %}
+      alertify.set('notifier','position', 'top-right');
+      alertify.error('{{flash}}');
+    {% elif flash.tags == 'success' %}
+      alertify.set('notifier','position', 'top-right');
+      alertify.success('{{flash}}');
+    {% elif flash.tags == 'warning' %}
+      alertify.set('notifier','position', 'top-right');
+      alertify.warning('{{flash}}');
+    {% endif %}
+    {% endfor %}
   </script>
   
     

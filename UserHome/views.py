@@ -201,11 +201,14 @@ def hotel_detail(request, id):
         if room.discount_price>0:
             request.session['amount'] = find_total_room_charge(
                 fm[2], todt[2], value.hotel.discount_price)
+            request.session['fullamount'] = find_total_room_charge(
+                fm[2], todt[2], value.hotel.price)
         else:
             request.session['amount'] = find_total_room_charge(
                     fm[2], todt[2], value.hotel.price)
 
         request.session['original amount']=request.session['amount']
+        request.session['coupon']=None
         
 
         
@@ -225,12 +228,13 @@ def Bookings(request):
 
 def CancelBooking(request,id):
     user=request.user
-    booking=HotelBookings.objects.get(id=id)
+    booking=PaymentClass.objects.filter(user=user)
+    tocancelbooking=PaymentClass.objects.get(id=id)
        
-    booking.status="Cancelled"
-    booking.save()
+    tocancelbooking.status="Cancelled"
+    tocancelbooking.save()
 
-    return redirect(Bookings)
+    return render(request,'UserHome/xml-booking.html',{'booking':booking})
 
 
 #----------------------BOOKING AND MANAGEMENT ENDS-------------------#
@@ -250,7 +254,7 @@ def add_to_wishlist(request,id):
                                                           user=request.user,
                                                           )
 
-    messages.info(request, 'The item was added to your wishlist')
+    messages.success(request, 'The item was added to your wishlist')
     return redirect(room)
 
 def wishlist(request):
@@ -263,6 +267,7 @@ def wishlist(request):
 def remove_from_wishlist(request,id):
     to_remove=Wishlist.objects.get(id=id)
     to_remove.delete()
+    messages.warning(request, 'Item removed from Wishlist')
     return redirect (wishlist)
 
 #----------------------WISHLIST AND MANAGEMENT ENDS-------------------#

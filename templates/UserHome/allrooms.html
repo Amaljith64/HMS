@@ -112,21 +112,23 @@
                     <!-- <span>Beds: 1 King</span>
                     <span>Max Guests: 2</span> -->
                   </div>
+                  <div class="row" style="margin-top: 11px;">
+                    {% if i.discount_price > 0 %}
+                    <!-- <h3>&emsp;₹{{i.discount_price}}</h3> -->
+                    <h3>&nbsp;&nbsp;&nbsp;₹{{i.discount_price}}</h3>
+                    <!-- <p>saved:{{i.reduced_price}}</p> -->
+                    <h5 style="color: #838384" >&nbsp; <del> ₹{{i.price}}</del></h5>
+                    <h5  style="color: #edcb9a " >&nbsp;{{i.discount_percentage}}% off</h5>
+                    {% else %}
+                    <span class="price"> ₹{{i.price}}</span>
+                    {% endif %}
+                  </div>
+                  
                 </div>
               </div>
               <div class="col-lg-3">
                 <div class="room-price">
 
-
-
-
-                  {% if i.discount_price > 0 %}
-                  <span class="price">₹{{i.discount_price}} / night</span>
-                  <span class="price"> <del> ₹{{i.price}}</del></span>
-                  {% else %}
-                  <span class="price">  ₹{{i.price}}</span>
-
-                  {% endif %}
                   <a href="{% url 'roomdetails' i.id  %}" class="btn btn-sm ">VIEW DETAILS</a>
                   <br>
                   <a href="{% url 'addwishlist' i.id  %}" class="btn btn-sm btn-gray"><i class="fa fa-fw" aria-hidden="true" title="Copy to use heart"></i>WISHLIST</a>

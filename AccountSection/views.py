@@ -9,6 +9,7 @@ from AccountSection.helpers import*
 from django.http import HttpResponse
 from AdminPanel.models import *
 from django.core.exceptions import ObjectDoesNotExist
+from datetime import date
 
 # Create your views here.
 
@@ -156,6 +157,13 @@ def test(request):
 
 def home(request):
     rooms=Rooms.objects.all()
+    now=date.today()
+    coupons=Coupons.objects.filter(valid_to__lte=now)
+
+    for y in coupons:
+        y.active=False
+        y.save()
+
     
     for x in rooms:
         list=[]
@@ -184,13 +192,15 @@ def home(request):
             print('no roomOffer')
             pass
         #setting discount price zero,if we remove any ofers by chance
-        #every time we runserver offers will be setted one again        
+        #every time we runserver offers will be set to one again        
         x.discount_price=0
+        x.discount_percentage=0
         #incase if there is no any offers for this product(if list is empty) 
         if list:
-            minoffer=min(list)
+            maxoffer=max(list)
             print(min(list))
-            x.discount_price=x.price-(x.price*minoffer/100)
+            x.discount_price=x.price-(x.price*maxoffer/100)
+            x.discount_percentage=maxoffer
             print(x.discount_price)
             x.save()
         else:

@@ -3,20 +3,39 @@
 
 {% block body %}
 <style>
-    .razorpay-payment-button{
-    background: #d7d8d9;
-    color: #fff;
-    letter-spacing: 0.5px;
-    font-size: 15px;
-    font-weight: 700;
-    text-transform: uppercase;
-    border-radius: 2px;
-    padding: 10px 20px;
-    width: 100%;
-    border: 1px solid transparent;
-    cursor: pointer;
-    
+    .razorpay-payment-button {
+        background: #d7d8d9;
+        color: #fff;
+        letter-spacing: 0.5px;
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 2px;
+        padding: 10px 20px;
+        width: 100%;
+        border: 1px solid transparent;
+        cursor: pointer;
+
     }
+
+
+    .coupon-box .radio-icon-div .radio-icon {
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        float: left;
+    }
+
+    .coupon-box .custom-title span {
+        padding: 2px 10px;
+        border-width: 2px;
+        border-style: dashed;
+    }
+
+    .radio-icon-div ul {
+        list-style: none;
+    }
+    
 </style>
 <!-- ========== PAGE TITLE ========== -->
 <div class="page-title gradient-overlay op5" style="background: url(images/breadcrumb.jpg); background-repeat: no-repeat;
@@ -56,28 +75,28 @@
                             <div id="booking-notification" class="notification"></div>
                             <h3 class="form-title">YOUR DETAILS</h3>
                             <div class="inner">
-                                
-                                    <!-- EMAIL -->
-                                    <div class="form-group">
-                                        <label for="">NAME</label>
-                                        <input class="form-control" name="name" placeholder="Your Name"
-                                            value="{{booking.user}}">
-                                    </div>
-                                    <!-- ROOM TYPE -->
-                                    <div class="form-group">
-                                        <label for="">EMAIL</label>
-                                        <input class="form-control" name="email" placeholder="Your Email Address"
-                                            value="{{booking.user.email}}">
-                                    </div>
-                                    <!-- DATE -->
-                                    <div class="form-group">
-                                        <label for="">PHONE</label>
-                                        <input class="form-control" name="phone" placeholder="Your Phone No"
-                                            value="{{booking.user.phone_number}}">
-                                    </div>
 
-                                    <!-- BOOKING BUTTON -->
-                                    <!-- <button type="submit" class="btn btn-dark btn-fw mt20 mb20">PAY NOW</button> -->
+                                <!-- EMAIL -->
+                                <div class="form-group">
+                                    <label for="">NAME</label>
+                                    <input class="form-control" name="name" placeholder="Your Name"
+                                        value="{{booking.user}}">
+                                </div>
+                                <!-- ROOM TYPE -->
+                                <div class="form-group">
+                                    <label for="">EMAIL</label>
+                                    <input class="form-control" name="email" placeholder="Your Email Address"
+                                        value="{{booking.user.email}}">
+                                </div>
+                                <!-- DATE -->
+                                <div class="form-group">
+                                    <label for="">PHONE</label>
+                                    <input class="form-control" name="phone" placeholder="Your Phone No"
+                                        value="{{booking.user.phone_number}}">
+                                </div>
+
+                                <!-- BOOKING BUTTON -->
+                                <!-- <button type="submit" class="btn btn-dark btn-fw mt20 mb20">PAY NOW</button> -->
 
                             </div>
                         </div>
@@ -94,18 +113,22 @@
                                 <!-- EMAIL -->
                                 <a href="{% url 'paypal' %}" class="btn btn-gray btn-fw mt20 mb20">PAYPAL</a>
                                 <!-- BOOKING BUTTON -->
-                                <form class="text-center border border-light p-5" style="padding: 0px !important;" action="success" method="POST">
-                                    {% csrf_token %}                           
+                                <form class="text-center border border-light p-5" style="padding: 0px !important;"
+                                    action="success" method="POST">
+                                    {% csrf_token %}
                                     <!-- RAZORPAY INTEGRATION HERE -->
-                                    <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_4IGtVl9xeiuWPZ"
-                                        data-amount="{{totalamount}}" data-currency="INR" data-order_id="{{payment.id}}" data-buttontext="Pay with Razorpay"
-                                        data-name="Home to Home" data-description="Book your perfect room."
-                                        data-image="https://example.com/your_logo.jpg" data-prefill.name="H2H" data-prefill.email="user@gmail.com"
-                                        data-theme.color="#F37254">
-                                    </script>
+                                    <script src="https://checkout.razorpay.com/v1/checkout.js"
+                                        data-key="rzp_test_4IGtVl9xeiuWPZ" data-amount="{{razamt}}"
+                                        data-currency="INR" data-order_id="{{payment.id}}"
+                                        data-buttontext="Pay with Razorpay" data-name="Home to Home"
+                                        data-description="Book your perfect room."
+                                        data-image="https://example.com/your_logo.jpg" data-prefill.name="H2H"
+                                        data-prefill.email="user@gmail.com" data-theme.color="#F37254">
+                                        </script>
                                     <!-- <input type="submit" value="Pay with Razorpay" class="razorpay-payment-button"> -->
                                 </form>
-                                <a href="{% url 'paymentsuccess' %}" class="btn btn-gray btn-fw mt20 mb20">PAY AT HOTEL</a>
+                                <a href="{% url 'paymentsuccess' %}" class="btn btn-gray btn-fw mt20 mb20">PAY AT
+                                    HOTEL</a>
                             </div>
                         </div>
                     </aside>
@@ -127,86 +150,72 @@
                     <aside class="widget noborder">
                         <div class="vertical-booking-form">
                             <div id="booking-notification" class="notification"></div>
-                            <h3 class="form-title">BOOK YOUR ROOM</h3>
-                            <div class="inner">
-                                <div class="col-lg-4">
-                                    <figure class="gradient-overlay-hover link-icon">
-                                        <a href="room.html"><img src="{{booking.hotel.img.url}}" class="img-fluid"
-                                                alt="Image"></a>
-                                    </figure>
-                                </div>
-                                <div>{{totalamount}}</div> 
-                                {% if usedcoupon != None %}
-                                <div>used coupon {{usedcoupon}} <a href="{% url 'remove_coupon' %}"> <button>
-                                    remove
-                                {%  endif %}
-                                </button></a> </div>                   
-                            </div>
-                        </div>
-                    </aside>
-                    <aside class="widget noborder">
-                        <div class="vertical-booking-form">
-                            <div id="booking-notification" class="notification"></div>
-                            <div class="inner">
-                                <div class="col-lg-12">
-                                    <form action="{% url 'apply_coupon' %}" method="POST">
-                                        {% csrf_token %}
-                                        <label for="">ENTER COUPON</label>
-                                        <input type="text" name="code" placeholder="Enter Your Coupon Code">
-                                        <input type="submit" value="APPLY">
-                                    </form>
-                                    {% if messages %}
-                                        <div class="text-center">
-                                            <div class="col-12 mt-3">
-
-                                                {% for message in messages %}
-                                                {% if message.tags == 'error' %}
-                                                <div class="alert alert-danger ">{{message}}</div>
-                                                {% else%}
-                                                <div class="alert alert-{{message.tags}}">{{message}}</div>
-                                                {% endif %}
-                                                {% endfor %}
-
-                                            </div>
+                            <div class="inner row">
+                                <div class="col-lg-12 ">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <h1>{{booking.hotel.name}}</h1>
                                         </div>
-                                    {% endif %}
-                                    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            {% for i in coupon %}
-            {{i.coupon_code}}
-            <form action="{% url 'apply_coupon' %}">
-                <input value="Apply"  type="submit">
-            </form>
-
-
-            {% endfor %}
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-                                    
+                                        <div class="col-4">
+                                            <figure class="gradient-overlay-hover link-icon">
+                                                <a href="room.html"><img src="{{booking.hotel.img.url}}" class="img-fluid" alt="Image"></a>
+                                            </figure>
+                                        </div>
+                                    </div>
                                 </div>
-                                                   
+
+                                <div class="col-12">
+                                    <hr>
+                                    <div class=" col-12 d-flex">
+
+                                        <p><i class="fa fa-fw" aria-hidden="true" title="Copy to use calendar"></i></p>
+                                        <p>{{booking.start_date}}&nbsp;&nbsp;-</p>&nbsp;&nbsp;
+                                        <p>{{booking.end_date}}</p>
+
+                                    </div>
+                                    <hr>
+                                    <div class="col-lg-12">
+                                        <p>Room Price {{fullamount}}</p>
+                                        <p>Total Discount - {{discountamt}}</p>
+
+
+                                    </div>
+
+                                    <div class="col-lg-12"> <b> Payable Amount {{totalamount}}</b></div>
+                                    
+
+                                </div>
+                                <div class="col-lg-12">
+
+                                    <!-- {% if messages %}
+                                    <div class="text-center">
+                                        <div class="col-12 mt-3">
+                                            {% for message in messages %}
+                                            {% if message.tags == 'error' %}
+                                            <div class="alert alert-danger ">{{message}}</div>
+                                            {% else%}
+                                            <div class="alert alert-{{message.tags}}">{{message}}</div>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    {% endif %} -->
+                                    <div class="col-12">
+                                        {% if usedcoupon != None %}
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            <strong>Coupon Applied</strong> {{usedcoupon}}
+                                            <a class="close" href="{% url 'remove_coupon' %}">
+                                              <span aria-hidden="true">&times;</span>
+                                            </a>
+                                          </div>
+                                          {% endif %}
+                                    </div>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModalCenter">
+                                        View Coupons
+                                    </button>                                   
+                                </div>
                             </div>
                         </div>
                     </aside>
@@ -216,7 +225,56 @@
     </div>
 </main>
 
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Available Coupons</h5>
+            <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="coupon-box">
+                {% for i in coupon %}
+                <form action="{% url 'apply_coupon' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="radio-icon-div">
+                        <div class="radio-icon">
+                            <input type="radio" value="{{i.coupon_code}}"
+                                name="code">
+                            <label class="radio-style" for="radio"></label>
+                        </div>
+                        <div class="radio-label-text">
+                            <div class="row flex-column">
+                                <h3 class="custom-title">
+                                    <span>{{i.coupon_code}}</span>
+                                </h3>
+                                <h5 class="custom-desc">
+                                    <ul>
+                                        <li class="coupon-description">{{i.discount}}% off
+                                            on selected items</li>
+                                        <li class="coupons-description">{{i.description}}</li>
+                                    </ul>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+                data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Apply Coupons</button>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
 
 
 

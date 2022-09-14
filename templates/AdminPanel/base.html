@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	
 
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,6 +69,14 @@
 	
 </head>
 <body>
+	<script>
+		jQuery(document).ready(function(){
+			setTimeout(function(){
+				dezSettingsOptions.version = 'dark';
+				new dezSettings(dezSettingsOptions);
+			},1500)
+		});
+	</script>
     <!--*******************
         Preloader start
     ********************-->
@@ -1012,14 +1021,7 @@
 	<script src="{% static 'admin/js/plugins-init/datatables.init.js' %}"></script>
 	<script defer src="https://cdn.crop.guide/loader/l.js?c=DRPXBB"></script>
 		
-    <!-- <script>
-		jQuery(document).ready(function(){
-			setTimeout(function(){
-				dezSettingsOptions.version = 'dark';
-				new dezSettings(dezSettingsOptions);
-			},1500)
-		});
-	</script> -->
+    
 	<script>
 		$(function () {
 			$('#datetimepicker').datetimepicker({
@@ -1046,9 +1048,7 @@
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Cancel Booking'
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire(

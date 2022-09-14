@@ -38,9 +38,16 @@ class Rooms(models.Model):
     img=models.ImageField(upload_to="media/",default=True)
     room_count = models.IntegerField(default=10)
     discount_price=models.IntegerField(null=True)
+    discount_percentage=models.IntegerField(null=True)
 
     def __str__(self):
         return self.name
+       
+    def reduced_price(self):
+        return self.price - self.discount_price
+
+
+
 
 class Category_offer(models.Model):
     category=models.ForeignKey(Categories,on_delete=models.CASCADE)
@@ -79,8 +86,11 @@ class HotelBookings(models.Model):
 
 class Coupons(models.Model):
     coupon_code=models.CharField(max_length=100)
+    description=models.CharField(max_length=100,null=True)
     valid_from=models.DateField(auto_now=True)
     valid_to=models.DateField(null=True)
+    min_amount=models.IntegerField(null=True)
+    max_amount=models.IntegerField(null=True)
     discount=models.IntegerField(null=True)
     active=models.BooleanField(default=True)
 
@@ -88,6 +98,7 @@ class Coupons(models.Model):
 class Couponstatus(models.Model):
     user=models.ForeignKey(Account,on_delete=models.CASCADE,null=True)
     couponsid=models.ForeignKey(Coupons,on_delete=models.CASCADE,null=True)
+    status=models.BooleanField(default=False)
  
 
 
