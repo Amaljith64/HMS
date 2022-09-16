@@ -18,13 +18,16 @@
 							<div class="card-tabs mt-3 mt-sm-0 mb-xxl-0 mb-4">
 								<ul class="nav nav-tabs" role="tablist">
 									<li class="nav-item">
-										<a class="nav-link active" data-bs-toggle="tab" href="#All" role="tab">All Guest (216)</a>
+										<a class="nav-link active" data-bs-toggle="tab" href="#All" role="tab">All Booking (216)</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" data-bs-toggle="tab" href="#Pending" role="tab">Pending</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" data-bs-toggle="tab" href="#Booked" role="tab">Booked</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" data-bs-toggle="tab" href="#CheckIn" role="tab">Checkin</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" data-bs-toggle="tab" href="#CheckOut" role="tab">Checkout</a>
@@ -56,12 +59,12 @@
 													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
 													</div>
 												</th>
-												<th>Guest</th>
-												<th>Date Order</th>
+												<th>Booked Room</th>
+												<th>Booked Date</th>
 												<th>Check In</th>
 												<th>Check Out</th>
-												<th>Special Request</th>
-												<th>Room Type</th>
+												<th>User</th>
+												<th>Location</th>
 												<th>Status</th>
 												<th class="bg-none"></th>
 											</tr>
@@ -79,7 +82,7 @@
 														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
 														<div>
 															<span class="text-primary">#BK-{{i.id}}</span>
-															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.user}}</a></h4>
+															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
 														</div>
 													</div>
 												</td>
@@ -101,7 +104,7 @@
 														<span class="fs-14">08:29 AM</span>
 													</div>
 												</td>
-												<td><h5>{{i.hotel}}</h5></td>
+												<td><h5>{{i.user}}</h5></td>
 												<td>
 													<div>
 														<h5>{{i.hotel.subcateg}}</h5>
@@ -156,12 +159,12 @@
 													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
 													</div>
 												</th>
-												<th>Guest</th>
-												<th>Date Order</th>
+												<th>Booked Room</th>
+												<th>Booked Date</th>
 												<th>Check In</th>
 												<th>Check Out</th>
-												<th>Special Request</th>
-												<th>Room Type</th>
+												<th>User</th>
+												<th>Location</th>
 												<th>Status</th>
 												<th class="bg-none"></th>
 											</tr>
@@ -179,7 +182,7 @@
 														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
 														<div>
 															<span class="text-primary">#BK-{{i.id}}</span>
-															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.user}}</a></h4>
+															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
 														</div>
 													</div>
 												</td>
@@ -201,7 +204,7 @@
 														<span class="fs-14">08:29 AM</span>
 													</div>
 												</td>
-												<td><h5>{{i.hotel}}</h5></td>
+												<td><h5>{{i.user}}</h5></td>
 												<td>
 													<div>
 														<h5>{{i.hotel.subcateg}}</h5>
@@ -250,12 +253,12 @@
 													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
 													</div>
 												</th>
-												<th>Guest</th>
-												<th>Date Order</th>
+												<th>Booked Room</th>
+												<th>Booked Date</th>
 												<th>Check In</th>
 												<th>Check Out</th>
-												<th>Special Request</th>
-												<th>Room Type</th>
+												<th>User</th>
+												<th>Location</th>
 												<th>Status</th>
 												<th class="bg-none"></th>
 											</tr>
@@ -270,10 +273,10 @@
 												</td>
 												<td>
 													<div class="media-bx">
-														<img class="me-3 rounded" src="images/avatar/1.jpg" alt="">
+														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
 														<div>
 															<span class="text-primary">#BK-{{i.id}}</span>
-															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.user}}</a></h4>
+															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
 														</div>
 													</div>
 												</td>
@@ -295,7 +298,7 @@
 														<span class="fs-14">08:29 AM</span>
 													</div>
 												</td>
-												<td><h5>{{i.hotel}}</h5></td>
+												<td><h5>{{i.user}}</h5></td>
 												<td>
 													<div>
 														<h5>{{i.hotel.subcateg}}</h5>
@@ -334,7 +337,7 @@
 									</table>	
 								</div>
 							</div>
-							<div class="tab-pane fade" id="CheckOut">
+							<div class="tab-pane fade" id="CheckIn">
 								<div class="table-responsive">
 									<table class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl " id="guestTable-all">
 										<thead>
@@ -344,18 +347,18 @@
 													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
 													</div>
 												</th>
-												<th>Guest</th>
-												<th>Date Order</th>
+												<th>Booked Room</th>
+												<th>Booked Date</th>
 												<th>Check In</th>
 												<th>Check Out</th>
-												<th>Special Request</th>
-												<th>Room Type</th>
+												<th>User</th>
+												<th>Location</th>
 												<th>Status</th>
 												<th class="bg-none"></th>
 											</tr>
 										</thead>
 										<tbody>
-											{% for i in checkout %}
+											{% for i in checkin %}
 											<tr>
 												<td>
 													<div class="form-check style-1">
@@ -364,10 +367,10 @@
 												</td>
 												<td>
 													<div class="media-bx">
-														<img class="me-3 rounded" src="images/avatar/1.jpg" alt="">
+														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
 														<div>
 															<span class="text-primary">#BK-{{i.id}}</span>
-															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.user}}</a></h4>
+															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
 														</div>
 													</div>
 												</td>
@@ -389,7 +392,101 @@
 														<span class="fs-14">08:29 AM</span>
 													</div>
 												</td>
-												<td><h5>{{i.hotel}}</h5></td>
+												<td><h5>{{i.user}}</h5></td>
+												<td>
+													<div>
+														<h5>{{i.hotel.subcateg}}</h5>
+														<span class="fs-14">Room No. 0024</span>
+													</div>
+												</td>
+												<!-- <td><span class="text-danger">{{i.status}}</span></td> -->
+
+												{% if i.status == "Pending" %}
+												<td><span class="text-warning">{{i.status}}</span></td>
+												{% endif %}
+												{% if i.status == 'Check-in' %}
+												<td><span class="text-success">{{i.status}}</span></td>
+												{% endif %}
+												{% if i.status == 'Check-out' %}
+												<td><span class="text-danger">{{i.status}}</span></td>
+												{% endif %}
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="javascript:void(0);">Edit</a>
+															<a class="dropdown-item" href="javascript:void(0);">Delete</a>
+														</div>
+													</div>
+												</td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>	
+								</div>
+							</div>
+							<div class="tab-pane fade" id="CheckOut">
+								<div class="table-responsive">
+									<table class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl " id="guestTable-all">
+										<thead>
+											<tr>
+												<th class="bg-none">
+													<div class="form-check style-1">
+													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
+													</div>
+												</th>
+												<th>Booked Room</th>
+												<th>Booked Date</th>
+												<th>Check In</th>
+												<th>Check Out</th>
+												<th>User</th>
+												<th>Location</th>
+												<th>Status</th>
+												<th class="bg-none"></th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for i in checkout %}
+											<tr>
+												<td>
+													<div class="form-check style-1">
+													  <input class="form-check-input" type="checkbox" value="">
+													</div>
+												</td>
+												<td>
+													<div class="media-bx">
+														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
+														<div>
+															<span class="text-primary">#BK-{{i.id}}</span>
+															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
+														</div>
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>Sunday, Oct 24th, 2020</h5>
+														<span class="fs-14">08:29 AM</span>
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>{{i.start_date}}</h5>
+														<span class="fs-14">08:29 AM</span>
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>{{i.end_date}}</h5>
+														<span class="fs-14">08:29 AM</span>
+													</div>
+												</td>
+												<td><h5>{{i.user}}</h5></td>
 												<td>
 													<div>
 														<h5>{{i.hotel.subcateg}}</h5>
@@ -438,12 +535,12 @@
 													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
 													</div>
 												</th>
-												<th>Guest</th>
-												<th>Date Order</th>
+												<th>Booked Room</th>
+												<th>Booked Date</th>
 												<th>Check In</th>
 												<th>Check Out</th>
-												<th>Special Request</th>
-												<th>Room Type</th>
+												<th>User</th>
+												<th>Location</th>
 												<th>Status</th>
 												<th class="bg-none"></th>
 											</tr>
@@ -458,10 +555,10 @@
 												</td>
 												<td>
 													<div class="media-bx">
-														<img class="me-3 rounded" src="images/avatar/1.jpg" alt="">
+														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
 														<div>
 															<span class="text-primary">#BK-{{i.id}}</span>
-															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.user}}</a></h4>
+															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
 														</div>
 													</div>
 												</td>
@@ -483,7 +580,7 @@
 														<span class="fs-14">08:29 AM</span>
 													</div>
 												</td>
-												<td><h5>{{i.hotel}}</h5></td>
+												<td><h5>{{i.user}}</h5></td>
 												<td>
 													<div>
 														<h5>{{i.hotel.subcateg}}</h5>
@@ -532,12 +629,12 @@
 													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
 													</div>
 												</th>
-												<th>Guest</th>
-												<th>Date Order</th>
+												<th>Booked Room</th>
+												<th>Booked Date</th>
 												<th>Check In</th>
 												<th>Check Out</th>
-												<th>Special Request</th>
-												<th>Room Type</th>
+												<th>User</th>
+												<th>Location</th>
 												<th>Status</th>
 												<th class="bg-none"></th>
 											</tr>
@@ -552,10 +649,10 @@
 												</td>
 												<td>
 													<div class="media-bx">
-														<img class="me-3 rounded" src="images/avatar/1.jpg" alt="">
+														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
 														<div>
 															<span class="text-primary">#BK-{{i.id}}</span>
-															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.user}}</a></h4>
+															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
 														</div>
 													</div>
 												</td>
@@ -577,7 +674,7 @@
 														<span class="fs-14">08:29 AM</span>
 													</div>
 												</td>
-												<td><h5>{{i.hotel}}</h5></td>
+												<td><h5>{{i.user}}</h5></td>
 												<td>
 													<div>
 														<h5>{{i.hotel.subcateg}}</h5>

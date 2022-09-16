@@ -1,7 +1,7 @@
 <div class="table-responsive" id="tasks" hx-confirm="Are you sure you want to delete this task?" hx-target="#tasks"
 	hx-swap="outerHTML">
 	<table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg "
-		id="guestTable-all">
+		id="guestTable-alll">
 		<thead>
 			<tr>
 				
@@ -9,7 +9,7 @@
 				<th>Location</th>
 				<th>Available</th>
 				<th>Description</th>
-				<th>Status</th>
+				<th>Price</th>
 				<th class="bg-none"></th>
 			</tr>
 		</thead>
@@ -39,7 +39,7 @@
 				</td>
 				<td>
 					<div>
-						<span class="fs-16">{{i.Desc}}</span>
+						<span class="fs-16">{{i.Desc|truncatechars:15}}</span>
 					</div>
 				</td>
 				<td>
@@ -66,8 +66,8 @@
 						</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="{% url 'editroom' i.id  %}">Edit</a>
-							<a class="btn btn-xs btn-danger btn-flat show_confirm" type="button"
-								hx-delete="{% url 'deleteroom' i.id  %}" data-toggle="tooltip" title='Delete'>Delete</a>
+							<a class="dropdown-item show_confirm" 
+								hx-delete="{% url 'deleteroom' i.id  %}">Delete</a>
 							<!-- <a class="dropdown-item" href="{% url 'deleteroom' i.id  %}">Delete</a> -->
 						</div>
 					</div>

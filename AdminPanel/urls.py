@@ -12,6 +12,7 @@ urlpatterns = [
     path('editroom/<int:id>',views.editroom,name='editroom'),
     path('delete/<int:id>',views.deleteroom,name='deleteroom'),
     path('category',views.category,name='category'),
+    path('editcategory/<int:id>',views.edit_category,name='editcategory'),
     path('subcategory',views.subcategory,name='subcategory'),
     path('bookings',views.bookings,name='bookings'),
     path('coupons',views.add_coupons,name='coupons'),

@@ -5,7 +5,7 @@ from django.db import models
 from django.shortcuts import render, redirect
 from django.conf import settings
 from AdminPanel.models import *
-from .models import PaymentClass
+from .models import *
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404, reverse
 import razorpay
 from django.views.decorators.csrf import csrf_exempt
@@ -49,6 +49,9 @@ def success(request):
     print(roomamount)
     
     order = get_object_or_404(HotelBookings, id=order_id)
+    order.is_booked=True
+    order.status="Checkin Pending"
+    order.save()
     payment_id_generated = str(
         int(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
     methodofpayment = "Razorpay"
@@ -93,6 +96,9 @@ def payment_done(request):
         pass
     order_id = request.session.get('order_id')
     order = get_object_or_404(HotelBookings, id=order_id)
+    order.is_booked=True
+    order.status="Checkin Pending"
+    order.save()
     payment_id_generated = str(
         int(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
     methodofpayment = "Paypal"
@@ -122,7 +128,10 @@ def payment_canceled(request):
 def paymentsuccess(request):
     roomamount = request.session['amount']
     order_id = request.session.get('order_id')
-    order = get_object_or_404(HotelBookings, id=order_id)   
+    order = get_object_or_404(HotelBookings, id=order_id) 
+    order.is_booked=True
+    order.status="Checkin Pending"
+    order.save()
     payment_id_generated = str(
         int(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
     methodofpayment = "Pay At Hotel"
@@ -201,3 +210,82 @@ def remove_coupon(request):
     request.session['coupon'] = None
     messages.success(request, "Coupon Removed")
     return redirect(paymentfun, id)
+
+
+
+# def UseWallet(request):
+#     if request.method=='POST':
+#         wallet_balance_add=WalletDetails.objects.get(user=request.user)
+#         getwallet=Wallet.objects.create(user=request.user)
+#         walletbalance=int(wallet_balance_add.balance)
+       
+#         alltotal=request.session['Totalamount']
+#         print(alltotal,'alltotallllllllllllllllllll')
+#         calculation=alltotal
+#         if walletbalance>=alltotal:
+#             print(wallet_balance_add.balance,'walletbalance...............')
+           
+#             request.session['amountfromwallet']=alltotal
+#             request.session['Totalamount']=0
+#             request.session['wallet']= 'used'
+
+#         else:
+#             alltotal-=wallet_balance_add.balance
+#             request.session['Totalamount']=alltotal
+#             request.session['amountfromwallet']=wallet_balance_add.balance
+#             request.session['wallet']= 'partiallyused'
+            
+#     return redirect(add_address)
+
+# def remove_wallet(request):
+
+#     alltotal=request.session['Totalamount']
+#     wallet_amount=request.session['amountfromwallet']
+#     request.session['Totalamount']=alltotal+wallet_amount
+#     request.session['wallet']= None
+
+#     return redirect(add_address)
+
+# # ----------------------- CashonDelivery paymentMethod ----------------------- #
+
+# def WalletPayment(request):
+#     user = request.user
+#     cart_itemsid=Cart.objects.get(cart_id=create_cart_id(request))
+#     cartlist_items=Cart_Products.objects.filter(cart=cart_itemsid,is_active=True)
+#     cart_itemcount = cartlist_items.count()
+#     wallet_balance_add=WalletDetails.objects.get(user=request.user)
+#     getwallet=Wallet.objects.create(user=request.user)
+#     walletbalance=int(wallet_balance_add.balance)
+#     print(cart_itemcount)
+#     if request.user.is_authenticated:
+#         total=0
+#         quantity=0
+#         count=0
+#         rawtotal=0
+#         for i in cartlist_items:
+#                 if i.product.discount_price>0:
+#                     total+=(i.product.discount_price*i.quantity)
+#                     count+=i.quantity
+#                 else:
+#                     total+=(i.product.price*i.quantity)
+#                     count+=i.quantity
+#                 rawtotal+=(i.product.price*i.quantity) 
+#         print(rawtotal)#without discount    
+#         subtotal=total
+#         print('after discount')
+#         print(subtotal)#with discount
+#         tax = (2 * subtotal)/100
+#         # alltotal=tax+subtotal#after having tax
+#         alltotal=request.session['Totalamount']
+#         walletamount=request.session['amountfromwallet']
+      
+
+
+#         walletamount=request.session['amountfromwallet']
+#         wallet_balance_add.balance-=walletamount
+#         print(wallet_balance_add.balance,'afterwalletbalance...............')
+#         wallet_balance_add.save()
+#         getwallet.decription_amount="debited for purchasing"
+#         getwallet.amount=walletamount
+#         getwallet.save()
+#         return redirect(orderConfirmed)

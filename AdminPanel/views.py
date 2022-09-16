@@ -135,6 +135,20 @@ def category(request):
 
 
 
+def edit_category(request,id):
+    to_edit=Categories.objects.get(id=id)
+    if request.method =='POST':
+        title=request.POST['title']
+        description=request.POST['description']
+        edit=Categories.objects.get(id=id)
+        edit.title=title
+        edit.description=description
+        edit.save()
+        return redirect(category)
+    return render(request,'AdminPanel/xml-category.html',{'toedit':to_edit})
+
+
+
 def CategoryOffer(request):
     offers=Category_offer.objects.all()
     CategoryObj=Categories.objects.all()
@@ -501,4 +515,4 @@ def date_range(request):
     return render (request,"AdminPanel/bookingreport.html",context)
 
 
-  
+        
