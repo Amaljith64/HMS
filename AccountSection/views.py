@@ -10,17 +10,23 @@ from django.http import HttpResponse
 from AdminPanel.models import *
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import date
+from Payments.models import *
 
 # Create your views here.
 
 
 def register(request):
+    referredPerson=None
+    code_reffered=None
     if request.method == 'POST':
         username = request.POST["username"]
         email = request.POST["email"]
         phone_number = request.POST["phone_number"]
         password1 = request.POST["password1"]
         password2 = request.POST["password2"]
+        codepattern=username
+        referral_code=codepattern.upper()+"REFERRAL"+"500"
+        print(referral_code,'referal code')
         if password1 != "":
             if password1 == password2:
                 if username == "":
@@ -35,6 +41,7 @@ def register(request):
                 elif phone_number == "":
                     messages.error(request, "phone field is empty")
                     return redirect(register)
+                
 
                 user = Account.objects.create_user(
                     username=username,
@@ -42,7 +49,43 @@ def register(request):
                     email=email,
                     phone_number=phone_number,
                 )
+                
+                createdwallet=Wallet.objects.create(user=user,amount=0,decription_amount="Wallet Created")
+                WalletDetails.objects.create(user=user,balance=0,wallet=createdwallet)
+                wallet=WalletDetails.objects.get(user=user)
+                messages.success(request,'Wallet Created')
+                try:                   
+                    code_reffered=request.POST["referral_code"]
+                    referredPerson=Account.objects.get(referral_code__iexact=code_reffered)
+                    if referredPerson != None:
+                        try:
+                            wallet_balance_add=WalletDetails.objects.get(user=referredPerson)
+                            wallet_balance_add.balance+=500         
+                            wallet_balance_add.save()
+                            getwallet=Wallet.objects.create(user=referredPerson)
+                            getwallet.user=referredPerson
+                            getwallet.amount=500
+                            getwallet.decription_amount="Referral Bonus Credited"
+                            getwallet.save()
+                            user.ref_active=True
+                            print('credited to wallet')
+                            messages.success(request,'Refferral applied')
+                            createdwallet=Wallet.objects.create(user=user,amount=500,decription_amount="Referral Bonus")
+                            wallet.balance=500
+                            wallet.save()                           
+                        except:
+                            pass
+                    else:
+                        messages.error(request,"enter the correct refferral code")
+                except:
+                    pass
+                
+
+                user.code_reffered=code_reffered
+                user.referral_code=referral_code
+                
                 user.save()
+                
 
 # ----------------------OTP REGISTERATION-------------------------#
 

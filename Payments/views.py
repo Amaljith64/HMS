@@ -1,4 +1,5 @@
 from http.client import HTTPResponse
+from multiprocessing import context
 from django.contrib import messages
 from django.http import HttpResponse
 from django.db import models
@@ -20,25 +21,35 @@ def paymentfun(request, id):
     coupon = Coupons.objects.all()
     global booking
     booking = HotelBookings.objects.get(id=id)
-    fullamount=request.session['fullamount']
+    fullamount = request.session['fullamount']
     roomamount = request.session['amount']
-    discountamt=fullamount-roomamount
-    razamt=roomamount*100
+    discountamt = fullamount-roomamount
+    razamt = roomamount*100
+    wallet = WalletDetails.objects.get(user=request.user)
+    wallet_status=request.session['wallet']
+    wallet_amount=request.session['amountfromwallet']
 
     # coupondis=discountamt-totalamount
-
-    user = request.user
     if request.method == "POST":
         client = razorpay.Client(
             auth=("rzp_test_EHJnISgTdTzYsc", "FPEocjz0VBuibVylwibhSwpX"))
         payment = client.order.create(
-            {'amount':razamt, 'currency': 'INR', 'payment_capture': '1'})
+            {'amount': razamt, 'currency': 'INR', 'payment_capture': '1'})
         print(payment)
     usedcoupon = request.session['coupon']
 
-    return render(request, 'UserHome/payment.html', {'booking': booking, 'totalamount': roomamount, 'coupon': coupon, 
-    'usedcoupon': usedcoupon,'fullamount':fullamount,
-    'discountamt':discountamt,'razamt':razamt})
+    context = {'booking': booking,
+               'totalamount': roomamount,
+               'coupon': coupon,
+               'usedcoupon': usedcoupon,
+               'fullamount': fullamount,
+               'discountamt': discountamt,
+               'razamt': razamt,
+               'wallet': wallet,
+               'wallet_status':wallet_status,
+               'wallet_amount':wallet_amount}
+
+    return render(request, 'UserHome/payment.html', context)
 
 
 @csrf_exempt
@@ -47,10 +58,10 @@ def success(request):
     print(order_id)
     roomamount = request.session['amount']
     print(roomamount)
-    
+
     order = get_object_or_404(HotelBookings, id=order_id)
-    order.is_booked=True
-    order.status="Checkin Pending"
+    order.is_booked = True
+    order.status = "Checkin Pending"
     order.save()
     payment_id_generated = str(
         int(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
@@ -96,8 +107,8 @@ def payment_done(request):
         pass
     order_id = request.session.get('order_id')
     order = get_object_or_404(HotelBookings, id=order_id)
-    order.is_booked=True
-    order.status="Checkin Pending"
+    order.is_booked = True
+    order.status = "Checkin Pending"
     order.save()
     payment_id_generated = str(
         int(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
@@ -128,9 +139,9 @@ def payment_canceled(request):
 def paymentsuccess(request):
     roomamount = request.session['amount']
     order_id = request.session.get('order_id')
-    order = get_object_or_404(HotelBookings, id=order_id) 
-    order.is_booked=True
-    order.status="Checkin Pending"
+    order = get_object_or_404(HotelBookings, id=order_id)
+    order.is_booked = True
+    order.status = "Checkin Pending"
     order.save()
     payment_id_generated = str(
         int(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
@@ -212,80 +223,74 @@ def remove_coupon(request):
     return redirect(paymentfun, id)
 
 
+def UseWallet(request):
+    id = booking.id
+    if request.method == 'POST':
+        wallet_balance_add = WalletDetails.objects.get(user=request.user)
 
-# def UseWallet(request):
-#     if request.method=='POST':
-#         wallet_balance_add=WalletDetails.objects.get(user=request.user)
-#         getwallet=Wallet.objects.create(user=request.user)
-#         walletbalance=int(wallet_balance_add.balance)
-       
-#         alltotal=request.session['Totalamount']
-#         print(alltotal,'alltotallllllllllllllllllll')
-#         calculation=alltotal
-#         if walletbalance>=alltotal:
-#             print(wallet_balance_add.balance,'walletbalance...............')
-           
-#             request.session['amountfromwallet']=alltotal
-#             request.session['Totalamount']=0
-#             request.session['wallet']= 'used'
+        alltotal = request.session['amount']
+        print(alltotal, 'alltotal')
 
-#         else:
-#             alltotal-=wallet_balance_add.balance
-#             request.session['Totalamount']=alltotal
-#             request.session['amountfromwallet']=wallet_balance_add.balance
-#             request.session['wallet']= 'partiallyused'
-            
-#     return redirect(add_address)
+        if wallet_balance_add.balance >= alltotal:
+            print(wallet_balance_add.balance, 'walletbalance...............')
 
-# def remove_wallet(request):
+            request.session['amountfromwallet'] = alltotal
+            request.session['amount'] = 0
+            request.session['wallet'] = 'used'
 
-#     alltotal=request.session['Totalamount']
-#     wallet_amount=request.session['amountfromwallet']
-#     request.session['Totalamount']=alltotal+wallet_amount
-#     request.session['wallet']= None
+        else:
+            alltotal -= wallet_balance_add.balance
+            request.session['amount'] = alltotal
+            request.session['amountfromwallet'] = wallet_balance_add.balance
+            request.session['wallet'] = 'partiallyused'
 
-#     return redirect(add_address)
-
-# # ----------------------- CashonDelivery paymentMethod ----------------------- #
-
-# def WalletPayment(request):
-#     user = request.user
-#     cart_itemsid=Cart.objects.get(cart_id=create_cart_id(request))
-#     cartlist_items=Cart_Products.objects.filter(cart=cart_itemsid,is_active=True)
-#     cart_itemcount = cartlist_items.count()
-#     wallet_balance_add=WalletDetails.objects.get(user=request.user)
-#     getwallet=Wallet.objects.create(user=request.user)
-#     walletbalance=int(wallet_balance_add.balance)
-#     print(cart_itemcount)
-#     if request.user.is_authenticated:
-#         total=0
-#         quantity=0
-#         count=0
-#         rawtotal=0
-#         for i in cartlist_items:
-#                 if i.product.discount_price>0:
-#                     total+=(i.product.discount_price*i.quantity)
-#                     count+=i.quantity
-#                 else:
-#                     total+=(i.product.price*i.quantity)
-#                     count+=i.quantity
-#                 rawtotal+=(i.product.price*i.quantity) 
-#         print(rawtotal)#without discount    
-#         subtotal=total
-#         print('after discount')
-#         print(subtotal)#with discount
-#         tax = (2 * subtotal)/100
-#         # alltotal=tax+subtotal#after having tax
-#         alltotal=request.session['Totalamount']
-#         walletamount=request.session['amountfromwallet']
-      
+    return redirect(paymentfun, id)
 
 
-#         walletamount=request.session['amountfromwallet']
-#         wallet_balance_add.balance-=walletamount
-#         print(wallet_balance_add.balance,'afterwalletbalance...............')
-#         wallet_balance_add.save()
-#         getwallet.decription_amount="debited for purchasing"
-#         getwallet.amount=walletamount
-#         getwallet.save()
-#         return redirect(orderConfirmed)
+def remove_wallet(request):
+    id = booking.id
+
+    alltotal = request.session['amount']
+    wallet_amount = request.session['amountfromwallet']
+    request.session['amount'] = alltotal+wallet_amount
+    request.session['wallet'] = None
+
+    return redirect(paymentfun, id)
+
+
+def WalletPayment(request):
+    wallet_balance_add = WalletDetails.objects.get(user=request.user)
+    getwallet = Wallet.objects.create(user=request.user)
+
+    walletamount = request.session['amountfromwallet']
+    order_id = request.session.get('order_id')
+    order = get_object_or_404(HotelBookings, id=order_id)
+    order.is_booked = True
+    order.status = "Checkin Pending"
+    order.save()
+    payment_id_generated = str(
+        int(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
+    methodofpayment = "Wallet Payment"
+    status = "Booked"
+    pay = PaymentClass(user=request.user, booked_room=order, payment_id=payment_id_generated,
+                       payment_method=methodofpayment, total_amount=walletamount, status=status)
+    pay.save()
+
+    try:
+        couponid = request.session['couponid']
+        print(couponid, 'cccccccccccoooooooooouuuuuupppppppoonnnnnnnn')
+        coupon_status = Couponstatus.objects.get(id=couponid)
+        coupon_status.status = True
+        coupon_status.save()
+    except:
+        pass
+
+    walletamount = request.session['amountfromwallet']
+    wallet_balance_add.balance -= walletamount
+    print(wallet_balance_add.balance, 'afterwalletbalance...............')
+    wallet_balance_add.save()
+    getwallet.decription_amount = "debited"
+    getwallet.amount = walletamount
+    getwallet.save()
+
+    return render(request, 'success.html')

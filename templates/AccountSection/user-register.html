@@ -52,6 +52,10 @@
                                             <input id="phone_number" type="text" name="phone_number" class="form-control" placeholder="phone-number">
                                         </div>
                                         <div class="mb-3">
+                                            <label class="mb-1"><strong>Enter Referal Code</strong></label>
+                                            <input  type="text" name="referral_code" class="form-control" placeholder="Enter referral Code">
+                                        </div>
+                                        <div class="mb-3">
                                             <label class="mb-1"><strong>Password</strong></label>
                                             <input type="password" name="password1" class="form-control" placeholder="enter password">
                                         </div>
@@ -79,9 +83,7 @@
                                         </div>
                                         {% endif %}
                                     <div class="new-account mt-3">
-                                        <p>Already have an account? <a class="text-primary" href="{% url 'signin' %}">Sign in</a></p>
-                                        
-                                        
+                                        <p>Already have an account? <a class="text-primary" href="{% url 'signin' %}">Sign in</a></p>                                                                            
                                     </div>
                                 </div>
                             </div>

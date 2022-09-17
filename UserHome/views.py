@@ -179,6 +179,8 @@ def find_total_room_charge(check_in, check_out, price):
 def hotel_detail(request, id):
     room = Rooms.objects.get(id=id)
     images=MultiImage.objects.filter(imageof=id)
+    request.session['wallet']=None
+    request.session['amountfromwallet']=0
     if request.method == 'POST':
         checkin = request.POST.get('checkin')
         checkout = request.POST.get('checkout')

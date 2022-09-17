@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,8 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ba37dg4gia(g=21rc)z=u$+_$@c3zrzo=dfbvb_nyf^-*qnuiz'
-
+SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -139,20 +142,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-PAYPAL_RECEIVER_EMAIL = 'business2001@gmail.com'
+PAYPAL_RECEIVER_EMAIL = env('PAYPAL_RECEIVER_EMAIL')
 
 PAYPAL_TEST = True
 
 
 
 # original
-RAZOR_KEY_ID='rzp_test_EHJnISgTdTzYsc'
-RAZOR_KEY_SECRET='FPEocjz0VBuibVylwibhSwpX'
+RAZOR_KEY_ID=env('PAYPAL_RECEIVER_EMAIL')
+RAZOR_KEY_SECRET=env('RAZOR_KEY_SECRET')
 
 
 
-ACCOUNT_SID ='AC732ed94be97467f2c739768f179a0654'
-AUTH_TOKEN ='55494a74b6ab52cb965a2f5a46524902'
-SERVICE_ID='VA94dda779fbb91f317e51c9185d4f3fb8'
+ACCOUNT_SID =env('ACCOUNT_SID')
+AUTH_TOKEN =env('AUTH_TOKEN')
+SERVICE_ID=env('SERVICE_ID')
 COUNTRY_CODE='+91'
-TWILIO_PHONE_NUMBER='+16413296602'
+TWILIO_PHONE_NUMBER=env('TWILIO_PHONE_NUMBER')

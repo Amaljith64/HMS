@@ -53,6 +53,9 @@ class Account(AbstractBaseUser):
     phone_number      = models.CharField(max_length=50)
     membership_plan   = models.CharField(max_length=50, null=True, blank=True)
     membership_active = models.BooleanField(default=False ,null = True)
+    referral_code   = models.CharField(max_length=50, null=True, blank=True)
+    ref_active      = models.BooleanField(default=False ,null = True)
+    code_reffered   = models.CharField(max_length=50, null=True, blank=True)
  
     #Required fields
 

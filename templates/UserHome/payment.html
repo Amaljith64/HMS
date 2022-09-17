@@ -109,6 +109,9 @@
                         <div class="vertical-booking-form">
                             <div id="booking-notification" class="notification"></div>
                             <h3 class="form-title">CHOOSE PAYMENT</h3>
+                            {% if wallet_status == None %}
+
+
                             <div class="inner">
                                 <!-- EMAIL -->
                                 <a href="{% url 'paypal' %}" class="btn btn-gray btn-fw mt20 mb20">PAYPAL</a>
@@ -130,6 +133,40 @@
                                 <a href="{% url 'paymentsuccess' %}" class="btn btn-gray btn-fw mt20 mb20">PAY AT
                                     HOTEL</a>
                             </div>
+
+
+
+                            
+                            {% elif wallet_status == 'partiallyused' %}
+                            <div class="inner">
+                                <!-- EMAIL -->
+                                <a href="{% url 'paypal' %}" class="btn btn-gray btn-fw mt20 mb20">PAYPAL</a>
+                                <!-- BOOKING BUTTON -->
+                                <form class="text-center border border-light p-5" style="padding: 0px !important;"
+                                    action="success" method="POST">
+                                    {% csrf_token %}
+                                    <!-- RAZORPAY INTEGRATION HERE -->
+                                    <script src="https://checkout.razorpay.com/v1/checkout.js"
+                                        data-key="rzp_test_4IGtVl9xeiuWPZ" data-amount="{{razamt}}"
+                                        data-currency="INR" data-order_id="{{payment.id}}"
+                                        data-buttontext="Pay with Razorpay" data-name="Home to Home"
+                                        data-description="Book your perfect room."
+                                        data-image="https://example.com/your_logo.jpg" data-prefill.name="H2H"
+                                        data-prefill.email="user@gmail.com" data-theme.color="#F37254">
+                                    </script>
+                                    <!-- <input type="submit" value="Pay with Razorpay" class="razorpay-payment-button"> -->
+                                </form>
+                            
+                            </div>
+                            
+                            {% elif wallet_status == 'used' %}
+
+                            <div class="inner">
+                                <!-- EMAIL -->
+                                <a href="{% url 'paypal' %}" class="btn btn-gray btn-fw mt20 mb20">Book Now</a>
+                            </div>
+                            
+                            {% endif %}
                         </div>
                     </aside>
 
@@ -184,22 +221,32 @@
                                     <div class="col-lg-12"> <b> Payable Amount {{totalamount}}</b></div>
                                     
 
+                                    
+
                                 </div>
                                 <div class="col-lg-12">
+                                    {% if wallet_status == None %}
 
-                                    <!-- {% if messages %}
-                                    <div class="text-center">
-                                        <div class="col-12 mt-3">
-                                            {% for message in messages %}
-                                            {% if message.tags == 'error' %}
-                                            <div class="alert alert-danger ">{{message}}</div>
-                                            {% else%}
-                                            <div class="alert alert-{{message.tags}}">{{message}}</div>
-                                            {% endif %}
-                                            {% endfor %}
+                                    <div class="col-lg-12 d-flex"> 
+                                        <form action="{% url 'UseWallet' %}" method="POST">
+                                            {% csrf_token %}
+                                        <b> Available Wallet Balance {{wallet.balance}}</b>
+                                        <button type="submit" class="btn btn-primary">Use Wallet</button>
+                                        </form>
+                                    </div>
+
+                                    {% else %}
+                                    <div class="col-12">
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            <strong>Wallet Amount applied</strong> {{wallet_amount}}
+                                            <a class="close" href="{% url 'remove_wallet' %}">
+                                              <span aria-hidden="true">&times;</span>
+                                            </a>
                                         </div>
                                     </div>
-                                    {% endif %} -->
+                                    
+                                    
+                                    {% endif %}
                                     <div class="col-12">
                                         {% if usedcoupon != None %}
                                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
