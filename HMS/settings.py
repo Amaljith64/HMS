@@ -17,6 +17,7 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -88,9 +89,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'HMS',
-        'USER':'postgres',
-        'PASSWORD':'11111',
-        'HOST':'localhost',
+        'USER': 'postgres',
+        'PASSWORD': '11111',
+        'HOST': 'localhost',
     }
 }
 
@@ -130,10 +131,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-MEDIA_ROOT=os.path.join(BASE_DIR,'media')
-MEDIA_URL='/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -141,21 +142,18 @@ MEDIA_URL='/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
-PAYPAL_RECEIVER_EMAIL = env('PAYPAL_RECEIVER_EMAIL')
+PAYPAL_RECEIVER_EMAIL = env("PAYPAL_RECEIVER_EMAIL")
 
 PAYPAL_TEST = True
 
 
-
 # original
-RAZOR_KEY_ID=env('PAYPAL_RECEIVER_EMAIL')
-RAZOR_KEY_SECRET=env('RAZOR_KEY_SECRET')
+RAZOR_KEY_ID = env("RAZOR_KEY_ID")
+RAZOR_KEY_SECRET = env("RAZOR_KEY_SECRET")
 
 
-
-ACCOUNT_SID =env('ACCOUNT_SID')
-AUTH_TOKEN =env('AUTH_TOKEN')
-SERVICE_ID=env('SERVICE_ID')
-COUNTRY_CODE='+91'
-TWILIO_PHONE_NUMBER=env('TWILIO_PHONE_NUMBER')
+ACCOUNT_SID = env("ACCOUNT_SID")
+AUTH_TOKEN = env("AUTH_TOKEN")
+SERVICE_ID = env("SERVICE_ID")
+COUNTRY_CODE = '+91'
+TWILIO_PHONE_NUMBER = env('TWILIO_PHONE_NUMBER')
