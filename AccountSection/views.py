@@ -35,6 +35,9 @@ def register(request):
                 elif Account.objects.filter(username=username):
                     messages.error(request, "username exits")
                     return redirect(register)
+                elif Account.objects.filter(email=email):
+                    messages.error(request, "email exits")
+                    return redirect(register)
                 elif email == "":
                     messages.error(request, "email field is empty")
                     return redirect(register)
