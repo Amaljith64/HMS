@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 import environ
+from decouple import config
 
 env = environ.Env()
 environ.Env.read_env()
@@ -26,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -142,18 +143,19 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-PAYPAL_RECEIVER_EMAIL = env("PAYPAL_RECEIVER_EMAIL")
+PAYPAL_RECEIVER_EMAIL = config("PAYPAL_RECEIVER_EMAIL")
 
 PAYPAL_TEST = True
 
 
 # original
-RAZOR_KEY_ID = env("RAZOR_KEY_ID")
-RAZOR_KEY_SECRET = env("RAZOR_KEY_SECRET")
+RAZOR_KEY_ID = config("RAZOR_KEY_ID")
+RAZOR_KEY_SECRET = config("RAZOR_KEY_SECRET")
 
 
-ACCOUNT_SID = "AC732ed94be97467f2c739768f179a0654"
-AUTH_TOKEN = "ecd8026fa5ad12c657248a41ead1fb09"
-SERVICE_ID = "VA2ea2b0e8ad477196c1a08722188bf3a2"
+ACCOUNT_SID = config('ACCOUNT_SID')
+AUTH_TOKEN = config('AUTH_TOKEN')
+SERVICE_ID = config('SERVICE_ID')
 COUNTRY_CODE = '+91'
-TWILIO_PHONE_NUMBER = env('TWILIO_PHONE_NUMBER')
+TWILIO_PHONE_NUMBER = config('TWILIO_PHONE_NUMBER')
+
