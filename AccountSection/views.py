@@ -53,19 +53,19 @@ def register(request):
                     phone_number=phone_number,
                 )
                 
-                createdwallet=Wallet.objects.create(user=user,amount=0,decription_amount="Wallet Created")
-                WalletDetails.objects.create(user=user,balance=0,wallet=createdwallet)
-                wallet=WalletDetails.objects.get(user=user)
+                createdwallet=WalletDetails.objects.create(user=user,amount=0,decription_amount="Wallet Created")
+                MyWallet.objects.create(user=user,balance=0,wallet=createdwallet)
+                wallet=MyWallet.objects.get(user=user)
                 messages.success(request,'Wallet Created')
                 try:                   
                     code_reffered=request.POST["referral_code"]
                     referredPerson=Account.objects.get(referral_code__iexact=code_reffered)
                     if referredPerson != None:
                         try:
-                            wallet_balance_add=WalletDetails.objects.get(user=referredPerson)
+                            wallet_balance_add=MyWallet.objects.get(user=referredPerson)
                             wallet_balance_add.balance+=500         
                             wallet_balance_add.save()
-                            getwallet=Wallet.objects.create(user=referredPerson)
+                            getwallet=WalletDetails.objects.create(user=referredPerson)
                             getwallet.user=referredPerson
                             getwallet.amount=500
                             getwallet.decription_amount="Referral Bonus Credited"
@@ -73,7 +73,7 @@ def register(request):
                             user.ref_active=True
                             print('credited to wallet')
                             messages.success(request,'Refferral applied')
-                            createdwallet=Wallet.objects.create(user=user,amount=500,decription_amount="Referral Bonus")
+                            createdwallet=WalletDetails.objects.create(user=user,amount=500,decription_amount="Referral Bonus")
                             wallet.balance=500
                             wallet.save()                           
                         except:

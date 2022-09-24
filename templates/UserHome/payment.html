@@ -163,7 +163,7 @@
 
                             <div class="inner">
                                 <!-- EMAIL -->
-                                <a href="{% url 'paypal' %}" class="btn btn-gray btn-fw mt20 mb20">Book Now</a>
+                                <a href="{% url 'UseWallet' %}" class="btn btn-gray btn-fw mt20 mb20">Book Now</a>
                             </div>
                             
                             {% endif %}
@@ -182,13 +182,14 @@
             <!-- SIDEBAR -->
             <div class="col-lg-5 col-12">
 
-                <div class="sidebar">
+                <div class="sidebar" style="    position: sticky;
+                top: 83px;">
                     <!-- WIDGET -->
                     <aside class="widget noborder">
                         <div class="vertical-booking-form">
                             <div id="booking-notification" class="notification"></div>
                             <div class="inner row">
-                                <div class="col-lg-12 ">
+                                <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-8">
                                             <h1>{{booking.hotel.name}}</h1>
@@ -211,29 +212,40 @@
 
                                     </div>
                                     <hr>
-                                    <div class="col-lg-12">
-                                        <p>Room Price {{fullamount|floatformat:1}}</p>
-                                        <p>Total Discount - {{discountamt|floatformat:1}}</p>
+                                    <div class="col-lg-12 row">
+                                        <div class="col-9">
+                                            <p>Room Price </p>
+                                        </div>
+                                        <div class="col-3">
+                                            <p>{{fullamount|floatformat:1}}</p>
+                                        </div>
 
+                                        <div class="col-9"> <p> Total Discount </p> </div>
+                                        <div class="col-3">-{{discountamt|floatformat:1}}</div>
 
+                                        <div class="col-9"> <p> <b> Payable Amount </b> </p></div> 
+                                        <div class="col-3">
+                                            <b>{{totalamount|floatformat:1}}</b>
+                                        </div> 
                                     </div>
-
-                                    <div class="col-lg-12"> <b> Payable Amount {{totalamount|floatformat:1}}</b></div>
-                                    
-
-                                    
-
                                 </div>
                                 <div class="col-lg-12">
                                     {% if wallet_status == None %}
 
-                                    <div class="col-lg-12 d-flex"> 
-                                        <form action="{% url 'UseWallet' %}" method="POST">
+                                    <form action="{% url 'UseWallet' %}" method="POST">
+                                    <div class="col-lg-12 row"> 
                                             {% csrf_token %}
-                                        <b> Available Wallet Balance {{wallet.balance}}</b>
-                                        <button type="submit" class="btn btn-primary">Use Wallet</button>
-                                        </form>
-                                    </div>
+                                            <div class="col-9 mt-1">
+                                               <p> <b>Wallet Balance</b> 
+                                                (₹{{wallet.balance}}) </p>
+                                            </div>
+                                            <div class="col-3">
+
+                                                <button type="submit" class="btn btn-sm btn-primary ">Use Wallet</button>
+                                            </div>
+                                         
+                                        </div>
+                                    </form>
 
                                     {% else %}
                                     <div class="col-12">
@@ -247,6 +259,16 @@
                                     
                                     
                                     {% endif %}
+                                    
+                                    <!-- Button trigger modal -->
+                                    <div class="col 12 row">
+                                        <div class="col-9"><p>Apply Coupon</p></div>
+                                        <div class="col-3"><button style=" width: 18vh;" type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                            data-target="#exampleModalCenter">
+                                            All Coupons
+                                        </button> </div>
+                                        
+                                    </div> 
                                     <div class="col-12">
                                         {% if usedcoupon != None %}
                                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -256,12 +278,7 @@
                                             </a>
                                           </div>
                                           {% endif %}
-                                    </div>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#exampleModalCenter">
-                                        View Coupons
-                                    </button>                                   
+                                    </div>                             
                                 </div>
                             </div>
                         </div>

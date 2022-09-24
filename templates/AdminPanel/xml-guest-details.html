@@ -1,0 +1,139 @@
+{% load static %}
+<div class="table-responsive" id="tasks" hx-target="#tasks" hx-swap="outerHTML">
+    <table class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl " id="guestTable-all">
+        <thead>
+            <tr>
+                <th class="bg-none">
+                    <div class="form-check style-1">
+                        <input class="form-check-input" type="checkbox" value="" id="checkAll">
+                    </div>
+                </th>
+                <th>Guest</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Delete/Edit</th>
+                <th class="bg-none"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in datas %}
+            <tr>
+                <td>
+                    <div class="form-check style-1">
+                        <input class="form-check-input" type="checkbox" value="">
+                    </div>
+                </td>
+                <td>
+                    <div class="media-bx">
+                        <img class="me-3 rounded" src="{% static 'admin/images/avatar/1.png' %}" alt="">
+                        <div>
+                            <span class="text-primary">#{{i.id}}</span>
+                            <h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.username}}</a></h4>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <h5>{{i.first_name}}</h5>
+                        <!-- <span class="fs-14">08:29 AM</span> -->
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <h5>{{i.last_name}}</h5>
+                        <!-- <span class="fs-14">08:29 AM</span> -->
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <h5>{{i.email}}</h5>
+                        <!-- <span class="fs-14">08:29 AM</span> -->
+                    </div>
+                </td>
+                <td>{% if i.is_superadmin %}
+                    <h5>Admin</h5>
+                    {% else %}
+                    <h5>User</h5>
+                    {% endif %}
+                </td>
+                <td>
+                    <div>
+                        <!-- <a class="delete" href="https://www.google.com/">go here</a> -->
+
+                        {% if i.is_active == True %}
+                        <!-- <span class="text-danger">Refund</span></td> -->
+                        <a hx-delete="{% url 'blockuser' i.id %}"><button class=" btn btn-xs btn-danger btn-flat " data-bs-toggle="modal"
+                            data-bs-target="#exampleModalCenter">Block</button>
+                        </a>
+
+                        <!-- <div class="modal fade" id="exampleModalCenter">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Block User</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure You want to Block this User </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-danger light"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <a hx-delete="{% url 'blockuser' i.id %}" data-bs-dismiss="modal" type="button"
+                                            class="btn btn-primary">Block</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        {% else %}
+
+
+                        <a hx-delete="{% url 'blockuser' i.id %}"><button class="btn btn-xs btn-success btn-flat " 
+                            >Unblock</button>
+                        </a>
+
+                        
+
+                        <!-- <a class="btn btn-sm btn-success"
+                            href="{% url 'blockuser' i.id %}">Unblock</a> -->
+                        {% endif %}
+                        <!-- <span class="fs-14">Room No. 0024</span> -->
+                    </div>
+
+                </td>
+
+
+                <td>
+                    <div class="dropdown dropstart">
+                        <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+
+                                <path
+                                    d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z"
+                                    stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z"
+                                    stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z"
+                                    stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:void(0);">Edit</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>

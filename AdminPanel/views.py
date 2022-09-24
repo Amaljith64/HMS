@@ -341,16 +341,17 @@ def guest(request):
         return render(request,'AdminPanel/guest-list.html',{'datas': mydata})
 
 def blockuser(request,id):
+    mydata = Account.objects.all()  
     user=Account.objects.get(id=id)
-    if request.method=='POST':
-        if user.is_active:
-            user.is_active = False
-            user.save()
-            return redirect(guest)
-        else:
-            user.is_active = True
-            user.save()
-            return redirect(guest) 
+    
+    if user.is_active:
+        user.is_active = False
+        user.save()
+        return render(request, 'AdminPanel/xml-guest-details.html', {'datas': mydata})
+    else:
+        user.is_active = True
+        user.save()
+        return render(request, 'AdminPanel/xml-guest-details.html', {'datas': mydata}) 
 
 
 #------------------------------------USER ENDS------------------------------#

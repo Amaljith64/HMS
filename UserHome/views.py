@@ -1,3 +1,4 @@
+import imp
 from django.shortcuts import render, redirect,HttpResponse
 from AdminPanel.models import *
 from django.http import HttpResponseRedirect, JsonResponse
@@ -9,6 +10,7 @@ from Payments.models import PaymentClass
 from Payments.views import paymentfun
 from .models import Wishlist
 from django.shortcuts import get_object_or_404
+from Payments.models import *
 
 
 
@@ -229,6 +231,7 @@ def Bookings(request):
 
 
 def CancelBooking(request,id):
+    print('cancelllllllllllllllll')
     user=request.user
     booking=PaymentClass.objects.filter(user=user)
     tocancelbooking=PaymentClass.objects.get(id=id)
@@ -236,7 +239,20 @@ def CancelBooking(request,id):
     tocancelbooking.status="Cancelled"
     tocancelbooking.save()
 
-    return render(request,'UserHome/xml-booking.html',{'booking':booking})
+    wallet_balance_add=MyWallet.objects.get(user=user)
+    balance=wallet_balance_add.balance+float(tocancelbooking.total_amount)
+    wallet_balance_add.balance=balance
+    wallet_balance_add.save()
+
+    getwallet=WalletDetails.objects.create(user=user)
+    getwallet.user=user
+    getwallet.amount=tocancelbooking.total_amount
+    getwallet.decription_amount="Booking Cancelled Amount"
+    getwallet.save()
+    messages.success(request, 'Amount Credited To Wallet')
+
+
+    return render(request,'UserHome/xml-bookings.html',{'booking':booking})
 
 
 #----------------------BOOKING AND MANAGEMENT ENDS-------------------#

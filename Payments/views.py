@@ -25,7 +25,7 @@ def paymentfun(request, id):
     roomamount = request.session['amount']
     discountamt = fullamount-roomamount
     razamt = roomamount*100
-    wallet = WalletDetails.objects.get(user=request.user)
+    wallet = MyWallet.objects.get(user=request.user)
     wallet_status=request.session['wallet']
     wallet_amount=request.session['amountfromwallet']
 
@@ -226,7 +226,7 @@ def remove_coupon(request):
 def UseWallet(request):
     id = booking.id
     if request.method == 'POST':
-        wallet_balance_add = WalletDetails.objects.get(user=request.user)
+        wallet_balance_add = MyWallet.objects.get(user=request.user)
 
         alltotal = request.session['amount']
         print(alltotal, 'alltotal')
@@ -259,8 +259,8 @@ def remove_wallet(request):
 
 
 def WalletPayment(request):
-    wallet_balance_add = WalletDetails.objects.get(user=request.user)
-    getwallet = Wallet.objects.create(user=request.user)
+    wallet_balance_add = MyWallet.objects.get(user=request.user)
+    getwallet = WalletDetails.objects.create(user=request.user)
 
     walletamount = request.session['amountfromwallet']
     order_id = request.session.get('order_id')

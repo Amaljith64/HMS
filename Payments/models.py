@@ -19,7 +19,7 @@ class PaymentClass(models.Model):
         return self.payment_id
 
 
-class Wallet(models.Model):
+class WalletDetails(models.Model):
     user = models.ForeignKey(Account,on_delete=models.CASCADE)
     amount=models.FloatField( max_length=15, null = True, default= 0 )
     decription_amount=models.CharField(null=True,max_length=200)
@@ -27,7 +27,7 @@ class Wallet(models.Model):
     def _str_(self):
         return self.user.username
 
-class WalletDetails(models.Model):
+class MyWallet(models.Model):
     user = models.ForeignKey(Account,on_delete=models.CASCADE)
     balance = models.FloatField(max_length=15, null = True, default= 0 )
-    wallet=models.ForeignKey(Wallet,null=True,on_delete=models.CASCADE)
+    wallet=models.ForeignKey(WalletDetails,null=True,on_delete=models.CASCADE)

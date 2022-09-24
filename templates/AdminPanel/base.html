@@ -387,31 +387,7 @@
 			$('#smartwizard').smartWizard(); 
 		});
 	</script>
-	<script>
-		$('.delete').on('click',function (e) {
-        e.preventDefault();
-        var self = $(this);
-        console.log(self.data('title'));
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Cancel Booking'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
-              location.href = self.attr('href');
-            }
-        })
-
-    })
 	
-	</script>
 	
 	{% block CustomScripts %}
 	{% endblock %}	
