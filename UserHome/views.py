@@ -252,7 +252,7 @@ def CancelBooking(request,id):
     messages.success(request, 'Amount Credited To Wallet')
 
 
-    return render(request,'UserHome/xml-bookings.html',{'booking':booking})
+    return redirect(Bookings)
 
 
 #----------------------BOOKING AND MANAGEMENT ENDS-------------------#

@@ -1,4 +1,4 @@
-<div class="container" id="tasks" hx-confirm="Are you sure you want to delete this task?" hx-target="#tasks"
+<div class="container" id="tasks" hx-target="#tasks"
   hx-swap="outerHTML">
   <!-- ITEM -->
   {% for i in booking %}
@@ -48,8 +48,8 @@
           {% elif i.status == "Transaction Cancelled" %}
           <p>Transaction Failed</p>
           {% else %}
-          <a class="btn btn-sm " style="color: white ;" hx-delete="{% url 'CancelBooking' i.id %}"></a>
-          <!-- <a class="btn btn-sm " style="color: white ;" data-toggle="modal" data-target="#exampleModalCenter">Cancel Booking</a>
+          <!-- <a class="btn btn-sm " style="color: white ;" hx-delete="{% url 'CancelBooking' i.id %}">CANCEL</a> -->
+          <a class="btn btn-sm " style="color: white ;" data-toggle="modal" data-target="#exampleModalCenter">Cancel Booking</a>
           <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
@@ -68,7 +68,7 @@
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
           <p>{{i.status}}</p>
           {% endif %}
         </div>

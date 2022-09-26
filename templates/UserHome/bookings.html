@@ -21,8 +21,94 @@
   </div>
 </div>
 <!-- ========== MAIN ========== -->
-<main class="rooms-list-view" >
-{% include "UserHome/xml-bookings.html" %}
+<main class="rooms-list-view">
+  <div class="container" id="tasks" hx-target="#tasks" hx-swap="outerHTML">
+    <!-- ITEM -->
+    {% for i in booking %}
+    <div class="room-list-item">
+      <div class="row">
+        <div class="col-lg-4">
+          <figure class="gradient-overlay-hover link-icon">
+            <a href="{% url 'roomdetails' i.id  %}"><img src="{{i.booked_room.hotel.img.url}}" class="img-fluid"
+                alt="Image"></a>
+          </figure>
+        </div>
+        <div class="col-lg-5">
+          <div class="room-info">
+            <h3 class="room-title">
+              <a href="{% url 'roomdetails' i.id  %}">{{i.booked_room.hotel.name}}</a>
+            </h3>
+            <span class="room-rates">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <a href="room.html#room-reviews">5.00 Based on 3 Ratings</a>
+            </span>
+
+            <p>{{i.booked_room.hotel.Desc}}</p>
+            <p>Check in : {{i.booked_room.start_date}}</p>
+            <p>Check out : {{i.booked_room.end_date}}</p>
+
+            <div class="room-services">
+              <i class="fa fa-coffee" data-toggle="popover" data-placement="top" data-trigger="hover"
+                data-content="Breakfast Included" data-original-title="Breakfast"></i>
+              <i class="fa fa-wifi" data-toggle="popover" data-placement="top" data-trigger="hover"
+                data-content="Free WiFi" data-original-title="WiFi"></i>
+              <i class="fa fa-television" data-toggle="popover" data-placement="top" data-trigger="hover"
+                data-content="Plasma TV with cable channels" data-original-title="TV"></i>
+              <span>Beds: 1 King</span>
+              <span>Max Guests: 2</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="room-price">
+            <span class="price">₹{{i.total_amount}}</span>
+            {% if i.status == "Cancelled" %}
+            <p>Booking Cancelled</p>
+            {% elif i.status == "Transaction Cancelled" %}
+            <p>Transaction Failed</p>
+            {% else %}
+            <a class="btn btn-sm " style="color: white ;" data-toggle="modal" data-target="#exampleModalCenter">Cancel
+              Booking</a>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Cancel Booking</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure You want to Cancel this booking
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="{% url 'CancelBooking' i.id %}" type="button" class="btn btn-primary">Click to
+                      Cancel</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p>{{i.status}}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <!-- ITEM -->
+
+    <!-- PAGINATION -->
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </main>
 
 
