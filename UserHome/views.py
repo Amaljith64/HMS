@@ -240,7 +240,7 @@ def Bookings(request):
 
     booking=PaymentClass.objects.filter(user=user)
 
-    return render(request,'USerHome/bookings.html',{'booking':booking})
+    return render(request,'USerHome/bookings.html',{'booking':bookingdetails})
 
 
 def CancelBooking(request,id):
