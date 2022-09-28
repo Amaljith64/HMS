@@ -42,13 +42,12 @@
 
                             <div class="inner">
                                 <!-- EMAIL -->
-                                <div id="drop-pw" class="form-group" style="text-align: end;">
+                                <div id="drop-pw" class="form-group" style="text-align: end; ">
                                     <button type="button" class="btn tp-btn btn-secondary btn-sm" onclick="drop()"><i
                                             class="fa fa-fw" aria-hidden="true"
                                             title="Copy to use pencil"></i></button>
                                 </div>
-                                <div id="drop-otp" class="form-group" style="text-align: end;">
-
+                                <div id="drop-otp" class="form-group" style="text-align: end; display: none;">
                                     <button type="button" class="btn tp-btn btn-secondary btn-sm " onclick="drop2()"><i
                                             class="fa fa-fw" aria-hidden="true"
                                             title="Copy to use pencil"></i></button>
@@ -95,14 +94,7 @@
 
                 </div>
 
-
-
-
-
-
-                <!-- ROOM REVIEWS -->
-
-
+                <!-- ROOM REVIEWS -->   
             </div>
             <!-- SIDEBAR -->
             <div class="col-lg-5 col-12">
@@ -112,14 +104,60 @@
                     <aside class="widget noborder">
                         <div class="vertical-booking-form">
                             <div id="booking-notification" class="notification"></div>
-                            <h3 class="form-title">PASSWORD</h3>
+                            <h3 class="form-title">My Wallet</h3>
                             <div class="inner">
 
                                 <!-- EMAIL -->
                                 <div class="form-group">
-                                    <label for="">Your Password</label>
-                                    <input class="form-control" name="name" value="{{booking.user}}">
+                                    <label for=""> Total Wallet Balance : {{wallet.balance}}</label>
                                 </div>
+                                <div>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModalLong">
+                                        View all Transactions
+                                    </button>
+                                </div>
+                                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {% for i in walletdetail %}
+                                                <div class="row">
+                                                    <div class="col">{{i.decription_amount}}</div>
+                                                    {% if i.status == True %}
+                                                    <div class="col" style="color: rgb(11, 237, 11) ;">+ {{i.amount}}
+                                                    </div>
+                                                    {% elif i.status == False %}
+                                                    <div class="col" style="color: red ;">- {{i.amount}}</div>
+                                                    {% else %}
+                                                    <div class="col">{{i.amount}}</div>
+                                                    {% endif %}
+                                                </div>
+                                                {% endfor %}
+                                                <br>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col"> <b> Total Balance</b></div>
+                                                    <div class="col"><b> {{wallet.balance}}</b></div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- ROOM TYPE -->
 
 

@@ -46,6 +46,17 @@
                                         placeholder="Enter Discount Percentage">
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <label class="form-label">Min and Max Amount</label>
+                                <div class="row mb-3">
+                                    <div class="col-6"><input type="text" name="minamount" class="form-control input-rounded"
+                                        placeholder="Min Amount"></div>
+                                    <div class="col-6"><input type="text" name="maxamount" class="form-control input-rounded"
+                                        placeholder="Max Amount"></div>
+                                    
+                                    
+                                </div>
+                            </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
@@ -60,27 +71,46 @@
             <div class="col-xl-6">
                 <div class="card">
                     <div class="card-header border-0 pb-0">
-                        <h5 class="card-title">{{i.coupon_code}}</h5>
+                        <div>
+
+                            <h5 class="card-title">{{i.coupon_code}} - {{i.discount}}%</h5>
+                        </div>
+                        {% if i.active == True %}
+                        <div>
+                            <div > <p class="me-3">Active </p> </div>
+                            <div style="    right: 1.375rem;top:  1.7125rem; background: #15ff00" class="pulse-css"></div>
+                        </div>
+                        {% else %}
+                        <div>
+                            <div > <p class="me-3">InActive </p> </div>
+                            <div style="    right: 1.375rem;top:  1.7125rem; background: #f70505" class="pulse-css"></div>
+                        </div>
+                        {% endif %}
+                        
                     </div>
-                    <div class="card-body">
-                        <p>Valid from</p>
-                        <p class="card-text">{{i.valid_from}}
-                        </p>
+                    <div class="card-body row">
+                        <div class="col-6 ">
+                            <b>Valid from</b>
+                            <p class="card-text">{{i.valid_from}}
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <b>Valid To</b>
+                            <p class="card-text">{{i.valid_to}}
+                            </p>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p>Valid To</p>
-                        <p class="card-text">{{i.valid_to}}
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <p>Discount Percentage</p>
-                        <p class="card-text">{{i.discount}}
-                        </p>
-                    </div>
-                    <div class="card-body">
-                        <p>Active</p>
-                        <p class="card-text">{{i.active}}
-                        </p>
+                    <div class="card-body row">
+                        <div class="col-6 ">
+                            <b>Min Amount</b>
+                            <p class="card-text">{{i.min_amount}}
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <b>Max Amount</b>
+                            <p class="card-text">{{i.min_amount}}
+                            </p>
+                        </div>
                     </div>
                     <div class="card-footer border-0 pt-0">
                         <p class="card-text d-inline">Edit</p>

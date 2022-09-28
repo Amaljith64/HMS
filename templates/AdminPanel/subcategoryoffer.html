@@ -56,22 +56,31 @@
             {% for i in offers %}
             <div class="col-xl-6">
                 <div class="card">
-                    <div class="card-header border-0 pb-0">
-                        <h5 class="card-title">{{i.title}}</h5>
+                    <div class="card-header border-0 pb-0"  >
+                    <div >
+                        <h5 class="card-title">{{i.subcategory.title}}</h5>
+                    </div>
+                    {% if i.is_active == True %}
+                        <div>
+                            <div > <p class="me-3">Active </p> </div>
+                            <div style="    right: 1.375rem;top:  1.7125rem; background: #15ff00" class="pulse-css"></div>
+                        </div>
+                        {% else %}
+                        <div>
+                            <div > <p class="me-3">InActive </p> </div>
+                            <div style="    right: 1.375rem;top:  1.7125rem; background: #f70505" class="pulse-css"></div>
+                        </div>
+                        {% endif %}
                     </div>
                     <div class="card-body">
-                        <p>main cat</p>
-                        <p class="card-text">{{i.category_id}}</p>
+                        <b>main cat</b>
+                        <p class="card-text">{{i.subcategory.category_id}}</p>
                     </div>
                     <div class="card-body">
-                        <p>Discount</p>
+                        <b>Discount</b>
                         <p class="card-text">{{i.discount}}</p>
                     </div>
-                    <div class="card-body">
-                        <p>Active</p>
-                        <p class="card-text">{{i.is_active}}
-                        </p>
-                    </div>
+                
                     <div class="card-footer border-0 pt-0">
                         <p class="card-text d-inline">Edit</p>
                         <a href="javascript:void(0);" class="card-link float-end">Delete</a>

@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 from AdminPanel.models import HotelBookings
 from MyAdmin.models import *
@@ -23,6 +24,7 @@ class WalletDetails(models.Model):
     user = models.ForeignKey(Account,on_delete=models.CASCADE)
     amount=models.FloatField( max_length=15, null = True, default= 0 )
     decription_amount=models.CharField(null=True,max_length=200)
+    status=models.BooleanField(null=True)
     
     def _str_(self):
         return self.user.username

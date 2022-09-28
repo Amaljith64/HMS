@@ -30,7 +30,7 @@
                 <form id="booking-form">
                   <!-- EMAIL -->
                   <div class="form-group">
-                    <input class="form-control" name="booking-email" type="email" placeholder="Your Email Address">
+                    <input class="form-control" name="booking-email" type="email" placeholder="Your Email Address" value="{{user.email}}">
                   </div>
                   <!-- ROOM TYPE -->
                   
@@ -41,7 +41,7 @@
                   <!-- GUESTS -->
                   
                   <!-- BOOKING BUTTON -->
-                  <button type="submit" class="btn btn-dark btn-book">BOOK A ROOM</button>
+                  <a href="{% url 'userroomview' %}" class="btn btn-dark btn-book">BOOK A ROOM</a>
                   <div class="advanced-form-link">
                     
                   </div>

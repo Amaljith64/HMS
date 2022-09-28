@@ -32,11 +32,12 @@ def paymentfun(request, id):
     # coupondis=discountamt-totalamount
     if request.method == "POST":
         client = razorpay.Client(
-            auth=("rzp_test_EHJnISgTdTzYsc", "FPEocjz0VBuibVylwibhSwpX"))
+            auth=(settings.RAZOR_KEY_ID, settings.RAZOR_KEY_SECRET))
         payment = client.order.create(
             {'amount': razamt, 'currency': 'INR', 'payment_capture': '1'})
         print(payment)
     usedcoupon = request.session['coupon']
+    razkey=settings.RAZOR_KEY_ID
 
     context = {'booking': booking,
                'totalamount': roomamount,
@@ -47,7 +48,8 @@ def paymentfun(request, id):
                'razamt': razamt,
                'wallet': wallet,
                'wallet_status':wallet_status,
-               'wallet_amount':wallet_amount}
+               'wallet_amount':wallet_amount,
+               'razkey':razkey}
 
     return render(request, 'UserHome/payment.html', context)
 
@@ -58,6 +60,18 @@ def success(request):
     print(order_id)
     roomamount = request.session['amount']
     print(roomamount)
+    wallet_status=request.session['wallet']
+    if wallet_status != None:
+        wallet_balance_add = MyWallet.objects.get(user=request.user)
+        getwallet = WalletDetails.objects.create(user=request.user)
+        walletamount = request.session['amountfromwallet']
+        wallet_balance_add.balance -= walletamount
+        wallet_balance_add.save()
+        getwallet.decription_amount = "Debited"
+        getwallet.status= False
+        getwallet.amount = walletamount
+        getwallet.save()
+
 
     order = get_object_or_404(HotelBookings, id=order_id)
     order.is_booked = True
@@ -105,6 +119,18 @@ def payment_done(request):
         coupon_status.save()
     except:
         pass
+    wallet_status=request.session['wallet']
+    if wallet_status != None:
+        wallet_balance_add = MyWallet.objects.get(user=request.user)
+        getwallet = WalletDetails.objects.create(user=request.user)
+        walletamount = request.session['amountfromwallet']
+        wallet_balance_add.balance -= walletamount
+        wallet_balance_add.save()
+        getwallet.decription_amount = "Debited"
+        getwallet.status= False
+        getwallet.amount = walletamount
+        getwallet.save()
+
     order_id = request.session.get('order_id')
     order = get_object_or_404(HotelBookings, id=order_id)
     order.is_booked = True
@@ -291,6 +317,7 @@ def WalletPayment(request):
     wallet_balance_add.save()
     getwallet.decription_amount = "debited"
     getwallet.amount = walletamount
+    getwallet.status= False
     getwallet.save()
 
     return render(request, 'success.html')

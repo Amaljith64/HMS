@@ -136,6 +136,7 @@ def category(request):
 
 
 def edit_category(request,id):
+    categ=Categories.objects.all()
     to_edit=Categories.objects.get(id=id)
     if request.method =='POST':
         title=request.POST['title']
@@ -145,7 +146,7 @@ def edit_category(request,id):
         edit.description=description
         edit.save()
         return redirect(category)
-    return render(request,'AdminPanel/xml-category.html',{'toedit':to_edit})
+    return render(request,'AdminPanel/xml-category.html',{'categ':categ,'toedit':to_edit})
 
 
 
@@ -363,13 +364,35 @@ def blockuser(request,id):
 def bookings(request):
     bookings=HotelBookings.objects.all()
     pendingbooking=HotelBookings.objects.filter(status='Pending')
-    checkin=HotelBookings.objects.filter(status='Check-in')
+    checkin=HotelBookings.objects.filter(status='Checkin Pending')
     checkout=HotelBookings.objects.filter(status='Check-out')
     cancelled=HotelBookings.objects.filter(status='Cancelled')
     return render(request,'AdminPanel/Bookings.html',{'bookings':bookings,'pendingbooking':pendingbooking,'checkin':checkin,'checkout':checkout,
     'cancelled':cancelled})
 
 
+def makecheckin(request,id):
+    room=HotelBookings.objects.get(id=id)
+    room.status='Check-in'
+    room.save()
+    return redirect(bookings)
+
+def makecheckout(request,id):
+    room=HotelBookings.objects.get(id=id)
+    room.status='Check-out'
+    room.save()
+    return redirect(bookings)
+
+def cancel(request,id):
+    room=HotelBookings.objects.get(id=id)
+    room.status='Cancelled'
+    room.save()
+    return redirect(bookings)
+
+def delete(request,id):
+    room=HotelBookings.objects.get(id=id)
+    room.delete()
+    return redirect(bookings)
 
 
 
@@ -446,7 +469,9 @@ def add_coupons(request):
         coupon=request.POST['code']
         valid_to=request.POST['validity']
         discount=request.POST['discount']
-        coupon_code=Coupons.objects.create(coupon_code=coupon,valid_to=valid_to,discount=discount)
+        minamount=request.POST['minamount']
+        maxamount=request.POST['maxamount']
+        coupon_code=Coupons.objects.create(coupon_code=coupon,valid_to=valid_to,discount=discount,min_amount=minamount,max_amount=maxamount)
 
     return render(request,'AdminPanel/coupons.html',{'coupons':coupons})
 

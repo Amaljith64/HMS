@@ -86,6 +86,10 @@ from Payments.models import *
 
 
 def room(request):
+
+
+
+
     scategory_objs = SubCategories.objects.all()
     # rooms = Rooms.objects.all()
     # sort_by = request.GET.get('sort_by')
@@ -187,36 +191,45 @@ def hotel_detail(request, id):
         checkin = request.POST.get('checkin')
         checkout = request.POST.get('checkout')
         hotel = Rooms.objects.get(id=id)
-        if not check_booking(checkin, checkout, id, hotel.room_count):
-            messages.warning(
-                request, 'Hotel is already booked in these dates ')
-            print("already bookedddddddddddddddddddddd")
-            return redirect (hotel_detail,room.id)
-        value=HotelBookings.objects.create(hotel=hotel, user=request.user,start_date=checkin, end_date=checkout)
-        print(value.id)
-        messages.success(request, 'Your booking has been saved')
-        request.session['order_id'] = value.id
-        frm = checkin.split("-")
-        tod = checkout.split("-")
-        fm = [int(x) for x in frm]
-        todt = [int(x) for x in tod]
-        print(fm[2])
-        print(todt[2])
-        if room.discount_price>0:
-            request.session['amount'] = find_total_room_charge(
-                fm[2], todt[2], value.hotel.discount_price)
-            request.session['fullamount'] = find_total_room_charge(
-                fm[2], todt[2], value.hotel.price)
+        if checkin and checkout != "":
+            if not check_booking(checkin, checkout, id, hotel.room_count):
+                messages.warning(
+                    request, 'Hotel is already booked in these dates ')
+                print("already bookedddddddddddddddddddddd")
+                return redirect (hotel_detail,room.id)
+            try:
+                value=HotelBookings.objects.create(hotel=hotel, user=request.user,start_date=checkin, end_date=checkout)
+                print(value.id)
+                messages.success(request, 'Your booking has been saved')
+                request.session['order_id'] = value.id
+                frm = checkin.split("-")
+                tod = checkout.split("-")
+                fm = [int(x) for x in frm]
+                todt = [int(x) for x in tod]
+                print(fm[2])
+                print(todt[2])
+                if room.discount_price>0:
+                    request.session['amount'] = find_total_room_charge(
+                        fm[2], todt[2], value.hotel.discount_price)
+                    request.session['fullamount'] = find_total_room_charge(
+                        fm[2], todt[2], value.hotel.price)
+                else:
+                    request.session['amount'] = find_total_room_charge(
+                            fm[2], todt[2], value.hotel.price)
+
+                request.session['original amount']=request.session['amount']
+                request.session['coupon']=None
+                
+
+                
+                return redirect(paymentfun,id=value.id)
+            except:
+                messages.error(request, 'Please login to Book Your Room')
+
         else:
-            request.session['amount'] = find_total_room_charge(
-                    fm[2], todt[2], value.hotel.price)
+            messages.error(request, 'Please FIll all Fields')
 
-        request.session['original amount']=request.session['amount']
-        request.session['coupon']=None
-        
-
-        
-        return redirect(paymentfun,id=value.id)
+            
     return render(request, 'UserHome/viewroom.html', {'room': room,'images':images})
 
 
@@ -236,7 +249,8 @@ def CancelBooking(request,id):
     booking=PaymentClass.objects.filter(user=user)
     tocancelbooking=PaymentClass.objects.get(id=id)
        
-    tocancelbooking.status="Cancelled"
+    tocancelbooking.booked_room.status="Cancelled"
+    tocancelbooking.booked_room.is_booked=False
     tocancelbooking.save()
 
     wallet_balance_add=MyWallet.objects.get(user=user)
@@ -265,14 +279,18 @@ def CancelBooking(request,id):
 
 
 def add_to_wishlist(request,id):
+    try:
 
-    wish = get_object_or_404(Rooms,id=id)
+        wish = get_object_or_404(Rooms,id=id)
 
-    wished_room, created = Wishlist.objects.get_or_create(wished_room=wish,
-                                                          user=request.user,
-                                                          )
+        wished_room, created = Wishlist.objects.get_or_create(wished_room=wish,
+                                                            user=request.user,
+                                                            )
 
-    messages.success(request, 'The item was added to your wishlist')
+        messages.success(request, 'The item was added to your wishlist')
+    except:
+        messages.error(request, 'Please login')
+
     return redirect(room)
 
 def wishlist(request):
@@ -297,6 +315,8 @@ def remove_from_wishlist(request,id):
 
 def user_profile(request):
     myuser=request.user
+    wallet=MyWallet.objects.get(user=myuser)
+    walletdetail=WalletDetails.objects.filter(user=myuser)
     if request.method=='POST':
         username=request.POST['name']
         email=request.POST['email']
@@ -310,7 +330,7 @@ def user_profile(request):
         return redirect(user_profile)
         
         
-    return render(request,'UserHome/userprofile.html',{'user':myuser})
+    return render(request,'UserHome/userprofile.html',{'user':myuser,'wallet':wallet,'walletdetail':walletdetail})
 
 
 def check_room(request):

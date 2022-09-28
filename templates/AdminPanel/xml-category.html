@@ -1,34 +1,22 @@
-<div class="modal fade" id="exampleModalCenter1" id="tasks"  hx-target="#tasks">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Category</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal">
-                </button>
+<div class="row" id="tasks"  hx-target="#tasks">
+    {% for i in categ %}
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header border-0 pb-0">
+                <h5 class="card-title">{{i.title}}</h5>
             </div>
-            <div class="modal-body">
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label class="form-label">Title{{toedit.title}}</label>
-                        <div class="mb-3">
-                            <input type="text" name="title" class="form-control input-rounded"
-                                placeholder="Enter title" value="{{toedit.title}}">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <div class="mb-3">
-                            <input type="text" name="description" class="form-control input-rounded"
-                                placeholder="Enter description">
-                        </div>
-                    </div>
+            <div class="card-body">
+                <p class="card-text">{{i.description}}
+                </p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Add</button>
+            <div class="card-footer border-0 pt-0">
+                <a class="card-text d-inline" data-bs-toggle="modal"
+                data-bs-target="#exampleModalCenter1"
+                hx-delete="{% url 'editcategory' i.id  %}">Edit</a>
+                <a href="javascript:void(0);" class="card-link float-end">Delete</a>
             </div>
-            </form>
         </div>
     </div>
+    {% endfor %}
 </div>
+{% include "AdminPanel/xml-cat-modal.html" %}
