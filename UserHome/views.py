@@ -265,6 +265,7 @@ def CancelBooking(request,id):
     getwallet.user=user
     getwallet.amount=tocancel.total_amount
     getwallet.decription_amount="Booking Cancelled Amount"
+    getwallet.status="True"
     getwallet.save()
     messages.success(request, 'Amount Credited To Wallet')
 
