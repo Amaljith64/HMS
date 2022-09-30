@@ -20,8 +20,6 @@ import datetime
 #     return render(request, 'AdminPanel/index.html')
 
 
-
-
 #------------------------------------ROOM------------------------------#
 
 
