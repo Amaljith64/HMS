@@ -36,7 +36,7 @@
         <div class="col-lg-5">
           <div class="room-info">
             <h3 class="room-title">
-              <a href="{% url 'roomdetails' i.id  %}">{{i.booked_room.hotel.name}}</a>
+              <a href="{% url 'roomdetails' i.id  %}">{{i.booked_room.hotel}}</a>
             </h3>
             <span class="room-rates">
               <i class="fa fa-star" aria-hidden="true"></i>
@@ -66,13 +66,15 @@
         <div class="col-lg-3">
           <div class="room-price">
             <span class="price">₹{{i.total_amount}}</span>
-            {% if i.status == "Cancelled" %}
+         
+            {% if i.booked_room.status == "Cancelled" %}            
             <p>Booking Cancelled</p>
-            {% elif i.status == "Transaction Cancelled" %}
+            {% elif i.booked_room.status == "Pending" %}
             <p>Transaction Failed</p>
-            {% else %}
+            {% elif i.booked_room.status == "Checkin Pending" %}
             <a class="btn btn-sm " style="color: white ;" data-toggle="modal" data-target="#exampleModalCenter">Cancel
               Booking</a>
+
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
               aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
@@ -94,7 +96,7 @@
                 </div>
               </div>
             </div>
-            <p>{{i.status}}</p>
+            <p>{{i.booked_room.status}}</p>
             {% endif %}
           </div>
         </div>

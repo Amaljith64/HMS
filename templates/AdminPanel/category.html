@@ -48,6 +48,28 @@
                 </div>
             </div>
         </div>
+        <div class="row" hx-target="this" hx-swap="outerHTML">
+            {% for i in categ %}
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header border-0 pb-0">
+                        <h5 class="card-title">{{i.title}}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{i.description}}
+                        </p>
+                    </div>
+                    <div class="card-footer border-0 pt-0">
+                        <a class="card-text d-inline" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalCenter1"
+                        hx-get="{% url 'editcategory' i.id  %}"
+                       >Edit</a>
+                        <a href="javascript:void(0);" class="card-link float-end">Delete</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
         
         {% include "AdminPanel/xml-category.html" %}
         

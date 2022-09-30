@@ -18,7 +18,7 @@ urlpatterns = [
     path('makecheckin/<int:id>',views.makecheckin,name='makecheckin'),
     path('makecheckout/<int:id>',views.makecheckout,name='makecheckout'),
     path('cancel/<int:id>',views.cancel,name='cancel'),
-    path('delete/<int:id>',views.delete,name='delete'),
+    path('deletebooking/<int:id>',views.delete,name='deletethebooking'),
     path('coupons',views.add_coupons,name='coupons'),
 
 

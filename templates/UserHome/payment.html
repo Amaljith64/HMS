@@ -117,7 +117,7 @@
                                 <a href="{% url 'paypal' %}" class="btn btn-gray btn-fw mt20 mb20">PAYPAL</a>
                                 <!-- BOOKING BUTTON -->
                                 <form class="text-center border border-light p-5" style="padding: 0px !important;"
-                                    action="success" method="POST">
+                                    action="{% url 'success' %}" method="POST">
                                     {% csrf_token %}
                                     <!-- RAZORPAY INTEGRATION HERE -->
                                     <script src="https://checkout.razorpay.com/v1/checkout.js"

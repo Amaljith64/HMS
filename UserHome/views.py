@@ -240,27 +240,30 @@ def Bookings(request):
 
     booking=PaymentClass.objects.filter(user=user)
 
-    return render(request,'USerHome/bookings.html',{'booking':bookingdetails})
+    return render(request,'USerHome/bookings.html',{'booking':booking})
 
 
 def CancelBooking(request,id):
     print('cancelllllllllllllllll')
     user=request.user
     booking=PaymentClass.objects.filter(user=user)
-    tocancelbooking=PaymentClass.objects.get(id=id)
+    tocancel=PaymentClass.objects.get(id=id)
+    print(tocancel.booked_room.id,'hhooooooiiii')
+    tocancelbooking=HotelBookings.objects.get(id=tocancel.booked_room.id)
        
-    tocancelbooking.booked_room.status="Cancelled"
-    tocancelbooking.booked_room.is_booked=False
+    tocancelbooking.status="Cancelled"
+    print(tocancelbooking.status,'rooooooommmmmmmmmmmmm')
+    tocancelbooking.is_booked=False
     tocancelbooking.save()
 
     wallet_balance_add=MyWallet.objects.get(user=user)
-    balance=wallet_balance_add.balance+float(tocancelbooking.total_amount)
+    balance=wallet_balance_add.balance+float(tocancel.total_amount)
     wallet_balance_add.balance=balance
     wallet_balance_add.save()
 
-    getwallet=WalletDetails.objects.create(user=user)
+    getwallet=WalletDetails.objects.create(user=user)   
     getwallet.user=user
-    getwallet.amount=tocancelbooking.total_amount
+    getwallet.amount=tocancel.total_amount
     getwallet.decription_amount="Booking Cancelled Amount"
     getwallet.save()
     messages.success(request, 'Amount Credited To Wallet')

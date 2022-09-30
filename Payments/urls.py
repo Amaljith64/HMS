@@ -6,7 +6,7 @@ from Payments import views
 
 urlpatterns = [
     path('<int:id>',views.paymentfun,name='payment'),
-    path('success',views.success,name='success/'),
+    path('success',views.success,name='success'),
     path('paypal',views.paypal,name='paypal'),
     path('paymentsuccess',views.paymentsuccess,name='paymentsuccess'),
     path('payment-done/', views.payment_done, name='payment_done'),
