@@ -19,129 +19,120 @@
 				</ol>
 			</div>
 			<!-- row -->
+			
 			<div class="row">
-				<div class="col-xl-12 col-xxl-12">
+				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-header">
 							<h4 class="card-title">Add Room</h4>
 						</div>
 						<div class="card-body">
-							<div id="smartwizard" class="form-wizard order-create">
-								<ul class="nav nav-wizard">
-									<li><a class="nav-link" href="#wizard_Service">
-											<span>1</span>
-										</a></li>
-									<li><a class="nav-link" href="#wizard_Time">
-											<span>2</span>
-										</a></li>
-									<li><a class="nav-link" href="#wizard_Details">
-											<span>3</span>
-										</a></li>
-
-								</ul>
-								<div class="tab-content">
-									<form action="" method="POST" enctype="multipart/form-data">
-										{% csrf_token %}
-										<div id="wizard_Service" class="tab-pane" role="tabpanel">
-											<div class="row">
-												<div class="col-lg-6 mb-2">
-													<div class="mb-3">
-														<label class="form-label">Select Category</label>
-														<select name="categ" class="default-select  form-control wide">
-															{% for i in categ %}
-															<option value="{{ i.id }}">{{ i.title }}</option>
-															{% endfor %}
-														</select>
-													</div>
-													<div class="mb-3">
-														<label class="form-label">Choose Sub Category</label>
-														<select name="scateg" class="default-select  form-control wide">
-															{% for i in scateg %}
-															<option value="{{ i.id }}">{{ i.title }}</option>
-															{% endfor %}
-														</select>
-													</div>
-												</div>								
+							<div class="form-validation">
+								<form class="needs-validation" action="" method="POST" enctype="multipart/form-data" novalidate >
+									{% csrf_token %}
+									<div class="row">
+										<div class="col-xl-6">
+										
+											<div class="mb-3 row">
+												<label class="col-lg-4 form-label">Select Category</label>
+												<div class="col-lg-6">
+												<select name="categ" class="default-select  form-control wide">
+													{% for i in categ %}
+													<option value="{{ i.id }}">{{ i.title }}</option>
+													{% endfor %}
+												</select>
 											</div>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-											<br>
-										</div>
-										<div id="wizard_Time" class="tab-pane" role="tabpanel">
-											<div class="row">
-												<div class="col-lg-6 mb-2">
-													<div class="mb-3">
-														<label class="text-label form-label">Hotel Name</label>
-														<input type="text" name="hotel_name" class="form-control"
-															placeholder="Cellophane Square" required>
+											</div>
+											<div class="mb-3 row">
+												<label class="col-lg-4 form-label">Choose Sub Category</label>
+												<div class="col-lg-6">
+												<select name="scateg" class="default-select  form-control wide">
+													{% for i in scateg %}
+													<option value="{{ i.id }}">{{ i.title }}</option>
+													{% endfor %}
+												</select>
+											</div>
+											</div>
+											<div class="mb-3 row">
+												<label class="col-lg-4 text-label form-label">Room Name</label>
+												<div class="col-lg-6">
+												<input type="text" name="hotel_name" class="form-control"
+													placeholder="Name of the Room" required>
+												</div>
+											</div>
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label">Description <span
+														class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<textarea class="form-control" name="description" id="validationCustom04"  rows="5" placeholder="Enter Your Room details.." required></textarea>
+													<div class="invalid-feedback">
+														Please enter a Suggestions.
 													</div>
 												</div>
-												<div class="col-lg-6 mb-2">
-													<div class="mb-3">
-														<label class="text-label form-label">Description</label>
-														<input type="text" name="description" class="form-control"
-															 placeholder="example@example.com.com" required>
+											</div>
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="validationCustom04">Room count <span
+														class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<input type="text" name="count" class="form-control"
+														placeholder="Available Room" required>
 													</div>
-												</div>
-												<div class="col-lg-6 mb-2">
-													<div class="mb-3">
-														<label class="text-label form-label">Price</label>
-														<input type="text" name="price" class="form-control"
-															placeholder="Enter price" required>
-													</div>
-												</div>
-
 											</div>
 										</div>
-										<div id="wizard_Details" class="tab-pane" role="tabpanel">
-											<div class="input-group mb-3">
-												<div class="form-file">
-													<input name="photoo" type="file" class="form-file-input form-control">
+										<div class="col-xl-6">
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="validationCustom05">Price
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<input type="number" name="price" class="form-control"  placeholder="$21.60" required>
+													<div class="invalid-feedback">
+														Please enter a Currency.
+													</div>
 												</div>
-												<span class="input-group-text">Upload</span>
 											</div>
-											<div class="input-group mb-3">
-												<div class="form-file">
-													<input name="images" type="file" multiple class="form-file-input form-control">
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="validationCustom05">Add Main Image
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<input id="ImageMediass" name="photoo" accept=".jfif,.jpg,.jpeg,.png,.gif" type="file" class="form-control"   required>
+													
 												</div>
-												<span class="input-group-text">Upload</span>
+												<div id="divImageMediaPrevieww"></div>	
 											</div>
-											<div class="col-12">
-												<button type="submit" class="btn btn-primary mb-2">Submit</button>
+											<div class="mb-3 row">
+												<label class="col-lg-4 col-form-label" for="validationCustom05">Add Multiple Images
+													<span class="text-danger">*</span>
+												</label>
+												<div class="col-lg-6">
+													<input id="ImageMedias" multiple="multiple" name="images" type="file" accept=".jfif,.jpg,.jpeg,.png,.gif" class="form-control" value="">
+													
+												</div>
+												<div id="divImageMediaPreview"></div>
 											</div>
-
-
+											
+											<div class="mb-3 row">
+												<div class="col-lg-8 ms-auto">
+													<button type="submit" class="btn btn-primary">Submit</button>
+												</div>
+											</div>
 										</div>
-
-									</form>
-								</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>
-	<!--**********************************
-            Content body end
-    ***********************************-->
 
 </div>
 
 
+
 {% endblock %}
-
-
-
-<!--**********************************
-        Main wrapper end
-    ***********************************-->

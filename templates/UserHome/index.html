@@ -1,7 +1,7 @@
 {% extends 'UserHome/base.html' %}
 {% load static %}
 
-{% block body %}
+{% block body %}  
     <!-- ========== ABOUT ========== -->
     <section class="image-bg parallax gradient-overlay op4 " data-src="{% static 'home/images/slider12.jpg' %}" data-parallax="scroll" data-speed="0.3" data-mirror-selector=".wrapper" data-z-index="0">
       <div class="container">
@@ -12,13 +12,7 @@
               <p class="section-subtitle">High quality accommodation services</p>
             </div>
             <div class="info-branding">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus deleniti nulla, hic
-                voluptatibus eum voluptatum libero suscipit nemo voluptates cupiditate, ipsum provident facere modi
-                tempora ducimus enim dicta laborum esse aliquam rem
-                assumenda dolores. Commodi, aperiam, blanditiis! Ipsum iure necessitatibus eaque, fuga. Excepturi
-                facilis libero dicta soluta officiis, sint sit voluptatem, vero doloribus nesciunt suscipit dolores
-                veritatis minus quam atque non autem quasi
-                consequatur quae sequi ex, ipsa facere qui ut recusandae. Quod earum cupiditate quaerat assumenda.</p>
+              <p>Book your Rooms and get Luxury stay </p>
               
             </div>
           </div>
@@ -27,21 +21,36 @@
             <div class="vertical-booking-form slider-booking-form mt-5">
               <h3 class="form-title">BOOK YOUR ROOM</h3>
               <div class="inner">
-                <form id="booking-form">
+                <form  method="POST">
+                  {% csrf_token %}
                   <!-- EMAIL -->
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <input class="form-control" name="booking-email" type="email" placeholder="Your Email Address" value="{{user.email}}">
-                  </div>
+                  </div> -->
                   <!-- ROOM TYPE -->
                   
                   <!-- DATE -->
                   <div class="form-group">
-                    <input type="text" class="datepicker form-control" name="booking-date" readonly="readonly">
+                    <!-- <input type="text"  class="datepicker form-control " name="booking-date" readonly="readonly"> -->
                   </div>
+                  <div class="row form-group">
+                    <div class="col-md-12">
+                      <label for="mintopay">Check in</label>
+                      <p>
+                        <input type="date" name="checkin" id="checkin" class="form-control txtDate"
+                          onchange="onchangee()">
+                      </p>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="maxtopay">Check out</label>
+                      <p>
+                        <input type="date" name="checkout" id="checkout" class="form-control to">
+                      </p>
+                    </div>
                   <!-- GUESTS -->
                   
                   <!-- BOOKING BUTTON -->
-                  <a href="{% url 'userroomview' %}" class="btn btn-dark btn-book">BOOK A ROOM</a>
+                  <input type="submit" class="btn btn-dark btn-book" value="search">
                   <div class="advanced-form-link">
                     
                   </div>

@@ -1,9 +1,10 @@
-from msilib.schema import _Validation_records
-from tkinter import CASCADE
-from unicodedata import category
+
+from itertools import product
 from django.db import models
 
 from MyAdmin.models import Account
+from UserHome.models import *
+from django.db.models import Avg, Count
 
 
 # Create your models here.
@@ -46,8 +47,46 @@ class Rooms(models.Model):
     def reduced_price(self):
         return self.price - self.discount_price
 
+    def averageReview(self):
+        reviews = ReviewRating.objects.filter(product=self, status=True).aggregate(average=Avg('rating'))
+        avg = 0
+        if reviews['average'] is not None:
+            avg = float(reviews['average'])
+        return avg
+
+    def countReview(self):
+        reviews = ReviewRating.objects.filter(product=self, status=True).aggregate(count=Count('id'))
+        count = 0
+        if reviews['count'] is not None:
+            count = int(reviews['count'])
+        return count
+
+    
+        
+        
 
 
+
+
+class ReviewRating(models.Model):
+    product = models.ForeignKey(Rooms, on_delete=models.CASCADE)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    subject = models.CharField(max_length=100, blank=True)
+    review = models.TextField(max_length=500, blank=True)
+    rating = models.FloatField()
+    ip = models.CharField(max_length=20, blank=True)
+    status = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.subject
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(Account,on_delete=models.CASCADE)# here CASCADE is the behavior to adopt when the referenced object(because it is a foreign key) is deleted. it is not specific to django,this is an sql standard.
+    wished_room = models.ForeignKey(Rooms,on_delete=models.CASCADE)
+    added_date = models.DateTimeField(auto_now_add=True)
+   
 
 class Category_offer(models.Model):
     category=models.ForeignKey(Categories,on_delete=models.CASCADE)

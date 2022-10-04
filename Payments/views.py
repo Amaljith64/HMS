@@ -321,3 +321,11 @@ def WalletPayment(request):
     getwallet.save()
 
     return render(request, 'success.html')
+
+
+def invoice(request,id):
+    details=PaymentClass.objects.get(id=id)
+
+    return render(request,'UserHome/invoice.html',{'details':details})
+
+

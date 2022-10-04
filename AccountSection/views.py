@@ -11,6 +11,8 @@ from AdminPanel.models import *
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import date
 from Payments.models import *
+from datetime import datetime
+from AdminPanel.views import index
 
 # Create your views here.
 
@@ -63,11 +65,13 @@ def register(request):
                     if referredPerson != None:
                         try:
                             wallet_balance_add=MyWallet.objects.get(user=referredPerson)
-                            wallet_balance_add.balance+=500         
+                            wallet_balance_add.balance+=500   
                             wallet_balance_add.save()
                             getwallet=WalletDetails.objects.create(user=referredPerson)
                             getwallet.user=referredPerson
                             getwallet.amount=500
+                            getwallet.status=True      
+
                             getwallet.decription_amount="Referral Bonus Credited"
                             getwallet.save()
                             user.ref_active=True
@@ -185,9 +189,12 @@ def signin(request):
 
         if user is not None:
             login(request, user)
+            if user.is_superadmin:
 
             # messages.success(request, 'You have succesfully logged in', )
-            return redirect(home)
+                return redirect(index)
+            else:
+                return redirect(home)
 
         else:
             messages.error(request, "Invalid Credentials")
@@ -201,10 +208,94 @@ def test(request):
     return render(request, 'test.html')
 
 
+
+# def check_availability(check_in, check_out):
+#     avail_list = []
+#     booking_list = HotelBookings.objects.filter(is_booked=True)
+#     for booking in booking_list:
+#         if booking.start_date > check_out or booking.end_date < check_in:
+#             avail_list.append(True)
+#         else:
+#             avail_list.append(False)
+#     return all(avail_list)
+
+
+
+
+def chech_availability(fd, ed):
+        rooms = Rooms.objects.all()
+        print('funnnnnnnnnnnnn')
+        availableRooms = []
+        for room in rooms:
+            availList = []
+            bookingList = HotelBookings.objects.filter(hotel=room,is_booked=True,start_date__lte=fd,  # less than or equal
+                    end_date__gte=ed)
+            if len(bookingList) >= room.room_count:
+                availList.append(False)
+            else:
+                availList.append(True)
+            if all(availList):
+                availableRooms.append(room)
+        return availableRooms
+
+
+
+def check_booking(start_date, end_date, id, room_count):
+    print('Reached Checkinggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg')
+    print(start_date)
+    print(end_date)
+    print(room_count)
+    qs = HotelBookings.objects.filter(
+        is_booked=True,
+        start_date__lte=start_date,  # less than or equal
+        end_date__gte=end_date,  # greater than or equal
+        hotel__id=id
+    )
+    print(qs)
+    if len(qs) >= room_count:
+        return False
+    return True
+
+
+
+
 def home(request):
     rooms=Rooms.objects.all()
     now=date.today()
     coupons=Coupons.objects.filter(valid_to__lte=now)
+    request.session['checkin']=None
+    request.session['checkout']=None
+
+    if request.method == "POST":
+       
+        checkin = request.POST.get("checkin")
+        checkout = request.POST.get("checkout")
+        
+        print(checkin,"uuuuuuuuuuuuuu")
+        # x = dates.split("-")
+        # print(x[1])
+        # print(x[0],'yyyyyyyyyyyyyyyyyyyyyy')
+        # firstDay = datetime.strptime(x[0][:-1],'%d/%m/%Y')
+        # lastDate = datetime.strptime(x[1][1:],'%d/%m/%Y')
+        # print(firstDay.date)
+        
+        
+
+        request.session['checkin']=checkin
+        request.session['checkout']=checkout
+        
+        
+        
+        # print(firstDay,"yyyyyyyyyyyyyyyy")
+        
+        rooms = chech_availability(checkin, checkout)
+
+        print("hereeeeeeeeeeeeeeee")
+
+        context = {'rooms': rooms}
+
+        return render(request, 'UserHome/allrooms.html', context)
+
 
     for y in coupons:
         y.active=False

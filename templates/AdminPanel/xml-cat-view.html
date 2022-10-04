@@ -1,0 +1,28 @@
+<div class="row" id="employees-table"
+            hx-get="{% url 'category' %}"
+            hx-trigger="employeeChanged from:body">
+{% for i in categ %}
+            <div class="col-xl-6" >
+            
+                <div class="card">
+                    <div class="card-header border-0 pb-0">
+                        <h5 class="card-title">{{i.title}}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{i.description}}
+                        </p>
+                    </div>
+                    <div class="card-footer border-0 pt-0">
+                        <a class="card-text d-inline" data-bs-toggle="modal" data-bs-target="#exampleModalCenter1"
+                        @click="showEditForm = true" :disabled="showEditForm"
+                        hx-get="{% url 'editcategory' i.id %}"
+                        hx-target="#edit-form"
+                        hx-swap="outerHTML"
+                        >Edit</a>
+                        <a href="javascript:void(0);" class="card-link float-end">Delete</a>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>

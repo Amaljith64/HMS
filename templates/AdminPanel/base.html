@@ -34,6 +34,8 @@
 	<link href="{% static 'admin/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
 	<!-- Style css -->
     <link href="{% static 'admin/css/style.css' %}" rel="stylesheet">
+	{% block custom %}
+	{% endblock %}
 
 	<style>
 		.borderforgraph{
@@ -69,14 +71,7 @@
 	
 </head>
 <body>
-	<script>
-		jQuery(document).ready(function(){
-			setTimeout(function(){
-				dezSettingsOptions.version = 'dark';
-				new dezSettings(dezSettingsOptions);
-			},1500)
-		});
-	</script>
+	
     <!--*******************
         Preloader start
     ********************-->
@@ -222,7 +217,7 @@
 							<span class="nav-text">Users</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="{% url 'guest' %}">Guest</a></li>
+                            <li><a href="{% url 'guest' %}">View User</a></li>
                         </ul>
                      </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -386,6 +381,46 @@
 			// SmartWizard initialize
 			$('#smartwizard').smartWizard(); 
 		});
+	</script>
+	<script>
+		$("#ImageMedias").change(function () {
+		if (typeof (FileReader) != "undefined") {
+			var dvPreview = $("#divImageMediaPreview");
+			dvPreview.html("");            
+			$($(this)[0].files).each(function () {
+				var file = $(this);                
+					var reader = new FileReader();
+					reader.onload = function (e) {
+						var img = $("<img />");
+						img.attr("style", "width: 150px; height:100px; padding: 10px");
+						img.attr("src", e.target.result);
+						dvPreview.append(img);
+					}
+					reader.readAsDataURL(file[0]);                
+			});
+		} else {
+			alert("This browser does not support HTML5 FileReader.");
+		}
+	});
+		$("#ImageMediass").change(function () {
+		if (typeof (FileReader) != "undefined") {
+			var dvPreview = $("#divImageMediaPrevieww");
+			dvPreview.html("");            
+			$($(this)[0].files).each(function () {
+				var file = $(this);                
+					var reader = new FileReader();
+					reader.onload = function (e) {
+						var img = $("<img />");
+						img.attr("style", "width: 150px; height:100px; padding: 10px");
+						img.attr("src", e.target.result);
+						dvPreview.append(img);
+					}
+					reader.readAsDataURL(file[0]);                
+			});
+		} else {
+			alert("This browser does not support HTML5 FileReader.");
+		}
+	});
 	</script>
 	
 	

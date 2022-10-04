@@ -1,35 +1,34 @@
-
-<div class="modal fade" id="exampleModalCenter1"  hx-target="this" hx-swap="outerHTML" >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Category</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal">
-                </button>
+<form
+id="edit-form"
+hx-post="{% url 'editcategory' 0 %}" 
+hx-trigger="submit"
+hx-swap="outerHTML"
+hx-include="[name='id']"
+action="#">
+    <div class="modal-body">
+        <input type="hidden" value="{{ toedit.id }}" name="id">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Title{{toedit.title}} {{toedit.id}}</label>
+            <div class="mb-3">
+                <input type="text" name="title" class="form-control input-rounded" placeholder="Enter title"
+                    value="{{toedit.title}}">
             </div>
-            <div class="modal-body">
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label class="form-label">Title{{toedit.title}}</label>
-                        <div class="mb-3">
-                            <input type="text" name="title" class="form-control input-rounded"
-                                placeholder="Enter title" value="{{toedit.title}}">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <div class="mb-3">
-                            <input type="text" name="description" class="form-control input-rounded"
-                                placeholder="Enter description">
-                        </div>
-                    </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <div class="mb-3">
+                <input type="text" name="description" class="form-control input-rounded"
+                    placeholder="Enter description">
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Add</button>
-            </div>
-            </form>
         </div>
     </div>
-</div>
+    <div class="modal-footer">
+        <button type="button"  class="btn btn-danger light"
+            data-bs-dismiss="modal">Close</button>
+        <button type="submit" 
+            class="btn btn-primary"
+             
+            >Add</button>
+    </div>
+</form>

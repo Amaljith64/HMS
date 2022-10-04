@@ -5,78 +5,33 @@
     ***********************************-->
 
 {% block body %}
-<div class="content-body">
+<div class="content-body" x-data="{showEditForm: false}" >
     <div class="container-fluid">
         <div class="row page-titles">
-
             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
                 data-bs-target="#exampleModalCenter">Add Category</button>
+        </div>
+        
 
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add Category</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <div class="mb-3">
-                                <label class="form-label">Title</label>
-                                <div class="mb-3">
-                                    <input type="text" name="title" class="form-control input-rounded"
-                                        placeholder="Enter title">
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Description</label>
-                                <div class="mb-3">
-                                    <input type="text" name="description" class="form-control input-rounded"
-                                        placeholder="Enter description">
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="row" hx-target="this" hx-swap="outerHTML">
-            {% for i in categ %}
-            <div class="col-xl-6">
-                <div class="card">
-                    <div class="card-header border-0 pb-0">
-                        <h5 class="card-title">{{i.title}}</h5>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">{{i.description}}
-                        </p>
-                    </div>
-                    <div class="card-footer border-0 pt-0">
-                        <a class="card-text d-inline" data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter1"
-                        hx-get="{% url 'editcategory' i.id  %}"
-                       >Edit</a>
-                        <a href="javascript:void(0);" class="card-link float-end">Delete</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        
-        {% include "AdminPanel/xml-category.html" %}
-        
+            {% include "AdminPanel/xml-cat-view.html" %}
 
         
     </div>
 </div>
 
+
+<div class="modal fade" id="exampleModalCenter1" x-show="showEditForm">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                </button>
+            </div>
+            {% include "AdminPanel/xml-category.html" %}
+            
+        </div>
+    </div>
+</div>
 
 {% endblock %}

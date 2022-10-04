@@ -29,21 +29,18 @@ def addrooms(request):
     categ=Categories.objects.all
 
     if request.method=='POST':
-
-
-
         name=request.POST.get('hotel_name')
-       
         price=request.POST.get('price')
         Desc=request.POST['description']
         image=request.FILES['photoo']
         multiimages = request.FILES.getlist('images')
         categ=Categories.objects.get(id=request.POST['categ'])
         scateg=SubCategories.objects.get(id=request.POST['scateg'])
+        count=request.POST['count']
         
         # print(location)
 
-        addroom=Rooms.objects.create(img=image,categ=categ,subcateg=scateg,name=name,Desc=Desc,price=price)
+        addroom=Rooms.objects.create(img=image,categ=categ,subcateg=scateg,name=name,Desc=Desc,price=price,room_count=count)
         addroom.save()
 
         for multiimage in multiimages:
@@ -134,17 +131,29 @@ def category(request):
 
 
 def edit_category(request,id):
-    categ=Categories.objects.all()
-    to_edit=Categories.objects.get(id=id)
-    if request.method =='POST':
+    
+
+    if request.method == 'GET':
+        categ=Categories.objects.all()
+        to_edit=Categories.objects.get(id=id)
+        return render(request,'AdminPanel/xml-category.html',{'categ':categ,'toedit':to_edit})
+
+
+    
+    elif request.method =='POST':
+        if request.POST.get('id') is not None:
+            id = request.POST.get('id')
+        categ=Categories.objects.all()
         title=request.POST['title']
         description=request.POST['description']
         edit=Categories.objects.get(id=id)
+        print(edit,'iiiiiiiiiiiiiiiiii')
         edit.title=title
         edit.description=description
         edit.save()
-        return redirect(category)
-    return render(request,'AdminPanel/xml-category.html',{'categ':categ,'toedit':to_edit})
+        response = render(request,'AdminPanel/xml-category.html',{'categ':categ})
+        response['HX-Trigger'] = 'employeeChanged'
+        return response
 
 
 
@@ -410,6 +419,12 @@ def index(request):
     yearorders=HotelBookings.objects.annotate(year=ExtractYear('created_at')).values('year').annotate(count=Count('id')).values('year','count')
     Dayorders=HotelBookings.objects.annotate(day=ExtractDay('created_at')).filter(created_at=date.today()).values('day').annotate(count=Count('id')).values('day','count')
 
+    totalbooking=HotelBookings.objects.filter(is_booked=True).count()
+    print(totalbooking,'bookinggggg')
+
+    totalroom=Rooms.objects.all().count()
+
+
     print(Dayorders)
     DayNumber=[]
     YearNumber=[]
@@ -452,7 +467,10 @@ def index(request):
         'totaldayorder':totaldayorder,
         'paypal':pay,
         'raz':raz,
-        'cod':payathotel
+        'cod':payathotel,
+        'totalbooking':totalbooking,
+        'totalroom':totalroom
+
 
     }
 

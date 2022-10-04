@@ -16,6 +16,7 @@ urlpatterns = [
     path('usewallet', views.UseWallet, name='UseWallet'),
     path('remove_wallet', views.remove_wallet, name='remove_wallet'),
     path('WalletPayment', views.WalletPayment, name='WalletPayment'),
+    path('invoice/<int:id>', views.invoice, name='invoice'),
 
     
 ]
