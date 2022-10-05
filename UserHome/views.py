@@ -138,6 +138,7 @@ def hotel_detail(request, id):
     images = MultiImage.objects.filter(imageof=id)
     request.session['wallet'] = None
     request.session['amountfromwallet'] = 0
+    rating=0
     scheckin = request.session['checkin']
     scheckout = request.session['checkout']
 
@@ -218,8 +219,10 @@ def hotel_detail(request, id):
                         request, 'Thank you! Your review has been submitted.')
                     return redirect(hotel_detail, id)
     reviews = ReviewRating.objects.filter(product_id=room, status=True)
-    rating=starAverage(id)
-    print(rating,'ppppppppppppppppppp')
+    try:
+        rating=starAverage(id)
+    except:
+        pass
 
     return render(request, 'UserHome/viewroom.html', {'room': room,
                                                       'images': images,
