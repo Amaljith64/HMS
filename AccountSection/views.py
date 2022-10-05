@@ -203,22 +203,11 @@ def signin(request):
     return render(request, 'AccountSection/user-login.html')
 
 
-def test(request):
-
-    return render(request, 'test.html')
-
+def test(request,id):
+    order_db = PaymentClass.objects.get(id = id, user = request.user, booked_room__is_booked = True)     #you can filter using order_id as well
 
 
-# def check_availability(check_in, check_out):
-#     avail_list = []
-#     booking_list = HotelBookings.objects.filter(is_booked=True)
-#     for booking in booking_list:
-#         if booking.start_date > check_out or booking.end_date < check_in:
-#             avail_list.append(True)
-#         else:
-#             avail_list.append(False)
-#     return all(avail_list)
-
+    return render(request, 'UserHome/invoice.html',{'details':order_db})
 
 
 
@@ -267,35 +256,25 @@ def home(request):
     request.session['checkout']=None
 
     if request.method == "POST":
-       
-        checkin = request.POST.get("checkin")
-        checkout = request.POST.get("checkout")
-        
-        print(checkin,"uuuuuuuuuuuuuu")
-        # x = dates.split("-")
-        # print(x[1])
-        # print(x[0],'yyyyyyyyyyyyyyyyyyyyyy')
-        # firstDay = datetime.strptime(x[0][:-1],'%d/%m/%Y')
-        # lastDate = datetime.strptime(x[1][1:],'%d/%m/%Y')
-        # print(firstDay.date)
-        
-        
+        try:
+            checkin = request.POST.get("checkin")
+            checkout = request.POST.get("checkout")
+            
+            print(checkin,"uuuuuuuuuuuuuu")
 
-        request.session['checkin']=checkin
-        request.session['checkout']=checkout
-        
-        
-        
-        # print(firstDay,"yyyyyyyyyyyyyyyy")
-        
-        rooms = chech_availability(checkin, checkout)
+            request.session['checkin']=checkin
+            request.session['checkout']=checkout
+            
+            rooms = chech_availability(checkin, checkout)
 
-        print("hereeeeeeeeeeeeeeee")
+            print("hereeeeeeeeeeeeeeee")
 
-        context = {'rooms': rooms}
+            context = {'rooms': rooms}
 
-        return render(request, 'UserHome/allrooms.html', context)
+            return render(request, 'UserHome/allrooms.html', context)
+        except:
 
+            messages.error(request, "Choose date")
 
     for y in coupons:
         y.active=False

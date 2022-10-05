@@ -6,5 +6,6 @@ from MyAdmin.models import Account
 
 
 
-
+class logo(models.Model):
+    img=models.ImageField(upload_to="media/",default=True)
 

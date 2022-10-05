@@ -101,26 +101,32 @@ def room(request):
 #----------------------BOOKING AND MANAGEMENT-------------------#
 
 
-# def starAverage(id):
-#     ratings=[]
-#     onestar=ReviewRating.objects.filter(product=id,status=True,rating=1).count()
-#     twostar=ReviewRating.objects.filter(product=id,status=True,rating=2).count()
-#     threestar=ReviewRating.objects.filter(product=id,status=True,rating=3).count()
-#     fourstar=ReviewRating.objects.filter(product=id,status=True,rating=4).count()
-#     fivestar=ReviewRating.objects.filter(product=id,status=True,rating=5).count()
+def starAverage(id):
+    ratings=[]
+    onestar=ReviewRating.objects.filter(product=id,status=True,rating=1).count()
+    twostar=ReviewRating.objects.filter(product=id,status=True,rating=2).count()
+    threestar=ReviewRating.objects.filter(product=id,status=True,rating=3).count()
+    fourstar=ReviewRating.objects.filter(product=id,status=True,rating=4).count()
+    fivestar=ReviewRating.objects.filter(product=id,status=True,rating=5).count()
 
-#     reviews = ReviewRating.objects.filter(product=id, status=True).aggregate(count=Count('id'))
-#     count = 0
-#     if reviews['count'] is not None:
-#         count = int(reviews['count'])
+    reviews = ReviewRating.objects.filter(product=id, status=True).aggregate(count=Count('id'))
+    count = 0
+    if reviews['count'] is not None:
+        count = int(reviews['count'])
 
-#     onestarper=(onestar*count)/100
-#     twostarper=(twostar*count)/100
-#     threestarper=(threestar*count)/100
-#     fourstarper=(fourstar*count)/100
-#     fivestarper=(fivestar*count)/100
-#     ratings.append[onestarper,twostarper,threestarper,fourstarper,fivestarper]
-#     return all(ratings)
+    onestarper=(onestar/count)*100
+    twostarper=(twostar/count)*100
+    threestarper=(threestar/count)*100
+    fourstarper=(fourstar/count)*100
+    fivestarper=(fivestar/count)*100
+    ratings.append(onestarper)
+    
+    ratings.append(twostarper)
+    ratings.append(threestarper)
+    ratings.append(fourstarper)
+    ratings.append(fivestarper)
+    print(ratings,'ggtt')
+    return ratings
 
 
 
@@ -212,15 +218,16 @@ def hotel_detail(request, id):
                         request, 'Thank you! Your review has been submitted.')
                     return redirect(hotel_detail, id)
     reviews = ReviewRating.objects.filter(product_id=room, status=True)
-    # rating=starAverage(id)
-    # print(rating,'ppppppppppppppppppp')
+    rating=starAverage(id)
+    print(rating,'ppppppppppppppppppp')
 
     return render(request, 'UserHome/viewroom.html', {'room': room,
                                                       'images': images,
                                                       'scheckin': scheckin,
                                                       'scheckout': scheckout,
                                                       'orderproduct': orderproduct,
-                                                      'reviews': reviews})
+                                                      'reviews': reviews,
+                                                      'rating':rating})
 
 
 def Bookings(request):
@@ -346,3 +353,60 @@ def submit_review(request, id):
                 messages.success(
                     request, 'Thank you! Your review has been submitted.')
                 return redirect(hotel_detail, id)
+
+
+from io import BytesIO
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+import os
+from django.views.generic import View
+from HMS import settings
+from.models import logo
+
+
+
+def fetch_resources(uri, rel):
+    path = os.path.join(uri.replace(settings.STATIC_URL, ""))
+    return path
+
+def render_to_pdf(template_src, context_dict={}):
+    template = get_template(template_src)
+    html  = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)#, link_callback=fetch_resources)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return None
+
+class GenerateInvoice(View):
+    def get(self, request, id, *args, **kwargs):
+        logoimg=logo.objects.all()
+        try:
+            order_db = PaymentClass.objects.get(id = id, user = request.user, booked_room__is_booked = True)     #you can filter using order_id as well
+        except:
+            return HttpResponse("505 Not Found")
+        data = {
+            'order_id': order_db.payment_id,
+            
+            'user_email': order_db.user.email,
+            'date': str(order_db.booked_room.created_at),
+            'name': order_db.user.username,
+            'order': order_db,
+            'logoimg':logoimg,
+            'amount': order_db.total_amount,
+        }
+        pdf = render_to_pdf('UserHome/invoice.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')
+
+        # force download
+        if pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            filename = "Invoice_%s.pdf" %(data['order_id'])
+            content = "inline; filename='%s'" %(filename)
+            #download = request.GET.get("download")
+            #if download:
+            content = "attachment; filename=%s" %(filename)
+            response['Content-Disposition'] = content
+            return response
+        return HttpResponse("Not found")

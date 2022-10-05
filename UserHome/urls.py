@@ -14,5 +14,7 @@ urlpatterns = [
     path('cancelbooking/<int:id>',views.CancelBooking,name='CancelBooking'),
     path('profile',views.user_profile,name='profile'),
     path('submit_review/<int:id>',views.submit_review,name='submit_review'),
+        # Generating Invoice
+    path('generateinvoice/<int:id>/', views.GenerateInvoice.as_view(), name = 'generateinvoice'),
 
 ]
