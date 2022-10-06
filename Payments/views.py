@@ -19,8 +19,8 @@ from paypal.standard.forms import PayPalPaymentsForm
 
 def paymentfun(request, id):
     coupon = Coupons.objects.all()
-    global booking
     booking = HotelBookings.objects.get(id=id)
+    request.session['booking']=booking.id
     fullamount = request.session['fullamount']
     roomamount = request.session['amount']
     discountamt = fullamount-roomamount
@@ -191,7 +191,7 @@ def paymentsuccess(request):
 
 def apply_coupon(request):
     roomamount = request.session['amount']
-    id = booking.id
+    id = request.session['booking']
     coupon = request.session['coupon']
     if request.method == "POST":
         if coupon == None:
@@ -237,8 +237,8 @@ def remove_coupon(request):
         couponsid=coupon_discount_.id, user=request.user)
     remove_.delete()
     print('deleteddddddddd')
-    print(booking.id)
-    id = booking.id
+    
+    id = request.session['booking']
     coupon_discount = int(coupon_discount_.discount)
     print(coupon_discount)
     discount_price = request.session['amount']
@@ -250,7 +250,7 @@ def remove_coupon(request):
 
 
 def UseWallet(request):
-    id = booking.id
+    id = request.session['booking']
     if request.method == 'POST':
         wallet_balance_add = MyWallet.objects.get(user=request.user)
 
@@ -274,7 +274,7 @@ def UseWallet(request):
 
 
 def remove_wallet(request):
-    id = booking.id
+    id = request.session['booking']
 
     alltotal = request.session['amount']
     wallet_amount = request.session['amountfromwallet']

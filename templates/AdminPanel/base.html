@@ -34,6 +34,13 @@
 	<link href="{% static 'admin/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
 	<!-- Style css -->
     <link href="{% static 'admin/css/style.css' %}" rel="stylesheet">
+
+	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+	<!-- Default theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 	{% block custom %}
 	{% endblock %}
 
@@ -422,6 +429,20 @@
 		}
 	});
 	</script>
+	  <script>
+		{% for flash in messages %}
+		{% if flash.tags == 'error' %}
+		alertify.set('notifier', 'position', 'top-right');
+		alertify.error('{{flash}}');
+		{% elif flash.tags == 'success' %}
+		alertify.set('notifier', 'position', 'top-right');
+		alertify.success('{{flash}}');
+		{% elif flash.tags == 'warning' %}
+		alertify.set('notifier', 'position', 'top-right');
+		alertify.warning('{{flash}}');
+		{% endif %}
+		{% endfor %}
+	  </script>
 	
 	
 	{% block CustomScripts %}

@@ -146,7 +146,7 @@
             <!-- ITEM -->
             <div class="item" id="img-container">
               <figure class="gradient-overlay-hover image-icon">
-                <a href="images/rooms/single/single1.jpg">
+                <a href="{{room.img.url}}">
                   <div id="lens"></div>
                   <img id=featured class="img-fluid" src="{{room.img.url}}" alt="Image">
                 </a>
@@ -156,7 +156,7 @@
             {% for i in images %}
             <div class="item" id="img-container">
               <figure class="gradient-overlay-hover image-icon">
-                <a href="images/rooms/single/single2.jpg">
+                <a href="{{i.image.url}}">
 
                   <img class="img-fluid" src="{{i.image.url}}" alt="Image">
                 </a>
@@ -232,24 +232,7 @@
             </div>
           </div>
         </div>
-        <p>Horem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-          dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
-          suscipit lobortis nisl ut aliquip
-          ex ea
-          <u>commodo consequat.</u>
-          Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu
-          feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
-          delenit...
-        </p>
-        <p>Horem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-          dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
-          suscipit lobortis nisl ut aliquip
-          ex ea
-          <u>commodo consequat.</u>
-          Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu
-          feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
-          delenit...
-        </p>
+        
         <!-- ROOM REVIEWS -->
         <div>
           <form action="" method="POST" id="formTwo">

@@ -20,6 +20,7 @@ urlpatterns = [
     path('cancel/<int:id>',views.cancel,name='cancel'),
     path('deletebooking/<int:id>',views.delete,name='deletethebooking'),
     path('coupons',views.add_coupons,name='coupons'),
+    path('editcoupons/<int:id>',views.edit_coupon,name='editcoupons'),
 
 
     #------------------------- category offer management ------------------------ #
@@ -31,14 +32,14 @@ urlpatterns = [
 
 #------------------------- subcategory offer management ------------------------ #
     path("subcategoryoffers",views.SubCategoryOffer,name="subcategoryoffers"),
-    # path("editsubcategoryoffers/<int:id>/",views.Edit_SubCategoryOffer,name="EditSubCategoryOffer"),
+    path("editsubcategoryoffers/<int:id>/",views.Edit_SubCategoryOffer,name="EditSubCategoryOffer"),
     # path("blocksubcategoryoffers/<int:id>/",views.Block_SubCategoryOffer,name="BlockSubCategoryOffer"),
     # path("unblocksubcategoryoffers/<int:id>/",views.UnBlock_SubCategoryOffer,name="UnBlockSubCategoryOffer"),
     # path("deletesubcategoryoffers/<int:id>/",views.Delete_SubCategoryOffer,name="DeleteSubCategoryOffer"),
 
 #------------------------- Product offer management ------------------------ #
     path("roomoffer",views.RoomOffer,name="roomoffer"),
-    # path("editproductoffers/<int:id>/",views.Edit_ProductOffer,name="EditProductOffer"),
+    path("editroomoffer/<int:id>/",views.Edit_RoomOffer,name="EditRoomOffer"),
     # path("blockproductoffers/<int:id>/",views.Block_ProductOffer,name="BlockProductOffer"),
     # path("unblockproductoffers/<int:id>/",views.UnBlock_ProductOffer,name="UnBlockProductOffer"),
     # path("deleteproductoffers/<int:id>/",views.Delete_ProductOffer,name="DeleteProductOffer"),

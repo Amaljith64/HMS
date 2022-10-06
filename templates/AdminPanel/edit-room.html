@@ -38,35 +38,18 @@
 									<div class="row">
 										<div class="col-xl-6">
 											
+									
 											<div class="mb-3 row">
-												<label class="col-lg-4 col-form-label" for="validationCustom05">Room Type
+												<label class="col-lg-4 col-form-label" for="validationCustom05">Location
 												
 													<span class="text-danger">*</span>
 												</label>
 												<div class="col-lg-6">
-													<select name="type" class="default-select wide form-control"
+													<select name='scateg' class="default-select wide form-control"
 														id="validationCustom05">
 														
-														<option  data-display="{{room.Roomtype}}"></option>
-														{% for i in type %}
-														<option  value="{{ i.id }}">{{ i.title }}</option>
-														{% endfor %}
-													
-													</select>
-				
-												</div>
-											</div>
-											<div class="mb-3 row">
-												<label class="col-lg-4 col-form-label" for="validationCustom05">Room Type
-												
-													<span class="text-danger">*</span>
-												</label>
-												<div class="col-lg-6">
-													<select name='loc' class="default-select wide form-control"
-														id="validationCustom05">
-														
-														<option  data-display="{{room.Location}}">{{room.Location}}</option>
-														{% for i in type %}
+														<option  data-display="{{room.subcateg}}">{{room.subcateg}}</option>
+														{% for i in sub %}
 															<option value="{{ i.id }}">{{ i.title }}</option>
 														{% endfor %}
 													
@@ -75,19 +58,22 @@
 												</div>
 											</div>
 											<div class="mb-3 row">
-												<label class="col-lg-4 col-form-label" for="validationCustom05">Room Type
+												<label class="col-lg-4 col-form-label" for="validationCustom05">Main image
 												
 													<span class="text-danger">*</span>
 												</label>
 												<div class="col-lg-6">
 													{% if room.img %}
-                                    				<img src="{{ room.img.url }}" alt="image here" class="prod-size"  style="width: 90%;">
+													<div class="row-3">
+                                    				<img src="{{ room.img.url }}" alt="image here" class="prod-size"   style="width: 90%;">
+													</div>
                                 					{% endif %}
 													<label for="" class="form-label">Image</label>
-                                					<input type="file" name="image" class="form-control">
+                                					<input type="file" name="photoo" class="form-control" accept=".jfif,.jpg,.jpeg,.png,.gif">
 				
 												</div>
 											</div>
+											
 											
 										</div>
 										<div class="col-xl-6">
@@ -121,7 +107,7 @@
 													<span class="text-danger">*</span>
 												</label>
 												<div class="col-lg-6">
-													<input name="price" type="text" class="form-control" id="validationCustom07"
+													<input name="price" type="number" class="form-control" id="validationCustom07"
 														value="{{room.price}}">
 													<div class="invalid-feedback">
 														Please enter a url.
@@ -135,6 +121,22 @@
 												</div>
 											</div>
 										</div>
+										<!-- <div class="col-12 row">
+											<label class="row-lg-4 col-form-label" for="validationCustom05">Multiple Images
+											
+												<span class="text-danger">*</span>
+											</label>
+											<div class="row">
+												{% for i in multiimage %}
+												<div class="col-2">
+												<img src="{{ i.image.url }}" alt="image here"  class="prod-size"  style="width: 90%;">
+												</div>
+												{% endfor %}
+												<label for="" class="form-label">Images</label>
+												<input type="file" name="images" class="form-control" accept=".jfif,.jpg,.jpeg,.png,.gif" multiple>
+			
+											</div>
+										</div> -->
 									</div>
 								</form>
 							</div>

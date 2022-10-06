@@ -1,0 +1,47 @@
+{% extends 'AdminPanel/base.html' %}
+{% load static %}
+
+{% block styles %}
+{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-4"></div>
+<div class="col-6 " style="margin-top: 100px;">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Edit RoomOffer</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Room</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="room" class="form-control" placeholder="Enter Discount " value="{{ROom.room}}">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Discount</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="discount" class="form-control" placeholder="Enter Discount " value="{{ROom.discount}}">
+                        </div>
+                    </div>
+                   
+  
+                    <div class="mb-3 row">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Edit this Offer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+{% block CustomScripts %}
+{% endblock %}

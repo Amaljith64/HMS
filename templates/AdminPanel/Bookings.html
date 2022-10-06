@@ -18,11 +18,9 @@
 							<div class="card-tabs mt-3 mt-sm-0 mb-xxl-0 mb-4">
 								<ul class="nav nav-tabs" role="tablist">
 									<li class="nav-item">
-										<a class="nav-link active" data-bs-toggle="tab" href="#All" role="tab">All Booking (216)</a>
+										<a class="nav-link active" data-bs-toggle="tab" href="#All" role="tab">All Booking ({{bookingscount}})</a>
 									</li>
-									<li class="nav-item">
-										<a class="nav-link" data-bs-toggle="tab" href="#Pending" role="tab">Pending</a>
-									</li>
+									
 									<li class="nav-item">
 										<a class="nav-link" data-bs-toggle="tab" href="#Booked" role="tab">Booked</a>
 									</li>
@@ -36,8 +34,9 @@
 										<a class="nav-link" data-bs-toggle="tab" href="#Canceled" role="tab">Canceled</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" data-bs-toggle="tab" href="#Refund" role="tab">Refund</a>
+										<a class="nav-link" data-bs-toggle="tab" href="#Pending" role="tab">Failed</a>
 									</li>
+									
 								</ul>
 							</div>
 							<div class="table-search">
@@ -82,6 +81,185 @@
 														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
 														<div>
 															<span class="text-primary">#BK-{{i.id}}</span>
+															<h4 class="mb-0 mt-1"><a class="text-black" href="">{{i.hotel}}</a></h4>
+															<!-- <h6 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel.subcateg}}</a></h6> -->
+														</div>
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>Sunday, Oct 24th, 2020</h5>
+														
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>{{i.start_date}}</h5>
+														
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>{{i.end_date}}</h5>
+													</div>
+												</td>
+												<td><h5>{{i.user}}</h5></td>
+												<td>
+													<div>
+														<h5>{{i.hotel.subcateg}}</h5>
+													</div>
+												</td>
+												<!-- <td><span class="text-danger">{{i.status}}</span></td> -->
+
+												{% if i.status == "Pending" %}
+												<td class="py-2 text-end"><span class="badge badge-primary">Payment Pending<span
+													class="ms-1 fa fa-redo"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">															
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												{% if i.status == 'Checkin Pending' %}
+												<td class="py-2 text-end"><span class="badge badge-success">Completed<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>	
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'makecheckin' i.id %}">Make Checkin</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>															
+														</div>
+													</div>
+												</td>											
+												{% endif %}
+												{% if i.status == 'CheckedIn' %}
+												<td class="py-2 text-end"><span class="badge badge-success">CheckedIN<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'makecheckout' i.id %}">Make Check Out</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												{% if i.status == 'CheckedOut' %}
+												<td class="py-2 text-end"><span class="badge badge-Info">CheckedOut<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'makecheckout' i.id %}">Make Check Out</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												{% if i.status == 'Cancelled' %}
+												<td class="py-2 text-end"><span class="badge badge-danger">Cancelled
+													<span class="ms-1 fa fa-ban"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="javascript:void(0);">Refund</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												
+											</tr>
+											{% endfor %}
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="Booked">
+								<div class="table-responsive">
+									<table class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl " id="guestTable-all">
+										<thead>
+											<tr>
+												<th class="bg-none">
+													<div class="form-check style-1">
+													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
+													</div>
+												</th>
+												<th>Booked Room</th>
+												<th>Booked Date</th>
+												<th>Check In</th>
+												<th>Check Out</th>
+												<th>User</th>
+												<th>Location</th>
+												<th>Status</th>
+												<th class="bg-none"></th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for i in checkinpending %}
+											<tr>
+												<td>
+													<div class="form-check style-1">
+													  <input class="form-check-input" type="checkbox" value="">
+													</div>
+												</td>
+												<td>
+													<div class="media-bx">
+														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
+														<div>
+															<span class="text-primary">#BK-{{i.id}}</span>
 															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
 															<!-- <h6 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel.subcateg}}</a></h6> -->
 														</div>
@@ -90,19 +268,19 @@
 												<td>
 													<div>
 														<h5>Sunday, Oct 24th, 2020</h5>
-														<span class="fs-14">08:29 AM</span>
+														
 													</div>
 												</td>
 												<td>
 													<div>
 														<h5>{{i.start_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
+														
 													</div>
 												</td>
 												<td>
 													<div>
 														<h5>{{i.end_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
+														
 													</div>
 												</td>
 												<td><h5>{{i.user}}</h5></td>
@@ -128,8 +306,8 @@
 															</svg>
 														</a>
 														<div class="dropdown-menu">
-															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
-															<div class="dropdown-divider"></div>
+															
+						
 																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
 															
 														</div>
@@ -150,7 +328,7 @@
 															</svg>
 														</a>
 														<div class="dropdown-menu">
-															<a class="dropdown-item" href="{% url 'makecheckin' i.id %}">Check In</a>
+															<a class="dropdown-item" href="{% url 'makecheckin' i.id %}">Make Checkin</a>
 															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
 															<div class="dropdown-divider"></div>
 																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
@@ -159,8 +337,10 @@
 													</div>
 												</td>											
 												{% endif %}
-												{% if i.status == 'Check-out' %}
-												<td><span class="text-danger">{{i.status}}</span></td>
+												{% if i.status == 'CheckedIn' %}
+												<td class="py-2 text-end"><span class="badge badge-success">CheckedIN<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>
 												<td>
 													<div class="dropdown dropstart">
 														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -171,7 +351,588 @@
 															</svg>
 														</a>
 														<div class="dropdown-menu">
-															<a class="dropdown-item" href="{% url 'makecheckout' i.id %}">Check Out</a>
+															<a class="dropdown-item" href="{% url 'makecheckout' i.id %}">Make Check Out</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												{% if i.status == 'CheckedOut' %}
+												<td class="py-2 text-end"><span class="badge badge-Info">CheckedOut<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'makecheckout' i.id %}">Make Check Out</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												{% if i.status == 'Cancelled' %}
+												<td class="py-2 text-end"><span class="badge badge-danger">Cancelled
+													<span class="ms-1 fa fa-ban"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="javascript:void(0);">Refund</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												
+											</tr>
+											{% endfor %}
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="CheckIn">
+								<div class="table-responsive">
+									<table class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl " id="guestTable-all">
+										<thead>
+											<tr>
+												<th class="bg-none">
+													<div class="form-check style-1">
+													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
+													</div>
+												</th>
+												<th>Booked Room</th>
+												<th>Booked Date</th>
+												<th>Check In</th>
+												<th>Check Out</th>
+												<th>User</th>
+												<th>Location</th>
+												<th>Status</th>
+												<th class="bg-none"></th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for i in checkedin %}
+											<tr>
+												<td>
+													<div class="form-check style-1">
+													  <input class="form-check-input" type="checkbox" value="">
+													</div>
+												</td>
+												<td>
+													<div class="media-bx">
+														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
+														<div>
+															<span class="text-primary">#BK-{{i.id}}</span>
+															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
+															<!-- <h6 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel.subcateg}}</a></h6> -->
+														</div>
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>Sunday, Oct 24th, 2020</h5>
+														
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>{{i.start_date}}</h5>
+														
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>{{i.end_date}}</h5>
+														
+													</div>
+												</td>
+												<td><h5>{{i.user}}</h5></td>
+												<td>
+													<div>
+														<h5>{{i.hotel.subcateg}}</h5>
+														<span class="fs-14">Room No. 0024</span>
+													</div>
+												</td>
+												<!-- <td><span class="text-danger">{{i.status}}</span></td> -->
+
+												{% if i.status == "Pending" %}
+												<td class="py-2 text-end"><span class="badge badge-primary">Payment Pending<span
+													class="ms-1 fa fa-redo"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															
+						
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												{% if i.status == 'Checkin Pending' %}
+												<td class="py-2 text-end"><span class="badge badge-success">Completed<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>	
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'makecheckin' i.id %}">Make Checkin</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>											
+												{% endif %}
+												{% if i.status == 'CheckedIn' %}
+												<td class="py-2 text-end"><span class="badge badge-success">CheckedIN<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'makecheckout' i.id %}">Make Check Out</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												{% if i.status == 'CheckedOut' %}
+												<td class="py-2 text-end"><span class="badge badge-Info">CheckedOut<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'makecheckout' i.id %}">Make Check Out</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												{% if i.status == 'Cancelled' %}
+												<td class="py-2 text-end"><span class="badge badge-danger">Cancelled
+													<span class="ms-1 fa fa-ban"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="javascript:void(0);">Refund</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												
+											</tr>
+											{% endfor %}
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="CheckOut">
+								<div class="table-responsive">
+									<table class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl " id="guestTable-all">
+										<thead>
+											<tr>
+												<th class="bg-none">
+													<div class="form-check style-1">
+													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
+													</div>
+												</th>
+												<th>Booked Room</th>
+												<th>Booked Date</th>
+												<th>Check In</th>
+												<th>Check Out</th>
+												<th>User</th>
+												<th>Location</th>
+												<th>Status</th>
+												<th class="bg-none"></th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for i in checkout %}
+											<tr>
+												<td>
+													<div class="form-check style-1">
+													  <input class="form-check-input" type="checkbox" value="">
+													</div>
+												</td>
+												<td>
+													<div class="media-bx">
+														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
+														<div>
+															<span class="text-primary">#BK-{{i.id}}</span>
+															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
+															<!-- <h6 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel.subcateg}}</a></h6> -->
+														</div>
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>Sunday, Oct 24th, 2020</h5>
+														
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>{{i.start_date}}</h5>
+														
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>{{i.end_date}}</h5>
+														
+													</div>
+												</td>
+												<td><h5>{{i.user}}</h5></td>
+												<td>
+													<div>
+														<h5>{{i.hotel.subcateg}}</h5>
+														<span class="fs-14">Room No. 0024</span>
+													</div>
+												</td>
+												<!-- <td><span class="text-danger">{{i.status}}</span></td> -->
+
+												{% if i.status == "Pending" %}
+												<td class="py-2 text-end"><span class="badge badge-primary">Payment Pending<span
+													class="ms-1 fa fa-redo"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															
+						
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												{% if i.status == 'Checkin Pending' %}
+												<td class="py-2 text-end"><span class="badge badge-success">Completed<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>	
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'makecheckin' i.id %}">Make Checkin</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>											
+												{% endif %}
+												{% if i.status == 'CheckedIn' %}
+												<td class="py-2 text-end"><span class="badge badge-success">CheckedIN<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'makecheckout' i.id %}">Make Check Out</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												{% if i.status == 'CheckedOut' %}
+												<td class="py-2 text-end"><span class="badge badge-primary">CheckedOut<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'makecheckout' i.id %}">Make Check Out</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												{% if i.status == 'Cancelled' %}
+												<td class="py-2 text-end"><span class="badge badge-danger">Cancelled
+													<span class="ms-1 fa fa-ban"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="javascript:void(0);">Refund</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												
+											</tr>
+											{% endfor %}
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="Canceled">
+								<div class="table-responsive">
+									<table class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl " id="guestTable-all">
+										<thead>
+											<tr>
+												<th class="bg-none">
+													<div class="form-check style-1">
+													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
+													</div>
+												</th>
+												<th>Booked Room</th>
+												<th>Booked Date</th>
+												<th>Check In</th>
+												<th>Check Out</th>
+												<th>User</th>
+												<th>Location</th>
+												<th>Status</th>
+												<th class="bg-none"></th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for i in cancelled %}
+											<tr>
+												<td>
+													<div class="form-check style-1">
+													  <input class="form-check-input" type="checkbox" value="">
+													</div>
+												</td>
+												<td>
+													<div class="media-bx">
+														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
+														<div>
+															<span class="text-primary">#BK-{{i.id}}</span>
+															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
+															<!-- <h6 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel.subcateg}}</a></h6> -->
+														</div>
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>Sunday, Oct 24th, 2020</h5>
+														
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>{{i.start_date}}</h5>
+														
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5>{{i.end_date}}</h5>
+														
+													</div>
+												</td>
+												<td><h5>{{i.user}}</h5></td>
+												<td>
+													<div>
+														<h5>{{i.hotel.subcateg}}</h5>
+														<span class="fs-14">Room No. 0024</span>
+													</div>
+												</td>
+												<!-- <td><span class="text-danger">{{i.status}}</span></td> -->
+
+												{% if i.status == "Pending" %}
+												<td class="py-2 text-end"><span class="badge badge-primary">Payment Pending<span
+													class="ms-1 fa fa-redo"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															
+						
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												{% if i.status == 'Checkin Pending' %}
+												<td class="py-2 text-end"><span class="badge badge-success">Completed<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>	
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'makecheckin' i.id %}">Make Checkin</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>											
+												{% endif %}
+												{% if i.status == 'CheckedIn' %}
+												<td class="py-2 text-end"><span class="badge badge-success">CheckedIN<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'makecheckout' i.id %}">Make Check Out</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
+														</div>
+													</div>
+												</td>
+												{% endif %}
+												{% if i.status == 'CheckedOut' %}
+												<td class="py-2 text-end"><span class="badge badge-Info">CheckedOut<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>
+												<td>
+													<div class="dropdown dropstart">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="{% url 'makecheckout' i.id %}">Make Check Out</a>
 															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
 															<div class="dropdown-divider"></div>
 																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
@@ -244,25 +1005,26 @@
 														<div>
 															<span class="text-primary">#BK-{{i.id}}</span>
 															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
+															<!-- <h6 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel.subcateg}}</a></h6> -->
 														</div>
 													</div>
 												</td>
 												<td>
 													<div>
 														<h5>Sunday, Oct 24th, 2020</h5>
-														<span class="fs-14">08:29 AM</span>
+														
 													</div>
 												</td>
 												<td>
 													<div>
 														<h5>{{i.start_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
+														
 													</div>
 												</td>
 												<td>
 													<div>
 														<h5>{{i.end_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
+														
 													</div>
 												</td>
 												<td><h5>{{i.user}}</h5></td>
@@ -275,14 +1037,9 @@
 												<!-- <td><span class="text-danger">{{i.status}}</span></td> -->
 
 												{% if i.status == "Pending" %}
-												<td><span class="text-danger">{{i.status}}</span></td>
-												{% endif %}
-												{% if i.status == 'Check-in' %}
-												<td><span class="text-success">{{i.status}}</span></td>
-												{% endif %}
-												{% if i.status == 'Check-out' %}
-												<td><span class="text-danger">{{i.status}}</span></td>
-												{% endif %}
+												<td class="py-2 text-end"><span class="badge badge-danger">Payment Failed<span
+													class="ms-1 fa fa-redo"></span></span>
+												</td>
 												<td>
 													<div class="dropdown dropstart">
 														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -293,90 +1050,18 @@
 															</svg>
 														</a>
 														<div class="dropdown-menu">
-															<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-															<a class="dropdown-item" href="javascript:void(0);">Delete</a>
+															
+						
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
 														</div>
 													</div>
 												</td>
-											</tr>
-											{% endfor %}
-										</tbody>
-									</table>	
-								</div>
-							</div>
-							<div class="tab-pane fade" id="Booked">
-								<div class="table-responsive">
-									<table class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl " id="guestTable-all">
-										<thead>
-											<tr>
-												<th class="bg-none">
-													<div class="form-check style-1">
-													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
-													</div>
-												</th>
-												<th>Booked Room</th>
-												<th>Booked Date</th>
-												<th>Check In</th>
-												<th>Check Out</th>
-												<th>User</th>
-												<th>Location</th>
-												<th>Status</th>
-												<th class="bg-none"></th>
-											</tr>
-										</thead>
-										<tbody>
-											{% for i in checkin %}
-											<tr>
-												<td>
-													<div class="form-check style-1">
-													  <input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													<div class="media-bx">
-														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
-														<div>
-															<span class="text-primary">#BK-{{i.id}}</span>
-															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
-														</div>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>Sunday, Oct 24th, 2020</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>{{i.start_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>{{i.end_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td><h5>{{i.user}}</h5></td>
-												<td>
-													<div>
-														<h5>{{i.hotel.subcateg}}</h5>
-														<span class="fs-14">Room No. 0024</span>
-													</div>
-												</td>
-												<!-- <td><span class="text-danger">{{i.status}}</span></td> -->
-
-												{% if i.status == "Pending" %}
-												<td><span class="text-danger">{{i.status}}</span></td>
 												{% endif %}
-												{% if i.status == 'Check-in' %}
-												<td><span class="text-success">{{i.status}}</span></td>
-												{% endif %}
-												{% if i.status == 'Check-out' %}
-												<td><span class="text-danger">{{i.status}}</span></td>
-												{% endif %}
+												{% if i.status == 'Checkin Pending' %}
+												<td class="py-2 text-end"><span class="badge badge-success">Completed<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>	
 												<td>
 													<div class="dropdown dropstart">
 														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -387,90 +1072,19 @@
 															</svg>
 														</a>
 														<div class="dropdown-menu">
-															<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-															<a class="dropdown-item" href="javascript:void(0);">Delete</a>
+															<a class="dropdown-item" href="{% url 'makecheckin' i.id %}">Make Checkin</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
 														</div>
 													</div>
-												</td>
-											</tr>
-											{% endfor %}
-										</tbody>
-									</table>	
-								</div>
-							</div>
-							<div class="tab-pane fade" id="CheckIn">
-								<div class="table-responsive">
-									<table class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl " id="guestTable-all">
-										<thead>
-											<tr>
-												<th class="bg-none">
-													<div class="form-check style-1">
-													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
-													</div>
-												</th>
-												<th>Booked Room</th>
-												<th>Booked Date</th>
-												<th>Check In</th>
-												<th>Check Out</th>
-												<th>User</th>
-												<th>Location</th>
-												<th>Status</th>
-												<th class="bg-none"></th>
-											</tr>
-										</thead>
-										<tbody>
-											{% for i in checkin %}
-											<tr>
-												<td>
-													<div class="form-check style-1">
-													  <input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													<div class="media-bx">
-														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
-														<div>
-															<span class="text-primary">#BK-{{i.id}}</span>
-															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
-														</div>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>Sunday, Oct 24th, 2020</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>{{i.start_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>{{i.end_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td><h5>{{i.user}}</h5></td>
-												<td>
-													<div>
-														<h5>{{i.hotel.subcateg}}</h5>
-														<span class="fs-14">Room No. 0024</span>
-													</div>
-												</td>
-												<!-- <td><span class="text-danger">{{i.status}}</span></td> -->
-
-												{% if i.status == "Pending" %}
-												<td><span class="text-warning">{{i.status}}</span></td>
+												</td>											
 												{% endif %}
-												{% if i.status == 'Check-in' %}
-												<td><span class="text-success">{{i.status}}</span></td>
-												{% endif %}
-												{% if i.status == 'Check-out' %}
-												<td><span class="text-danger">{{i.status}}</span></td>
-												{% endif %}
+												{% if i.status == 'CheckedIn' %}
+												<td class="py-2 text-end"><span class="badge badge-success">CheckedIN<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>
 												<td>
 													<div class="dropdown dropstart">
 														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -481,90 +1095,19 @@
 															</svg>
 														</a>
 														<div class="dropdown-menu">
-															<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-															<a class="dropdown-item" href="javascript:void(0);">Delete</a>
+															<a class="dropdown-item" href="{% url 'makecheckout' i.id %}">Make Check Out</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
 														</div>
 													</div>
 												</td>
-											</tr>
-											{% endfor %}
-										</tbody>
-									</table>	
-								</div>
-							</div>
-							<div class="tab-pane fade" id="CheckOut">
-								<div class="table-responsive">
-									<table class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl " id="guestTable-all">
-										<thead>
-											<tr>
-												<th class="bg-none">
-													<div class="form-check style-1">
-													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
-													</div>
-												</th>
-												<th>Booked Room</th>
-												<th>Booked Date</th>
-												<th>Check In</th>
-												<th>Check Out</th>
-												<th>User</th>
-												<th>Location</th>
-												<th>Status</th>
-												<th class="bg-none"></th>
-											</tr>
-										</thead>
-										<tbody>
-											{% for i in checkout %}
-											<tr>
-												<td>
-													<div class="form-check style-1">
-													  <input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													<div class="media-bx">
-														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
-														<div>
-															<span class="text-primary">#BK-{{i.id}}</span>
-															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
-														</div>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>Sunday, Oct 24th, 2020</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>{{i.start_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>{{i.end_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td><h5>{{i.user}}</h5></td>
-												<td>
-													<div>
-														<h5>{{i.hotel.subcateg}}</h5>
-														<span class="fs-14">Room No. 0024</span>
-													</div>
-												</td>
-												<!-- <td><span class="text-danger">{{i.status}}</span></td> -->
-
-												{% if i.status == "Pending" %}
-												<td><span class="text-warning">{{i.status}}</span></td>
 												{% endif %}
-												{% if i.status == 'Check-in' %}
-												<td><span class="text-success">{{i.status}}</span></td>
-												{% endif %}
-												{% if i.status == 'Check-out' %}
-												<td><span class="text-danger">{{i.status}}</span></td>
-												{% endif %}
+												{% if i.status == 'CheckedOut' %}
+												<td class="py-2 text-end"><span class="badge badge-Info">CheckedOut<span
+													class="ms-1 fa fa-check"></span></span>
+												</td>
 												<td>
 													<div class="dropdown dropstart">
 														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -575,90 +1118,19 @@
 															</svg>
 														</a>
 														<div class="dropdown-menu">
-															<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-															<a class="dropdown-item" href="javascript:void(0);">Delete</a>
+															<a class="dropdown-item" href="{% url 'makecheckout' i.id %}">Make Check Out</a>
+															<a class="dropdown-item" href="{% url 'cancel' i.id %}">Cancel Booking</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
 														</div>
 													</div>
 												</td>
-											</tr>
-											{% endfor %}
-										</tbody>
-									</table>	
-								</div>
-							</div>
-							<div class="tab-pane fade" id="Canceled">
-								<div class="table-responsive">
-									<table class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl " id="guestTable-all">
-										<thead>
-											<tr>
-												<th class="bg-none">
-													<div class="form-check style-1">
-													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
-													</div>
-												</th>
-												<th>Booked Room</th>
-												<th>Booked Date</th>
-												<th>Check In</th>
-												<th>Check Out</th>
-												<th>User</th>
-												<th>Location</th>
-												<th>Status</th>
-												<th class="bg-none"></th>
-											</tr>
-										</thead>
-										<tbody>
-											{% for i in cancelled %}
-											<tr>
-												<td>
-													<div class="form-check style-1">
-													  <input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													<div class="media-bx">
-														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
-														<div>
-															<span class="text-primary">#BK-{{i.id}}</span>
-															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
-														</div>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>Sunday, Oct 24th, 2020</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>{{i.start_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>{{i.end_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td><h5>{{i.user}}</h5></td>
-												<td>
-													<div>
-														<h5>{{i.hotel.subcateg}}</h5>
-														<span class="fs-14">Room No. 0024</span>
-													</div>
-												</td>
-												<!-- <td><span class="text-danger">{{i.status}}</span></td> -->
-
-												{% if i.status == "Cancelled" %}
-												<td><span class="text-dark">{{i.status}}</span></td>
 												{% endif %}
-												{% if i.status == 'Check-in' %}
-												<td><span class="text-success">{{i.status}}</span></td>
-												{% endif %}
-												{% if i.status == 'Check-out' %}
-												<td><span class="text-danger">{{i.status}}</span></td>
-												{% endif %}
+												{% if i.status == 'Cancelled' %}
+												<td class="py-2 text-end"><span class="badge badge-danger">Cancelled
+													<span class="ms-1 fa fa-ban"></span></span>
+												</td>
 												<td>
 													<div class="dropdown dropstart">
 														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -669,111 +1141,23 @@
 															</svg>
 														</a>
 														<div class="dropdown-menu">
-															<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-															<a class="dropdown-item" href="javascript:void(0);">Delete</a>
+															<a class="dropdown-item" href="javascript:void(0);">Refund</a>
+															<div class="dropdown-divider"></div>
+																<a class="dropdown-item text-danger" href="{% url 'deletethebooking' i.id %}">Delete</a>
+															
 														</div>
 													</div>
 												</td>
+												{% endif %}
+												
 											</tr>
 											{% endfor %}
+											
 										</tbody>
-									</table>	
+									</table>
 								</div>
 							</div>
-							<div class="tab-pane fade" id="Refund">
-								<div class="table-responsive">
-									<table class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl " id="guestTable-all">
-										<thead>
-											<tr>
-												<th class="bg-none">
-													<div class="form-check style-1">
-													  <input class="form-check-input" type="checkbox" value="" id="checkAll">
-													</div>
-												</th>
-												<th>Booked Room</th>
-												<th>Booked Date</th>
-												<th>Check In</th>
-												<th>Check Out</th>
-												<th>User</th>
-												<th>Location</th>
-												<th>Status</th>
-												<th class="bg-none"></th>
-											</tr>
-										</thead>
-										<tbody>
-											{% for i in refun %}
-											<tr>
-												<td>
-													<div class="form-check style-1">
-													  <input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													<div class="media-bx">
-														<img class="me-3 rounded" src="{{i.hotel.img.url}}" alt="">
-														<div>
-															<span class="text-primary">#BK-{{i.id}}</span>
-															<h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{i.hotel}}</a></h4>
-														</div>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>Sunday, Oct 24th, 2020</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>{{i.start_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5>{{i.end_date}}</h5>
-														<span class="fs-14">08:29 AM</span>
-													</div>
-												</td>
-												<td><h5>{{i.user}}</h5></td>
-												<td>
-													<div>
-														<h5>{{i.hotel.subcateg}}</h5>
-														<span class="fs-14">Room No. 0024</span>
-													</div>
-												</td>
-												<!-- <td><span class="text-danger">{{i.status}}</span></td> -->
-
-												{% if i.status == "Pending" %}
-												<td><span class="text-warning">{{i.status}}</span></td>
-												{% endif %}
-												{% if i.status == 'Check-in' %}
-												<td><span class="text-success">{{i.status}}</span></td>
-												{% endif %}
-												{% if i.status == 'Check-out' %}
-												<td><span class="text-danger">{{i.status}}</span></td>
-												{% endif %}
-												<td>
-													<div class="dropdown dropstart">
-														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-															</svg>
-														</a>
-														<div class="dropdown-menu">
-															<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-															<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-											{% endfor %}
-										</tbody>
-									</table>	
-								</div>
-							</div>
+							
 						</div>
 					</div>
 				</div>

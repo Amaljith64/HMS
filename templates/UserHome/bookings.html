@@ -62,6 +62,12 @@
             <p>Booking Cancelled</p>
             {% elif i.booked_room.status == "Pending" %}
             <p>Transaction Failed</p>
+            {% elif i.booked_room.status == "CheckedIn" %}
+            <p>You Have Checked-IN</p>
+            <a href="{% url 'generateinvoice' i.id %}" class="btn btn-sm mt-2" style="color: white ;" >View Invoice </a>
+            {% elif i.booked_room.status == "CheckedOut" %}
+            <p>You Have Checked-Out</p>
+            <a href="{% url 'generateinvoice' i.id %}" class="btn btn-sm mt-2" style="color: white ;" >View Invoice </a>
             {% elif i.booked_room.status == "Checkin Pending" %}
             <a class="btn btn-sm " style="color: white ;" data-toggle="modal" data-target="#exampleModalCenter">Cancel
               Booking</a>

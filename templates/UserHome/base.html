@@ -29,10 +29,10 @@
   <link rel="stylesheet" href="{% static 'home/css/responsive.css' %}">
 
 
-<!-- CSS -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+  <!-- CSS -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
   <!-- Default theme -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
 
   <!-- ========== ICON FONTS ========== -->
   <link href="{% static 'home/fonts/font-awesome.min.css' %}" rel="stylesheet">
@@ -44,23 +44,22 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  
-<style>
-  #lens{
-	z-index: 99;
-	position: absolute;
 
-	height: 125px;
-	width: 125px;
-	border:2px solid black;
-	background-repeat: no-repeat;
-	cursor: none;
+  <style>
+    #lens {
+      z-index: 99;
+      position: absolute;
 
-}
+      height: 125px;
+      width: 125px;
+      border: 2px solid black;
+      background-repeat: no-repeat;
+      cursor: none;
 
-</style>
-{% block styles %}
-{% endblock %}
+    }
+  </style>
+  {% block styles %}
+  {% endblock %}
 
 
 </head>
@@ -73,7 +72,8 @@
     <!-- ========== TOP MENU ========== -->
 
     <!-- ========== HEADER ========== -->
-    <header class="horizontal-header sticky-header transparent-header loaded-header mm-slideout header-fixed-top" data-menutoggle="991">
+    <header class="horizontal-header sticky-header transparent-header loaded-header mm-slideout header-fixed-top"
+      data-menutoggle="991">
       <div class="container">
         <!-- BRAND -->
         <div class="brand">
@@ -95,11 +95,9 @@
           <ul class="menu">
             <li class="menu-item dropdown">
               <a href="{% url 'home' %}">HOME</a>
-
             </li>
             <li class="menu-item dropdown">
               <a href="{% url 'userroomview' %}">ROOMS</a>
-
             </li>
             <li class="menu-item dropdown ">
               <a href="#">Bookings</a>
@@ -110,13 +108,10 @@
                 <li class="menu-item">
                   <a href="{% url 'wishlist' %}">Wishlist</a>
                 </li>
-
               </ul>
-
             </li>
             <li class="menu-item dropdown">
               <a href="#">ABOUT US</a>
-
             </li>
             {% if user.is_superadmin %}
 
@@ -145,10 +140,10 @@
                 </li>
 
               </ul>
-              
-                {% else %}
-                <i class="fa fa-user"></i>
-                LOGIN
+
+              {% else %}
+              <i class="fa fa-user"></i>
+              LOGIN
 
               </a>
               <ul class="submenu">
@@ -329,116 +324,100 @@
         var currentDate = new Date(date);
         console.log(currentDate)
         next_date = new Date(currentDate.setDate(currentDate.getDate() + 1));
-        var newDate = next_date.getFullYear() + "-" + ((next_date.getMonth() < 9 ? '0' : '') + (next_date.getMonth()+1)) + "-" + ((next_date.getDate() < 10 ? '0' : '') + next_date.getDate()); 
-        
+        var newDate = next_date.getFullYear() + "-" + ((next_date.getMonth() < 9 ? '0' : '') + (next_date.getMonth() + 1)) + "-" + ((next_date.getDate() < 10 ? '0' : '') + next_date.getDate());
+
         console.log(newDate)
-  
-  
-  
-  
-  
-  
-  
-  
+
         $('.to').attr('min', newDate);
       });
     }
-  
+
     $(function () {
-          var dtToday = new Date();
-  
-          var month = dtToday.getMonth() + 1;
-          var day = dtToday.getDate();
-          var year = dtToday.getFullYear();
-          if (month < 10)
-              month = '0' + month.toString();
-          if (day < 10)
-              day = '0' + day.toString();
-  
-          var maxDate = year + '-' + month + '-' + day;
-  
-          // or instead:
-          // var maxDate = dtToday.toISOString().substr(0, 10);
-  
-  
-          $('.txtDate').attr('min', maxDate);
-      });
+      var dtToday = new Date();
+
+      var month = dtToday.getMonth() + 1;
+      var day = dtToday.getDate();
+      var year = dtToday.getFullYear();
+      if (month < 10)
+        month = '0' + month.toString();
+      if (day < 10)
+        day = '0' + day.toString();
+
+      var maxDate = year + '-' + month + '-' + day;
+
+      // or instead:
+      // var maxDate = dtToday.toISOString().substr(0, 10);
+
+
+      $('.txtDate').attr('min', maxDate);
+    });
   </script>
   <script>
-    document.getElementById('img-container').addEventListener('mouseover', function(){
-    imageZoom('featured')
-    
-})
+    document.getElementById('img-container').addEventListener('mouseover', function () {
+      imageZoom('featured')
 
-function imageZoom(imgID){
-	let img = document.getElementById(imgID)
-	let lens = document.getElementById('lens')
+    })
 
-	lens.style.backgroundImage = `url( ${img.src} )`
+    function imageZoom(imgID) {
+      let img = document.getElementById(imgID)
+      let lens = document.getElementById('lens')
 
-	let ratio = 3
+      lens.style.backgroundImage = `url( ${img.src} )`
 
-	lens.style.backgroundSize = (img.width * ratio) + 'px ' + (img.height * ratio) + 'px';
+      let ratio = 3
 
-	img.addEventListener("mousemove", moveLens)
-	lens.addEventListener("mousemove", moveLens)
-	img.addEventListener("touchmove", moveLens)
+      lens.style.backgroundSize = (img.width * ratio) + 'px ' + (img.height * ratio) + 'px';
 
-	function moveLens(){
-		/*
-        Function sets sets position of lens over image and background image of lens
-        1 - Get cursor position
-        2 - Set top and left position using cursor position - lens width & height / 2
-        3 - Set lens top/left positions based on cursor results
-        4 - Set lens background position & invert
-        5 - Set lens bounds
-    
-        */
+      img.addEventListener("mousemove", moveLens)
+      lens.addEventListener("mousemove", moveLens)
+      img.addEventListener("touchmove", moveLens)
+
+      function moveLens() {
+        /*
+            Function sets sets position of lens over image and background image of lens
+            1 - Get cursor position
+            2 - Set top and left position using cursor position - lens width & height / 2
+            3 - Set lens top/left positions based on cursor results
+            4 - Set lens background position & invert
+            5 - Set lens bounds
+        
+            */
 
         //1
-		let pos = getCursor()
-		//console.log('pos:', pos)
+        let pos = getCursor()
+        //console.log('pos:', pos)
 
-		//2
-		let positionLeft = pos.x - (lens.offsetWidth / 2)
-		let positionTop = pos.y - (lens.offsetHeight / 2)
+        //2
+        let positionLeft = pos.x - (lens.offsetWidth / 2)
+        let positionTop = pos.y - (lens.offsetHeight / 2)
 
-		//5
-		if(positionLeft < 0 ){
-			positionLeft = 0
-		}
+        //5
+        if (positionLeft < 0) {
+          positionLeft = 0
+        }
 
-		if(positionTop < 0 ){
-			positionTop = 0
-		}
+        if (positionTop < 0) {
+          positionTop = 0
+        }
 
-		if(positionLeft > img.width - lens.offsetWidth /3 ){
-			positionLeft = img.width - lens.offsetWidth /3
-		}
+        if (positionLeft > img.width - lens.offsetWidth / 3) {
+          positionLeft = img.width - lens.offsetWidth / 3
+        }
 
-		if(positionTop > img.height - lens.offsetHeight /3 ){
-			positionTop = img.height - lens.offsetHeight /3
-		}
+        if (positionTop > img.height - lens.offsetHeight / 3) {
+          positionTop = img.height - lens.offsetHeight / 3
+        }
 
 
-		//3
-		lens.style.left = positionLeft + 'px';
-		lens.style.top = positionTop + 'px';
+        //3
+        lens.style.left = positionLeft + 'px';
+        lens.style.top = positionTop + 'px';
 
-		//4
-		lens.style.backgroundPosition = "-" + (pos.x * ratio) + 'px -' +  (pos.y * ratio) + 'px'
-	}
+        //4
+        lens.style.backgroundPosition = "-" + (pos.x * ratio) + 'px -' + (pos.y * ratio) + 'px'
+      }
 
-	function getCursor(){
-		/* Function gets position of mouse in dom and bounds
-         of image to know where mouse is over image when moved
-        
-        1 - set "e" to window events
-        2 - Get bounds of image
-        3 - set x to position of mouse on image using pageX/pageY - bounds.left/bounds.top
-        4- Return x and y coordinates for mouse position on image
-        
-         */
+      function getCursor() {
 
         let e = window.event
         let bounds = img.getBoundingClientRect()
@@ -446,38 +425,37 @@ function imageZoom(imgID){
         //console.log('e:', e)
         //console.log('bounds:', bounds)
         let x = e.pageX - bounds.left
-		let y = e.pageY - bounds.top
-		x = x - window.pageXOffset;
-		y = y - window.pageYOffset;
-		
-		return {'x':x, 'y':y}
-	}
+        let y = e.pageY - bounds.top
+        x = x - window.pageXOffset;
+        y = y - window.pageYOffset;
 
-}
+        return { 'x': x, 'y': y }
+      }
 
-imageZoom('featured')
+    }
+
+    imageZoom('featured')
   </script>
 
   <script>
     {% for flash in messages %}
     {% if flash.tags == 'error' %}
-      alertify.set('notifier','position', 'top-right');
-      alertify.error('{{flash}}');
+    alertify.set('notifier', 'position', 'top-right');
+    alertify.error('{{flash}}');
     {% elif flash.tags == 'success' %}
-      alertify.set('notifier','position', 'top-right');
-      alertify.success('{{flash}}');
+    alertify.set('notifier', 'position', 'top-right');
+    alertify.success('{{flash}}');
     {% elif flash.tags == 'warning' %}
-      alertify.set('notifier','position', 'top-right');
-      alertify.warning('{{flash}}');
+    alertify.set('notifier', 'position', 'top-right');
+    alertify.warning('{{flash}}');
     {% endif %}
     {% endfor %}
   </script>
-  
-    
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="{% static 'home/js/jquery.min.js' %}"></script>
-  <script src="http://maps.google.com/maps/api/js?key=YOUR_API_KEY"></script>
   <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'home/js/bootstrap-select.min.js' %}"></script>
   <script src="{% static 'home/js/jquery.mmenu.js' %}"></script>

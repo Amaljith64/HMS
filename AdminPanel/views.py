@@ -1,3 +1,4 @@
+from genericpath import exists
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from . models import *
@@ -81,29 +82,44 @@ def deleteroom(request,id):
 def editroom(request,id):
     # location=Location.objects.all
     type=Categories.objects.all
+    sub=SubCategories.objects.all()
     room=Rooms.objects.get(id=id)
+    
+    multiimage=MultiImage.objects.filter(imageof=id)
     
     if request.method=='POST':
         
-
         name=request.POST['hotel_name']
-        # location=Location.objects.get(id=request.POST['loc'])
+
         price=request.POST['price']
+        image=request.FILES['photoo']
         Desc=request.POST['description']
-        type=Categories.objects.get(id=request.POST['type'])
+        scateg=SubCategories.objects.get(id=request.POST['scateg'])
+        # multiimages = request.FILES.getlist('images')
         room.name=name
-        # room.Location=location
+        room.img=image
+        room.subcateg=scateg
         room.Roomtype=type
         room.Desc=Desc
         room.price=price
 
         room.save()
+        
+        # for multiimage in multiimages:
+        #     photo = MultiImage(imageof=room)
+        #     photo.delete()
+
+        # for multiimage in multiimages:
+        #     photo = MultiImage(imageof=room)
+            
+        #     photo.image=multiimage
+        #     photo.save()
     
        
         print('saved')
         return redirect(rooms)
 
-    return render(request,'AdminPanel/edit-room.html',{'room':room,'type':type})
+    return render(request,'AdminPanel/edit-room.html',{'room':room,'type':type,'sub':sub,'multiimage':multiimage})
 
 
 #------------------------------------ROOM ENDS------------------------------#
@@ -195,20 +211,21 @@ def Edit_CategoryOffer(request,id):
         if discount>0:
             if discount<90:
                 CategoryOfferObj.discount=discount
-                CategoryOfferObj.category=Categories.objects.get(id=category)
+                CategoryOfferObj.category=Categories.objects.get(id=id)
                 CategoryOfferObj.save()
+                messages.success(request,"Category offer edited")
                 return redirect(CategoryOffer)
             else:
                 messages.error(request,"Discount must be less than 90%")
-                return redirect(Edit_CategoryOffer)
+                return redirect(Edit_CategoryOffer,id)
         else:
                 messages.error(request,"Discount must be greater than 0%")
-                return redirect(Edit_CategoryOffer)
+                return redirect(Edit_CategoryOffer,id)
     context={
         'Category':CategoryObj,
         'CategoryOffer':CategoryOfferObj
     }
-    return render(request,'Offers/Edit_CategoryOffer.html',context)
+    return render(request,'AdminPanel/Edit_CategoryOffer.html',context)
 
 
 
@@ -294,6 +311,33 @@ def SubCategoryOffer(request):
     return render(request,'AdminPanel/subcategoryoffer.html',{'SubCategory':SubcategObj,'offers':offers})
 
 
+def Edit_SubCategoryOffer(request,id):
+    obj=SubCategories.objects.all()
+    CategoryOfferObj=SubCategory_offer.objects.get(id=id)
+    if request.method=="POST":
+        discount=request.POST.get("discount")
+        obj=request.POST.get("category_name")
+        discount=int(discount)
+        if discount>0:
+            if discount<90:
+                CategoryOfferObj.discount=discount
+                CategoryOfferObj.obj=SubCategories.objects.get(id=id)
+                CategoryOfferObj.save()
+                messages.success(request,"SubCategory offer edited")
+                return redirect(SubCategoryOffer)
+            else:
+                messages.error(request,"Discount must be less than 90%")
+                return redirect(Edit_SubCategoryOffer,id)
+        else:
+                messages.error(request,"Discount must be greater than 0%")
+                return redirect(Edit_SubCategoryOffer,id)
+    context={
+        'SubCategory':obj,
+        'SubCategoryOffer':CategoryOfferObj
+    }
+    return render(request,'AdminPanel/Edit_SubCategoryOffer.html',context)
+
+
 
 def RoomOffer(request):
     offers=Room_offer.objects.all()
@@ -320,6 +364,34 @@ def RoomOffer(request):
                 messages.error(request,"Discount must be greater than 0%")
                 return redirect(RoomOffer)
     return render(request,'AdminPanel/roomoffer.html',{'RoomObj':RoomObj,'offers':offers})
+
+
+
+def Edit_RoomOffer(request,id):
+    roomobj=Room_offer.objects.get(id=id)
+    if request.method=="POST":
+        discount=request.POST.get("discount")
+        obj=request.POST.get("room")
+        discount=int(discount)
+        if discount>0:
+            if discount<90:
+                roomobj.discount=discount
+                roomobj.obj=SubCategories.objects.get(id=id)
+                roomobj.save()
+                messages.success(request,"Room offer edited")
+                return redirect(RoomOffer)
+            else:
+                messages.error(request,"Discount must be less than 90%")
+                return redirect(Edit_RoomOffer,id)
+        else:
+                messages.error(request,"Discount must be greater than 0%")
+                return redirect(Edit_RoomOffer,id)
+    context={
+        'ROom':roomobj
+        
+    }
+    return render(request,'AdminPanel/Edit_RoomOffer.html',context)
+
 
 
 
@@ -370,23 +442,26 @@ def blockuser(request,id):
 
 def bookings(request):
     bookings=HotelBookings.objects.all()
+    bookingscount=HotelBookings.objects.all().count()
+    
     pendingbooking=HotelBookings.objects.filter(status='Pending')
-    checkin=HotelBookings.objects.filter(status='Checkin Pending')
-    checkout=HotelBookings.objects.filter(status='Check-out')
+    checkinpending=HotelBookings.objects.filter(status='Checkin Pending')
+    checkedin=HotelBookings.objects.filter(status='CheckedIn')
+    checkout=HotelBookings.objects.filter(status='CheckedOut')
     cancelled=HotelBookings.objects.filter(status='Cancelled')
-    return render(request,'AdminPanel/Bookings.html',{'bookings':bookings,'pendingbooking':pendingbooking,'checkin':checkin,'checkout':checkout,
-    'cancelled':cancelled})
+    return render(request,'AdminPanel/Bookings.html',{'bookings':bookings,'pendingbooking':pendingbooking,'checkinpending':checkinpending,'checkout':checkout,
+    'cancelled':cancelled,'checkedin':checkedin,'bookingscount':bookingscount})
 
 
 def makecheckin(request,id):
     room=HotelBookings.objects.get(id=id)
-    room.status='Check-in'
+    room.status='CheckedIn'
     room.save()
     return redirect(bookings)
 
 def makecheckout(request,id):
     room=HotelBookings.objects.get(id=id)
-    room.status='Check-out'
+    room.status='CheckedOut'
     room.save()
     return redirect(bookings)
 
@@ -485,11 +560,37 @@ def add_coupons(request):
         coupon=request.POST['code']
         valid_to=request.POST['validity']
         discount=request.POST['discount']
+        description=request.POST['description']
         minamount=request.POST['minamount']
         maxamount=request.POST['maxamount']
-        coupon_code=Coupons.objects.create(coupon_code=coupon,valid_to=valid_to,discount=discount,min_amount=minamount,max_amount=maxamount)
+        coupon_code=Coupons.objects.create(coupon_code=coupon,valid_to=valid_to,discount=discount,min_amount=minamount,max_amount=maxamount,description=description)
 
     return render(request,'AdminPanel/coupons.html',{'coupons':coupons})
+
+def edit_coupon(request,id):
+    toedit=Coupons.objects.get(id=id)
+
+    if request.method=="POST":
+        coupon=request.POST['code']
+        valid_to=request.POST['validity']
+        discount=request.POST['discount']
+        minamount=request.POST['minamount']
+        maxamount=request.POST['maxamount']
+        if coupon==Coupons.objects.filter(coupon_code=coupon):
+            messages.error(request, "username exits")
+            return redirect(edit_coupon,id)
+        toedit.coupon_code=coupon
+        toedit.valid_to=valid_to
+        toedit.minamount=minamount
+        toedit.maxamount=maxamount
+        toedit.discount=discount
+        toedit.save()
+        return redirect(add_coupons)
+    return render(request,'AdminPanel/edit_coupon.html',{'toedit':toedit})
+
+                    
+
+
 
 
 

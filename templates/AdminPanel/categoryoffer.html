@@ -71,7 +71,7 @@
                         <div style="    right: 1.375rem;top:  1.7125rem; background: #f70505" class="pulse-css"></div>
                     </div>
                     {% endif %}
-        </div>
+                    </div>
 
                     <div class="card-body">
                         <b>Discount Percentage</b>
@@ -79,7 +79,7 @@
                     </div>
                     
                     <div class="card-footer border-0 pt-0">
-                        <p class="card-text d-inline">Edit</p>
+                        <a href="{% url 'EditCategoryOffer' i.id %}" class="card-text d-inline">Edit</a>
                         <a href="javascript:void(0);" class="card-link float-end">Delete</a>
                     </div>
                 </div>
