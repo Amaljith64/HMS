@@ -60,7 +60,7 @@ def find_total_room_charge(days, price):
 
 #----------------------------------function ends---------------------------------#
 
-
+from django.core.paginator import Paginator
 def room(request):
 
     scategory_objs = SubCategories.objects.all()
@@ -86,11 +86,17 @@ def room(request):
         rooms = rooms.filter(
             Q(name__icontains=search) |
             Q(Desc__icontains=search))
+    paginator=Paginator(rooms,per_page=5)
+    page_number=request.GET.get('page')
+    roomsFinal=paginator.get_page(page_number)
+    totalpage=roomsFinal.paginator.num_pages
 
     # if len(scateg):
     #     rooms = rooms.filter(subcateg__title__in=scateg).distinct()
 
-    context = {'rooms': rooms, 'scategory_objs': scategory_objs}
+    context = {'rooms': roomsFinal, 'lastpage':totalpage,
+        'totalPagelist':[ n+1 for n  in range(totalpage)],
+        'scategory_objs': scategory_objs}
 
     return render(request, 'UserHome/allrooms.html', context)
 

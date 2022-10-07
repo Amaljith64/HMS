@@ -254,6 +254,7 @@ def home(request):
     coupons=Coupons.objects.filter(valid_to__lte=now)
     request.session['checkin']=None
     request.session['checkout']=None
+    scategory_objs = SubCategories.objects.all()
 
     if request.method == "POST":
         try:
@@ -269,7 +270,7 @@ def home(request):
 
             print("hereeeeeeeeeeeeeeee")
 
-            context = {'rooms': rooms}
+            context = {'rooms': rooms,'scategory_objs': scategory_objs}
 
             return render(request, 'UserHome/allrooms.html', context)
         except:

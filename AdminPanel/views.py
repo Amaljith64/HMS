@@ -441,9 +441,8 @@ def blockuser(request,id):
 
 
 def bookings(request):
-    bookings=HotelBookings.objects.all()
-    bookingscount=HotelBookings.objects.all().count()
-    
+    bookings=HotelBookings.objects.exclude(status='Pending').all()
+    bookingscount=HotelBookings.objects.all().count()   
     pendingbooking=HotelBookings.objects.filter(status='Pending')
     checkinpending=HotelBookings.objects.filter(status='Checkin Pending')
     checkedin=HotelBookings.objects.filter(status='CheckedIn')
@@ -495,6 +494,8 @@ def index(request):
     Dayorders=HotelBookings.objects.annotate(day=ExtractDay('created_at')).filter(created_at=date.today()).values('day').annotate(count=Count('id')).values('day','count')
 
     totalbooking=HotelBookings.objects.filter(is_booked=True).count()
+    totalcheckin=HotelBookings.objects.filter(status="CheckedIn").count()
+    totalcheckout=HotelBookings.objects.filter(status="CheckedOut").count()
     print(totalbooking,'bookinggggg')
 
     totalroom=Rooms.objects.all().count()
@@ -544,7 +545,9 @@ def index(request):
         'raz':raz,
         'cod':payathotel,
         'totalbooking':totalbooking,
-        'totalroom':totalroom
+        'totalroom':totalroom,
+        'totalcheckin':totalcheckin,
+        'totalcheckout':totalcheckout
 
 
     }

@@ -186,43 +186,28 @@
         <!-- ========== PAGINATION ========== -->
         <nav class="pagination">
           <ul>
+            {% if rooms.has_previous %} 
             <li class="prev-pagination">
-              <a href="#">
+              <a href="?page={{rooms.previous_page_number}}">
                 &nbsp;<i class="fa fa-angle-left"></i>
                 Previous &nbsp;</a>
             </li>
+            {% endif %}
+            {% for n in totalPagelist %}
             <li class="active">
-              <a href="#">1</a>
+              <a href="?page={{n}}">{{n}}</a>
             </li>
-            <li>
-              <a href="#">2</a>
-            </li>
-            <li>
-              <a href="#">3</a>
-            </li>
-            <li>
-              <a href="#">4</a>
-            </li>
-            <li>
-              <a href="#">5</a>
-            </li>
-            <li>...</li>
-            <li>
-              <a href="#">18</a>
-            </li>
-            <li>
-              <a href="#">19</a>
-            </li>
-            <li>
-              <a href="#">20</a>
-            </li>
+            {% endfor %}
+            
+            {% if rooms.has_next %} 
             <li class="next_pagination">
-              <a href="#">
+              <a href="?page={{rooms.next_page_number}}">
                 &nbsp; Next
                 <i class="fa fa-angle-right"></i>
                 &nbsp;
               </a>
             </li>
+            {% endif %}
           </ul>
         </nav>
       </div>
