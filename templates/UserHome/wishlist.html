@@ -45,7 +45,7 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <a href="room.html#room-reviews">5.00 Based on 3 Ratings</a>
                   </span>
-                  <p>{{i.wished_room.Desc}}</p>
+                  <p>{{i.wished_room.Desc|truncatechars:30}}</p>
                   <div class="room-services">
                     <i class="fa fa-coffee" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Breakfast Included" data-original-title="Breakfast"></i>
                     <i class="fa fa-wifi" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Free WiFi" data-original-title="WiFi"></i>
@@ -70,37 +70,28 @@
           <!-- PAGINATION -->
           <nav class="pagination">
             <ul>
+              {% if list.has_previous %} 
               <li class="prev-pagination">
-                <a href="#">
+                <a href="?page={{list.previous_page_number}}">
                   &nbsp;<i class="fa fa-angle-left"></i>
                   Previous &nbsp;</a>
               </li>
+              {% endif %}
+              {% for n in totalPagelist %}
               <li class="active">
-                <a href="#">1</a>
+                <a href="?page={{n}}">{{n}}</a>
               </li>
-              <li>
-                <a href="#">2</a>
-              </li>
-              <li>
-                <a href="#">3</a>
-              </li>
-              <li>...</li>
-              <li>
-                <a href="#">7</a>
-              </li>
-              <li>
-                <a href="#">8</a>
-              </li>
-              <li>
-                <a href="#">9</a>
-              </li>
+              {% endfor %}
+              
+              {% if list.has_next %} 
               <li class="next_pagination">
-                <a href="#">
+                <a href="?page={{list.next_page_number}}">
                   &nbsp; Next
                   <i class="fa fa-angle-right"></i>
                   &nbsp;
                 </a>
               </li>
+              {% endif %}
             </ul>
           </nav>
         </div>

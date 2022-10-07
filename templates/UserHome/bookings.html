@@ -47,7 +47,7 @@
               <a href="room.html#room-reviews">5.00 Based on 3 Ratings</a>
             </span> -->
 
-            <p>{{i.booked_room.hotel.Desc}}</p>
+            <p>{{i.booked_room.hotel.Desc|truncatechars:30}}</p>
             <p>Check in : {{i.booked_room.start_date}}</p>
             <p>Check out : {{i.booked_room.end_date}}</p>
 

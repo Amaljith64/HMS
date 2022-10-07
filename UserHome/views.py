@@ -303,7 +303,13 @@ def wishlist(request):
     user = request.user
     list = Wishlist.objects.filter(user=user)
 
-    return render(request, 'UserHome/wishlist.html', {'list': list})
+    paginator=Paginator(list,per_page=5)
+    page_number=request.GET.get('page')
+    roomsFinal=paginator.get_page(page_number)
+    totalpage=roomsFinal.paginator.num_pages
+
+    return render(request, 'UserHome/wishlist.html', {'list': roomsFinal,'lastpage':totalpage,
+        'totalPagelist':[ n+1 for n  in range(totalpage)]})
 
 
 def remove_from_wishlist(request, id):

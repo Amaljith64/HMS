@@ -102,7 +102,7 @@
                 <h2 class="room-title">
                   <a href="{% url 'roomdetails' i.id  %}">{{i.name}}</a>
                 </h2>
-                <p>{{i.Desc}}</p>
+                <p>{{i.Desc|truncatechars:30}}</p>
               </div>
             </div>
           </div>
@@ -307,16 +307,7 @@
     <!-- ========== SHOP ========== -->
     
     <!-- ========== SPA ========== -->
-    <section class="spa image-bg parallax gradient-overlay op5" data-src="{% static 'home/images/spa.jpg' %}" data-parallax="scroll"
-      data-speed="0.3" data-mirror-selector=".wrapper" data-z-index="0">
-      <div class="container">
-        <div class="section-title">
-          <h4>HIMARA. SPA SERVICES</h4>
-          <p class="section-subtitle">Relax and enjoy our spa therapy</p>
-          <a href="spa.html" class="view-all uppercase">More About Our SPA</a>
-        </div>
-      </div>
-    </section>
+   
     <!-- ========== CONTACT ========== -->
     <section class="contact animated fadeInUp wow" data-wow-offset="30" data-wow-delay=".2s">
       <div class="container">

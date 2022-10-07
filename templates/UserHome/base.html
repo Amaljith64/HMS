@@ -110,20 +110,17 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item dropdown">
-              <a href="#">ABOUT US</a>
-            </li>
+            
             {% if user.is_superadmin %}
 
             <li class="menu-item dropdown">
               <a href="{% url 'index' %}">Admin Panel</a>
-              {% else %}
-            <li class="menu-item dropdown">
-              <a href="">CONTACT US</a>
+            </li>
+  
 
               {% endif %}
 
-            </li>
+            
             <li class="menu-item menu-btn dropdown">
               <a href="" class="btn">
                 {% if user.is_authenticated %}
