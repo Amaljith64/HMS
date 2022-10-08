@@ -10,7 +10,7 @@
         <div class="row page-titles">
 
             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
-                data-bs-target="#exampleModalCenter">Add SubCategory Offer</button>
+                data-bs-target="#exampleModalCenter">Add Location Offer</button>
 
         </div>
         <!-- Modal -->
@@ -18,7 +18,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add SubCategory Offer</h5>
+                        <h5 class="modal-title">Add Location Offer</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal">
                         </button>
                     </div>
@@ -72,10 +72,7 @@
                         </div>
                         {% endif %}
                     </div>
-                    <div class="card-body">
-                        <b>main cat</b>
-                        <p class="card-text">{{i.subcategory.category_id}}</p>
-                    </div>
+                    
                     <div class="card-body">
                         <b>Discount</b>
                         <p class="card-text">{{i.discount}}</p>

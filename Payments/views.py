@@ -65,6 +65,7 @@ def success(request):
         wallet_balance_add = MyWallet.objects.get(user=request.user)
         getwallet = WalletDetails.objects.create(user=request.user)
         walletamount = request.session['amountfromwallet']
+        roomamount=roomamount+walletamount
         wallet_balance_add.balance -= walletamount
         wallet_balance_add.save()
         getwallet.decription_amount = "Debited"
@@ -126,6 +127,7 @@ def payment_done(request):
         walletamount = request.session['amountfromwallet']
         wallet_balance_add.balance -= walletamount
         wallet_balance_add.save()
+        roomamount=roomamount+walletamount
         getwallet.decription_amount = "Debited"
         getwallet.status= False
         getwallet.amount = walletamount
@@ -176,7 +178,6 @@ def paymentsuccess(request):
     pay = PaymentClass(user=request.user, booked_room=order, payment_id=payment_id_generated,
                        payment_method=methodofpayment, total_amount=roomamount, status=status)
     pay.save()
-
     try:
         couponid = request.session['couponid']
         print(couponid, 'cccccccccccoooooooooouuuuuupppppppoonnnnnnnn')
@@ -187,8 +188,7 @@ def paymentsuccess(request):
         pass
 
     return render(request, 'success.html')
-
-
+    
 def apply_coupon(request):
     roomamount = request.session['amount']
     id = request.session['booking']

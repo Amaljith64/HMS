@@ -45,18 +45,14 @@
             <br>
             <br>
             <br>
-            <h1>SINGLE ROOM</h1>
-            <div class="room-details-price">
-                €89 / NIGHT
-            </div>
+            <h1>Payment Page</h1>
+            
             <ol class="breadcrumb">
                 <li>
                     <a href="index.html">Home</a>
                 </li>
-                <li>
-                    <a href="index.html">Rooms</a>
-                </li>
-                <li>Single Room</li>
+                
+                <li>Payment</li>
             </ol>
         </div>
     </div>
@@ -80,19 +76,19 @@
                                 <div class="form-group">
                                     <label for="">NAME</label>
                                     <input class="form-control" name="name" placeholder="Your Name"
-                                        value="{{booking.user}}">
+                                        value="{{booking.user}}" disabled>
                                 </div>
                                 <!-- ROOM TYPE -->
                                 <div class="form-group">
                                     <label for="">EMAIL</label>
                                     <input class="form-control" name="email" placeholder="Your Email Address"
-                                        value="{{booking.user.email}}">
+                                        value="{{booking.user.email}}" disabled>
                                 </div>
                                 <!-- DATE -->
                                 <div class="form-group">
                                     <label for="">PHONE</label>
                                     <input class="form-control" name="phone" placeholder="Your Phone No"
-                                        value="{{booking.user.phone_number}}">
+                                        value="{{booking.user.phone_number}}" disabled>
                                 </div>
 
                                 <!-- BOOKING BUTTON -->
@@ -225,15 +221,15 @@
                                             <p>Room Price </p>
                                         </div>
                                         <div class="col-3">
-                                            <p>{{fullamount|floatformat:1}}</p>
+                                            <p>₹{{fullamount|floatformat:1}}</p>
                                         </div>
 
                                         <div class="col-9"> <p> Total Discount </p> </div>
-                                        <div class="col-3">-{{discountamt|floatformat:1}}</div>
+                                        <div class="col-3">- ₹{{discountamt|floatformat:1}}</div>
 
                                         <div class="col-9"> <p> <b> Payable Amount </b> </p></div> 
                                         <div class="col-3">
-                                            <b>{{totalamount|floatformat:1}}</b>
+                                            <b>₹{{totalamount|floatformat:1}}</b>
                                         </div> 
                                     </div>
                                 </div>

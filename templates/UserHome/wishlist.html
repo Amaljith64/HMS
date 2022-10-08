@@ -29,13 +29,13 @@
             <div class="row">
               <div class="col-lg-4">
                 <figure class="gradient-overlay-hover link-icon">
-                  <a href="{% url 'roomdetails' i.id  %}"><img src="{{i.wished_room.img.url}}" class="img-fluid" alt="Image"></a>
+                  <a href="{% url 'roomdetails' i.wished_room.id  %}"><img src="{{i.wished_room.img.url}}" class="img-fluid" alt="Image"></a>
                 </figure>
               </div>
               <div class="col-lg-6">
                 <div class="room-info">
                   <h3 class="room-title">
-                    <a href="{% url 'roomdetails' i.id  %}">{{i.wished_room.name}}</a>
+                    <a href="{% url 'roomdetails' i.wished_room.id  %}">{{i.wished_room.name}}</a>
                   </h3>
                   <span class="room-rates">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -58,7 +58,7 @@
               <div class="col-lg-2">
                 <div class="room-price">
                   <span class="price">₹{{i.wished_room.price}}</span>
-                  <a href="{% url 'roomdetails' i.id %}" class="btn btn-sm">BOOK NOW</a><br>
+                  <a href="{% url 'roomdetails' i.wished_room.id %}" class="btn btn-sm">BOOK NOW</a><br>
                   <a href="{% url 'delwishlist' i.id %}" class="btn btn-sm">REMOVE</a>
                 </div>
               </div>

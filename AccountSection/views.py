@@ -252,6 +252,7 @@ def home(request):
     rooms=Rooms.objects.all()
     now=date.today()
     coupons=Coupons.objects.filter(valid_to__lte=now)
+    couponsactive=Coupons.objects.filter(valid_to__gte=now)
     request.session['checkin']=None
     request.session['checkout']=None
     scategory_objs = SubCategories.objects.all()
@@ -280,6 +281,9 @@ def home(request):
     for y in coupons:
         y.active=False
         y.save()
+    for i in couponsactive:
+        i.active=True
+        i.save()
 
     
     for x in rooms:

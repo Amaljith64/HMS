@@ -10,7 +10,7 @@
         <div class="row page-titles">
             
             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
-                data-bs-target="#exampleModalCenter">Add New Subcategory</button>
+                data-bs-target="#exampleModalCenter">Add New Location</button>
 
         </div>
         <!-- Modal -->
@@ -18,7 +18,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Sub Category</h5>
+                        <h5 class="modal-title">Add Location</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal">
                         </button>
                     </div>
@@ -45,11 +45,7 @@
                                 <div class="mb-3">
                                     <input type="text" name="description" class="form-control input-rounded" placeholder="Enter description">
                                 </div>
-                            </div>
-
-
-                        
-                        
+                            </div> 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
@@ -66,10 +62,7 @@
                     <div class="card-header border-0 pb-0">
                         <h5 class="card-title">{{i.title}}</h5>
                     </div>
-                    <div class="card-body">
-                        <h5>Main category is:  {{i.category_id}}</h5>
-                        
-                    </div>
+                    
                     <div class="card-body">
                         <p class="card-text">{{i.description}}
                         </p>

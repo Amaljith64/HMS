@@ -577,6 +577,7 @@ def edit_coupon(request,id):
         coupon=request.POST['code']
         valid_to=request.POST['validity']
         discount=request.POST['discount']
+        description=request.POST['description']
         minamount=request.POST['minamount']
         maxamount=request.POST['maxamount']
         if coupon==Coupons.objects.filter(coupon_code=coupon):
@@ -587,6 +588,7 @@ def edit_coupon(request,id):
         toedit.minamount=minamount
         toedit.maxamount=maxamount
         toedit.discount=discount
+        toedit.description=description
         toedit.save()
         return redirect(add_coupons)
     return render(request,'AdminPanel/edit_coupon.html',{'toedit':toedit})

@@ -74,15 +74,15 @@ Sales Report
                                 <div class="row d-flex justify-content-start">
 
                                 <div class="mb-3 col-4 ">
-                                    <label class="col-sm-4 col-form-label">From Date</label>
+                                    <label class="col-sm-4 col-form-label ">From Date</label>
                                     <div class="col-sm-8">
-                                        <input type="date" class="form-control" name="fromdate">
+                                        <input type="date" class="form-control txtDate" name="fromdate" onchange="onchangee()">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-4">
-                                    <label class="col-sm-4 col-form-label">To Date</label>
+                                    <label class="col-sm-4 col-form-label ">To Date</label>
                                     <div class="col-sm-8">
-                                        <input type="date" class="form-control" name="todate">
+                                        <input type="date" class="form-control txtDate to" name="todate">
                                     </div>
                                 </div>
                                 <div class="mb-3 col-4">
@@ -151,6 +151,42 @@ Sales Report
             ]
         });
     });
+
+    $(function () {
+      var dtToday = new Date();
+
+      var month = dtToday.getMonth() + 1;
+      var day = dtToday.getDate();
+      var year = dtToday.getFullYear();
+      if (month < 10)
+        month = '0' + month.toString();
+      if (day < 10)
+        day = '0' + day.toString();
+
+      var maxDate = year + '-' + month + '-' + day;
+
+      // or instead:
+      // var maxDate = dtToday.toISOString().substr(0, 10);
+
+
+      $('.txtDate').attr('max', maxDate);
+    });
+
+    function onchangee() {
+      $(document).on("change", ".txtDate", function () {
+        debugger
+        var date = $(this).val();
+        console.log(date)
+        var currentDate = new Date(date);
+        console.log(currentDate)
+        next_date = new Date(currentDate.setDate(currentDate.getDate() + 1));
+        var newDate = next_date.getFullYear() + "-" + ((next_date.getMonth() < 9 ? '0' : '') + (next_date.getMonth() + 1)) + "-" + ((next_date.getDate() < 10 ? '0' : '') + next_date.getDate());
+
+        console.log(newDate)
+
+        $('.to').attr('min', newDate);
+      });
+    }
 
 </script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
