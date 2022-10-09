@@ -29,6 +29,18 @@
                             <input type="text" name="discount" class="form-control" placeholder="Enter Discount " value="{{ROom.discount}}">
                         </div>
                     </div>
+                    <div class="mb-3 row">
+                        <label class="switch">
+                            <label class="col-sm-3 col-form-label">Active Status</label>
+                            <div class="col-sm-9">
+                            {% if ROom.is_active == True %}
+                            <input type="checkbox" name="active" checked>
+                            {% else %}
+                            <input type="checkbox" name="active">
+                            {% endif %}
+                            </div>
+                          </label>
+                        </div>
                    
   
                     <div class="mb-3 row">

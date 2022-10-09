@@ -294,6 +294,7 @@ def home(request):
             list.append(category_offer.discount)
             print(list)
         except ObjectDoesNotExist:
+            list.append(0)
             print('no categoryOffer')
             pass
         # ------------------------ checking for subcategory offer ----------------------- #
@@ -302,6 +303,7 @@ def home(request):
             list.append(subcategory_offer.discount)
             print(list)
         except ObjectDoesNotExist:
+            list.append(0)
             print('no subcategoryOffer')
             pass
         # ------------------------ checking for Room offer ----------------------- #
@@ -310,6 +312,7 @@ def home(request):
             list.append(room_offer.discount)
             print(list)
         except ObjectDoesNotExist:
+            list.append(0)
             print('no roomOffer')
             pass
         #setting discount price zero,if we remove any ofers by chance

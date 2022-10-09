@@ -114,14 +114,14 @@
                     <span>Max Guests: 2</span> -->
                   </div>
                   <div class="row" style="margin-top: 11px;">
-                    {% if i.discount_price > 0 %}
+                    {% if i.discount_percentage > 0 %}
                     <!-- <h3>&emsp;₹{{i.discount_price}}</h3> -->
                     <h3>&nbsp;&nbsp;&nbsp;₹{{i.discount_price}}</h3>
                     <!-- <p>saved:{{i.reduced_price}}</p> -->
                     <h5 style="color: #838384" >&nbsp; <del> ₹{{i.price}}</del></h5>
                     <h5  style="color: #edcb9a " >&nbsp;{{i.discount_percentage}}% off</h5>
                     {% else %}
-                    <span class="price"> ₹{{i.price}}</span>
+                    <h3>&nbsp;&nbsp;&nbsp;₹{{i.price}}</h3>
                     {% endif %}
                   </div>
                   

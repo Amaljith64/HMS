@@ -167,37 +167,38 @@ def hotel_detail(request, id):
                         request, 'Hotel is already booked in these dates ')
                     print("already bookedddddddddddddddddddddd")
                     return redirect(hotel_detail, room.id)
-                # try:
-                value = HotelBookings.objects.create(
-                    hotel=hotel, user=request.user, start_date=checkin, end_date=checkout)
-                print(value.id)
-                messages.success(request, 'Your booking has been saved')
-                request.session['order_id'] = value.id
-                print(checkin, 'ccccccccccccccccccccccccccccccccc')
-                d1 = datetime.strptime(checkin, "%Y-%m-%d")
-                d2 = datetime.strptime(checkout, "%Y-%m-%d")
-                delta = d2 - d1
-                print(delta.days, 'deltaaaaaaaaaaaaaaaaaaaaa')
+                try:
+                    value = HotelBookings.objects.create(
+                        hotel=hotel, user=request.user, start_date=checkin, end_date=checkout)
+                    print(value.id)
+                
+                    messages.success(request, 'Your booking has been saved')
+                    request.session['order_id'] = value.id
+                    print(checkin, 'ccccccccccccccccccccccccccccccccc')
+                    d1 = datetime.strptime(checkin, "%Y-%m-%d")
+                    d2 = datetime.strptime(checkout, "%Y-%m-%d")
+                    delta = d2 - d1
+                    print(delta.days, 'deltaaaaaaaaaaaaaaaaaaaaa')
 
-                if room.discount_price > 0:
-                    request.session['amount'] = find_total_room_charge(
-                        delta.days, value.hotel.discount_price)
-                    request.session['fullamount'] = find_total_room_charge(
-                        delta.days, value.hotel.price)
-                else:
-                    request.session['amount'] = find_total_room_charge(
-                        delta.days, value.hotel.price)
+                    if room.discount_price > 0:
+                        request.session['amount'] = find_total_room_charge(
+                            delta.days, value.hotel.discount_price)
+                        request.session['fullamount'] = find_total_room_charge(
+                            delta.days, value.hotel.price)
+                    else:
+                        request.session['amount'] = find_total_room_charge(
+                            delta.days, value.hotel.price)
 
-                request.session['original amount'] = request.session['amount']
-                request.session['coupon'] = None
+                    request.session['original amount'] = request.session['amount']
+                    request.session['coupon'] = None
 
-                return redirect(paymentfun, id=value.id)
-                # except:
-                #     messages.error(request, 'Please login to Book Your Room')
-
+                    return redirect(paymentfun, id=value.id)
+                except:
+                    messages.error(request, 'Please login to Book Your Room')
+                    
             else:
                 messages.error(request, 'Please FIll all Fields')
-
+                
         elif request.POST.get("form_type") == 'formTwo':
             print('fooooooorm2')
             try:

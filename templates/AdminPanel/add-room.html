@@ -34,17 +34,17 @@
 										<div class="col-xl-6">
 										
 											<div class="mb-3 row">
-												<label class="col-lg-4 form-label">Select Category</label>
+												
 												<div class="col-lg-6">
-												<select name="categ" class="default-select  form-control wide">
 													{% for i in categ %}
-													<option value="{{ i.id }}">{{ i.title }}</option>
+													<input value="{{ i.id }}" type="hidden" name="categ">
+													
 													{% endfor %}
-												</select>
+												
 											</div>
 											</div>
 											<div class="mb-3 row">
-												<label class="col-lg-4 form-label">Choose Sub Category</label>
+												<label class="col-lg-4 form-label">Choose Location</label>
 												<div class="col-lg-6">
 												<select name="scateg" class="default-select  form-control wide">
 													{% for i in scateg %}

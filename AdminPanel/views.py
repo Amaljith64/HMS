@@ -317,11 +317,19 @@ def Edit_SubCategoryOffer(request,id):
     if request.method=="POST":
         discount=request.POST.get("discount")
         obj=request.POST.get("category_name")
+        stat=request.POST.get("active")
+        if stat == None:
+            status=False
+        elif stat== "on":
+            status=True
+        print(stat,'iiiiiiiiiiiiiiiiii')
         discount=int(discount)
         if discount>0:
             if discount<90:
                 CategoryOfferObj.discount=discount
                 CategoryOfferObj.obj=SubCategories.objects.get(id=id)
+                CategoryOfferObj.is_active=status
+
                 CategoryOfferObj.save()
                 messages.success(request,"SubCategory offer edited")
                 return redirect(SubCategoryOffer)
@@ -345,6 +353,8 @@ def RoomOffer(request):
     if request.method=="POST":
         discount=request.POST.get("discount")
         name=request.POST.get("room_name")
+        
+        
         discount=int(discount)
         if Room_offer.objects.filter(room=name).exists():
             print("already exists")
@@ -354,6 +364,7 @@ def RoomOffer(request):
             if discount<90:
                 newCategoryOffer=Room_offer()
                 newCategoryOffer.discount=discount
+                
                 newCategoryOffer.room=Rooms.objects.get(id=name)
                 newCategoryOffer.save()
                 return redirect(RoomOffer)
@@ -372,11 +383,18 @@ def Edit_RoomOffer(request,id):
     if request.method=="POST":
         discount=request.POST.get("discount")
         obj=request.POST.get("room")
+        stat=request.POST.get("active")
+        print(stat,'iiiiiiiiiiiiiiu')
+        if stat == None:
+            status=False
+        elif stat== "on":
+            status=True
         discount=int(discount)
         if discount>0:
             if discount<90:
                 roomobj.discount=discount
                 roomobj.obj=SubCategories.objects.get(id=id)
+                roomobj.is_active=status
                 roomobj.save()
                 messages.success(request,"Room offer edited")
                 return redirect(RoomOffer)

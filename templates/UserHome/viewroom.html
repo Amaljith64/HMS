@@ -56,14 +56,14 @@
       <br>
       <br>
       <h1>{{room.name}}</h1>
-      {% if room.discount_price > 0 %}
       <div class="room-details-price">
+        {% if room.discount_percentage > 0 %}
         <span><del> ₹ {{room.price}}</del></span>
         <span> ₹ {{room.discount_price}} / night</span>
+        {% else %}
+        <span> ₹ {{room.price}} / night</span>
       </div>
-      {% else %}
 
-      <span> ₹ {{room.price}} / night</span>
     </div>
     {% endif %}
     <ol class="breadcrumb">
@@ -176,6 +176,7 @@
           </div>
         </div>
         <p>{{room.Desc}}</p>
+        <h6>Room Location : {{room.subcateg}}</h6>
         <div class="section-title sm">
           <h4>ROOM SERVICES</h4>
           <p class="section-subtitle">Single Room Includes</p>
