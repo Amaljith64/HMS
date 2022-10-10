@@ -62,10 +62,10 @@
         <span> ₹ {{room.discount_price}} / night</span>
         {% else %}
         <span> ₹ {{room.price}} / night</span>
+        {% endif %}
       </div>
 
     </div>
-    {% endif %}
     <ol class="breadcrumb">
       <li>
         <a href="{% url 'home' %}">Home</a>
