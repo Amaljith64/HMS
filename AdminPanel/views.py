@@ -287,6 +287,33 @@ def subcategory(request):
     scateg=SubCategories.objects.all()
     return render(request,'AdminPanel/subcategory.html',{'scateg':scateg,'categ':categ})
 
+
+
+
+def EditSubCategory(request, id):
+    category=Categories.objects.all()
+    subcategory_toedit=SubCategories.objects.get(id=id)
+    if request.method == 'POST':
+        category=Categories.objects.get(id=request.POST['category'])
+        title = request.POST['title']
+        description = request.POST['description']
+        subcategory_toedit.title=title
+        subcategory_toedit.category=category
+        subcategory_toedit.description=description
+        if SubCategories.objects.exclude(id=id).filter(title__icontains=title).exists():
+                messages.error(request, "SubCategory Already Exists")
+                return redirect(EditSubCategory,id)
+        if subcategory_toedit.title =='' or subcategory_toedit.description =='' :
+                messages.error(request, "SubCategory fields cannot be blank")
+                return redirect(EditSubCategory,id)
+        subcategory_toedit.save()
+        messages.success(request, 'SubCategory is Updated Successfully')
+        return redirect(subcategory)
+    return render(request, 'AdminPanel/edit-subcategory.html', {'subcategory': subcategory_toedit,'category': category})
+
+
+
+
 def SubCategoryOffer(request):
     offers=SubCategory_offer.objects.all()
     SubcategObj=SubCategories.objects.all()
@@ -442,17 +469,17 @@ def guest(request):
         return render(request,'AdminPanel/guest-list.html',{'datas': mydata})
 
 def blockuser(request,id):
-    mydata = Account.objects.all()  
+   
     user=Account.objects.get(id=id)
     
     if user.is_active:
         user.is_active = False
         user.save()
-        return render(request, 'AdminPanel/xml-guest-details.html', {'datas': mydata})
+        return redirect(guest)
     else:
         user.is_active = True
         user.save()
-        return render(request, 'AdminPanel/xml-guest-details.html', {'datas': mydata}) 
+        return redirect(guest) 
 
 
 #------------------------------------USER ENDS------------------------------#

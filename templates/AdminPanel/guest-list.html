@@ -19,16 +19,112 @@
 							<ul class="nav nav-tabs" role="tablist">
 								<li class="nav-item">
 									<a class="nav-link active" data-bs-toggle="tab" href="#All" role="tab">All Users
-										</a>
+									</a>
 								</li>
 							</ul>
 						</div>
-						
+
 					</div>
 					<div class="tab-content">
 						<div class="tab-pane active show" id="All">
-							{% include "AdminPanel/xml-guest-details.html" %}
-						</div>					
+							{% load static %}
+							<div class="table-responsive" id="tasks" >
+								<table
+									class="table card-table default-table display mb-4 dataTablesCard table-responsive-xl "
+									id="guestTable-all">
+									<thead>
+										<tr>
+											<th class="bg-none">
+												<div class="form-check style-1">
+													<input class="form-check-input" type="checkbox" value=""
+														id="checkAll">
+												</div>
+											</th>
+											<th>User</th>
+											<th>Email</th>
+											<th>Phone</th>
+											<th>ref_active</th>
+											<th>Status</th>
+											<th>Action</th>
+
+											<th class="bg-none"></th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for i in datas %}
+										<tr>
+											<td>
+												<div class="form-check style-1">
+													<input class="form-check-input" type="checkbox" value="">
+												</div>
+											</td>
+											<td>
+												<div class="media-bx">
+													<img class="me-3 rounded"
+														src="{% static 'admin/images/avatar/1.png' %}" alt="">
+													<div>
+														<span class="text-primary">#{{i.id}}</span>
+														<h4 class="mb-0 mt-1"><a class="text-black"
+																href="guest-detail.html">{{i.username}}</a></h4>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div>
+													<h5>{{i.email}}</h5>
+													<!-- <span class="fs-14">08:29 AM</span> -->
+												</div>
+											</td>
+											<td>
+												<div>
+													<h5>{{i.phone_number}}</h5>
+													<!-- <span class="fs-14">08:29 AM</span> -->
+												</div>
+											</td>
+											<td>
+												<div>
+													{% if i.ref_active == True %}
+													<h5>Reffered</h5>
+													{% else %}
+													<h5>Not Reffered</h5>
+													{% endif %}
+													<!-- <span class="fs-14">08:29 AM</span> -->
+												</div>
+											</td>
+											<td>{% if i.is_superadmin %}
+												<h5>Admin</h5>
+												{% else %}
+												<h5>User</h5>
+												{% endif %}
+											</td>
+											<td>
+												<div>
+													<form action="{% url 'blockuser' i.id %}">
+													<!-- <a class="delete" href="https://www.google.com/">go here</a> -->
+
+													{% if i.is_active == True %}
+													<!-- <span class="text-danger">Refund</span></td> -->
+													<button type="submit"
+														class="btn btn-xs btn-danger btn-flat show_confirm_">block</button>
+													{% elif i.is_active == False %}
+
+
+													<button type="submit"
+														class="btn btn-xs btn-success btn-flat show_confirm_">Unblock</button>
+													<!-- <a class="btn btn-sm btn-success"
+                            href="{% url 'blockuser' i.id %}">Unblock</a> -->
+													{% endif %}
+													<!-- <span class="fs-14">Room No. 0024</span> -->
+												</form>
+
+												</div>
+											</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

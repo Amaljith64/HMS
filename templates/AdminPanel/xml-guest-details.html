@@ -69,55 +69,19 @@
 
                         {% if i.is_active == True %}
                         <!-- <span class="text-danger">Refund</span></td> -->
-                        <a data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter1" ><button class="btn btn-xs btn-danger btn-flat " 
+                        <button class="btn btn-xs btn-danger btn-flat show_confirm_" 
                             >block</button>
-                        </a>
-                        <div class="modal fade" id="exampleModalCenter1">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Block User</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Are you sure You want to block this user</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                                        <a hx-get="{% url 'blockuser' i.id %}" data-bs-dismiss="modal" type="button" class="btn btn-primary">Block</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       
+                        
 
                         
                         {% elif i.is_active == False %}
 
 
-                        <a data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter2" ><button class="btn btn-xs btn-success btn-flat " 
+                       <button class="btn btn-xs btn-success btn-flat show_confirm_" 
                             >Unblock</button>
-                        </a>
-                        <div class="modal fade" id="exampleModalCenter2">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Unblock User</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Are you sure You want to Unblock</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                                        <a hx-get="{% url 'blockuser' i.id %}" data-bs-dismiss="modal" type="button" class="btn btn-primary">Unblock</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        
                         <!-- <a class="btn btn-sm btn-success"
                             href="{% url 'blockuser' i.id %}">Unblock</a> -->
                         {% endif %}

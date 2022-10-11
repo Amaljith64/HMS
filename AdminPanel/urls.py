@@ -14,6 +14,7 @@ urlpatterns = [
     path('category',views.category,name='category'),
     path('editcategory/<int:id>',views.edit_category,name='editcategory'),
     path('subcategory',views.subcategory,name='subcategory'),
+    path('editsubcategory/<int:id>',views.EditSubCategory,name='editsubcategory'),
     path('bookings',views.bookings,name='bookings'),
     path('makecheckin/<int:id>',views.makecheckin,name='makecheckin'),
     path('makecheckout/<int:id>',views.makecheckout,name='makecheckout'),

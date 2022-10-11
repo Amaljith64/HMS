@@ -36,6 +36,7 @@
     <link href="{% static 'admin/css/style.css' %}" rel="stylesheet">
 
 	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
@@ -330,8 +331,8 @@
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
 	
     <script src="{% static 'admin/vendor/global/global.min.js' %}"></script>
-	<script src="{% static 'admin/vendor/sweetalert2/dist/sweetalert2.min.js' %}"></script>
-	<script src="{% static 'admin/js/plugins-init/sweetalert.init.js' %}"></script>
+	<!-- <script src="{% static 'admin/vendor/sweetalert2/dist/sweetalert2.min.js' %}"></script>
+	<script src="{% static 'admin/js/plugins-init/sweetalert.init.js' %}"></script> -->
 	<script src="{% static 'admin/vendor/chart.js/Chart.bundle.min.js' %}"></script>
 	<script src="{% static 'admin/vendor/jquery-nice-select/js/jquery.nice-select.min.js' %}"></script>
 	
@@ -425,6 +426,27 @@
 		{% endif %}
 		{% endfor %}
 	  </script>
+
+
+<script type="text/javascript">
+    $('.show_confirm_').click(function(event) {
+        var form =  $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+            title: `Are you sure`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                form.submit();
+            }
+        });
+    });
+    </script>
+
 	
 	
 	{% block CustomScripts %}

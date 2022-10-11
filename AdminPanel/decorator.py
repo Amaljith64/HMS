@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def admin_only(view_func):
@@ -6,5 +7,5 @@ def admin_only(view_func):
         if request.user.is_superadmin:  
             return view_func(request, *args, **kwargs)
         else:
-            return HttpResponse('you are not authorised to view this page')
+            return render(request, 'AdminPanel/userblockpage.html')
     return wrapper_function
