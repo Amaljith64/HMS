@@ -24,6 +24,7 @@
       <main class="rooms-list-view">
         <div class="container">
           <!-- ITEM -->
+          {% if list %}
           {% for i in list %}
           <div class="room-list-item">
             <div class="row">
@@ -65,6 +66,10 @@
             </div>
           </div>
           {% endfor %}
+          {% else %}
+    <h1 class="text-center">You Have Nothing In Your Wishlist</h1>
+    
+    {% endif %}
           <!-- ITEM -->
           
           <!-- PAGINATION -->

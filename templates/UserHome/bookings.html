@@ -23,6 +23,9 @@
 <!-- ========== MAIN ========== -->
 <main class="rooms-list-view">
   <div class="container" id="tasks" hx-target="#tasks" hx-swap="outerHTML">
+    {% if booking %}
+  
+    
     <!-- ITEM -->
     {% for i in booking %}
     <div class="room-list-item">
@@ -101,6 +104,10 @@
       </div>
     </div>
     {% endfor %}
+    {% else %}
+    <h1 class="text-center">You Have No Booking</h1>
+    
+    {% endif %}
     <!-- ITEM -->
 
     <!-- PAGINATION -->

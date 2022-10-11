@@ -1,4 +1,5 @@
 from genericpath import exists
+import imp
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from . models import *
@@ -10,6 +11,8 @@ import calendar
 from datetime import date
 from Payments.models import PaymentClass
 import datetime
+from .decorator import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -377,7 +380,7 @@ def RoomOffer(request):
     return render(request,'AdminPanel/roomoffer.html',{'RoomObj':RoomObj,'offers':offers})
 
 
-
+@admin_only
 def Edit_RoomOffer(request,id):
     roomobj=Room_offer.objects.get(id=id)
     if request.method=="POST":
@@ -425,7 +428,7 @@ def Edit_RoomOffer(request,id):
 
 
 
-
+@admin_only
 def guest(request):
     if request.method=='POST':
         load=request.POST['search']
@@ -457,7 +460,7 @@ def blockuser(request,id):
 
 #------------------------------------BOOKINGS------------------------------#
 
-
+@admin_only
 def bookings(request):
     bookings=HotelBookings.objects.exclude(status='Pending').all()
     bookingscount=HotelBookings.objects.all().count()   
@@ -503,8 +506,8 @@ def delete(request,id):
 
 
 
-
-
+@login_required(login_url='signin')
+@admin_only
 def index(request):
 
     orders=HotelBookings.objects.annotate(month=ExtractMonth('created_at')).values('month').annotate(count=Count('id')).values('month','count')
