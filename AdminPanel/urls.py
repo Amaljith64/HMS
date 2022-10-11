@@ -15,6 +15,7 @@ urlpatterns = [
     path('editcategory/<int:id>',views.edit_category,name='editcategory'),
     path('subcategory',views.subcategory,name='subcategory'),
     path('editsubcategory/<int:id>',views.EditSubCategory,name='editsubcategory'),
+    path('deletesubcategory/<int:id>',views.DeleteSubCategory,name='deletesubcategory'),
     path('bookings',views.bookings,name='bookings'),
     path('makecheckin/<int:id>',views.makecheckin,name='makecheckin'),
     path('makecheckout/<int:id>',views.makecheckout,name='makecheckout'),
@@ -22,6 +23,7 @@ urlpatterns = [
     path('deletebooking/<int:id>',views.delete,name='deletethebooking'),
     path('coupons',views.add_coupons,name='coupons'),
     path('editcoupons/<int:id>',views.edit_coupon,name='editcoupons'),
+    path('deletecoupons/<int:id>',views.DeleteCoupon,name='DeleteCoupon'),
 
 
     #------------------------- category offer management ------------------------ #

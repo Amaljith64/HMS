@@ -52,6 +52,8 @@
 									</thead>
 									<tbody>
 										{% for i in datas %}
+										{% if i.is_admin %}
+                                        {% else %}
 										<tr>
 											<td>
 												<div class="form-check style-1">
@@ -120,6 +122,7 @@
 												</div>
 											</td>
 										</tr>
+										{% endif %}
 										{% endfor %}
 									</tbody>
 								</table>

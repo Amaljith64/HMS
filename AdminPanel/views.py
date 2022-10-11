@@ -294,6 +294,7 @@ def EditSubCategory(request, id):
     category=Categories.objects.all()
     subcategory_toedit=SubCategories.objects.get(id=id)
     if request.method == 'POST':
+
         category=Categories.objects.get(id=request.POST['category'])
         title = request.POST['title']
         description = request.POST['description']
@@ -312,6 +313,11 @@ def EditSubCategory(request, id):
     return render(request, 'AdminPanel/edit-subcategory.html', {'subcategory': subcategory_toedit,'category': category})
 
 
+def DeleteSubCategory(request,id):
+    subcategory_todelete=SubCategories.objects.get(id=id)
+    subcategory_todelete.delete()
+    messages.success(request,"Subcategory is deleted  succesfully")
+    return redirect(subcategory)
 
 
 def SubCategoryOffer(request):
@@ -642,7 +648,11 @@ def edit_coupon(request,id):
     return render(request,'AdminPanel/edit_coupon.html',{'toedit':toedit})
 
                     
-
+def DeleteCoupon(request,id):
+    toedit=Coupons.objects.get(id=id)
+    toedit.delete()
+    messages.success(request,"Coupon deleted  succesfully")
+    return redirect(add_coupons)
 
 
 
