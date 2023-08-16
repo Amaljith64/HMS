@@ -58,7 +58,7 @@ To run the project locally, please follow these steps:
 ## Screenshots
 
 
-![Prolancer Screenshot](https://amaljith64.github.io/Amaljithportfolio/assets/img/Project%201.png)
+![Prolancer Screenshot](https://amaljith64.github.io/myportfolio/assets/img/Project%201.png)
 
 ## Contribution
 
